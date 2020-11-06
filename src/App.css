@@ -36,3 +36,53 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiToolbar-gutters {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.MuiToolbar-regular {
+  min-height: 0px;
+}
+
+.MuiIcon-root {
+  width: 32px;
+  height: 32px;
+}
+
+.MuiIconButton-label {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.MuiButton-label {
+  text-transform: none;
+  font-size: 15px;
+}
+
+.MuiContainer-root {
+  background-color: #222431;
+  padding: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+a:visited { text-decoration: none; color:white; }
+
+h1, h2 {
+	color: #FFF
+}
+
+.MuiCard-root {
+
+}
