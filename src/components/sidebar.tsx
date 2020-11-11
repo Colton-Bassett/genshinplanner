@@ -8,7 +8,7 @@ class SideBar extends Component {
     render() {
         return (
             <Grid direction="column" justify="center" alignItems="center">
-                <Card style={{backgroundColor: "#20212C", minWidth: "70%", margin: "auto", minHeight: "600px", boxShadow: "none" }}> 
+                <Card style={{backgroundColor: "#20212C", minWidth: "70%", margin: "auto", minHeight: "655px", boxShadow: "none" }}> 
                     <div style={{padding: "0px 20px"}}>
                         <CardContent style={{}}>
                         </CardContent>

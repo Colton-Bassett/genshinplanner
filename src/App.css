@@ -59,12 +59,16 @@
 
 .MuiButton-label {
   text-transform: none;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .MuiContainer-root {
   background-color: #222431;
   padding: 0px;
+}
+
+.MuiCardHeader-action {
+	padding: 8px 8px 0px 0px
 }
 
 a {
@@ -74,7 +78,7 @@ a {
 
 a:hover {
 	text-decoration: none;
-	color: white;
+	color: white !important;
 }
 
 a:visited { text-decoration: none; color:white; }
@@ -83,6 +87,77 @@ h1, h2 {
 	color: #FFF
 }
 
-.MuiCard-root {
+.menu-test {
+	color: #FFF;
+}
 
+.menu-test-active {
+	color: #A6A7AC !important;
+}
+
+.inactive-link {
+	color: #A6A7AC !important;
+}
+
+.dropdown-arrow{
+	color: #A6A7AC !important;
+}
+
+.dropdown-arrow:hover {
+	color: white !important;
+}
+
+.plus-character{
+	color: #A6A7AC !important;
+	font-size: 24px;
+}
+
+.center-item {
+	font-size: 100px;
+	color: #A6A7AC;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.center-item-top {
+	font-size: 100px;
+	color: #A6A7AC;
+	margin: 0;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.center-item-name {
+	margin: 0;
+	position: absolute;
+	top: 58%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.center-item-ascension {
+	margin: 0;
+	position: absolute;
+	top: 67%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.center-item-level-range {
+	margin: 0;
+	position: absolute;
+	top: 75%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	min-width: 100px;
 }
