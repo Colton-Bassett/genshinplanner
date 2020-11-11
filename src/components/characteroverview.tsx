@@ -1,49 +1,35 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import { Grid } from '@material-ui/core';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Add } from '@material-ui/icons';
+import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles
+	   } from '@material-ui/core';
+import { ExpandMore } from '@material-ui/icons';
+
+import { Character } from "../logic/character";
 import MaterialCard from './material'
-import Paper from '@material-ui/core/Paper';
 import Razor from './Razor.png'
 import AscensionFour from './ascension4.png'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
+	root: {
+		maxWidth: 345,
 
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+	},
+	media: {
+		height: 0,
+		paddingTop: '56.25%', // 16:9
+	},
+	expand: {
+		transform: 'rotate(0deg)',
+		marginLeft: 'auto',
+		transition: theme.transitions.create('transform', {
+			duration: theme.transitions.duration.shortest,
+		}),
+	},
+	expandOpen: {
+		transform: 'rotate(180deg)',
+	},
+	avatar: {
+	},
 }));
 
 export default function CharacterOverview() {
@@ -65,7 +51,7 @@ export default function CharacterOverview() {
 
 
 	<Card style={{backgroundColor: "#272937", minWidth: "100%", margin: "auto", minHeight: "250px"}}> 
-		<Grid item xs={3} justify="center" alignItems="center" style={{margin: "auto", position: "relative", minHeight: "250px"}}>
+		<Grid item xs={3} style={{margin: "auto", position: "relative", minHeight: "250px"}}>
 			<CardMedia
 			image= {Razor}
 			className={centerItemTop}
@@ -73,7 +59,7 @@ export default function CharacterOverview() {
 			/>
 
 			<Typography className={centerItemName} variant="h6">
-			Razor
+				{Character.Ningguang}
 			</Typography>
 
 			<CardMedia
@@ -110,7 +96,7 @@ export default function CharacterOverview() {
 				style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0"}}
 
 		  >
-			<ExpandMoreIcon style={{color: 'white', fontSize: '26px'}} />
+			<ExpandMore style={{color: 'white', fontSize: '26px'}} />
 		  </IconButton>
 		}
         title={

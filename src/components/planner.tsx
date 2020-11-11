@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import Card from '@material-ui/core/Card';
-import { Grid } from '@material-ui/core';
-import CardContent from '@material-ui/core/CardContent';
+import { Card, CardContent, Grid } from '@material-ui/core';
+
 import AddCharacter from "./addcharacter"
 import CharacterOverview from "./characteroverview"
 
 class Planner extends Component {
     render() {
         return (
-            <Grid direction="column" justify="center" alignItems="center">
+            <Grid>
 
 				<Card style={{backgroundColor: "#222431", minWidth: "70%", margin: "auto", minHeight: "600px"}}> 
 					<div style={{padding: "0px 20px"}}>

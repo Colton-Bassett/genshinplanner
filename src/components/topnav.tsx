@@ -1,8 +1,9 @@
-import React, {Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {Button, AppBar, Toolbar, IconButton, Icon, StylesProvider, Grid} from '@material-ui/core';
-import websitelogo from '../websitelogo.png'
-import { Link } from "react-router-dom";
 import { KeyboardArrowDown } from '@material-ui/icons';
+import { Link } from "react-router-dom";
+
+import websitelogo from '../websitelogo.png'
 
 interface AppProps {
     testFunc?: any;
@@ -50,22 +51,25 @@ class TopNav extends Component<AppProps, AppState> {
             <AppBar position="static" >
                 <StylesProvider injectFirst>
                     <Toolbar style={{borderBottom: "1px solid #36384a"}}>
-                        <IconButton edge="start" color="inherit" aria-label="menu" disableRipple style={{backgroundColor: 'transparent'}}>
-                        <Link to="/" onClick={() => this.setActive() }>
+                        <IconButton onClick={() => this.setActive()} edge="start" color="inherit" aria-label="menu" disableRipple style={{backgroundColor: 'transparent'}}>
+                        <Link to="/" >
+
                         <Icon >
                             <img src={websitelogo} alt="logo" height={32} width={32}/>
                         </Icon>
                         </Link>
-                        <Link to="/" onClick={() => this.setActive() }>
-                       &nbsp; IMPACT.GG</Link>
+                        <Link to="/" >
+                            &nbsp; IMPACT.GG
+                        </Link>
+
 
                         </IconButton>
                         <Grid container direction={'row'} spacing={5}>
-                            <Button style={{paddingLeft: "20px", paddingRight: "20px", marginLeft: "auto" , backgroundColor: 'transparent'}}  href="/" disableRipple color="inherit">
-                                <Link to="/" className={clickMe} onClick={() => this.setActive() } >Planner</Link> 
+                            <Button onClick={() => this.setActive()} style={{paddingLeft: "20px", paddingRight: "20px", marginLeft: "auto" , backgroundColor: 'transparent'}} disableRipple color="inherit">
+                                <Link to="/" className={clickMe} >Planner</Link> 
                             </Button>
-                            <Button style={{paddingLeft: "20px", paddingRight: "20px",backgroundColor: 'transparent'}} disableRipple color="inherit">
-                                <Link to="/database" className={inactiveLink} onClick={() => this.setActiveFalse() }>Database</Link> 
+                            <Button onClick={() => this.setActiveFalse()} style={{paddingLeft: "20px", paddingRight: "20px",backgroundColor: 'transparent'}} disableRipple color="inherit">
+                                <Link to="/database" className={inactiveLink}>Database</Link> 
                                 <Icon >
                                     <KeyboardArrowDown className={dropdownArrow}></KeyboardArrowDown>
                                 </Icon>
