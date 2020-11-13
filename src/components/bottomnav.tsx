@@ -4,17 +4,25 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: '#20212C !important',
+        backgroundColor: '#222431 !important',
         boxShadow: "none !important",
+        minHeight: "222px",
     },
     container: {
         margin: 'auto',
+
+    },
+    innerContainer: {
+        paddingBottom: '0px !important',
+        paddingLeft: '0px !important',
+        paddingRight: '0px !important',
+
     },
     content: {
-        padding: theme.spacing(4),
+        padding: theme.spacing(6),
         "&:last-child": {
-            paddingBottom: '30px'
-          }
+            paddingBottom: '48px'
+          },
     },
     message: {
         textAlign: 'center',
@@ -23,16 +31,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AdBar() {
+export default function BottomNav() {
     const classes = useStyles();
     //const theme = useTheme();
     return (
-        <Grid container xs={9} spacing={3} direction="row" justify="center" className={classes.container}>
-            <Grid item xs={12} >
+        <Grid container xs={12} spacing={3} direction="row" justify="center" className={classes.container}>
+            <Grid item xs={12} className={classes.innerContainer}>
                 <Card className={classes.root}> 
                     <CardContent className={classes.content}>
                         <Typography variant="h5" component="h2" className={classes.message}> 
-                            This website is supported by ads.
+                            IMPACT.GG
                         </Typography>
                     </CardContent>
                 </Card>

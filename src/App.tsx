@@ -1,24 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import { Container, Grid, ThemeProvider, StylesProvider, createMuiTheme } from '@material-ui/core';
+import { Grid, ThemeProvider, StylesProvider, createMuiTheme, makeStyles } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import TopNav from "./components/topnav"
 import AdBar from "./components/adbar"
 import Planner from "./components/planner"
 import SideBar from "./components/sidebar"
+import BottomNav from "./components/bottomnav"
 
+const useStyles = makeStyles((theme) => ({
+	root: {
+		margin: 'auto',
+	},
+	content: {
+		backgroundColor: "#272937 !important",
+		minWidth: '100%',
+		margin: 'auto',
+		minHeight: '250px',
+	},
+	container: {
+		margin: 'auto',
+		position: 'relative',
+		minHeight: '250px'
+	},
+}));
 
-class App extends Component <{},any> {
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			isActive: false,
-			cheese: "cheese pee",
-			testNavName: "Test cum"
-		};
-	}
-	theme = createMuiTheme({
+export default function App() {
+	const theme = createMuiTheme({
 		palette: {
 			primary: {
 			main: "#222431",
@@ -34,84 +43,36 @@ class App extends Component <{},any> {
 		},
 	});
 
-	private testFunc = (state: any) => {
-		console.log("initial state", state)
-		this.setState({
-			isActive: true,
-		})
-		console.log("after state:", state)
-		console.log(state)
-	}
+	const classes = useStyles();
 
-	render() {
-		// let clickMe = 'menu-test';
-		// if (this.state.isActive) {
-		// 	clickMe += ' menu-test-active';
-		// }
-
-  return (
-    <ThemeProvider theme={this.theme}>
-    <Router>
-		<TopNav testFunc = {this.testFunc}></TopNav>
-		<StylesProvider injectFirst>
-		<AdBar></AdBar>
-		<Grid container spacing={3} direction="row" justify="center" alignItems="flex-start" style={{maxWidth: "70%", margin: "auto"}} >
-			<Grid item xs={9} style={{paddingLeft:"0px"}}>
-			<Container style={{}}>
-				<div>
+	return (
+		<ThemeProvider theme={theme}>
+		<Router>
+			{/* <TopNav testFunc = {this.testFunc}></TopNav> */}
+			<TopNav></TopNav>
+			<StylesProvider injectFirst>
+			<AdBar></AdBar>
+			<Grid container xs={9} spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.root}>
+				<Grid item xs={9}>
 					<Switch>
-					<Route path="/planner">
-						<Planner />
-					</Route>
-					<Route path="/database">
+						<Route path="/planner">
+							<Planner />
+						</Route>
+						<Route path="/database">
 
-					</Route>
-					<Route path="/">
-						<Planner />
-					</Route>
+						</Route>
+						<Route path="/">
+							<Planner />
+						</Route>
 					</Switch>
-				</div>
-			</Container>
-			</Grid>	
-			<Grid item xs={3} style={{paddingRight:"0px"}}>
-				<SideBar />
+				</Grid>	
+				<Grid item xs={3} >
+					<SideBar />
+				</Grid>
 			</Grid>
-		</Grid>
-		</StylesProvider>
-    </Router>
-    </ThemeProvider>
-
-  );
-}
+			</StylesProvider>
+			<BottomNav></BottomNav>
+		</Router>
+		</ThemeProvider>
+	);
 };
-
-// function Welcome(props: any) {
-//   return <h1 color="primary">Hello, {props.name}</h1>;
-// }
-
-// function Home() {
-//   return <h2>Home</h2>;
-// }
-
-// function Planners() {
-//   return <h2>Planner</h2>;
-// }
-
-// function Database() {
-//   return <h2>Database</h2>;
-// }
-
-// function ReturnPath(props :any, cheese: any) {
-// 	const currentRoute = window.location.pathname;
-// 	console.log("props:", props);
-// 	console.log("currentRoute:", currentRoute);
-// 	console.log("qweqwe", cheese)
-// }
-
-// function HandleClick(props: any, cheese: any) {
-// 	//props.preventDefault();
-// 	console.log('The link was clicked.');
-// 	ReturnPath(props, cheese)
-// }
-
-export default App;

@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import { Grid, Card, CardContent } from '@material-ui/core';
+import React from 'react';
+import { Grid, Card, CardContent, makeStyles } from '@material-ui/core';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        backgroundColor: '#20212C !important',
+        margin: "auto !important",
+        minHeight: "668px",
+        boxShadow: "none !important",
+    },
+}));
 
-class SideBar extends Component {
-    render() {
+export default function SideBar()  {
+    const classes = useStyles();
         return (
-            <Grid>
-                <Card style={{backgroundColor: "#20212C", minWidth: "70%", margin: "auto", minHeight: "655px", boxShadow: "none" }}> 
-                    <div style={{padding: "0px 20px"}}>
-                        <CardContent style={{}}>
-                        </CardContent>
-                    </div>
-                </Card>
-            </Grid>
+            <Card className={classes.root}> 
+                <CardContent style={{}}>
+                </CardContent>
+            </Card>
         );
     }
-}
-
-export default SideBar;
