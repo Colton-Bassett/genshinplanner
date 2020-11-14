@@ -7,6 +7,8 @@ import { Character } from "../logic/character";
 import CharacterMaterial from './charactermaterial'
 import Razor from './Razor.png'
 import AscensionFour from './ascension4.png'
+import EditIcon from '@material-ui/icons/Edit';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles = makeStyles((theme) => ({
 	gridRoot: {
@@ -15,20 +17,34 @@ const useStyles = makeStyles((theme) => ({
 	},
 	characterRoot: {
 		backgroundColor: "#272937 !important", 
-		minWidth: "100%", 
-		margin: "auto", 
-		minHeight: "250px"
+		maxHeight: '275px',
+		minHeight: '275px',
 	},
 	characterContainer: {
-		margin: "auto", position: "relative", minHeight: "250px"
+		margin: "auto", 
+	
+	},
+	characterButtons: {
+		padding: "12px 12px 0px 12px"
+	},
+	cardmediaContainer: {
+		maxWidth: "105px", 
+		margin: 'auto'
+	},
+	editIcon: {
+		color: '#A6A7AC !important',
+	},
+	cancelIcon: {
+		color: '#A6A7AC !important',
+		float: 'right'
 	},
 	root: {
 		maxWidth: 345,
 	},
 	materialRoot: {
 		backgroundColor: '#272937 !important', 
-		minHeight: '250px', 
-		minWidth: '100%'
+		minHeight: '275px', 
+		minWidth: '100%',
 	},
 	materialCard: {
 		backgroundColor: '#222431 !important', 
@@ -43,7 +59,10 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: "bold"
 	},
 	materialContent: {
-		paddingTop: "0px", paddingBottom: "10px"
+		//paddingTop: "0px", paddingBottom: "10px"
+		"&:last-child": {
+            paddingBottom: '6px'
+          }
 	},
 	expandButton: {
 		color: 'white', fontSize: '26px'
@@ -62,10 +81,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CharacterOverview() {
 	const classes = useStyles();
-	let centerItemTop = 'center-item-top'
-	let centerItemName = 'center-item-name'
-	let centerItemAscension = 'center-item-ascension'
-	let centerItemLevelRange = 'center-item-level-range'
 
 	const [expanded, setExpanded] = React.useState(false);
 	const handleExpandClick = () => {
@@ -75,22 +90,33 @@ export default function CharacterOverview() {
 		<Grid container spacing={3} direction="row" justify="center" alignItems="center" className={classes.gridRoot}>
 			<Grid item xs={3}>
 				<Card className={classes.characterRoot}> 
-					<Grid item xs={3} className={classes.characterContainer}>
+					<Grid item xs={12} className={classes.characterButtons}>
+						<EditIcon className={classes.editIcon}></EditIcon>
+						<CancelIcon className={classes.cancelIcon}></CancelIcon>
+					</Grid>
+					<Grid item xs={8} className={classes.characterContainer}>
+						<div className={classes.cardmediaContainer}>
 						<CardMedia
 						image= {Razor}
-						className={centerItemTop}
-						style={{ minHeight: "99px", minWidth: "99px", borderRadius: "10px"}}
+						style={{ minHeight: "105px",  borderRadius: "10px"}}
 						/>
-						<Typography className={centerItemName} variant="h6">
+						</div>
+					</Grid>
+					<Grid item xs={8} style={{margin: 'auto'}}>
+						<Typography variant="h6" align='center'>
 							{Character.Razor}
 						</Typography>
-
-						<CardMedia
+					</Grid>
+					<Grid item xs={6} style={{margin: 'auto'}}>
+					<div className={classes.cardmediaContainer}>
+					<CardMedia
 						image= {AscensionFour}
-						className={centerItemAscension}
-						style={{ minHeight: "20px", minWidth: "100px", borderRadius: "10px"}}
-						/>
-						<Typography className={centerItemLevelRange} variant="body1" >
+						style={{ minHeight: "15px", borderRadius: "10px" }}
+					/>
+					</div>
+					</Grid>
+					<Grid item xs={8} style={{margin: 'auto'}}>
+						<Typography variant="body1" align='center' style={{fontWeight: 700}}>
 							Level 1 - 60
 						</Typography>
 					</Grid>

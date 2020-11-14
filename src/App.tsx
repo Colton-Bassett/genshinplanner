@@ -8,6 +8,7 @@ import AdBar from "./components/adbar"
 import Planner from "./components/planner"
 import SideBar from "./components/sidebar"
 import BottomNav from "./components/bottomnav"
+import DatabasePage from "./components/databasepage"
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -59,7 +60,7 @@ export default function App() {
 							<Planner />
 						</Route>
 						<Route path="/database">
-
+							<DatabasePage />
 						</Route>
 						<Route path="/">
 							<Planner />

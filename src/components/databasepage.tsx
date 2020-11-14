@@ -17,15 +17,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Planner() {
+export default function DatabasePage() {
 	const classes = useStyles();
 	return (
 		<Card className={classes.root}> 
 			<div className={classes.container}>
 				<CardContent>
-					<h2>Genshin Impact Planner</h2>
-					<CharacterOverview></CharacterOverview>
-					<AddCharacterButton></AddCharacterButton>
+					<h2>Database <span style={{color: "#A6A7AC"}}>(Coming Soon)</span></h2>
 				</CardContent>
 			</div>
 		</Card>

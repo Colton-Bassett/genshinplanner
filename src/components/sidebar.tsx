@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid, Card, CardContent, makeStyles } from '@material-ui/core';
+import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: '#20212C !important',
         margin: "auto !important",
-        minHeight: "668px",
+        minHeight: "1000px",
         boxShadow: "none !important",
     },
 }));

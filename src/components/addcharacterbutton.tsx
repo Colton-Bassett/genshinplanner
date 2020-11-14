@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#272937 !important",
         minWidth: '100%',
         margin: 'auto',
-        minHeight: '250px',
+        minHeight: '275px',
     },
     container: {
         margin: 'auto',
         position: 'relative',
-        minHeight: '250px'
+        minHeight: '275px'
     },
 }));
 
