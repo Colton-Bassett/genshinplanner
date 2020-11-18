@@ -13,22 +13,6 @@ a:hover {
 
 a:visited { text-decoration: none; color:white; }
 
-h1, h2 {
-	color: #FFF
-}
-
-.menu-test {
-	color: #FFF;
-}
-
-.menu-test-active {
-	color: #A6A7AC !important;
-}
-
-.inactive-link {
-	color: #A6A7AC !important;
-}
-
 .dropdown-arrow{
 	color: #A6A7AC !important;
 }
@@ -51,6 +35,7 @@ h1, h2 {
 	left: 50%;
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+	cursor: pointer;
 }
 
 .center-item-top {
@@ -99,4 +84,15 @@ h1, h2 {
 
 .MuiToolbar-regular {
     min-height: 55px !important;
+}
+
+.MuiDialog-paperWidthSm {
+	max-width: 50%;
+	min-width: 50%;
+
+}
+
+.MuiDialog-paperScrollPaper {
+	max-height: 70%;
+	min-height: 70%;
 }

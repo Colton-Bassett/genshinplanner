@@ -39,7 +39,7 @@ export default function BottomNav() {
     return (
         <div style={{paddingTop: "12px"}}>
             <Grid container xs={12} spacing={3} direction="row" justify="center" className={classes.container}>
-                <Grid container item xs={9} direction="row">
+                <Grid container item sm={11} md={10} lg={9} direction="row">
                     <Grid item xs={4} className={classes.innerContainer}>
                         <Card className={classes.root}> 
                             <CardContent className={classes.contentFirst}>

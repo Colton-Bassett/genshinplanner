@@ -5,8 +5,10 @@ import { ExpandMore } from '@material-ui/icons';
 
 import { Character } from "../logic/character";
 import CharacterMaterial from './charactermaterial'
-import Razor from './Razor.png'
-import AscensionFour from './ascension4.png'
+import RazorImage from '../images/Razor.png'
+import VentiImage from '../images/Venti.png'
+import XingqiuImage from '../images/Xingqiu.png'
+import AscensionFour from '../images/ascension4.png'
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 
@@ -33,10 +35,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	editIcon: {
 		color: '#A6A7AC !important',
+		cursor: 'pointer',
 	},
 	cancelIcon: {
 		color: '#A6A7AC !important',
-		float: 'right'
+		float: 'right',
+		cursor: 'pointer',
 	},
 	root: {
 		maxWidth: 345,
@@ -79,45 +83,89 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function CharacterOverview() {
+export default function CharacterOverview(props: any) {
 	const classes = useStyles();
 
 	const [expanded, setExpanded] = React.useState(false);
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
+	const objectInfo = {
+		id: props.objectInfo.id,
+		type: props.objectInfo.type,
+		name: props.objectInfo.name,
+		ascension: props.objectInfo.ascension,
+		levelStart: props.objectInfo.levelStart,
+		levelEnd: props.objectInfo.levelEnd,
+		materials: props.objectInfo.materials,
+	}
+
+	const deleteObject = (index: any) => {
+		props.deleteMethod(index)
+	}
+
+	const handleObjectImage = (name: string) => {
+		if (name == "Razor") {
+			return RazorImage;
+		};
+		if (name == "Venti") {
+			return VentiImage;
+		}
+		if (name == "Xingqiu") {
+			return XingqiuImage;
+		}
+		else {
+			return RazorImage;
+		}
+	}
+
+	const handleAscensionImage = (ascension: string) => {
+		if (ascension == "4") {
+			//console.log(objectInfo.id)
+			return AscensionFour
+
+
+		}
+	}
+
+	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
+	<Grid item xs={3}>
+		<CharacterMaterial name={material.name} quantity={material.quantity}></CharacterMaterial>
+	</Grid>
+	);
+
 	return (
 		<Grid container spacing={3} direction="row" justify="center" alignItems="center" className={classes.gridRoot}>
 			<Grid item xs={3}>
 				<Card className={classes.characterRoot}> 
 					<Grid item xs={12} className={classes.characterButtons}>
 						<EditIcon className={classes.editIcon}></EditIcon>
-						<CancelIcon className={classes.cancelIcon}></CancelIcon>
+						<CancelIcon className={classes.cancelIcon} onClick={() => deleteObject(objectInfo.id)}></CancelIcon>
 					</Grid>
 					<Grid item xs={8} className={classes.characterContainer}>
 						<div className={classes.cardmediaContainer}>
 						<CardMedia
-						image= {Razor}
+						image= {handleObjectImage(objectInfo.name)}
 						style={{ minHeight: "105px",  borderRadius: "10px"}}
 						/>
 						</div>
 					</Grid>
 					<Grid item xs={8} style={{margin: 'auto'}}>
 						<Typography variant="h6" align='center'>
-							{Character.Razor}
+							{objectInfo.name}
 						</Typography>
 					</Grid>
 					<Grid item xs={6} style={{margin: 'auto'}}>
 					<div className={classes.cardmediaContainer}>
 					<CardMedia
-						image= {AscensionFour}
+						image= {handleAscensionImage(objectInfo.ascension)}
 						style={{ minHeight: "15px", borderRadius: "10px" }}
 					/>
 					</div>
 					</Grid>
 					<Grid item xs={8} style={{margin: 'auto'}}>
 						<Typography variant="body1" align='center' style={{fontWeight: 700}}>
-							Level 1 - 60
+							Level {objectInfo.levelStart} - {objectInfo.levelEnd}
 						</Typography>
 					</Grid>
 				</Card>
@@ -154,42 +202,7 @@ export default function CharacterOverview() {
 							<CardContent className={classes.materialContent}>
 								<div style={{flexGrow: 1}}>
 									<Grid container >
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
-										<Grid item xs={3}>
-											<CharacterMaterial></CharacterMaterial>
-										</Grid>
+										{characterMaterials}
 									</Grid>
 								</div>
 							</CardContent>

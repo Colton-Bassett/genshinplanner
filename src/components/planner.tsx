@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 import AddCharacterButton from "./addcharacterbutton"
@@ -19,12 +19,58 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Planner() {
 	const classes = useStyles();
+	const objects = [
+		{
+			id: 0, type: "Character", name: "Razor", ascension: "4", levelStart: 1, levelEnd: 60, 
+			materials: [
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			]
+		},
+		{
+			id: 1, type: "Character", name: "Xingqiu", ascension: "4", levelStart: 1, levelEnd: 50, 
+			materials: [
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			]
+		},
+		{
+			id: 2, type: "Character", name: "Venti", ascension: "4", levelStart: 1, levelEnd: 40, 
+			materials: [
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			]
+		},
+	] 
+	const deleteObject = (index: any) => {
+		let tempObjects = [...objects]
+		console.log("deleteObject has been called!", index)
+		tempObjects.splice(index, 1)
+		
+		console.log("objects:", objects)
+	}
+
+	const characterOverviews = objects.map((object, index) => 
+	<CharacterOverview key={object.id.toString()} objectInfo={objects[index]} deleteMethod={deleteObject}></CharacterOverview>
+	);
 	return (
 		<Card className={classes.root}> 
 			<div className={classes.container}>
 				<CardContent>
 					<h2>Genshin Impact Planner</h2>
-					<CharacterOverview></CharacterOverview>
+					{characterOverviews}
 					<AddCharacterButton></AddCharacterButton>
 				</CardContent>
 			</div>

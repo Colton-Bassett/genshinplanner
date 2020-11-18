@@ -12,7 +12,7 @@ import DatabasePage from "./components/databasepage"
 
 const useStyles = makeStyles((theme) => ({
 	root: {
-		margin: 'auto',
+		margin: 'auto'
 	},
 	content: {
 		backgroundColor: "#272937 !important",
@@ -34,9 +34,9 @@ export default function App() {
 			main: "#222431",
 			contrastText: "#FFF"
 			},
-			// secondary: {
-			//   main: green[500],
-			// },
+			secondary: {
+			  main: "#FFF",
+			},
 			text: {
 				primary: "#FFF",
 				secondary: "#FFF",
@@ -49,12 +49,11 @@ export default function App() {
 	return (
 		<ThemeProvider theme={theme}>
 		<Router>
-			{/* <TopNav testFunc = {this.testFunc}></TopNav> */}
 			<TopNav></TopNav>
 			<StylesProvider injectFirst>
 			<AdBar></AdBar>
-			<Grid container xs={9} spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.root}>
-				<Grid item xs={9}>
+			<Grid container sm={12} md={11} lg={9} spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.root}>
+				<Grid item sm={12} md={11} lg={9}>
 					<Switch>
 						<Route path="/planner">
 							<Planner />
@@ -67,9 +66,7 @@ export default function App() {
 						</Route>
 					</Switch>
 				</Grid>	
-				<Grid item xs={3} >
 					<SideBar />
-				</Grid>
 			</Grid>
 			</StylesProvider>
 			<BottomNav></BottomNav>

@@ -1,14 +1,12 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, makeStyles, Grid } from '@material-ui/core';
 
-import Mora from './mora.png';
+import MoraImage from '../images/mora.png';
 
 const useStyles = makeStyles((theme) => ({
     gridRoot: {
         margin: "auto",
         paddingBottom: "16px",
-
- 
 	},
     root: {
         display: 'flex',
@@ -18,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
         padding: '6px',
         backgroundColor: '#222431 !important'
     },
+    imageContainer: {
+        backgroundColor: '#36384A', minHeight: '42px', minWidth: '42px', maxHeight: '42px', maxWidth: '42px', borderRadius:'3px', padding: '0px !important'
+    },
     details: {
         maxHeight: "42px"
     },
@@ -25,28 +26,39 @@ const useStyles = makeStyles((theme) => ({
         flex: '1 0 auto',
         backgroundColor: '#222431'
     },
-    cover: {
-        width: 151,
+    textContainer: {
+        maxHeight: "42px", padding: "0px 0px 0px 8px !important", margin: "auto"
     },
+
+    text: {
+        margin: 'auto', fontWeight: 700
+    }
 }));
 
-export default function CharacterMaterial() {
+export default function CharacterMaterial( props: any ) {
     const classes = useStyles();
+
+    const name = props.name;
+    const quantity = props.quantity;
+
+    const handleMaterialImage = (name: string) => {
+        if (name == "Mora") {
+            return MoraImage
+        }
+    }
+
     return (
-
-
             <Grid container xs={12} spacing={3} direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
-                <Grid item xs={4} style={{backgroundColor: '#36384A', minHeight: '42px', minWidth: '42px', maxHeight: '42px', maxWidth: '42px', borderRadius:'3px', padding: 0}}>
+                <Grid item xs={4} className={classes.imageContainer}>
                 <CardMedia
-                className={classes.cover}
-                image= {Mora}
+                image= {handleMaterialImage(name)}
                 style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px"}}
                 />
                 </Grid> 
-                <Grid item xs={8} style={{maxHeight: "42px", padding: "0px 0px 0px 8px", margin: "auto"}}>
+                <Grid item xs={8} className={classes.textContainer}>
                     <div className={classes.details}>
-                        <Typography variant="body1" style={{margin: 'auto', fontWeight: 700}}>
-                            x 1.1M
+                        <Typography variant="body1" className={classes.text}>
+                            x {quantity}
                         </Typography>
                     </div>
                 </Grid>
