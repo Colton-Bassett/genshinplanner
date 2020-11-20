@@ -3,14 +3,10 @@ import clsx from 'clsx';
 import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
-//import { Character } from "../logic/character";
 import CharacterMaterial from './charactermaterial'
-import RazorImage from '../images/Razor.png'
-import VentiImage from '../images/Venti.png'
-import XingqiuImage from '../images/Xingqiu.png'
-import AscensionFour from '../images/ascension4.png'
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
+import HandleImage from '../logic/handleImage'
 
 const useStyles = makeStyles((theme) => ({
 	gridRoot: {
@@ -104,30 +100,6 @@ export default function CharacterOverview(props: any) {
 		props.deleteMethod(index)
 	}
 
-	const handleObjectImage = (name: string) => {
-		if (name == "Razor") {
-			return RazorImage;
-		};
-		if (name == "Venti") {
-			return VentiImage;
-		}
-		if (name == "Xingqiu") {
-			return XingqiuImage;
-		}
-		else {
-			return RazorImage;
-		}
-	}
-
-	const handleAscensionImage = (ascension: string) => {
-		if (ascension == "4") {
-			//console.log(objectInfo.id)
-			return AscensionFour
-
-
-		}
-	}
-
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
 	<Grid item xs={3}>
 		<CharacterMaterial name={material.name} quantity={material.quantity}></CharacterMaterial>
@@ -145,7 +117,7 @@ export default function CharacterOverview(props: any) {
 					<Grid item xs={8} className={classes.characterContainer}>
 						<div className={classes.cardmediaContainer}>
 						<CardMedia
-						image= {handleObjectImage(objectInfo.name)}
+						image= {HandleImage(objectInfo.name)}
 						style={{ minHeight: "105px",  borderRadius: "10px"}}
 						/>
 						</div>
@@ -158,7 +130,7 @@ export default function CharacterOverview(props: any) {
 					<Grid item xs={6} style={{margin: 'auto'}}>
 					<div className={classes.cardmediaContainer}>
 					<CardMedia
-						image= {handleAscensionImage(objectInfo.ascension)}
+						image= {HandleImage(objectInfo.ascension)}
 						style={{ minHeight: "15px", borderRadius: "10px" }}
 					/>
 					</div>
@@ -188,7 +160,6 @@ export default function CharacterOverview(props: any) {
 									aria-expanded={expanded}
 									aria-label="show more"
 									style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0"}}
-
 								>
 								<ExpandMore className={classes.expandButton} />
 								</IconButton>

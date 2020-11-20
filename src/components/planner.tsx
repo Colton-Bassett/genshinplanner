@@ -21,7 +21,7 @@ export default function Planner() {
 	const classes = useStyles();
 	const objects = [
 		{
-			id: 0, type: "Character", name: "Razor", ascension: "4", levelStart: 1, levelEnd: 60, 
+			id: 0, type: "Character", name: "Razor", ascension: "AscensionFour", levelStart: 1, levelEnd: 60, 
 			materials: [
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
@@ -32,7 +32,7 @@ export default function Planner() {
 			]
 		},
 		{
-			id: 1, type: "Character", name: "Xingqiu", ascension: "4", levelStart: 1, levelEnd: 50, 
+			id: 1, type: "Character", name: "Xingqiu", ascension: "AscensionFour", levelStart: 1, levelEnd: 50, 
 			materials: [
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
@@ -43,7 +43,7 @@ export default function Planner() {
 			]
 		},
 		{
-			id: 2, type: "Character", name: "Venti", ascension: "4", levelStart: 1, levelEnd: 40, 
+			id: 2, type: "Character", name: "Venti", ascension: "AscensionFour", levelStart: 1, levelEnd: 40, 
 			materials: [
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},

@@ -19,10 +19,8 @@ const useStyles = makeStyles((theme) => ({
             paddingBottom: '30px'
           }
     },
-    message: {
-        textAlign: 'center',
+    bannerColor: {
         color: '#6A6C6C',
-        fontSize: '14px',
     },
 
 }));
@@ -35,7 +33,7 @@ export default function AdBar() {
             <Grid item xs={12} style={{padding: "12px"}}>
                 <Card className={classes.root}> 
                     <CardContent className={classes.content}>
-                        <Typography variant="h5" component="h2" className={classes.message}> 
+                        <Typography variant="h6" component="h2" align="center" className={classes.bannerColor}> 
                             This website is supported by ads.
                         </Typography>
                     </CardContent>

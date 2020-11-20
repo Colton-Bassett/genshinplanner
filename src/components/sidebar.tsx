@@ -20,7 +20,7 @@ export default function SideBar()  {
         return (
             <Grid item xs={3} className={classes.sideBarContainer} >
                 <Card className={classes.root}> 
-                    <CardContent style={{}}>
+                    <CardContent>
                     </CardContent>
                 </Card>
             </Grid>

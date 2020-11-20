@@ -45,12 +45,12 @@ export default function BottomNav() {
                             <CardContent className={classes.contentFirst}>
                                 <h3>IMPACT.GG</h3>
                                 <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                                <span style={{fontWeight:800}}>Impact.gg</span> is not affiliated with or endorsed by miHoYo.
+                                    <span style={{fontWeight:800}}>Impact.gg</span> is not affiliated with or endorsed by miHoYo.
                                 </Typography>
                                 <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                                <span style={{fontWeight:800}}>Impact.gg</span> is a Database and Planner for the Genshin Impact 
-                                game for PC, Switch, Playstation 4, and mobile
-                                game app on iOS and Android.
+                                    <span style={{fontWeight:800}}>Impact.gg</span> is a Database and Planner for the Genshin Impact 
+                                    game for PC, Switch, Playstation 4, and mobile
+                                    game app on iOS and Android.
                                 </Typography>
                             </CardContent>
                         </Card>

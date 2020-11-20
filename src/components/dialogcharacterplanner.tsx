@@ -1,14 +1,15 @@
 import React from 'react';
-import { Card, CardContent, makeStyles, Grid, CardMedia, Typography } from '@material-ui/core';
+import { Card, CardContent, makeStyles, Grid, CardMedia, Typography, Slider } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
 import Characterbg from '../images/characterbg.png'
-import RazorImage from '../images/Razor.png'
 import AscensionFour from '../images/ascension4.png'
 import SteelFang from '../images/steelfang.png'
 import ClawAndThunder from '../images/clawandthunder.png'
 import LightningFang from '../images/lightningfang.png'
+
+import HandleImage from '../logic/handleImage'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -95,10 +96,48 @@ const useStyles = makeStyles((theme) => ({
     talentNameText: {
         fontWeight: 700, marginBottom: "8px", color: "#FFCC62"
     },
+    rootSlider: {
+        width: 300,
+    }
 }));
 
-export default function DialogCharacterPlanner() {
+function valuetext(value: number) {
+    return `${value}°C`;
+}
+
+function RangeSlider() {
     const classes = useStyles();
+    const [value, setValue] = React.useState<number[]>([1, 8]);
+  
+    const handleChange = (event: any, newValue: number | number[]) => {
+      setValue(newValue as number[]);
+    };
+  
+    return (
+      <div className={classes.root}>
+        <Typography id="range-slider" gutterBottom>
+
+        </Typography>
+        <Slider
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+            //color="secondary"
+            style={{backgroundColor: "#36384A",}}
+            min={1}
+            max={8}
+        />
+      </div>
+    );
+}
+
+export default function DialogCharacterPlanner(props: any) {
+    const classes = useStyles();
+    const characterName = props.name;
+
+    
     return (
         <Card className={classes.root}> 
             <div className={classes.headerContainer}>
@@ -107,7 +146,6 @@ export default function DialogCharacterPlanner() {
                 alt="Character Background"
                 height="160"
                 image={Characterbg}
-                title="Character Background"
                 />
                 <div className={classes.header}>
                     <Grid container xs={12} direction="row" justify="flex-start" style={{height: "100%"}}>
@@ -115,8 +153,7 @@ export default function DialogCharacterPlanner() {
                             <CardMedia
                             component="img"
                             alt="Character Image"
-                            image={RazorImage}
-                            title="Character Image"
+                            image={HandleImage(characterName)}
                             className={classes.characterImage}
                             />
                         </Grid>
@@ -130,7 +167,7 @@ export default function DialogCharacterPlanner() {
                                 </Grid>
                                 <Grid item style={{marginBottom: "6px"}}>
                                     <Typography variant="h1">
-                                        Razor Character Planner
+                                        {characterName} Character Planner
                                     </Typography>
                                 </Grid>
                                 <Grid item style={{marginBottom: "0px" }}> 
@@ -195,11 +232,14 @@ export default function DialogCharacterPlanner() {
                                     />
                                 </div>
                                     <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                    Steel Fang
+                                        Steel Fang
                                     </Typography>
                                     <Typography variant="h6" align="center">
-                                    Normal Attack
+                                        Normal Attack
                                     </Typography>
+                                    <Grid item xs={10} style={{margin: 'auto', paddingTop:"8px"}}>
+                                        <RangeSlider></RangeSlider>
+                                    </Grid>
                             </Grid>
                             <Grid item xs={3} className={classes.talentCard}>
                                 <div style={{paddingTop:"16px"}}>
@@ -214,6 +254,9 @@ export default function DialogCharacterPlanner() {
                                 <Typography variant="h6" align="center">
                                     Elemental Skill
                                 </Typography>
+                                <Grid item xs={10} style={{margin: 'auto', paddingTop:"8px"}}>
+                                    <RangeSlider></RangeSlider>
+                                </Grid>
                             </Grid>
                             <Grid item xs={3} className={classes.talentCard}>
                                 <div style={{paddingTop:"16px"}}>
@@ -228,6 +271,10 @@ export default function DialogCharacterPlanner() {
                                 <Typography variant="h6" align="center">
                                     Elemental Burst
                                 </Typography>
+                                <Grid item xs={10} style={{margin: 'auto', paddingTop:"8px"}}>
+                                    <RangeSlider></RangeSlider>
+                                </Grid>
+
                             </Grid>
                         </Grid>
                     </Grid>
