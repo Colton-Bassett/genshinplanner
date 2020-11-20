@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, makeStyles, Grid } from '@material-ui/core';
+import { CardMedia, Typography, makeStyles, Grid } from '@material-ui/core';
 
 import MoraImage from '../images/mora.png';
 

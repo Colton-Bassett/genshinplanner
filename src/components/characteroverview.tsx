@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
-import { Character } from "../logic/character";
+//import { Character } from "../logic/character";
 import CharacterMaterial from './charactermaterial'
 import RazorImage from '../images/Razor.png'
 import VentiImage from '../images/Venti.png'
@@ -151,7 +151,7 @@ export default function CharacterOverview(props: any) {
 						</div>
 					</Grid>
 					<Grid item xs={8} style={{margin: 'auto'}}>
-						<Typography variant="h6" align='center'>
+						<Typography variant="h2" align='center'>
 							{objectInfo.name}
 						</Typography>
 					</Grid>

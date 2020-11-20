@@ -3,7 +3,7 @@ import {Button, AppBar, Toolbar, IconButton, Icon, StylesProvider, Grid, makeSty
 import { KeyboardArrowDown } from '@material-ui/icons';
 import { Link } from "react-router-dom";
 
-import websitelogo from '../websitelogo.png'
+import WebsiteLogo from '../images/websitelogo.png'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -62,7 +62,7 @@ export default function TopNav() {
                                 <IconButton edge="start" color="inherit" aria-label="menu" disableRipple>
                                     <Link to="/" >
                                         <Icon >
-                                            <img src={websitelogo} alt="logo" height={32} width={32}/>
+                                            <img src={WebsiteLogo} alt="logo" height={32} width={32}/>
                                         </Icon>
                                     </Link>
                                     <Link to="/" className={navTitle}>

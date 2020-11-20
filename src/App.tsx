@@ -44,6 +44,43 @@ export default function App() {
 		},
 	});
 
+	theme.typography.h1 = {
+		lineHeight: '1.3em',
+		fontSize: '24px',
+		fontWeight: 700,
+		margin: 0
+		// '@media (min-width:600px)': {
+		//   fontSize: '1.5rem',
+		// },
+		// [theme.breakpoints.up('md')]: {
+		//   fontSize: '2.4rem',
+		// },
+	};
+	theme.typography.h2 = {
+		lineHeight: '1.3em',
+		fontSize: '20px',
+		fontWeight: 600,
+		margin: 0
+	};
+	theme.typography.h3 = {
+		lineHeight: '1.3em',
+		fontSize: '18px',
+		fontWeight: 500,
+		margin: 0
+	};
+	theme.typography.h5 = {
+		lineHeight: '1.3em',
+		fontSize: '16px',
+		fontWeight: 400,
+		margin: 0	
+	};
+	theme.typography.h6 = {
+		lineHeight: '1.3em',
+		fontSize: '14px',
+		fontWeight: 400,
+		margin: 0	
+	}
+
 	const classes = useStyles();
 
 	return (
@@ -66,7 +103,7 @@ export default function App() {
 						</Route>
 					</Switch>
 				</Grid>	
-					<SideBar />
+				<SideBar />
 			</Grid>
 			</StylesProvider>
 			<BottomNav></BottomNav>

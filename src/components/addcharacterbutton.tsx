@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     dialogContent: {
         backgroundColor: '#1D1F29 !important', 
+        padding: '0px !important'
     },
     dialogContentText: {
         outline: 'none'

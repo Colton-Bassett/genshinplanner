@@ -1,9 +1,6 @@
 import React from 'react';
 import { Card, CardContent, makeStyles } from '@material-ui/core';
 
-import AddCharacterButton from "./addcharacterbutton"
-import CharacterOverview from "./characteroverview"
-
 const useStyles = makeStyles((theme) => ({
     root: {
 		backgroundColor: "#222431 !important",
