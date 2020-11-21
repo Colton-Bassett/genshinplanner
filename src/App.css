@@ -36,45 +36,11 @@ a:visited { text-decoration: none; color:white; }
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	cursor: pointer;
+
 }
 
-.center-item-top {
-	font-size: 100px;
-	color: #A6A7AC;
-	margin: 0;
-	position: absolute;
-	top: 30%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
-
-.center-item-name {
-	margin: 0;
-	position: absolute;
-	top: 58%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
-
-.center-item-ascension {
-	margin: 0;
-	position: absolute;
-	top: 67%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
-
-.center-item-level-range {
-	margin: 0;
-	position: absolute;
-	top: 75%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	min-width: 100px;
+.center-item:hover {
+	color: #fff
 }
 
 .nav-title {

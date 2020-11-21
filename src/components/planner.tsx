@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Planner() {
+	console.log("Rendered Planner")
 	const classes = useStyles();
-	const objects = [
+	const defaultItems = [
 		{
 			id: 0, type: "Character", name: "Razor", ascension: "AscensionFour", levelStart: 1, levelEnd: 60, 
 			materials: [
@@ -53,17 +54,20 @@ export default function Planner() {
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 			]
 		},
-	] 
-	const deleteObject = (index: any) => {
-		let tempObjects = [...objects]
-		console.log("deleteObject has been called!", index)
-		tempObjects.splice(index, 1)
-		
-		console.log("objects:", objects)
+	]
+
+	const [items, setItems] = React.useState(defaultItems)
+	const deleteObject = (id: any) => {
+		console.log("deleteObjects id:", id)
+		let tempObjects = [...items]
+		console.log("deleteObject has been called!", id)
+		const filteredObjects = tempObjects.filter(item => item.id !== id);
+		setItems(filteredObjects);
+		console.log("objects:", items)
 	}
 
-	const characterOverviews = objects.map((object, index) => 
-	<CharacterOverview key={object.id.toString()} objectInfo={objects[index]} deleteMethod={deleteObject}></CharacterOverview>
+	const characterOverviews = items.map((item) => 
+	<CharacterOverview key={item.id} objectInfo={item} deleteMethod={deleteObject}></CharacterOverview>
 	);
 	return (
 		<Card className={classes.root}> 

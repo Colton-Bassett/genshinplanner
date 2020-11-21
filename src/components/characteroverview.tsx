@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles } from '@material-ui/core';
+import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
 import CharacterMaterial from './charactermaterial'
@@ -32,11 +32,17 @@ const useStyles = makeStyles((theme) => ({
 	editIcon: {
 		color: '#A6A7AC !important',
 		cursor: 'pointer',
+		'&:hover': {
+			color: "#fff !important",
+		 },
 	},
 	cancelIcon: {
 		color: '#A6A7AC !important',
 		float: 'right',
 		cursor: 'pointer',
+		'&:hover': {
+			color: "#fff !important",
+		 },
 	},
 	root: {
 		maxWidth: 345,
@@ -96,8 +102,8 @@ export default function CharacterOverview(props: any) {
 		materials: props.objectInfo.materials,
 	}
 
-	const deleteObject = (index: any) => {
-		props.deleteMethod(index)
+	const deleteObject = (id: any) => {
+		props.deleteMethod(id)
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
@@ -111,8 +117,13 @@ export default function CharacterOverview(props: any) {
 			<Grid item xs={3}>
 				<Card className={classes.characterRoot}> 
 					<Grid item xs={12} className={classes.characterButtons}>
-						<EditIcon className={classes.editIcon}></EditIcon>
-						<CancelIcon className={classes.cancelIcon} onClick={() => deleteObject(objectInfo.id)}></CancelIcon>
+						<Tooltip title="Edit" arrow>
+							<EditIcon className={classes.editIcon}></EditIcon>
+						</Tooltip>
+						<Tooltip title="Delete" arrow>
+							<CancelIcon className={classes.cancelIcon} onClick={() => deleteObject(objectInfo.id)}></CancelIcon>
+						</Tooltip>
+
 					</Grid>
 					<Grid item xs={8} className={classes.characterContainer}>
 						<div className={classes.cardmediaContainer}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, makeStyles, Dialog, DialogProps, DialogActions, DialogContent, DialogContentText, Button } from '@material-ui/core';
+import { Card, Grid, makeStyles, Dialog, DialogProps, DialogActions, DialogContent, DialogContentText, Button, Tooltip } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 
 import DialogTab from './dialogtab'
@@ -71,8 +71,10 @@ export default function AddCharacterButton() {
             <Grid item xs={3}>
                 <Card className={classes.content}> 
                     <div className={classes.container} >
+                    <Tooltip title="Add Character" arrow>
                         <Add className={centerItem} onClick={handleClickOpen('paper')}>
                         </Add>
+                    </Tooltip>
                     </div>
                     <div>
                         <Dialog
