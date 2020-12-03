@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Planner() {
+export default function Planner(props: any) {
 	console.log("Rendered Planner")
 	const classes = useStyles();
+	const characters = props.characters;
 	const defaultItems = [
 		{
 			id: 0, type: "Character", name: "Razor", ascension: "AscensionFour", levelStart: 1, levelEnd: 60, 
@@ -55,8 +56,8 @@ export default function Planner() {
 			]
 		},
 	]
-
 	const [items, setItems] = React.useState(defaultItems)
+
 	const deleteObject = (id: any) => {
 		console.log("deleteObjects id:", id)
 		let tempObjects = [...items]
@@ -75,7 +76,7 @@ export default function Planner() {
 				<CardContent>
 					<h2>Genshin Impact Planner</h2>
 					{characterOverviews}
-					<AddCharacterButton></AddCharacterButton>
+					<AddCharacterButton characters={characters}></AddCharacterButton>
 				</CardContent>
 			</div>
 		</Card>

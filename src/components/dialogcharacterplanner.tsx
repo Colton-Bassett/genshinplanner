@@ -5,11 +5,6 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import Characterbg from '../images/characterbg.png'
 import AscensionFour from '../images/ascension4.png'
-import SteelFang from '../images/steelfang.png'
-import ClawAndThunder from '../images/clawandthunder.png'
-import LightningFang from '../images/lightningfang.png'
-
-import HandleImage from '../logic/handleImage'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -135,7 +130,7 @@ function RangeSlider() {
 
 export default function DialogCharacterPlanner(props: any) {
     const classes = useStyles();
-    const characterName = props.name;
+    const character = props.character;
 
     
     return (
@@ -153,7 +148,7 @@ export default function DialogCharacterPlanner(props: any) {
                             <CardMedia
                             component="img"
                             alt="Character Image"
-                            image={HandleImage(characterName)}
+                            image={character.image}
                             className={classes.characterImage}
                             />
                         </Grid>
@@ -167,12 +162,12 @@ export default function DialogCharacterPlanner(props: any) {
                                 </Grid>
                                 <Grid item style={{marginBottom: "6px"}}>
                                     <Typography variant="h1">
-                                        {characterName} Character Planner
+                                        {character.name} Character Planner
                                     </Typography>
                                 </Grid>
                                 <Grid item style={{marginBottom: "0px" }}> 
                                     <Typography variant="h5">
-                                        <span style={{color: "#F5BEF0"}}>Electro</span> &#8226; Claymore
+                                        <span style={{color: "#F5BEF0"}}>{character.type}</span> &#8226; {character.weapon}
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -227,12 +222,12 @@ export default function DialogCharacterPlanner(props: any) {
                             <Grid item xs={3} className={classes.talentCard}>
                                 <div style={{paddingTop:"16px"}}>
                                     <CardMedia
-                                        image= {SteelFang}
+                                        image= {character.abilityOne.image}
                                         className={classes.talentImage}
                                     />
                                 </div>
                                     <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                        Steel Fang
+                                        {character.abilityOne.name}
                                     </Typography>
                                     <Typography variant="h6" align="center">
                                         Normal Attack
@@ -244,12 +239,12 @@ export default function DialogCharacterPlanner(props: any) {
                             <Grid item xs={3} className={classes.talentCard}>
                                 <div style={{paddingTop:"16px"}}>
                                     <CardMedia
-                                        image= {ClawAndThunder}
+                                        image= {character.abilityTwo.image}
                                         className={classes.talentImage}
                                     />
                                 </div>
                                 <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                    Claw and Thunder
+                                    {character.abilityTwo.name}
                                 </Typography>
                                 <Typography variant="h6" align="center">
                                     Elemental Skill
@@ -261,12 +256,12 @@ export default function DialogCharacterPlanner(props: any) {
                             <Grid item xs={3} className={classes.talentCard}>
                                 <div style={{paddingTop:"16px"}}>
                                     <CardMedia
-                                        image= {LightningFang}
+                                        image= {character.abilityThree.image}
                                         className={classes.talentImage}
                                     />
                                 </div>
                                 <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                    Lightning Fang
+                                    {character.abilityThree.name}
                                 </Typography>
                                 <Typography variant="h6" align="center">
                                     Elemental Burst

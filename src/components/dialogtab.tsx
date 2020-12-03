@@ -49,36 +49,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
 }));
 
-export default function DialogTab() {
+export default function DialogTab(props: any) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
-
-    const dialogCharacters = [
-        {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"}, {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"},
-        {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"}, {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"},
-        {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"}, {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"},
-        {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"}, {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"},
-        {name: "Razor"}, {name: "Xingqiu"}, {name: "Venti"}, {name: "Razor"},
-    ]
+    const characters = props.characters;
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
     };
 		
     const [showChars, setShowChars] = React.useState(true)
-    const [characterName, setCharacterName] = React.useState("Character");
+    const [currentCharacter, setCurrentCharacter] = React.useState("Character");
 
-    const openCharacterPlanner = (charName: any) => {
+    const openCharacterPlanner = (char: any) => {
         setShowChars(!showChars)	
-        setCharacterName(charName)
+        setCurrentCharacter(char)
     }
 
-    const populateDialogCharacters = dialogCharacters.map((dialogCharacter, index) => 
+    const populateDialogCharacters = characters.map((character: { name: any; }, index: any) => 
         <Grid item xs={2} onClick={() => {
-            openCharacterPlanner(dialogCharacter.name);
+            openCharacterPlanner(character);
         }}>
-        	<DialogCharacter name={dialogCharacter.name} ></DialogCharacter>
+        	<DialogCharacter character={character} ></DialogCharacter>
         </Grid>
 	);
 
@@ -109,7 +101,7 @@ export default function DialogTab() {
   return (
 	<div>
 		{ showChars ? <MainStuff></MainStuff> : null }
-		{ !showChars ? <DialogCharacterPlanner name={characterName}></DialogCharacterPlanner> : null }
+		{ !showChars ? <DialogCharacterPlanner character={currentCharacter}></DialogCharacterPlanner> : null }
 	</div>	
   	);
 }

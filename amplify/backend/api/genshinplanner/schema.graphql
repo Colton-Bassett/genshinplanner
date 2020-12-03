@@ -1,0 +1,32 @@
+type Character @model {
+	id: ID!
+	name: String!
+	type: String
+	weapon: String
+  stars: String
+	description: String
+	image: String
+	abilityOne: Ability 
+	abilityTwo: Ability
+	abilityThree: Ability
+	ascensionMats: Ascension
+  talentMats: Talent
+}
+
+type Ability {
+    name: String
+    image: String
+    description: String
+}
+
+type Talent {
+  talentMat: String
+  bossMat: String
+}
+
+type Ascension {
+	matOne: String
+	matTwo: String
+	specialty: String
+	commonMat: String
+}

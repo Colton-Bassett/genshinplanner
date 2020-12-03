@@ -40,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AddCharacterButton() {
+export default function AddCharacterButton(props: any) {
     const classes = useStyles();
     let centerItem = 'center-item'
+    const characters = props.characters;
 
     const [open, setOpen] = React.useState(false); // dialogue
     const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper'); // dialogue
@@ -87,7 +88,7 @@ export default function AddCharacterButton() {
                             {/* <DialogTitle id="scroll-dialog-title" style={{backgroundColor: '#1D1F29', }}>
                             </DialogTitle> */}
                             <DialogContent dividers={scroll === 'paper'} className={classes.dialogContent}>
-                            <DialogTab></DialogTab>
+                            <DialogTab characters={characters}></DialogTab>
                             <DialogContentText
                                 id="scroll-dialog-description"
                                 ref={descriptionElementRef}

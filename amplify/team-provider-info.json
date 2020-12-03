@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-genshinplanner-dev-155138-authRole",
+            "UnauthRoleArn": "arn:aws:iam::537164628494:role/amplify-genshinplanner-dev-155138-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::537164628494:role/amplify-genshinplanner-dev-155138-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-genshinplanner-dev-155138-deployment",
+            "UnauthRoleName": "amplify-genshinplanner-dev-155138-unauthRole",
+            "StackName": "amplify-genshinplanner-dev-155138",
+            "StackId": "arn:aws:cloudformation:us-east-2:537164628494:stack/amplify-genshinplanner-dev-155138/d501e010-2de6-11eb-b205-062633c0c3d0",
+            "AmplifyAppId": "d2go2p3ssdwmhz"
+        },
+        "categories": {
+            "auth": {
+                "genshinplanner7005d953": {}
+            }
+        }
+    }
+}

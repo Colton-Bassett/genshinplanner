@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default function DialogueCharacter(props: any) {
-    const name = props.name;
+    const character = props.character;
     const classes = useStyles();
 
     return (
@@ -20,13 +20,13 @@ export default function DialogueCharacter(props: any) {
             <Grid item xs={12}>
                 <Grid item xs={12} style={{}}>
                     <CardMedia
-                    image= {HandleImage(name)}
+                    image= {character.image}
                     style={{ minHeight: "70px", minWidth: "70px", maxHeight: "70px", maxWidth: "70px", margin:"auto", backgroundColor: '#36384A', borderRadius: '6px', cursor: "pointer"}}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <div className={classes.textContainer}>
-                        {name}
+                        {character.name}
                     </div>
                 </Grid>
             </Grid>
