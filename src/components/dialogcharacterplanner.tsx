@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, CardContent, makeStyles, Grid, CardMedia, Typography, Slider } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
 import Characterbg from '../images/characterbg.png'
-import AscensionFour from '../images/ascension4.png'
+import AscensionStar from '../images/Ascension_Star.png'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         left: '0%',
         height: '100%',
         width: '100%',
-        background: "rgba(29,31,41,.8)"
+        background: "rgba(29,31,41,.3)"
     },
     characterOuterContainer: {
         height: "100%", 
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     closeIcon: {
         fontSize: "2.75rem;",
         backgroundColor: "#272937",
-        color: "#DEDEDE",
+        color: "#f56262",
         cursor: "pointer"
     },
     characterInfoContainer: {
@@ -63,10 +63,12 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
     },
     levelPadding: {
-        padding: "8px",
+  
     },
     ascensionContainer: {
-        backgroundColor: "#272937"
+        backgroundColor: "#272937",
+        minHeight: "200px",
+        maxHeight: "200px",
     },
     ascensionImage: {
         minHeight: "30px", 
@@ -76,20 +78,32 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: "150px", 
 		margin: 'auto'
     },
+    ascensionStar: {
+        minWidth:"25px", 
+        minHeight: "25px", 
+        backgroundSize: "contain",
+        margin: "0px 2px",
+        opacity: ".3",
+        '&:hover': {
+            cursor: "pointer"
+         },
+    },
     talentCard: {
-        height: "190px", 
+        minHeight: "200px", 
+        maxHeight: "200px",
         minWidth: "160px", 
-        backgroundColor: "#272937"
+        backgroundColor: "#272937",
+        padding: "16px",
+        marginBottom: "32px"
     },
     talentImage: {
         minHeight: "53px", minWidth:"53px", maxHeight: "53px", maxWidth: "53px", 
         borderRadius: "6px", 
         backgroundColor: "#36384A", 
         margin: "auto", 
-        marginBottom: "8px"
     },
     talentNameText: {
-        fontWeight: 700, marginBottom: "8px", color: "#FFCC62"
+        fontWeight: 700, color: "#FFCC62"
     },
     rootSlider: {
         width: 300,
@@ -100,16 +114,40 @@ function valuetext(value: number) {
     return `${value}°C`;
 }
 
+const marks = [
+    {
+        value: 1,
+        label: '1',
+    },
+    {
+        value: 3,
+        label: '3',
+    },
+    {
+        value: 5,
+        label: '5',
+    },
+    {
+        value: 7,
+        label: '7',
+    },
+    {
+        value: 9,
+        label: '9',
+    },
+  ];
+
 function RangeSlider() {
-    const classes = useStyles();
-    const [value, setValue] = React.useState<number[]>([1, 8]);
+    //const classes = useStyles();
+    const [value, setValue] = React.useState<number[]>([1, 9]);
   
     const handleChange = (event: any, newValue: number | number[]) => {
       setValue(newValue as number[]);
+      console.log("rangeSlider values",value)
     };
   
     return (
-      <div className={classes.root}>
+      <div>
         <Typography id="range-slider" gutterBottom>
 
         </Typography>
@@ -120,9 +158,10 @@ function RangeSlider() {
             aria-labelledby="range-slider"
             getAriaValueText={valuetext}
             //color="secondary"
+            marks={marks}
             style={{backgroundColor: "#36384A",}}
             min={1}
-            max={8}
+            max={9}
         />
       </div>
     );
@@ -131,7 +170,78 @@ function RangeSlider() {
 export default function DialogCharacterPlanner(props: any) {
     const classes = useStyles();
     const character = props.character;
+    const dialogClose = props.dialogClose;
+    const ascensionDetails = props.ascensionDetails;
+    const setAscensionDetails = props.setAscensionDetails;
 
+    let elementColor = character.type;
+
+    interface Star {
+        opacity: string;
+    }
+    const initialStar: Star = {
+        opacity: "0.3"
+    }
+    const initialStarTwo: Star = {
+        opacity: "0.3"
+    }
+
+    const initialStarThree: Star = {
+        opacity: "0.3"
+    }
+
+    const initialStarFour: Star = {
+        opacity: "0.3"
+    }
+
+    const initialStarFive: Star = {
+        opacity: "0.3"
+    }
+
+    const initialStarSix: Star = {
+        opacity: "0.3"
+    }
+    const initialCurrentStars = [initialStar, initialStarTwo, initialStarThree, initialStarFour, initialStarFive, initialStarSix]
+    const [currentStars, setCurrentStars] = useState<Star[]>(initialCurrentStars);
+
+    function testMe(index: any) {
+        const starsTemp = [...currentStars]
+
+        starsTemp[index].opacity = "1";
+        setCurrentStars(starsTemp)
+        console.log("currentStars:", currentStars);
+
+    }
+
+    function submitDialog() {
+        let a = {...ascensionDetails}
+        a.character = character.name;
+        a.currentLevel = 0;
+        a.desiredLevel = 6;
+        
+        a.abilityOneCurrent = 0;
+        a.abilityOneDesired = 6;
+        a.abilityTwoCurrent = 0;
+        a.abilityTwoDesired = 6;
+        a.abilityThreeCurrent = 0;
+        a.abilityThreeDesired = 0;
+        //console.log("a:", a);
+
+        setAscensionDetails(a);
+        console.log("ascensionDetails", ascensionDetails);
+        dialogClose()
+    }
+
+    const createCurrentStars = currentStars.map((star: any, index: any) => 
+        <div>
+        <CardMedia
+            image= {AscensionStar}
+            className={classes.ascensionStar}
+            style={{opacity: star.opacity}}
+            onClick={(e) => {testMe(index)}}
+        />
+        </div>
+	);
     
     return (
         <Card className={classes.root}> 
@@ -143,7 +253,7 @@ export default function DialogCharacterPlanner(props: any) {
                 image={Characterbg}
                 />
                 <div className={classes.header}>
-                    <Grid container xs={12} direction="row" justify="flex-start" style={{height: "100%"}}>
+                    <Grid container direction="row" justify="flex-start" style={{height: "100%"}}>
                         <Grid container xs={2} direction="row" justify="flex-end" className={classes.characterImageContainer}>
                             <CardMedia
                             component="img"
@@ -152,7 +262,7 @@ export default function DialogCharacterPlanner(props: any) {
                             className={classes.characterImage}
                             />
                         </Grid>
-                        <Grid container xs={6} direction="row" justify="flex-start" alignItems="center" className={classes.characterOuterContainer}>
+                        <Grid container xs={5} direction="row" justify="flex-start" alignItems="center" className={classes.characterOuterContainer}>
                             <Grid container xs={12} direction="column" justify="center" alignItems="flex-start" className={classes.characterInfoContainer}>
                                 <Grid item style={{marginBottom: "6px"}}>
                                     <Typography variant="h3">
@@ -162,114 +272,152 @@ export default function DialogCharacterPlanner(props: any) {
                                 </Grid>
                                 <Grid item style={{marginBottom: "6px"}}>
                                     <Typography variant="h1">
-                                        {character.name} Character Planner
+                                        {character.name} Ascension Planner
                                     </Typography>
                                 </Grid>
                                 <Grid item style={{marginBottom: "0px" }}> 
                                     <Typography variant="h5">
-                                        <span style={{color: "#F5BEF0"}}>{character.type}</span> &#8226; {character.weapon}
+                                        <span className={elementColor}>{character.type}</span> &#8226; {character.weapon}
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid container xs={4} direction="row" justify="center" style={{margin: "auto"}}>
-                            <CheckIcon className={classes.checkIcon}></CheckIcon>
-                            <CloseIcon className={classes.closeIcon}></CloseIcon>
+                            <CheckIcon className={classes.checkIcon} onClick={submitDialog}></CheckIcon>
+                            <CloseIcon className={classes.closeIcon} onClick={dialogClose}></CloseIcon>
                         </Grid>
                     </Grid>
                 </div>
             </div>
 
             <CardContent>
-                <Grid container xs={8} direction="row" justify="center" alignItems="center" className={classes.levelContainer}>
+                <Grid container xs={7} direction="row" justify="center" alignItems="center" className={classes.levelContainer}>
                     <Grid item xs={12}>
                         <Typography variant="h1" style={{marginBottom:"16px"}}>
                             Levels
                         </Typography>
-                        <Grid container xs={12} direction="row" justify="center" alignItems="center" className={classes.ascensionContainer}>
-                            <Grid item xs={12} className={classes.levelPadding}>
+                        <Grid container direction="row" justify="center" alignItems="center" className={classes.ascensionContainer}>
+                            <Grid item xs={12} style={{marginTop: "16px"}}>
                                 <Typography variant="h2" align="center">
                                     Current Level
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} className={classes.levelPadding}>
-                                <div className={classes.ascensionImageContainer}>
-                                    <CardMedia
-                                        image= {AscensionFour}
-                                        className={classes.ascensionImage}
-                                    />
-                                </div>
-                            </Grid>
+                            <div style={{ display: "flex", marginBottom: "16px"}} >
+                                {createCurrentStars}
+                            </div>
+
                             <Grid item xs={12} className={classes.levelPadding}>
                                 <Typography variant="h2" align="center">
                                     Desired Level
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} className={classes.levelPadding}>
-                                <div className={classes.ascensionImageContainer}>
+                            <div style={{ display: "flex", marginBottom: "16px" }}className={classes.levelPadding}>
+                                <div>
                                     <CardMedia
-                                        image= {AscensionFour}
-                                        className={classes.ascensionImage}
+                                        image= {AscensionStar}
+                                        className={classes.ascensionStar}
                                     />
                                 </div>
-                            </Grid>
+                                <div>
+                                    <CardMedia
+                                        image= {AscensionStar}
+                                        className={classes.ascensionStar}
+                                    />
+                                </div>
+                                <div>
+                                    <CardMedia
+                                        image= {AscensionStar}
+                                        className={classes.ascensionStar}
+                                    />
+                                </div>
+                                <div>
+                                    <CardMedia
+                                        image= {AscensionStar}
+                                        className={classes.ascensionStar}
+                                    />
+                                </div>
+                                <div>
+                                    <CardMedia
+                                        image= {AscensionStar}
+                                        className={classes.ascensionStar}
+                                    />
+                                </div>
+                                <div>
+                                    <CardMedia
+                                        image= {AscensionStar}
+                                        className={classes.ascensionStar}
+                                    />
+                                </div>
+                            </div>
                         </Grid>
 
                         <Typography variant="h1" style={{marginTop: "16px", marginBottom: "16px"}}>
                             Talents
                         </Typography>
-                        <Grid container xs={12} direction="row" justify="space-between" alignItems="center">
-                            <Grid item xs={3} className={classes.talentCard}>
-                                <div style={{paddingTop:"16px"}}>
+
+                        <Grid container direction="row" justify="space-between" alignItems="center">
+                            <Grid container justify="center" className={classes.talentCard}>
+                                <Grid item xs={12}>
                                     <CardMedia
                                         image= {character.abilityOne.image}
                                         className={classes.talentImage}
                                     />
-                                </div>
                                     <Typography variant="h5" align="center" className={classes.talentNameText}>
                                         {character.abilityOne.name}
                                     </Typography>
-                                    <Typography variant="h6" align="center">
+                                    <Typography variant="h6" align="center" style={{marginBottom: "16px"}}>
                                         Normal Attack
                                     </Typography>
-                                    <Grid item xs={10} style={{margin: 'auto', paddingTop:"8px"}}>
+                                </Grid>
+                                <Grid container justify="center" alignItems="flex-end">
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
                                         <RangeSlider></RangeSlider>
                                     </Grid>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={3} className={classes.talentCard}>
-                                <div style={{paddingTop:"16px"}}>
+                            <Grid container justify="center" className={classes.talentCard}>
+                                <Grid item xs={12}>
                                     <CardMedia
                                         image= {character.abilityTwo.image}
                                         className={classes.talentImage}
                                     />
-                                </div>
-                                <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                    {character.abilityTwo.name}
-                                </Typography>
-                                <Typography variant="h6" align="center">
-                                    Elemental Skill
-                                </Typography>
-                                <Grid item xs={10} style={{margin: 'auto', paddingTop:"8px"}}>
-                                    <RangeSlider></RangeSlider>
+                                    <Typography variant="h5" align="center" className={classes.talentNameText}>
+                                        {character.abilityTwo.name}
+                                    </Typography>
+                                    <Typography variant="h6" align="center" style={{marginBottom: "16px"}}>
+                                        Elemental Skill
+                                    </Typography>
+                                </Grid>
+                                <Grid container justify="center" alignItems="flex-end">
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                                        <RangeSlider></RangeSlider>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={3} className={classes.talentCard}>
-                                <div style={{paddingTop:"16px"}}>
+                            <Grid container justify="center" className={classes.talentCard}>
+                                <Grid item xs={12}>
                                     <CardMedia
                                         image= {character.abilityThree.image}
                                         className={classes.talentImage}
                                     />
-                                </div>
-                                <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                    {character.abilityThree.name}
-                                </Typography>
-                                <Typography variant="h6" align="center">
-                                    Elemental Burst
-                                </Typography>
-                                <Grid item xs={10} style={{margin: 'auto', paddingTop:"8px"}}>
-                                    <RangeSlider></RangeSlider>
+                                    <Typography variant="h5" align="center" className={classes.talentNameText}>
+                                        {character.abilityThree.name}
+                                    </Typography>
+                                    <Typography variant="h6" align="center" style={{marginBottom: "16px"}}>
+                                        Elemental Burst
+                                    </Typography>
                                 </Grid>
-
+                                <Grid container justify="center" alignItems="flex-end">
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                                        <RangeSlider></RangeSlider>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>

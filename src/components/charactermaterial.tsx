@@ -50,10 +50,10 @@ export default function CharacterMaterial( props: any ) {
     return (
             <Grid container xs={12} spacing={3} direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
                 <Grid item xs={4} className={classes.imageContainer}>
-                <CardMedia
-                image= {handleMaterialImage(name)}
-                style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px"}}
-                />
+                    <CardMedia
+                    image= {handleMaterialImage(name)}
+                    style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px"}}
+                    />
                 </Grid> 
                 <Grid item xs={8} className={classes.textContainer}>
                     <div className={classes.details}>

@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         margin: 'auto',
-        [theme.breakpoints.down('sm')]: {
-            display: "none"
-          },
+        // [theme.breakpoints.down('sm')]: {
+        //     display: "none"
+        //   },
     },
     content: {
         padding: theme.spacing(4),
@@ -29,7 +29,7 @@ export default function AdBar() {
     const classes = useStyles();
     //const theme = useTheme();
     return (
-        <Grid container sm={12} md={10} lg={9} direction="row" justify="center" className={classes.container}>
+        <Grid container sm={11} md={10} lg={10} xl={10} direction="row" justify="center" className={classes.container}>
             <Grid item xs={12} style={{padding: "12px"}}>
                 <Card className={classes.root}> 
                     <CardContent className={classes.content}>

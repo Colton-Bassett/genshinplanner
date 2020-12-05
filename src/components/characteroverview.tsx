@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "#272937 !important", 
 		maxHeight: '275px',
 		minHeight: '275px',
+		minWidth: '170px'
 	},
 	characterContainer: {
 		margin: "auto", 

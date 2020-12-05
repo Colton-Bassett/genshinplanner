@@ -62,3 +62,27 @@ a:visited { text-decoration: none; color:white; }
 	max-height: 70%;
 	min-height: 70%;
 }
+
+.Electro {
+	color: #F5BEF0;
+}
+
+.Pyro {
+	color: #f99;
+}
+
+.Cryo {
+	color: #9ff;
+}
+
+.Anemo {
+	color: #80ffd7;
+}
+
+.Hydro {
+	color: #80c0ff;
+}
+
+.Geo {
+	color: #ffe699;
+}

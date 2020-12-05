@@ -111,8 +111,11 @@ export default function App() {
 		ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },
 		talentMats: { talentMat: '', bossMat: '' }
 	}
+
 	const [characters, setCharacters] = useState<[Char]>();
 	const [formData, setFormData] = useState<Char>(initialChar);
+
+	
 	useEffect(() => {
 		fetchCharacters();
 	  }, []);
@@ -146,27 +149,31 @@ export default function App() {
 
 	async function createCharacterWithoutDom() {
 		const f = { ...formData};
-		f.name = 'Chongyun'
-		f.type = 'Cryo'
-		f.weapon = 'Claymore'
-		f.stars = 'Four'
-		f.description = "A young exorcist from a family of exorcists. He does everything he can to suppress his pure positive energy."
-		f.image = 'Chongyun.png'
-		f.abilityOne.name = 'Demonbane'
+		f.name = 'Mona'
+		f.type = 'Hydro'
+		f.weapon = 'Catalyst'
+		f.stars = 'Five'
+		f.description = "A mysterious young astrologer who proclaims herself to be 'Astrologist Mona Megistus,' and who possesses abilities to match the title."
+		f.image = 'Mona.png'
+
+		f.abilityOne.name = 'Ripple of Fate'
 		f.abilityOne.description = 'Normal Attack'
-		f.abilityOne.image = 'Demonbane.png'
-		f.abilityTwo.name = "Spirit Blade - Chonghua's Layered Frost"
-		f.abilityTwo.description = 'Chongyun strikes the ground with his greatsword, causing a Cryo explosion in a circular AoE in front of him that deals Cryo DMG.'
-		f.abilityTwo.image = "Spirit_Blade_-_Chonghua's_Layered_Frost.png"
-		f.abilityThree.name = 'Spirit Blade - Cloud-parting Star'
-		f.abilityThree.description = "Performing the secret hand seals, Chongyun summons 3 giant spirit blades in mid-air that fall to the earth one by one after a short delay, exploding as they hit the ground. When the spirit blades explode, they will deal AoE Cryo DMG and launch enemies."
-		f.abilityThree.image = 'Spirit_Blade_-_Cloud-parting_Star'
-		f.ascensionMats.matOne = 'Shivada'
-		f.ascensionMats.matTwo = 'Hoarfrost Core'
-		f.ascensionMats.specialty = 'Core Lapis'
-		f.ascensionMats.commonMat = 'Damaged Mask'
-		f.talentMats.talentMat = 'Diligence'
-		f.talentMats.bossMat = "Dvalin's Sigh"
+		f.abilityOne.image = 'Ripple_of_Fate.png'
+
+		f.abilityTwo.name = "Reflection of Doom"
+		f.abilityTwo.description = "Creates an illusory Phantom of fate from coalesced waterspouts."
+		f.abilityTwo.image = "Reflection_of_Doom.png"
+
+		f.abilityThree.name = "Stellaris Phantasm"
+		f.abilityThree.description = "Mona summons the sparkling waves and creates a reflection of the starry sky, applying the Illusory Bubble status to opponents in a large AoE."	
+		f.abilityThree.image = "Stellaris_Phantasm.png"
+
+		f.ascensionMats.matOne = 'Varunada'
+		f.ascensionMats.matTwo = 'Cleansing Heart'
+		f.ascensionMats.specialty = 'Philanemo Mushroom'
+		f.ascensionMats.commonMat = "Whopperflower Nectar"
+		f.talentMats.talentMat = 'Resistance'
+		f.talentMats.bossMat = "Ring of Boreas"
 		setFormData(f);
 		if (!formData.name || !formData.description) return;
 		await API.graphql({ query: createCharacterMutation, variables: { input: formData } });
@@ -180,7 +187,7 @@ export default function App() {
 			<TopNav></TopNav>
 			<StylesProvider injectFirst>
 			<AdBar></AdBar>
-			<Grid container sm={12} md={11} lg={9} spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.root}>
+			<Grid container sm={11} md={11} lg={10} xl={10} spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.root}>
 				<Grid item sm={12} md={11} lg={9}>
 					<Switch>
 						<Route path="/planner">
@@ -198,7 +205,7 @@ export default function App() {
 			</Grid>
 			</StylesProvider>
 			<BottomNav></BottomNav>
-			<button onClick={createCharacterWithoutDom}>Click me</button>
+			{/* <button onClick={createCharacterWithoutDom}>Click me</button> */}
 		</Router>
 		</ThemeProvider>
 	);

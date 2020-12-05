@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 import AddCharacterButton from "./addcharacterbutton"
@@ -56,6 +56,23 @@ export default function Planner(props: any) {
 			]
 		},
 	]
+	const initialAscensionDetails = {
+		character: 'Razor',
+
+		currentLevel: '',
+		desiredLevel: '',
+
+		abilityOneCurrent: '',
+		abilityOneDesired: '',
+
+		abilityTwoCurrent: '',
+		abilityTwoDesired: '',
+
+		abilityThreeCurrent: '',
+		abilityThreeDesired: '',
+	}
+	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
+	
 	const [items, setItems] = React.useState(defaultItems)
 
 	const deleteObject = (id: any) => {
@@ -76,7 +93,7 @@ export default function Planner(props: any) {
 				<CardContent>
 					<h2>Genshin Impact Planner</h2>
 					{characterOverviews}
-					<AddCharacterButton characters={characters}></AddCharacterButton>
+					<AddCharacterButton characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails}></AddCharacterButton>
 				</CardContent>
 			</div>
 		</Card>

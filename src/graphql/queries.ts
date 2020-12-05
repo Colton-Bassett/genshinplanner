@@ -43,10 +43,9 @@ export const getCharacter = /* GraphQL */ `
 export const listCharacters = /* GraphQL */ `
   query ListCharacters(
     $filter: ModelCharacterFilterInput
-    $limit: Int
     $nextToken: String
   ) {
-    listCharacters(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCharacters(filter: $filter, limit: 100, nextToken: $nextToken) {
       items {
         id
         name

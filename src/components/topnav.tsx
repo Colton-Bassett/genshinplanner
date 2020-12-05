@@ -3,7 +3,7 @@ import {Button, AppBar, Toolbar, IconButton, Icon, StylesProvider, Grid, makeSty
 import { KeyboardArrowDown } from '@material-ui/icons';
 import { Link } from "react-router-dom";
 
-import WebsiteLogo from '../images/websitelogo.png'
+import WebsiteLogo from '../images/websitelogo.svg'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -56,7 +56,7 @@ export default function TopNav() {
         <div className={classes.navContainer}>
             <AppBar position="static" >
                 <StylesProvider injectFirst>
-                    <Grid container sm={11} md={10} lg={9} spacing={3} direction="row" className={classes.container}>
+                    <Grid container sm={11} md={10} lg={10} xl={10} spacing={3} direction="row" className={classes.container}>
                         <Grid item xs={12} className={classes.toolBarContainer}>
                             <Toolbar className={classes.toolbar}>
                                 <IconButton edge="start" color="inherit" aria-label="menu" disableRipple>

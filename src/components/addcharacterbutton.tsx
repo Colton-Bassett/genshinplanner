@@ -44,16 +44,18 @@ export default function AddCharacterButton(props: any) {
     const classes = useStyles();
     let centerItem = 'center-item'
     const characters = props.characters;
+    const ascensionDetails = props.ascensionDetails;
+    const setAscensionDetails = props.setAscensionDetails;
 
     const [open, setOpen] = React.useState(false); // dialogue
     const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper'); // dialogue
   
-    const handleClickOpen = (scrollType: DialogProps['scroll']) => () => { // dialogue
+    const dialogOpen = (scrollType: DialogProps['scroll']) => () => { // dialogue
       setOpen(true);
       setScroll(scrollType);
     };
   
-    const handleClose = () => { // dialogue
+    const dialogClose = () => { // dialogue
       setOpen(false);
     };
   
@@ -73,14 +75,14 @@ export default function AddCharacterButton(props: any) {
                 <Card className={classes.content}> 
                     <div className={classes.container} >
                     <Tooltip title="Add Character" arrow>
-                        <Add className={centerItem} onClick={handleClickOpen('paper')}>
+                        <Add className={centerItem} onClick={dialogOpen('paper')} style={{minWidth: "170px"}}>
                         </Add>
                     </Tooltip>
                     </div>
                     <div>
                         <Dialog
                             open={open}
-                            onClose={handleClose}
+                            onClose={dialogClose}
                             scroll={scroll}
                             aria-labelledby="scroll-dialog-title"
                             aria-describedby="scroll-dialog-description"
@@ -88,7 +90,7 @@ export default function AddCharacterButton(props: any) {
                             {/* <DialogTitle id="scroll-dialog-title" style={{backgroundColor: '#1D1F29', }}>
                             </DialogTitle> */}
                             <DialogContent dividers={scroll === 'paper'} className={classes.dialogContent}>
-                            <DialogTab characters={characters}></DialogTab>
+                            <DialogTab characters={characters} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails}></DialogTab>
                             <DialogContentText
                                 id="scroll-dialog-description"
                                 ref={descriptionElementRef}
@@ -98,7 +100,7 @@ export default function AddCharacterButton(props: any) {
                             </DialogContentText>
                             </DialogContent>
                             <DialogActions className={classes.dialogActions}>
-                                <Button onClick={handleClose} color="primary" className={classes.dialogCancel} disableRipple>
+                                <Button onClick={dialogClose} color="primary" className={classes.dialogCancel} disableRipple>
                                     Cancel
                                 </Button>
                             </DialogActions>
