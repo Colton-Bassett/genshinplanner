@@ -149,31 +149,31 @@ export default function App() {
 
 	async function createCharacterWithoutDom() {
 		const f = { ...formData};
-		f.name = 'Mona'
-		f.type = 'Hydro'
-		f.weapon = 'Catalyst'
+		f.name = 'Traveler (Geo)'
+		f.type = 'Geo'
+		f.weapon = 'Sword'
 		f.stars = 'Five'
-		f.description = "A mysterious young astrologer who proclaims herself to be 'Astrologist Mona Megistus,' and who possesses abilities to match the title."
-		f.image = 'Mona.png'
+		f.description = "A traveler from another world who had their only kin taken away, forcing them to embark on a journey to find The Seven."
+		f.image = 'Traveler (Geo).png'
 
-		f.abilityOne.name = 'Ripple of Fate'
+		f.abilityOne.name = 'Foreign Rockblade'
 		f.abilityOne.description = 'Normal Attack'
-		f.abilityOne.image = 'Ripple_of_Fate.png'
+		f.abilityOne.image = 'Foreign_Rockblade.png'
 
-		f.abilityTwo.name = "Reflection of Doom"
-		f.abilityTwo.description = "Creates an illusory Phantom of fate from coalesced waterspouts."
-		f.abilityTwo.image = "Reflection_of_Doom.png"
+		f.abilityTwo.name = "Starfell Sword"
+		f.abilityTwo.description = "You disgorge a meteorite from the depths of the earth, dealing AoE Geo DMG. The meteorite is considered a Geo Construct, and can be climbed or used to block attacks."
+		f.abilityTwo.image = "Starfell_Sword.png"
 
-		f.abilityThree.name = "Stellaris Phantasm"
-		f.abilityThree.description = "Mona summons the sparkling waves and creates a reflection of the starry sky, applying the Illusory Bubble status to opponents in a large AoE."	
-		f.abilityThree.image = "Stellaris_Phantasm.png"
+		f.abilityThree.name = "Wake of Earth"
+		f.abilityThree.description = "Energizing the Geo elements deep underground, you set off expanding shockwaves. Launches surrounding enemies back and deals AoE Geo DMG. A stone wall is erected at the edges of the shockwave."	
+		f.abilityThree.image = "Wake_of_Earth.png"
 
-		f.ascensionMats.matOne = 'Varunada'
-		f.ascensionMats.matTwo = 'Cleansing Heart'
-		f.ascensionMats.specialty = 'Philanemo Mushroom'
-		f.ascensionMats.commonMat = "Whopperflower Nectar"
+		f.ascensionMats.matOne = 'Diamond'
+		f.ascensionMats.matTwo = 'Divining Scroll'
+		f.ascensionMats.specialty = 'Windwheel Aster'
+		f.ascensionMats.commonMat = "Damaged Mask"
 		f.talentMats.talentMat = 'Resistance'
-		f.talentMats.bossMat = "Ring of Boreas"
+		f.talentMats.bossMat = "Dvalin's Sigh"
 		setFormData(f);
 		if (!formData.name || !formData.description) return;
 		await API.graphql({ query: createCharacterMutation, variables: { input: formData } });

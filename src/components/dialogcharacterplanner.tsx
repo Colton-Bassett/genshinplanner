@@ -176,40 +176,63 @@ export default function DialogCharacterPlanner(props: any) {
 
     let elementColor = character.type;
 
-    interface Star {
-        opacity: string;
-    }
-    const initialStar: Star = {
-        opacity: "0.3"
-    }
-    const initialStarTwo: Star = {
-        opacity: "0.3"
-    }
+    const initialCurrentStars = [
+        {starOne: {opacity: "0.3"}},
+        {starTwo: {opacity: "0.3"}},
+        {starThree: {opacity: "0.3"}},
+        {starFour: {opacity: "0.3"}},
+        {starFive: {opacity: "0.3"}},
+        {starSix: {opacity: "0.3"}},
+    ]
+    const initialDesiredStars = [
+        {starOne: {opacity: "0.3"}},
+        {starTwo: {opacity: "0.3"}},
+        {starThree: {opacity: "0.3"}},
+        {starFour: {opacity: "0.3"}},
+        {starFive: {opacity: "0.3"}},
+        {starSix: {opacity: "0.3"}},
+    ]
 
-    const initialStarThree: Star = {
-        opacity: "0.3"
-    }
+    const [currentStars, setCurrentStars] = useState<any[]>(initialCurrentStars);
+    const [desiredStars, setDesiredStars] = useState<any[]>(initialDesiredStars);
 
-    const initialStarFour: Star = {
-        opacity: "0.3"
-    }
+    function setCurrentStarsClick(index: any) {
+        if (index === 5) {
+            setDesiredStarsClick(index)
+            
+        } else if (desiredStars[index + 1].opacity === "1") {
 
-    const initialStarFive: Star = {
-        opacity: "0.3"
-    }
+        } else {
+            setDesiredStarsClick(index)
+        }
 
-    const initialStarSix: Star = {
-        opacity: "0.3"
-    }
-    const initialCurrentStars = [initialStar, initialStarTwo, initialStarThree, initialStarFour, initialStarFive, initialStarSix]
-    const [currentStars, setCurrentStars] = useState<Star[]>(initialCurrentStars);
-
-    function testMe(index: any) {
         const starsTemp = [...currentStars]
-
-        starsTemp[index].opacity = "1";
+        // reset stars
+        for (var i = 0; i <= 5; i++) {
+            starsTemp[i].opacity = "0.3";
+        }
+        // set stars based on index
+        for (var i =0; i <= index; i++) {
+            starsTemp[i].opacity = "1";
+        }
         setCurrentStars(starsTemp)
-        console.log("currentStars:", currentStars);
+        //console.log("currentStars:", currentStars);
+    }
+
+    function setDesiredStarsClick(index: any) {
+
+            const starsTemp = [...desiredStars]
+            // reset stars
+            for (var i = 0; i <= 5; i++) {
+                starsTemp[i].opacity = "0.3";
+            }
+            // set stars based on index
+            for (var i =0; i <= index; i++) {
+                starsTemp[i].opacity = "1";
+            }
+            setDesiredStars(starsTemp)
+            //console.log("desiredStars:", desiredStars);
+
 
     }
 
@@ -238,10 +261,23 @@ export default function DialogCharacterPlanner(props: any) {
             image= {AscensionStar}
             className={classes.ascensionStar}
             style={{opacity: star.opacity}}
-            onClick={(e) => {testMe(index)}}
+            onClick={(e) => {setCurrentStarsClick(index)}}
         />
         </div>
-	);
+    );
+
+    const createDesiredStars = desiredStars.map((star: any, index: any) => 
+    <div>
+    <CardMedia
+        image= {AscensionStar}
+        className={classes.ascensionStar}
+        style={{opacity: star.opacity}}
+        onClick={(e) => {setDesiredStarsClick(index)}}
+    />
+    </div>
+);
+    
+    //const createDesiredStars;
     
     return (
         <Card className={classes.root}> 
@@ -312,42 +348,7 @@ export default function DialogCharacterPlanner(props: any) {
                                 </Typography>
                             </Grid>
                             <div style={{ display: "flex", marginBottom: "16px" }}className={classes.levelPadding}>
-                                <div>
-                                    <CardMedia
-                                        image= {AscensionStar}
-                                        className={classes.ascensionStar}
-                                    />
-                                </div>
-                                <div>
-                                    <CardMedia
-                                        image= {AscensionStar}
-                                        className={classes.ascensionStar}
-                                    />
-                                </div>
-                                <div>
-                                    <CardMedia
-                                        image= {AscensionStar}
-                                        className={classes.ascensionStar}
-                                    />
-                                </div>
-                                <div>
-                                    <CardMedia
-                                        image= {AscensionStar}
-                                        className={classes.ascensionStar}
-                                    />
-                                </div>
-                                <div>
-                                    <CardMedia
-                                        image= {AscensionStar}
-                                        className={classes.ascensionStar}
-                                    />
-                                </div>
-                                <div>
-                                    <CardMedia
-                                        image= {AscensionStar}
-                                        className={classes.ascensionStar}
-                                    />
-                                </div>
+                                {createDesiredStars}
                             </div>
                         </Grid>
 
