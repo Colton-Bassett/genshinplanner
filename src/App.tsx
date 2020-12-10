@@ -115,27 +115,28 @@ export default function App() {
 		const apiData: any = await API.graphql({ query: listCharacters });
 		const charactersFromAPI = apiData.data.listCharacters.items;
 		await Promise.all(charactersFromAPI.map(async (character: any) => {
-		if (character.image) {
-			const image = await Storage.get(character.image);
-			character.image = image;
-		}
-		if (character.abilityOne.image) {
-			  const image = await Storage.get(character.abilityOne.image);
-			  character.abilityOne.image = image;
-		}
-		if (character.abilityTwo.image) {
-			const image = await Storage.get(character.abilityTwo.image);
-			character.abilityTwo.image = image;
-		}
-		if (character.abilityThree.image) {
-			const image = await Storage.get(character.abilityThree.image);
-			character.abilityThree.image = image;
-		}
-		  return character;
+			console.log(character)
+			if (character.image) {
+				const image = await Storage.get(character.image);
+				character.image = image;
+			}
+			if (character.abilityOne.image) {
+				const image = await Storage.get(character.abilityOne.image);
+				character.abilityOne.image = image;
+			}
+			if (character.abilityTwo.image) {
+				const image = await Storage.get(character.abilityTwo.image);
+				character.abilityTwo.image = image;
+			}
+			if (character.abilityThree.image) {
+				const image = await Storage.get(character.abilityThree.image);
+				character.abilityThree.image = image;
+			}
+			return character;
 		}))
 		console.log("fetchCharacters:", apiData.data.listCharacters.items)
 		setCharacters(apiData.data.listCharacters.items);
-		//console.log("fetchCharacters state:", characters);
+		console.log("fetchCharacters state:", characters);
 	}
 
 	async function createCharacterWithoutDom() {

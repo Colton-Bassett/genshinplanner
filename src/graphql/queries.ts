@@ -54,6 +54,31 @@ export const listCharacters = /* GraphQL */ `
         stars
         description
         image
+        abilityOne {
+        name
+        image
+        description
+        }
+        abilityTwo {
+          name
+          image
+          description
+        }
+        abilityThree {
+          name
+          image
+          description
+        }
+        ascensionMats {
+          matOne
+          matTwo
+          specialty
+          commonMat
+        }
+        talentMats {
+          talentMat
+          bossMat
+        }
       }
       nextToken
     }
