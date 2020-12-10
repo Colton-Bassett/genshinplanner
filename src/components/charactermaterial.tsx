@@ -48,7 +48,7 @@ export default function CharacterMaterial( props: any ) {
     }
 
     return (
-            <Grid container xs={12} spacing={3} direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
+            <Grid container spacing={3} direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
                 <Grid item xs={4} className={classes.imageContainer}>
                     <CardMedia
                     image= {handleMaterialImage(name)}

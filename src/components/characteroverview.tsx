@@ -94,22 +94,22 @@ export default function CharacterOverview(props: any) {
 		setExpanded(!expanded);
 	};
 	const objectInfo = {
-		id: props.objectInfo.id,
+		index: props.objectInfo.index,
 		type: props.objectInfo.type,
 		name: props.objectInfo.name,
-		ascension: props.objectInfo.ascension,
-		levelStart: props.objectInfo.levelStart,
-		levelEnd: props.objectInfo.levelEnd,
+		currentLevel: props.objectInfo.currentLevel,
+		desiredLevel: props.objectInfo.desiredLevel,
 		materials: props.objectInfo.materials,
 	}
+	
 
-	const deleteObject = (id: any) => {
-		props.deleteMethod(id)
+	const deleteObject = (index: any) => {
+		props.deleteMethod(index)
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
 	<Grid item xs={3}>
-		<CharacterMaterial name={material.name} quantity={material.quantity}></CharacterMaterial>
+		<CharacterMaterial key={index} name={material.name} quantity={material.quantity}></CharacterMaterial>
 	</Grid>
 	);
 
@@ -122,7 +122,7 @@ export default function CharacterOverview(props: any) {
 							<EditIcon className={classes.editIcon}></EditIcon>
 						</Tooltip>
 						<Tooltip title="Delete" arrow>
-							<CancelIcon className={classes.cancelIcon} onClick={() => deleteObject(objectInfo.id)}></CancelIcon>
+							<CancelIcon className={classes.cancelIcon} onClick={() => deleteObject(objectInfo.index)}></CancelIcon>
 						</Tooltip>
 
 					</Grid>
@@ -142,14 +142,14 @@ export default function CharacterOverview(props: any) {
 					<Grid item xs={6} style={{margin: 'auto'}}>
 					<div className={classes.cardmediaContainer}>
 					<CardMedia
-						image= {HandleImage(objectInfo.ascension)}
+						image= {HandleImage("AscensionFour")}
 						style={{ minHeight: "15px", borderRadius: "10px" }}
 					/>
 					</div>
 					</Grid>
 					<Grid item xs={8} style={{margin: 'auto'}}>
 						<Typography variant="body1" align='center' style={{fontWeight: 700}}>
-							Level {objectInfo.levelStart} - {objectInfo.levelEnd}
+							Level {objectInfo.currentLevel} - {objectInfo.desiredLevel}
 						</Typography>
 					</Grid>
 				</Card>

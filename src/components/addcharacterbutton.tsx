@@ -46,6 +46,8 @@ export default function AddCharacterButton(props: any) {
     const characters = props.characters;
     const ascensionDetails = props.ascensionDetails;
     const setAscensionDetails = props.setAscensionDetails;
+    const items = props.items;
+    const setItems = props.setItems;
 
     const [open, setOpen] = React.useState(false); // dialogue
     const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper'); // dialogue
@@ -86,11 +88,12 @@ export default function AddCharacterButton(props: any) {
                             scroll={scroll}
                             aria-labelledby="scroll-dialog-title"
                             aria-describedby="scroll-dialog-description"
+
                         >
                             {/* <DialogTitle id="scroll-dialog-title" style={{backgroundColor: '#1D1F29', }}>
                             </DialogTitle> */}
                             <DialogContent dividers={scroll === 'paper'} className={classes.dialogContent}>
-                            <DialogTab characters={characters} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails}></DialogTab>
+                            <DialogTab characters={characters} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogTab>
                             <DialogContentText
                                 id="scroll-dialog-description"
                                 ref={descriptionElementRef}

@@ -5,25 +5,23 @@ import AddCharacterButton from "./addcharacterbutton"
 import CharacterOverview from "./characteroverview"
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-		backgroundColor: "#222431 !important",
-		minWidth: '70%',
+    card: {
+		backgroundColor: "#222431",
 		margin: 'auto',
 		minHeight: '1000px',
     },
-    container: {
-		paddingLeft: theme.spacing(2),
-		paddingRight: theme.spacing(2),
+    content: {
+		padding: '12px 24px 24px 24px',
     },
 }));
 
 export default function Planner(props: any) {
-	console.log("Rendered Planner")
 	const classes = useStyles();
+
 	const characters = props.characters;
-	const defaultItems = [
+	const plannerItems = [
 		{
-			id: 0, type: "Character", name: "Razor", ascension: "AscensionFour", levelStart: 1, levelEnd: 60, 
+			index: 0, type: "Character", name: "Razor", currentLevel: 0, desiredLevel: 3, abilityOneCurrent: 1, abilityOneDesired: 5, abilityTwoCurrent: 1, abilityTwoDesired: 5, abilityThreeCurrent: 1, abilityThreeDesired: 5, 
 			materials: [
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
@@ -33,31 +31,33 @@ export default function Planner(props: any) {
 				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 			]
 		},
-		{
-			id: 1, type: "Character", name: "Xingqiu", ascension: "AscensionFour", levelStart: 1, levelEnd: 50, 
-			materials: [
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-			]
-		},
-		{
-			id: 2, type: "Character", name: "Venti", ascension: "AscensionFour", levelStart: 1, levelEnd: 40, 
-			materials: [
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-			]
-		},
+		// {
+		// 	id: 1, type: "Character", name: "Xingqiu", ascension: "AscensionFour", levelStart: 1, levelEnd: 50, 
+		// 	materials: [
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 	]
+		// },
+		// {
+		// 	id: 2, type: "Character", name: "Venti", ascension: "AscensionFour", levelStart: 1, levelEnd: 40, 
+		// 	materials: [
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		// 	]
+		// },
 	]
 	const initialAscensionDetails = {
-		character: 'Razor',
+		index: '',
+		type: '',
+		name: 'Razor',
 
 		currentLevel: '',
 		desiredLevel: '',
@@ -70,32 +70,40 @@ export default function Planner(props: any) {
 
 		abilityThreeCurrent: '',
 		abilityThreeDesired: '',
+
+		materials: [
+			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+		]
 	}
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
 	
-	const [items, setItems] = React.useState(defaultItems)
+	const [items, setItems] = React.useState(plannerItems)
 
-	const deleteObject = (id: any) => {
-		console.log("deleteObjects id:", id)
+	const deleteObject = (index: any) => {
+		console.log("deleteObjects id:", items)
 		let tempObjects = [...items]
-		console.log("deleteObject has been called!", id)
-		const filteredObjects = tempObjects.filter(item => item.id !== id);
+		console.log("deleteObject has been called!", tempObjects)
+		const filteredObjects = tempObjects.filter(item => item.index !== index);
 		setItems(filteredObjects);
 		console.log("objects:", items)
 	}
 
 	const characterOverviews = items.map((item) => 
-	<CharacterOverview key={item.id} objectInfo={item} deleteMethod={deleteObject}></CharacterOverview>
+	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={deleteObject}></CharacterOverview>
 	);
+
 	return (
-		<Card className={classes.root}> 
-			<div className={classes.container}>
-				<CardContent>
-					<h2>Genshin Impact Planner</h2>
-					{characterOverviews}
-					<AddCharacterButton characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails}></AddCharacterButton>
-				</CardContent>
-			</div>
+		<Card className={classes.card}> 
+			<CardContent className={classes.content}>
+				<h2>Genshin Impact Planner</h2>
+				{characterOverviews}
+				<AddCharacterButton characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></AddCharacterButton>
+			</CardContent>
 		</Card>
 	);
 }

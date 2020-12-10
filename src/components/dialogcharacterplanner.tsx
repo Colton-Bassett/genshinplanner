@@ -173,6 +173,8 @@ export default function DialogCharacterPlanner(props: any) {
     const dialogClose = props.dialogClose;
     const ascensionDetails = props.ascensionDetails;
     const setAscensionDetails = props.setAscensionDetails;
+    const items = props.items;
+    const setItems = props.setItems;
 
     let elementColor = character.type;
 
@@ -237,8 +239,13 @@ export default function DialogCharacterPlanner(props: any) {
     }
 
     function submitDialog() {
+        let i = [...items]
+        console.log("here is temp i", i);
         let a = {...ascensionDetails}
-        a.character = character.name;
+        a.index = items.length;
+        a.type = 'Character';
+        console.log("character name:", character.name);
+        a.name = character.name;
         a.currentLevel = 0;
         a.desiredLevel = 6;
         
@@ -248,10 +255,19 @@ export default function DialogCharacterPlanner(props: any) {
         a.abilityTwoDesired = 6;
         a.abilityThreeCurrent = 0;
         a.abilityThreeDesired = 0;
-        //console.log("a:", a);
 
-        setAscensionDetails(a);
-        console.log("ascensionDetails", ascensionDetails);
+        a.materials = [
+            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+        ]
+        //setAscensionDetails(a);
+        i.push(a)
+        setItems(i);
+        //console.log("ascensionDetails", ascensionDetails);
         dialogClose()
     }
 

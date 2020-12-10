@@ -36,16 +36,10 @@ a:visited { text-decoration: none; color:white; }
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	cursor: pointer;
-
 }
 
 .center-item:hover {
 	color: #fff
-}
-
-.nav-title {
-	font-size: 16px;
-	font-weight: 700;
 }
 
 .MuiToolbar-regular {
@@ -53,14 +47,15 @@ a:visited { text-decoration: none; color:white; }
 }
 
 .MuiDialog-paperWidthSm {
-	max-width: 50%;
-	min-width: 50%;
+	min-width: 850px;
+	max-width: 850px;
+	min-height: 600px;
+	max-height: 600px;
 
 }
 
 .MuiDialog-paperScrollPaper {
-	max-height: 70%;
-	min-height: 70%;
+
 }
 
 .Electro {

@@ -56,6 +56,8 @@ export default function DialogTab(props: any) {
     const dialogClose = props.dialogClose;
     const ascensionDetails = props.ascensionDetails;
     const setAscensionDetails = props.setAscensionDetails;
+    const items = props.items;
+    const setItems = props.setItems;
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -78,7 +80,8 @@ export default function DialogTab(props: any) {
 	);
 
 	const DialogCharacterContainer = () => (
-		<Grid container spacing={3} direction="row" justify="flex-start" alignItems="flex-start">
+		<Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
+
 			{populateDialogCharacters} 
 			{/* <DialogCharacter name={"Razor"}></DialogCharacter> */}
 		</Grid>
@@ -93,10 +96,15 @@ export default function DialogTab(props: any) {
 				</Tabs>
 			</AppBar>
 			<TabPanel value={value} index={0}>
-				<DialogCharacterContainer></DialogCharacterContainer>
+				<Grid item xs={11} justify="center" alignItems="center" style={{margin: "auto", paddingTop: "20px"}}>
+					<DialogCharacterContainer></DialogCharacterContainer>
+				</Grid>
+
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Coming soon
+				<Grid item xs={11} justify="center" alignItems="center" style={{margin: "auto", paddingTop: "20px"}}>
+					Coming soon
+				</Grid>
 			</TabPanel>	
 		</div>
 	)
@@ -104,7 +112,7 @@ export default function DialogTab(props: any) {
   return (
 	<div>
 		{ showChars ? <MainStuff></MainStuff> : null }
-		{ !showChars ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails}></DialogCharacterPlanner> : null }
+		{ !showChars ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
 	</div>	
   	);
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
-import { getCharacter, listCharacters } from './graphql/queries';
-import { createCharacter as createCharacterMutation, deleteCharacter as deleteCharacterMutation } from './graphql/mutations';
+// getCharacter, deleteCharacter as deleteCharacterMutation
+import { listCharacters } from './graphql/queries';
+import { createCharacter as createCharacterMutation } from './graphql/mutations';
 
 import { Grid, ThemeProvider, StylesProvider, createMuiTheme, makeStyles } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -15,23 +16,20 @@ import BottomNav from "./components/bottomnav"
 import DatabasePage from "./components/databasepage"
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		margin: 'auto'
-	},
-	content: {
-		backgroundColor: "#272937 !important",
-		minWidth: '100%',
-		margin: 'auto',
-		minHeight: '250px',
-	},
 	container: {
 		margin: 'auto',
-		position: 'relative',
-		minHeight: '250px'
+		display: 'flex'
 	},
+	innerContainer: {
+		margin: 'auto'
+	},
+	mainContent: {
+		marginBottom: '20px',
+	}
 }));
 
 export default function App() {
+	const classes = useStyles();
 	const theme = createMuiTheme({
 		palette: {
 			primary: {
@@ -83,7 +81,6 @@ export default function App() {
 		fontWeight: 400,
 		margin: 0	
 	}
-	const classes = useStyles();
 
 	interface Char { 
 		name: string, 
@@ -111,35 +108,29 @@ export default function App() {
 		ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },
 		talentMats: { talentMat: '', bossMat: '' }
 	}
-
 	const [characters, setCharacters] = useState<[Char]>();
 	const [formData, setFormData] = useState<Char>(initialChar);
-
 	
-	useEffect(() => {
-		fetchCharacters();
-	  }, []);
-
 	async function fetchCharacters() {
 		const apiData: any = await API.graphql({ query: listCharacters });
 		const charactersFromAPI = apiData.data.listCharacters.items;
 		await Promise.all(charactersFromAPI.map(async (character: any) => {
-		  if (character.image) {
+		if (character.image) {
 			const image = await Storage.get(character.image);
 			character.image = image;
-		  }
-		  if (character.abilityOne.image) {
+		}
+		if (character.abilityOne.image) {
 			  const image = await Storage.get(character.abilityOne.image);
 			  character.abilityOne.image = image;
-		  }
-		  if (character.abilityTwo.image) {
+		}
+		if (character.abilityTwo.image) {
 			const image = await Storage.get(character.abilityTwo.image);
 			character.abilityTwo.image = image;
-		  }
-		  if (character.abilityThree.image) {
+		}
+		if (character.abilityThree.image) {
 			const image = await Storage.get(character.abilityThree.image);
 			character.abilityThree.image = image;
-		  }
+		}
 		  return character;
 		}))
 		console.log("fetchCharacters:", apiData.data.listCharacters.items)
@@ -181,32 +172,32 @@ export default function App() {
 		setFormData(initialChar);
 	}
 
+	useEffect(() => {
+		fetchCharacters();
+	}, []);
+
 	return (
 		<ThemeProvider theme={theme}>
-		<Router>
-			<TopNav></TopNav>
-			<StylesProvider injectFirst>
-			<AdBar></AdBar>
-			<Grid container sm={11} md={11} lg={10} xl={10} spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.root}>
-				<Grid item sm={12} md={11} lg={9}>
-					<Switch>
-						<Route path="/planner">
-							<Planner></Planner>
-						</Route>
-						<Route path="/database">
-							<DatabasePage />
-						</Route>
-						<Route path="/">
-							<Planner characters={characters}></Planner>
-						</Route>
-					</Switch>
-				</Grid>	
-				<SideBar />
-			</Grid>
-			</StylesProvider>
-			<BottomNav></BottomNav>
-			{/* <button onClick={createCharacterWithoutDom}>Click me</button> */}
-		</Router>
+			<Router>
+				<StylesProvider injectFirst>
+					<TopNav></TopNav>
+					<AdBar></AdBar>
+						<Grid item sm={12} md={10} lg={10} className={classes.container}>
+							<Grid item sm={12} md={12} lg={8} className={classes.mainContent}>
+								<Switch>
+									<Route path="/database">
+										<DatabasePage />
+									</Route>
+									<Route path="/">
+										<Planner characters={characters}></Planner>
+									</Route>
+								</Switch>
+							</Grid>	
+							<SideBar></SideBar>
+							</Grid>
+					<BottomNav></BottomNav>
+				</StylesProvider>
+			</Router>
 		</ThemeProvider>
 	);
 };

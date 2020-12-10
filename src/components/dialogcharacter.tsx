@@ -1,13 +1,27 @@
 import React from 'react';
-import { Grid, CardMedia, makeStyles, Theme } from '@material-ui/core';
+import { CardMedia, makeStyles, Theme } from '@material-ui/core';
 
-import HandleImage from '../logic/handleImage'
+import ElementElectro from '../images/Element_Electro.png'
 
 const useStyles = makeStyles((theme: Theme) => ({
     textContainer: {
         textAlign: "center", 
         paddingTop: "8px", 
-        color: '#A7B1C1' 
+        color: '#A7B1C1',
+        fontSize: '14px',
+        fontWeight: 500
+        
+    },
+    element: {
+        height: "18px", 
+        width: "18px",
+        position: "absolute",
+        top: "-4px",
+        right: "18px",
+        padding: "3px",
+        background: "#36384a",
+        borderRadius: "100px",
+        boxShadow: "0 3px 6px rgba(0,0,0,.23), 0 3px 6px rgba(0,0,0,.16)"
     }
 }));
 
@@ -16,21 +30,16 @@ export default function DialogueCharacter(props: any) {
     const classes = useStyles();
 
     return (
-        <Grid container xs={12} spacing={3} direction="row" justify="flex-start" alignItems="flex-start">
-            <Grid item xs={12}>
-                <Grid item xs={12} style={{}}>
-                    <CardMedia
-                    image= {character.image}
-                    style={{ minHeight: "70px", minWidth: "70px", maxHeight: "70px", maxWidth: "70px", margin:"auto", backgroundColor: '#36384A', borderRadius: '6px', cursor: "pointer"}}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <div className={classes.textContainer}>
-                        {character.name}
-                    </div>
-                </Grid>
-            </Grid>
-        </Grid>
+        <div style={{position: "relative"}}>
+            <CardMedia
+            image= {character.image}
+            style={{ minHeight: "70px", minWidth: "70px", maxHeight: "70px", maxWidth: "70px", margin:"auto", backgroundColor: '#36384A', borderRadius: '6px', cursor: "pointer"}}
+            />
+            <img src={ElementElectro} alt="element" className={classes.element}></img>
+            <div className={classes.textContainer}>
+                {character.name}
+            </div>
+        </div>
     );
 }
 

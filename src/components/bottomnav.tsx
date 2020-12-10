@@ -37,8 +37,8 @@ export default function BottomNav() {
     const classes = useStyles();
     //const theme = useTheme();
     return (
-        <div style={{paddingTop: "12px"}}>
-            <Grid container xs={12} spacing={3} direction="row" justify="center" className={classes.container}>
+        <div>
+            <Grid container direction="row" justify="center" className={classes.container}>
                 <Grid container item sm={11} md={10} lg={9} direction="row">
                     <Grid item xs={4} className={classes.innerContainer}>
                         <Card className={classes.root}> 

@@ -1,43 +1,31 @@
 import React from 'react';
-import { Card, CardContent, makeStyles, Grid } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: '#20212C !important',
-        boxShadow: "none !important",
+    adbar: {
+        backgroundColor: '#20212C',
+        height: "90px",
+        margin: "auto",
+        marginBottom: "20px",
     },
-    container: {
+    adbarContainer: {
         margin: 'auto',
-        // [theme.breakpoints.down('sm')]: {
-        //     display: "none"
-        //   },
     },
-    content: {
-        padding: theme.spacing(4),
-        "&:last-child": {
-            paddingBottom: '30px'
-          }
-    },
-    bannerColor: {
+    text: {
         color: '#6A6C6C',
+        fontWeight: 500,
+        fontSize: '16px',
     },
-
 }));
 
 export default function AdBar() {
     const classes = useStyles();
-    //const theme = useTheme();
     return (
-        <Grid container sm={11} md={10} lg={10} xl={10} direction="row" justify="center" className={classes.container}>
-            <Grid item xs={12} style={{padding: "12px"}}>
-                <Card className={classes.root}> 
-                    <CardContent className={classes.content}>
-                        <Typography variant="h6" component="h2" align="center" className={classes.bannerColor}> 
-                            This website is supported by ads.
-                        </Typography>
-                    </CardContent>
-                </Card>
+        <Grid item sm={12} md={10} lg={10} className={classes.adbarContainer}>
+            <Grid container direction="row" justify="center" alignItems="center" className={classes.adbar}>
+                <p className={classes.text}> 
+                    This website is supported by ads.
+                </p>
             </Grid>
         </Grid>
     );
