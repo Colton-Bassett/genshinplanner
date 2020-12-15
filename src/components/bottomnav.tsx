@@ -1,93 +1,75 @@
 import React from 'react';
-import { Card, CardContent, makeStyles, Grid } from '@material-ui/core';
+import { makeStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: '#222431 !important',
-        boxShadow: "none !important",
-
-    },
     container: {
-        margin: 'auto',
-        backgroundColor: '#222431 !important',
+        borderTop: "1px solid #36384a",
+        backgroundColor: '#222431',
     },
-    innerContainer: {
+    bottomNav: {
+        display: 'flex',
+        padding: '20px 0px'
     },
-    content: {
-
+    title: {
+        color: 'white'
+    },
+    linkContainer: {
+        marginLeft: '20px'
     },
     contentFirst: {
         paddingLeft: "0px !important"
     },
     message: {
-        //textAlign: 'center',
         color: '#6A6C6C',
-        //fontSize: '14px',
     },
-    messageLinks: {
-        //textAlign: 'center',
+    link: {
         color: '#6A6C6C',
-        //fontSize: '14px',
         lineHeight: '2.5'
     }
 }));
 
 export default function BottomNav() {
     const classes = useStyles();
-    //const theme = useTheme();
     return (
-        <div>
-            <Grid container direction="row" justify="center" className={classes.container}>
-                <Grid container item sm={11} md={10} lg={9} direction="row">
-                    <Grid item xs={4} className={classes.innerContainer}>
-                        <Card className={classes.root}> 
-                            <CardContent className={classes.contentFirst}>
-                                <h3>IMPACT.GG</h3>
-                                <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                                    <span style={{fontWeight:800}}>Impact.gg</span> is not affiliated with or endorsed by miHoYo.
-                                </Typography>
-                                <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                                    <span style={{fontWeight:800}}>Impact.gg</span> is a Database and Planner for the Genshin Impact 
-                                    game for PC, Switch, Playstation 4, and mobile
-                                    game app on iOS and Android.
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={1} className={classes.innerContainer}>
-                    </Grid>
-                    <Grid item xs={2} className={classes.innerContainer}>
-                        <Card className={classes.root}> 
-                            <CardContent className={classes.content}>
-                                <h3>More Links</h3>
-                                <Typography variant="subtitle1" component="h2" className={classes.messageLinks}> 
-                                    Contact
-                                </Typography>
-                                <Typography variant="subtitle1" component="h2" className={classes.messageLinks}> 
-                                    Privacy Policy
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={2} className={classes.innerContainer}>
-                        <Card className={classes.root}> 
-                            <CardContent className={classes.content}>
-                                <h3>Community Links</h3>
-                                <Typography variant="subtitle1" component="h2" className={classes.messageLinks}> 
-                                    Discord
-                                </Typography>
-                                <Typography variant="subtitle1" component="h2" className={classes.messageLinks}> 
-                                    Reddit
-                                </Typography>
-                                <Typography variant="subtitle1" component="h2" className={classes.messageLinks}> 
-                                    Facebook
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
+        <Grid container direction="row" justify="center" className={classes.container}>
+            <Grid item xs={11} sm={11} md={10} lg={10} className={classes.bottomNav}>
+                <Grid item sm={6} lg={4}>
+                    <h3 className={classes.title}>IMPACT.GG</h3>
+                    <Typography variant="subtitle1" component="h1" className={classes.message}> 
+                        <span style={{fontWeight:800}}>Impact.gg</span> is not affiliated with or endorsed by miHoYo.
+                    </Typography>
+                    <Typography variant="subtitle1" component="h1" className={classes.message}> 
+                        <span style={{fontWeight:800}}>Impact.gg</span> is a Database and Planner for the Genshin Impact 
+                        game for PC, Switch, Playstation 4, and mobile
+                        game app on iOS and Android.
+                    </Typography>
+                </Grid>
+                <Grid item sm={3} lg={2} className={classes.linkContainer}>
+                    <h3 className={classes.title}>More Links</h3>
+                    <Typography variant="subtitle1" component="h2" className={classes.link}> 
+                        Contact
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2" className={classes.link}> 
+                        Privacy Policy
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2" className={classes.link}> 
+                        Do Not Sell My Info
+                    </Typography>
+                </Grid>
+                <Grid item sm={3} lg={2} className={classes.linkContainer}>
+                    <h3 className={classes.title}>Community Links</h3>
+                    <Typography variant="subtitle1" component="h2" className={classes.link}> 
+                        Discord
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2" className={classes.link}> 
+                        Reddit
+                    </Typography>
+                    <Typography variant="subtitle1" component="h2" className={classes.link}> 
+                        Facebook
+                    </Typography>
                 </Grid>
             </Grid>
-        </div>
+        </Grid>
     );
 }

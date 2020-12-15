@@ -3,6 +3,7 @@ import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 import AddCharacterButton from "./addcharacterbutton"
 import CharacterOverview from "./characteroverview"
+import MoraImage from '../images/mora.png';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -17,18 +18,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Planner(props: any) {
 	const classes = useStyles();
-
 	const characters = props.characters;
-	const plannerItems = [
+
+	const initialItems = [
 		{
 			index: 0, type: "Character", name: "Razor", currentLevel: 0, desiredLevel: 3, abilityOneCurrent: 1, abilityOneDesired: 5, abilityTwoCurrent: 1, abilityTwoDesired: 5, abilityThreeCurrent: 1, abilityThreeDesired: 5, 
 			materials: [
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-				{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
 			]
 		},
 		// {
@@ -82,7 +85,7 @@ export default function Planner(props: any) {
 	}
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
 	
-	const [items, setItems] = React.useState(plannerItems)
+	const [items, setItems] = React.useState(initialItems)
 
 	const deleteObject = (index: any) => {
 		console.log("deleteObjects id:", items)

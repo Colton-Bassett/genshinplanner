@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
         marginBottom: "20px",
     },
-    adbarContainer: {
+    container: {
         margin: 'auto',
     },
     text: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AdBar() {
     const classes = useStyles();
     return (
-        <Grid item sm={12} md={10} lg={10} className={classes.adbarContainer}>
+        <Grid item xs={11} sm={11} md={10} lg={10} className={classes.container}>
             <Grid container direction="row" justify="center" alignItems="center" className={classes.adbar}>
                 <p className={classes.text}> 
                     This website is supported by ads.

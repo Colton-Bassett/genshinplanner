@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: 'auto'
 	},
 	mainContent: {
-		marginBottom: '20px',
+		marginBottom: '30px',
 	}
 }));
 
@@ -109,13 +109,12 @@ export default function App() {
 		talentMats: { talentMat: '', bossMat: '' }
 	}
 	const [characters, setCharacters] = useState<[Char]>();
-	const [formData, setFormData] = useState<Char>(initialChar);
+	const [character, setCharacter] = useState<Char>(initialChar);
 	
 	async function fetchCharacters() {
 		const apiData: any = await API.graphql({ query: listCharacters });
 		const charactersFromAPI = apiData.data.listCharacters.items;
 		await Promise.all(charactersFromAPI.map(async (character: any) => {
-			console.log(character)
 			if (character.image) {
 				const image = await Storage.get(character.image);
 				character.image = image;
@@ -136,11 +135,10 @@ export default function App() {
 		}))
 		console.log("fetchCharacters:", apiData.data.listCharacters.items)
 		setCharacters(apiData.data.listCharacters.items);
-		console.log("fetchCharacters state:", characters);
 	}
 
 	async function createCharacterWithoutDom() {
-		const f = { ...formData};
+		const f = { ...character};
 		f.name = 'Traveler (Geo)'
 		f.type = 'Geo'
 		f.weapon = 'Sword'
@@ -166,11 +164,10 @@ export default function App() {
 		f.ascensionMats.commonMat = "Damaged Mask"
 		f.talentMats.talentMat = 'Resistance'
 		f.talentMats.bossMat = "Dvalin's Sigh"
-		setFormData(f);
-		if (!formData.name || !formData.description) return;
-		await API.graphql({ query: createCharacterMutation, variables: { input: formData } });
-		//setCharacters([ formData ]);
-		setFormData(initialChar);
+		setCharacter(f);
+		if (!character.name || !character.description) return;
+		await API.graphql({ query: createCharacterMutation, variables: { input: character } });
+		setCharacter(initialChar);
 	}
 
 	useEffect(() => {
@@ -183,8 +180,8 @@ export default function App() {
 				<StylesProvider injectFirst>
 					<TopNav></TopNav>
 					<AdBar></AdBar>
-						<Grid item sm={12} md={10} lg={10} className={classes.container}>
-							<Grid item sm={12} md={12} lg={8} className={classes.mainContent}>
+						<Grid item xs={11} sm={11} md={10} lg={10} className={classes.container}>
+							<Grid item sm={12} md={12} lg={9} className={classes.mainContent}>
 								<Switch>
 									<Route path="/database">
 										<DatabasePage />

@@ -12,10 +12,12 @@ const useStyles = makeStyles((theme) => ({
     },
 	container: {
         margin: 'auto',
+        width: '100%',
     },
     toolbar: {
         padding: "0px",
         maxHeight: "55px !important",
+        minHeight: "55px !important",
         width: "100%",
     },
     title: {
@@ -45,7 +47,7 @@ export default function TopNav() {
     const classes = useStyles();
     return (
             <AppBar position="static" className={classes.appbar}>
-                <Grid container xs={12} md={10} lg={10} direction="row" className={classes.container}>
+                <Grid item xs={11} sm={11} md={10} lg={10} className={classes.container}>
                     <Toolbar className={classes.toolbar}>
                         <IconButton edge="start" aria-label="menu" disableRipple>
                             <Link to="/" >

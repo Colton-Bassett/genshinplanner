@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     text: {
-        margin: 'auto', fontWeight: 700
+        fontWeight: 700
     }
 }));
 
@@ -40,6 +40,7 @@ export default function CharacterMaterial( props: any ) {
 
     const name = props.name;
     const quantity = props.quantity;
+    const image = props.image;
 
     const handleMaterialImage = (name: string) => {
         if (name == "Mora") {
@@ -48,14 +49,14 @@ export default function CharacterMaterial( props: any ) {
     }
 
     return (
-            <Grid container spacing={3} direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
                 <Grid item xs={4} className={classes.imageContainer}>
                     <CardMedia
-                    image= {handleMaterialImage(name)}
+                    image= {image}
                     style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px"}}
                     />
                 </Grid> 
-                <Grid item xs={8} className={classes.textContainer}>
+                <Grid item className={classes.textContainer}>
                     <div className={classes.details}>
                         <Typography variant="body1" className={classes.text}>
                             x {quantity}

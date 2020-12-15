@@ -5,6 +5,8 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import Characterbg from '../images/characterbg.png'
 import AscensionStar from '../images/Ascension_Star.png'
+import MoraImage from '../images/mora.png';
+import { API, Storage } from 'aws-amplify';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -234,11 +236,18 @@ export default function DialogCharacterPlanner(props: any) {
             }
             setDesiredStars(starsTemp)
             //console.log("desiredStars:", desiredStars);
-
-
     }
 
-    function submitDialog() {
+    	
+	async function fetchImage(name: any) {
+        
+        const image = await Storage.get(name);
+        console.log("fetchImage image:", image);
+		return image;
+	}
+	
+
+    async function submitDialog() {
         let i = [...items]
         console.log("here is temp i", i);
         let a = {...ascensionDetails}
@@ -256,13 +265,16 @@ export default function DialogCharacterPlanner(props: any) {
         a.abilityThreeCurrent = 0;
         a.abilityThreeDesired = 0;
 
+        console.log("calling fetchImage");
+        const materialImage = await fetchImage("Hero's_Wit.png")
+
         a.materials = [
-            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
-            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
-            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
-            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
-            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
-            {name: "Mora", quantity: "2.1M"}, {name: "Mora", quantity: "1.1M"},
+            {name: "Vajrada Amethyst Sliver", quantity: "100", image: materialImage}, {name: "Mora", quantity: "1.1M", image: materialImage},
+            {name: "Vajrada Amethyst Fragment", quantity: "1.1M", image: materialImage}, {name: "Hero's Wit", quantity: "1.1M", image: materialImage},
+            {name: "Vajrada Amethyst Chunk", quantity: "1.1M", image: materialImage}, {name: "Damaged Mask", quantity: "1.1M", image: materialImage},
+            {name: "Vajrada Amethyst Gemstone", quantity: "1.1M", image: materialImage}, {name: "Stained Mask", quantity: "1.1M", image: materialImage},
+            {name: "Lightning Prism", quantity: "1.1M", image: materialImage}, {name: "Ominous Mask", quantity: "1.1M", image: materialImage},
+            {name: "Wolfhook", quantity: "1.1M", image: materialImage}, {name: "Mora", quantity: "1.1M", image: materialImage},
         ]
         //setAscensionDetails(a);
         i.push(a)

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideBar()  {
     const classes = useStyles();
         return (
-            <Grid item xs={4} className={classes.sidebarContainer} >
+            <Grid item xs={3} className={classes.sidebarContainer} >
                 <Card className={classes.sidebar}> 
                     <CardContent>
                     </CardContent>

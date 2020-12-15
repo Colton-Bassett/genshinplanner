@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 	characterRoot: {
 		backgroundColor: "#272937 !important", 
 		maxHeight: '275px',
-		minHeight: '275px',
+		minHeight: '335px',
 		minWidth: '170px'
 	},
 	characterContainer: {
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	materialRoot: {
 		backgroundColor: '#272937 !important', 
-		minHeight: '275px', 
+		minHeight: '335px', 
 		minWidth: '100%',
 	},
 	materialCard: {
@@ -101,7 +101,6 @@ export default function CharacterOverview(props: any) {
 		desiredLevel: props.objectInfo.desiredLevel,
 		materials: props.objectInfo.materials,
 	}
-	
 
 	const deleteObject = (index: any) => {
 		props.deleteMethod(index)
@@ -109,12 +108,12 @@ export default function CharacterOverview(props: any) {
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
 	<Grid item xs={3}>
-		<CharacterMaterial key={index} name={material.name} quantity={material.quantity}></CharacterMaterial>
+		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
 	</Grid>
 	);
 
 	return (
-		<Grid container spacing={3} direction="row" justify="center" alignItems="center" className={classes.gridRoot}>
+		<Grid container spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.gridRoot}>
 			<Grid item xs={3}>
 				<Card className={classes.characterRoot}> 
 					<Grid item xs={12} className={classes.characterButtons}>
