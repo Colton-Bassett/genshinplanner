@@ -9,13 +9,13 @@ const useStyles = makeStyles((theme) => ({
     },
     bottomNav: {
         display: 'flex',
-        padding: '20px 0px'
+        padding: '24px 0px'
     },
     title: {
         color: 'white'
     },
     linkContainer: {
-        marginLeft: '20px'
+        marginLeft: '24px'
     },
     contentFirst: {
         paddingLeft: "0px !important"

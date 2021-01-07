@@ -8,6 +8,8 @@ import AscensionStar from '../images/Ascension_Star.png'
 import MoraImage from '../images/mora.png';
 import { API, Storage } from 'aws-amplify';
 
+import SetMaterials from '../logic/setmaterials';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "2.75rem;",
         backgroundColor: "#272937",
         color: "#58CCA5",
-        marginRight: "20px",
+        marginRight: "24px",
         cursor: "pointer"
     },
     closeIcon: {
@@ -239,13 +241,20 @@ export default function DialogCharacterPlanner(props: any) {
     }
 
     	
-	async function fetchImage(name: any) {
-        
+	async function fetchImage(name: any) {  
         const image = await Storage.get(name);
         console.log("fetchImage image:", image);
 		return image;
-	}
-	
+    }
+    
+    async function setImages(materials: any) {
+        for (var j = 0; j < materials.length; j++) {
+            //console.log('running materials loop')
+            const materialImage = await(fetchImage(materials[j].name + '.png'))
+            materials[j].image = materialImage
+        }
+        return materials
+    }
 
     async function submitDialog() {
         let i = [...items]
@@ -253,29 +262,34 @@ export default function DialogCharacterPlanner(props: any) {
         let a = {...ascensionDetails}
         a.index = items.length;
         a.type = 'Character';
-        console.log("character name:", character.name);
+        console.log("character name:", character);
         a.name = character.name;
         a.currentLevel = 0;
         a.desiredLevel = 6;
         
-        a.abilityOneCurrent = 0;
-        a.abilityOneDesired = 6;
-        a.abilityTwoCurrent = 0;
-        a.abilityTwoDesired = 6;
-        a.abilityThreeCurrent = 0;
-        a.abilityThreeDesired = 0;
+        a.abilityOneCurrent = 2;
+        a.abilityOneDesired = 8;
+        a.abilityTwoCurrent = 2;
+        a.abilityTwoDesired = 8;
+        a.abilityThreeCurrent = 2;
+        a.abilityThreeDesired = 8;
 
-        console.log("calling fetchImage");
-        const materialImage = await fetchImage("Hero's_Wit.png")
+        // a.materials = [
+        //     {name: "Vajrada_Amethyst_Sliver", quantity: "1", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
+        //     {name: "Vajrada_Amethyst_Fragment", quantity: "9", image: MoraImage}, {name: "Hero's_Wit", quantity: "150", image: MoraImage},
+        //     {name: "Vajrada_Amethyst_Chunk", quantity: "9", image: MoraImage}, {name: "Damaged_Mask", quantity: "33", image: MoraImage},
+        //     {name: "Vajrada_Amethyst_Gemstone", quantity: "7", image: MoraImage}, {name: "Stained_Mask", quantity: "96", image: MoraImage},
+        //     {name: "Lightning_Prism", quantity: "46", image: MoraImage}, {name: "Ominous_Mask", quantity: "66", image: MoraImage},
+        //     {name: "Wolfhook", quantity: "168", image: MoraImage}, {name: "Guide_to_Resistance", quantity: "9", image: MoraImage}, 
+        //     {name: "Teachings_of_Resistance", quantity: "63", image: MoraImage}, {name: "Philosophies_of_Resistance", quantity: "30", image: MoraImage}, {name: "Dvalins_Claw", quantity: "6", image: MoraImage},
+        // ]
 
-        a.materials = [
-            {name: "Vajrada Amethyst Sliver", quantity: "100", image: materialImage}, {name: "Mora", quantity: "1.1M", image: materialImage},
-            {name: "Vajrada Amethyst Fragment", quantity: "1.1M", image: materialImage}, {name: "Hero's Wit", quantity: "1.1M", image: materialImage},
-            {name: "Vajrada Amethyst Chunk", quantity: "1.1M", image: materialImage}, {name: "Damaged Mask", quantity: "1.1M", image: materialImage},
-            {name: "Vajrada Amethyst Gemstone", quantity: "1.1M", image: materialImage}, {name: "Stained Mask", quantity: "1.1M", image: materialImage},
-            {name: "Lightning Prism", quantity: "1.1M", image: materialImage}, {name: "Ominous Mask", quantity: "1.1M", image: materialImage},
-            {name: "Wolfhook", quantity: "1.1M", image: materialImage}, {name: "Mora", quantity: "1.1M", image: materialImage},
-        ]
+
+        a.materials = SetMaterials(character, a);
+
+        const matties = await setImages(a.materials);
+        a.materials = matties;
+
         //setAscensionDetails(a);
         i.push(a)
         setItems(i);

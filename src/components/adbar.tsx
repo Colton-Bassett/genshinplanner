@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#20212C',
         height: "90px",
         margin: "auto",
-        marginBottom: "20px",
+        marginBottom: "24px",
     },
     container: {
         margin: 'auto',

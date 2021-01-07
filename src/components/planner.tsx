@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { Card, CardContent, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 import AddCharacterButton from "./addcharacterbutton"
 import CharacterOverview from "./characteroverview"
 import MoraImage from '../images/mora.png';
 
 const useStyles = makeStyles((theme) => ({
-    card: {
+    planner: {
 		backgroundColor: "#222431",
 		margin: 'auto',
 		minHeight: '1000px',
-    },
-    content: {
 		padding: '12px 24px 24px 24px',
+		color: 'white'
     },
 }));
 
@@ -101,12 +100,10 @@ export default function Planner(props: any) {
 	);
 
 	return (
-		<Card className={classes.card}> 
-			<CardContent className={classes.content}>
-				<h2>Genshin Impact Planner</h2>
-				{characterOverviews}
-				<AddCharacterButton characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></AddCharacterButton>
-			</CardContent>
-		</Card>
+		<div className={classes.planner}> 
+			<h2>Genshin Impact Planner</h2>
+			{characterOverviews}
+			<AddCharacterButton characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></AddCharacterButton>
+		</div>
 	);
 }

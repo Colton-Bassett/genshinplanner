@@ -9,35 +9,32 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import HandleImage from '../logic/handleImage'
 
 const useStyles = makeStyles((theme) => ({
-	gridRoot: {
+	plannerDetails: {
 		maxWidth: "100%", 
 		margin: "auto"
 	},
-	characterRoot: {
-		backgroundColor: "#272937 !important", 
-		maxHeight: '275px',
-		minHeight: '335px',
-		minWidth: '170px'
-	},
 	characterContainer: {
-		margin: "auto", 
-	
+		maxHeight: '275px',
+		minHeight: '404px',
+		minWidth: '170px',
+		//padding: '20px',
 	},
-	characterButtons: {
-		padding: "12px 12px 0px 12px"
+	characterDetails: {
+		backgroundColor: "#272937", 
+		minHeight: '100%',
+		minWidth: '170px',
 	},
-	cardmediaContainer: {
-		maxWidth: "105px", 
-		margin: 'auto'
+	buttonContainer: {
+		padding: "16px"
 	},
-	editIcon: {
+	editButton: {
 		color: '#A6A7AC !important',
 		cursor: 'pointer',
 		'&:hover': {
 			color: "#fff !important",
 		 },
 	},
-	cancelIcon: {
+	cancelButton: {
 		color: '#A6A7AC !important',
 		float: 'right',
 		cursor: 'pointer',
@@ -45,17 +42,22 @@ const useStyles = makeStyles((theme) => ({
 			color: "#fff !important",
 		 },
 	},
-	root: {
-		maxWidth: 345,
+	characterImage: {
+		minHeight: "105px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
+		marginBottom: '16px',
 	},
-	materialRoot: {
+	ascensionStars: {
+		minHeight: "15px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
+		marginBottom: '4px',
+	},
+	materialDetails: {
 		backgroundColor: '#272937 !important', 
-		minHeight: '335px', 
+		minHeight: '380px', 
 		minWidth: '100%',
 	},
 	materialCard: {
 		backgroundColor: '#222431 !important', 
-		minHeight: '210px', 
+		minHeight: '332px', 
 		minWidth: '100%',
 	},
 	materialHeader: {
@@ -66,9 +68,9 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: "bold"
 	},
 	materialContent: {
-		//paddingTop: "0px", paddingBottom: "10px"
+		padding: '24px',
 		"&:last-child": {
-            paddingBottom: '6px'
+            paddingBottom: '26px'
           }
 	},
 	expandButton: {
@@ -113,50 +115,36 @@ export default function CharacterOverview(props: any) {
 	);
 
 	return (
-		<Grid container spacing={3} direction="row" justify="center" alignItems="flex-start" className={classes.gridRoot}>
-			<Grid item xs={3}>
-				<Card className={classes.characterRoot}> 
-					<Grid item xs={12} className={classes.characterButtons}>
+		<Grid container spacing={3} direction="row" justify="center" className={classes.plannerDetails}>
+			<Grid item xs={3} className={classes.characterContainer}>
+				<Card className={classes.characterDetails}>
+					<div className={classes.buttonContainer}>
 						<Tooltip title="Edit" arrow>
-							<EditIcon className={classes.editIcon}></EditIcon>
+							<EditIcon className={classes.editButton}></EditIcon>
 						</Tooltip>
 						<Tooltip title="Delete" arrow>
-							<CancelIcon className={classes.cancelIcon} onClick={() => deleteObject(objectInfo.index)}></CancelIcon>
+							<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index)}></CancelIcon>
 						</Tooltip>
-
-					</Grid>
-					<Grid item xs={8} className={classes.characterContainer}>
-						<div className={classes.cardmediaContainer}>
-						<CardMedia
+					</div>
+					<CardMedia
 						image= {HandleImage(objectInfo.name)}
-						style={{ minHeight: "105px",  borderRadius: "10px"}}
-						/>
-						</div>
-					</Grid>
-					<Grid item xs={8} style={{margin: 'auto'}}>
-						<Typography variant="h2" align='center'>
-							{objectInfo.name}
-						</Typography>
-					</Grid>
-					<Grid item xs={6} style={{margin: 'auto'}}>
-					<div className={classes.cardmediaContainer}>
+						className={classes.characterImage}>		
+					</CardMedia>
+					<Typography variant="h2" align='center' style={{marginBottom: '4px'}}>
+						{objectInfo.name}
+					</Typography>
 					<CardMedia
 						image= {HandleImage("AscensionFour")}
-						style={{ minHeight: "15px", borderRadius: "10px" }}
-					/>
-					</div>
-					</Grid>
-					<Grid item xs={8} style={{margin: 'auto'}}>
-						<Typography variant="body1" align='center' style={{fontWeight: 700}}>
-							Level {objectInfo.currentLevel} - {objectInfo.desiredLevel}
-						</Typography>
-					</Grid>
+						className={classes.ascensionStars}>
+					</CardMedia>
+					<Typography variant="body1" align='center' style={{fontWeight: 700}}>
+						Level {objectInfo.currentLevel} - {objectInfo.desiredLevel}
+					</Typography>
 				</Card>
 			</Grid>
-
-			<Grid item xs={9} style={{}}>
-				<Card className={classes.materialRoot}>
-					<div style={{padding: '16px'}}>
+			<Grid item xs={9} style={{minHeight: '404px'}}>
+				<Card className={classes.materialDetails}>
+					<div style={{padding: '24px'}}>
 						<Card className={classes.materialCard}>
 							<CardHeader
 							className={classes.materialHeader}
@@ -170,7 +158,7 @@ export default function CharacterOverview(props: any) {
 									onClick={handleExpandClick}
 									aria-expanded={expanded}
 									aria-label="show more"
-									style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0"}}
+									style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0", marginTop: '8px', marginRight: '8px'}}
 								>
 								<ExpandMore className={classes.expandButton} />
 								</IconButton>

@@ -7,7 +7,7 @@ import WebsiteLogo from '../images/websitelogo.svg'
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
-        marginBottom: '20px',
+        marginBottom: '24px',
         borderBottom: "1px solid #36384a",
     },
 	container: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1
     },
     button: {
-        padding: '0px 20px',
+        padding: '0px 24px',
         backgroundColor: 'transparent !important'
     },
     link: {

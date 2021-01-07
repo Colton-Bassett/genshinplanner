@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: "none",
     },
     sidebarContainer: {
-        marginLeft: "20px",
+        marginLeft: "24px",
         [theme.breakpoints.down('md')]: {
             display: "none"
         },

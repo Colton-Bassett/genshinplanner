@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#222431'
     },
     textContainer: {
-        maxHeight: "42px", padding: "0px 0px 0px 8px !important", margin: "auto"
+        maxHeight: "42px", padding: "0px 0px 0px 8px !important", margin: 'auto'
     },
 
     text: {
@@ -50,18 +50,16 @@ export default function CharacterMaterial( props: any ) {
 
     return (
             <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
-                <Grid item xs={4} className={classes.imageContainer}>
+                <Grid item className={classes.imageContainer}>
                     <CardMedia
                     image= {image}
                     style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px"}}
                     />
                 </Grid> 
                 <Grid item className={classes.textContainer}>
-                    <div className={classes.details}>
-                        <Typography variant="body1" className={classes.text}>
+                        <Typography variant="body1" align="left" className={classes.text}>
                             x {quantity}
                         </Typography>
-                    </div>
                 </Grid>
 
 
