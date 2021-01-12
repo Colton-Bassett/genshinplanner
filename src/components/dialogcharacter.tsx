@@ -35,7 +35,7 @@ export default function DialogueCharacter(props: any) {
             image= {character.image}
             style={{ minHeight: "70px", minWidth: "70px", maxHeight: "70px", maxWidth: "70px", margin:"auto", backgroundColor: '#36384A', borderRadius: '6px', cursor: "pointer"}}
             />
-            <img src={ElementElectro} alt="element" className={classes.element}></img>
+            <img src={character.typeImage} alt="element" className={classes.element}></img>
             <div className={classes.textContainer}>
                 {character.name}
             </div>

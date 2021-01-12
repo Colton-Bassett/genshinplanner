@@ -24,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -58,7 +58,7 @@ export default function DialogTab(props: any) {
     }
 
     const populateDialogCharacters = characters.map((character: { name: any; }, index: any) => 
-        <Grid item xs={2} onClick={() => {
+        <Grid key={index} item xs={2} onClick={() => {
             openCharacterPlanner(character);
         }}>
         	<DialogCharacter character={character} ></DialogCharacter>

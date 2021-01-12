@@ -45,7 +45,19 @@ const useStyles = makeStyles((theme) => ({
 	characterImage: {
 		minHeight: "105px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
 		marginBottom: '16px',
+		backgroundColor: "rgb(54, 56, 74)",
 	},
+    element: {
+        height: "18px", 
+        width: "18px",
+        position: "absolute",
+        top: "-4px",
+        right: "18px",
+        padding: "3px",
+        background: "#36384a",
+        borderRadius: "100px",
+        boxShadow: "0 3px 6px rgba(0,0,0,.23), 0 3px 6px rgba(0,0,0,.16)"
+    },
 	ascensionStars: {
 		minHeight: "15px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
 		marginBottom: '4px',
@@ -98,18 +110,28 @@ export default function CharacterOverview(props: any) {
 	const objectInfo = {
 		index: props.objectInfo.index,
 		type: props.objectInfo.type,
+		typeImage: props.objectInfo.typeImage,
 		name: props.objectInfo.name,
 		currentLevel: props.objectInfo.currentLevel,
 		desiredLevel: props.objectInfo.desiredLevel,
+		abilityOneCurrent: props.objectInfo.abilityOneCurrent,
+		abilityOneDesired: props.objectInfo.abilityOneDesired,
+		abilityTwoCurrent: props.objectInfo.abilityTwoCurrent,
+		abilityTwoDesired: props.objectInfo.abilityTwoDesired,
+		abilityThreeCurrent: props.objectInfo.abilityThreeCurrent,
+		abilityThreeDesired: props.objectInfo.abilityThreeDesired,
 		materials: props.objectInfo.materials,
+		image: props.objectInfo.image,
 	}
+
+	const characters = props.characters;
 
 	const deleteObject = (index: any) => {
 		props.deleteMethod(index)
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
-	<Grid item xs={3}>
+	<Grid item xs={3} key={index}>
 		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
 	</Grid>
 	);
@@ -127,9 +149,10 @@ export default function CharacterOverview(props: any) {
 						</Tooltip>
 					</div>
 					<CardMedia
-						image= {HandleImage(objectInfo.name)}
+						image= {objectInfo.image}
 						className={classes.characterImage}>		
 					</CardMedia>
+					{/* <img src={objectInfo.typeImage} alt="element" className={classes.element}></img> */}
 					<Typography variant="h2" align='center' style={{marginBottom: '4px'}}>
 						{objectInfo.name}
 					</Typography>

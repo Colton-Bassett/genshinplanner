@@ -11,6 +11,7 @@ export const createCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description
@@ -52,6 +53,7 @@ export const updateCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description
@@ -93,6 +95,7 @@ export const deleteCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description

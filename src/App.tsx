@@ -3,9 +3,10 @@ import './App.css';
 import { API, Storage } from 'aws-amplify';
 // getCharacter, deleteCharacter as deleteCharacterMutation
 import { listCharacters } from './graphql/queries';
-import { createCharacter as createCharacterMutation } from './graphql/mutations';
+// import { createCharacter as createCharacterMutation } from './graphql/mutations';
 
-import { Grid, ThemeProvider, StylesProvider, createMuiTheme, makeStyles } from '@material-ui/core';
+import { Grid, ThemeProvider, StylesProvider, makeStyles } from '@material-ui/core';
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import TopNav from "./components/topnav"
@@ -85,6 +86,7 @@ export default function App() {
 	interface Char { 
 		name: string, 
 		type: string, 
+		typeImage: string,
 		weapon: string, 
 		stars: string,
 		description: string, 
@@ -95,21 +97,22 @@ export default function App() {
 		ascensionMats: { matOne: string, matTwo: string, specialty: string, commonMat: string},
 		talentMats: {talentMat: string, bossMat: string}
 	}
-	const initialChar = { 
-		name: '', 
-		type: '', 
-		weapon: '', 
-		stars: '',
-		description: '', 
-		image: '', 
-		abilityOne: { name: '', image: '', description: '' }, 
-		abilityTwo: { name: '', image: '', description: '' }, 
-		abilityThree: { name: '', image: '', description: '' }, 
-		ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },
-		talentMats: { talentMat: '', bossMat: '' }
-	}
+	// const initialChar = { 
+	// 	name: '', 
+	// 	type: '', 
+	// 	typeImage: '',
+	// 	weapon: '', 
+	// 	stars: '',
+	// 	description: '', 
+	// 	image: '', 
+	// 	abilityOne: { name: '', image: '', description: '' }, 
+	// 	abilityTwo: { name: '', image: '', description: '' }, 
+	// 	abilityThree: { name: '', image: '', description: '' }, 
+	// 	ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },
+	// 	talentMats: { talentMat: '', bossMat: '' }
+	// }
 	const [characters, setCharacters] = useState<[Char]>();
-	const [character, setCharacter] = useState<Char>(initialChar);
+	// const [character, setCharacter] = useState<Char>(initialChar);
 	
 	async function fetchCharacters() {
 		const apiData: any = await API.graphql({ query: listCharacters });
@@ -118,6 +121,12 @@ export default function App() {
 			if (character.image) {
 				const image = await Storage.get(character.image);
 				character.image = image;
+			}
+			if (character.typeImage) {
+				const imageName = "Element_" + character.typeImage;
+				//console.log("imageName", imageName)
+				const image = await Storage.get(imageName);
+				character.typeImage = image;
 			}
 			if (character.abilityOne.image) {
 				const image = await Storage.get(character.abilityOne.image);
@@ -137,41 +146,44 @@ export default function App() {
 		setCharacters(apiData.data.listCharacters.items);
 	}
 
-	async function createCharacterWithoutDom() {
-		const f = { ...character};
-		f.name = 'Traveler (Geo)'
-		f.type = 'Geo'
-		f.weapon = 'Sword'
-		f.stars = 'Five'
-		f.description = "A traveler from another world who had their only kin taken away, forcing them to embark on a journey to find The Seven."
-		f.image = 'Traveler (Geo).png'
+	// async function createCharacterWithoutDom() {
+	// 	console.log("createCharacterWithoutDom called")
+	// 	const f = { ...character};
+	// 	f.name = 'Albedo'
+	// 	f.type = 'Geo'
+	// 	f.typeImage = 'Geo.png'
+	// 	f.weapon = 'Sword'
+	// 	f.stars = 'Five'
+	// 	f.description = "An alchemist based in Mondstadt, in the service of the Knights of Favonius."
+	// 	f.image = 'Albedo.png'
 
-		f.abilityOne.name = 'Foreign Rockblade'
-		f.abilityOne.description = 'Normal Attack'
-		f.abilityOne.image = 'Foreign_Rockblade.png'
+	// 	f.abilityOne.name = 'Favonius Bladework_-_Weiss'
+	// 	f.abilityOne.description = 'Normal Attack'
+	// 	f.abilityOne.image = 'Favonius Bladework_-_Weiss.png'
 
-		f.abilityTwo.name = "Starfell Sword"
-		f.abilityTwo.description = "You disgorge a meteorite from the depths of the earth, dealing AoE Geo DMG. The meteorite is considered a Geo Construct, and can be climbed or used to block attacks."
-		f.abilityTwo.image = "Starfell_Sword.png"
+	// 	f.abilityTwo.name = "Abiogenesis: Solar Isotoma"
+	// 	f.abilityTwo.description = "Albedo creates a Solar Isotoma using alchemy, which deals AoE Geo DMG on appearance."
+	// 	f.abilityTwo.image = "Abiogenesis_:_Solar_Isotoma.png"
 
-		f.abilityThree.name = "Wake of Earth"
-		f.abilityThree.description = "Energizing the Geo elements deep underground, you set off expanding shockwaves. Launches surrounding enemies back and deals AoE Geo DMG. A stone wall is erected at the edges of the shockwave."	
-		f.abilityThree.image = "Wake_of_Earth.png"
+	// 	f.abilityThree.name = "Rite of Progeniture: Tectonic Tide"
+	// 	f.abilityThree.description = "Under Albedo's command, Geo crystals surge and burst forth, dealing AoE Geo DMG in front of him."	
+	// 	f.abilityThree.image = "Rite_of_Progeniture_:_Tectonic_Tide.png"
 
-		f.ascensionMats.matOne = 'Diamond'
-		f.ascensionMats.matTwo = 'Divining Scroll'
-		f.ascensionMats.specialty = 'Windwheel Aster'
-		f.ascensionMats.commonMat = "Damaged Mask"
-		f.talentMats.talentMat = 'Resistance'
-		f.talentMats.bossMat = "Dvalin's Sigh"
-		setCharacter(f);
-		if (!character.name || !character.description) return;
-		await API.graphql({ query: createCharacterMutation, variables: { input: character } });
-		setCharacter(initialChar);
-	}
+	// 	f.ascensionMats.matOne = 'Prithiva_Topaz'
+	// 	f.ascensionMats.matTwo = 'Basalt_Pillar'
+	// 	f.ascensionMats.specialty = 'Cecilia'
+	// 	f.ascensionMats.commonMat = "Divining_Scroll"
+	// 	f.talentMats.talentMat = 'Ballad'
+	// 	f.talentMats.bossMat = "Tusk_of_Monoceros_Caeli"
+	// 	setCharacter(f);
+	// 	if (!character.name || !character.description) return;
+	// 	await API.graphql({ query: createCharacterMutation, variables: { input: character } });
+	// 	setCharacter(initialChar);
+	// }
 
 	useEffect(() => {
 		fetchCharacters();
+		//createCharacterWithoutDom();
 	}, []);
 
 	return (

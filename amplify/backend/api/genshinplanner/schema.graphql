@@ -2,8 +2,9 @@ type Character @model {
 	id: ID!
 	name: String!
 	type: String
+	typeImage: String
 	weapon: String
-  stars: String
+  	stars: String
 	description: String
 	image: String
 	abilityOne: Ability 

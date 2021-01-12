@@ -8,6 +8,7 @@ export const getCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description
@@ -50,6 +51,7 @@ export const listCharacters = /* GraphQL */ `
         id
         name
         type
+        typeImage
         weapon
         stars
         description

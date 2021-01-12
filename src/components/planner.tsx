@@ -19,47 +19,33 @@ export default function Planner(props: any) {
 	const classes = useStyles();
 	const characters = props.characters;
 
-	const initialItems = [
-		{
-			index: 0, type: "Character", name: "Razor", currentLevel: 0, desiredLevel: 3, abilityOneCurrent: 1, abilityOneDesired: 5, abilityTwoCurrent: 1, abilityTwoDesired: 5, abilityThreeCurrent: 1, abilityThreeDesired: 5, 
-			materials: [
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-				{name: "Mora", quantity: "1.1M", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-			]
-		},
-		// {
-		// 	id: 1, type: "Character", name: "Xingqiu", ascension: "AscensionFour", levelStart: 1, levelEnd: 50, 
-		// 	materials: [
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 	]
-		// },
-		// {
-		// 	id: 2, type: "Character", name: "Venti", ascension: "AscensionFour", levelStart: 1, levelEnd: 40, 
-		// 	materials: [
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 		{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
-		// 	]
-		// },
-	]
+	interface materialTemplate {
+		name: string,
+		quantity: string,
+		image: string,
+	}
+	interface ItemTemplate {
+		index: number,
+		type: string,
+		name: string,
+		currentLevel: number,
+		desiredLevel: number,
+		abilityOneCurrent: number,
+		abilityOneDesired: number,
+		abilityTwoCurrent: number,
+		abilityTwoDesired: number,
+		abilityThreeCurrent: number,
+		abilityThreeDesired: number,
+		image: string,
+		materials: Array<materialTemplate>
+	}
+	const initialItems: Array<ItemTemplate> = []
+	
 	const initialAscensionDetails = {
 		index: '',
 		type: '',
 		name: 'Razor',
+		image: '',
 
 		currentLevel: '',
 		desiredLevel: '',
@@ -96,7 +82,7 @@ export default function Planner(props: any) {
 	}
 
 	const characterOverviews = items.map((item) => 
-	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={deleteObject}></CharacterOverview>
+	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={deleteObject} characters={characters}></CharacterOverview>
 	);
 
 	return (

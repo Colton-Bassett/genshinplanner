@@ -140,7 +140,7 @@ function getCommonMat(commonMaterial: any, level: number) {
             else {
                 return "Golden_Raven_Insignia"
             }
-        case "Recruit's Insignia":
+        case "Recruit's_Insignia":
             if (level === 1 || level === 2) {
                 return "Recruit's_Insignia"
             }
@@ -149,6 +149,16 @@ function getCommonMat(commonMaterial: any, level: number) {
             }
             else {
                 return "Lieutenant's_Insignia"
+            }
+        case "Whopperflower_Nectar":
+            if (level === 2) {
+                return "Whopperflower_Nectar"
+            }
+            else if (level === 3 || level === 4 || level === 5 || level === 6) {
+                return "Shimmering_Nectar"
+            }
+            else {
+                return "Energy_Nectar"
             }
     }
 }
@@ -350,7 +360,7 @@ function getTalentCommonMat(commonMaterial: any, talentLevel: number) {
             else {
                 return "Golden_Raven_Insignia"
             }
-        case "Recruit's Insignia":
+        case "Recruit's_Insignia":
             if (talentLevel === 2) {
                 return "Recruit's_Insignia"
             }
@@ -359,6 +369,16 @@ function getTalentCommonMat(commonMaterial: any, talentLevel: number) {
             }
             else {
                 return "Lieutenant's_Insignia"
+            }
+        case "Whopperflower_Nectar":
+            if (talentLevel === 2) {
+                return "Whopperflower_Nectar"
+            }
+            else if (talentLevel === 3 || talentLevel === 4 || talentLevel === 5 || talentLevel === 6) {
+                return "Shimmering_Nectar"
+            }
+            else {
+                return "Energy_Nectar"
             }
     }
 }
@@ -572,9 +592,44 @@ function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: s
 //     abilityThreeDesired: 8,
 // }
 
+function setTalentMaterials(character: any, ascensionDetails: any, materials: any) {
+    if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
+        // do nothing
+        console.log("setTalentMaterials is doing nothing, abilityOne")
+    } else {
+        ascensionDetails.abilityOneCurrent += 1;
+        addTalentMaterial(character, ascensionDetails, "abilityOne", materials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials);
+    }
+
+    if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
+        // do nothing
+        console.log("setTalentMaterials is doing nothing, abilityTwo")
+    } else {
+        ascensionDetails.abilityTwoCurrent += 1;
+        addTalentMaterial(character, ascensionDetails, "abilityTwo", materials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials);
+    }
+
+    if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
+        // do nothing
+        console.log("setTalentMaterials is doing nothing, abilityThree")
+    } else {
+        ascensionDetails.abilityThreeCurrent += 1;
+        addTalentMaterial(character, ascensionDetails, "abilityThree", materials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials);
+    }
+}
+
 export default function SetMaterials(character: any, ascensionDetails: any) {
-    console.log("SetMaterials character:", character);
-    console.log("SetMaterials AscensionDetails:", ascensionDetails);
+    //console.log("SetMaterials character:", character);
+    console.log("SetMaterials() AscensionDetails:", ascensionDetails);
     let materials: any[] = [];
 
     for (var level = ascensionDetails.currentLevel +1; level <= ascensionDetails.desiredLevel; level++) {
@@ -618,22 +673,8 @@ export default function SetMaterials(character: any, ascensionDetails: any) {
         addMaterial(heroswit, materials);
     }
 
-    addTalentMaterial(character, ascensionDetails, "abilityOne", materials);
-    addTalentMaterial(character, ascensionDetails, "abilityTwo", materials);
-    addTalentMaterial(character, ascensionDetails, "abilityThree", materials);
-
-    addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials);
-    addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials);
-    addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials);
-
-    addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials);
-    addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials);
-    addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials);
-
-    addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials);
-    addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials);
-    addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials);
-    console.log("materials:", materials);
+    setTalentMaterials(character, ascensionDetails, materials);
+    console.log("SetMaterials() Return Materials:", materials);
 
     return materials;
 

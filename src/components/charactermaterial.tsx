@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#222431 !important'
     },
     imageContainer: {
-        backgroundColor: '#36384A', minHeight: '42px', minWidth: '42px', maxHeight: '42px', maxWidth: '42px', borderRadius:'3px', padding: '0px !important'
+        backgroundColor: '#36384A', minHeight: '42px', minWidth: '42px', maxHeight: '42px', maxWidth: '42px', borderRadius:'3px', padding: '0px !important',
+
     },
     details: {
         maxHeight: "42px"
@@ -42,18 +43,12 @@ export default function CharacterMaterial( props: any ) {
     const quantity = props.quantity;
     const image = props.image;
 
-    const handleMaterialImage = (name: string) => {
-        if (name == "Mora") {
-            return MoraImage
-        }
-    }
-
     return (
             <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.gridRoot}>
                 <Grid item className={classes.imageContainer}>
                     <CardMedia
                     image= {image}
-                    style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px"}}
+                    style={{maxHeight: "34px", maxWidth: "34px", minHeight: "34px", minWidth: "34px", margin: "4px", backgroundSize: 'contain',}}
                     />
                 </Grid> 
                 <Grid item className={classes.textContainer}>

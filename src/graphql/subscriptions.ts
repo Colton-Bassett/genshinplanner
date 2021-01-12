@@ -8,6 +8,7 @@ export const onCreateCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description
@@ -46,6 +47,7 @@ export const onUpdateCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description
@@ -84,6 +86,7 @@ export const onDeleteCharacter = /* GraphQL */ `
       id
       name
       type
+      typeImage
       weapon
       stars
       description
