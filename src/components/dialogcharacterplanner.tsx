@@ -163,12 +163,13 @@ export default function DialogCharacterPlanner(props: any) {
     let elementColor = character.type;
 
     const initialCurrentStars = [
-        {starOne: {opacity: "0.3"}},
-        {starTwo: {opacity: "0.3"}},
-        {starThree: {opacity: "0.3"}},
-        {starFour: {opacity: "0.3"}},
-        {starFive: {opacity: "0.3"}},
-        {starSix: {opacity: "0.3"}},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+
     ]
     const initialDesiredStars = [
         {starOne: {opacity: "0.3"}},
@@ -353,8 +354,8 @@ export default function DialogCharacterPlanner(props: any) {
         a.name = character.name;
         a.image = character.image;
         a.typeImage = character.typeImage;
-        a.currentLevel = 0;
-        a.desiredLevel = 6;
+        a.currentLevel = countCurrentStars();
+        a.desiredLevel = countDesiredStars();
         
         a.abilityOneCurrent = abilityOne[0];
         a.abilityOneDesired = abilityOne[1];
@@ -409,7 +410,29 @@ export default function DialogCharacterPlanner(props: any) {
         onClick={(e) => {setDesiredStarsClick(index)}}
     />
     </div>
-);
+    );
+
+    function countCurrentStars() {
+        let count = 0;
+        for (var i = 0; i < currentStars.length; i++) {
+            if (currentStars[i].opacity == "1") {
+                count++
+            }
+         }
+        console.log("countCurrentStars:", count);
+        return count;
+    }
+
+    function countDesiredStars() {
+        let count = 0;
+        for (var i = 0; i < desiredStars.length; i++) {
+            if (desiredStars[i].opacity == "1") {
+                count++
+            }
+         }
+        console.log("countDesiredStars:", count);
+        return count; 
+    }
     
     //const createDesiredStars;
     

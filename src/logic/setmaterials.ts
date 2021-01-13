@@ -1,11 +1,20 @@
 const ascensionCosts = {
-    one : { matOne: 1, matTwo: 0, specialty: 3, commonMat: 3, mora: 20000, heroswit: 6 },
-    two : { matOne: 3, matTwo: 2, specialty: 10, commonMat: 15, mora: 40000, heroswit: 29 },
-    three : { matOne: 6, matTwo: 4, specialty: 20, commonMat: 12, mora: 60000, heroswit: 43 },
-    four : { matOne: 3, matTwo: 8, specialty: 30, commonMat: 18, mora: 80000, heroswit: 60 },
-    five : { matOne: 6, matTwo: 12, specialty: 45, commonMat: 12, mora: 100000, heroswit: 81 },
-    six : { matOne: 6, matTwo: 20, specialty: 60, commonMat: 24, mora: 120000, heroeswit: 172 },
+    one : { matOne: 1, matTwo: 0, specialty: 3, commonMat: 3, mora: 44000, heroswit: 7 },
+    two : { matOne: 3, matTwo: 2, specialty: 10, commonMat: 15, mora: 155600, heroswit: 29 },
+    three : { matOne: 6, matTwo: 4, specialty: 20, commonMat: 12, mora: 175800, heroswit: 29 },
+    four : { matOne: 3, matTwo: 8, specialty: 30, commonMat: 18, mora: 250800, heroswit: 43 },
+    five : { matOne: 6, matTwo: 12, specialty: 45, commonMat: 12, mora: 339000, heroswit: 60 },
+    six : { matOne: 6, matTwo: 20, specialty: 60, commonMat: 24, mora: 442200, heroeswit: 81 },
 }
+
+// Ascension : Level : Ascension Mora : EXP Mora : Wit
+
+// 1                 : 20     : 20,000                : 24,000      : 7
+// 2                 : 40     : 40,000               : 115,600.    : 29
+// 3                 : 50     : 60,000               : 115,800.    : 29
+// 4                 : 60     : 80,000               : 170,800.    : 43
+// 5                 : 70      : 100,000             : 239,000.   : 60
+// 6                 : 80.     : 120,000             : 322,200.   : 81
 
 const talentCosts = {
     two : { talentMaterial: 3, commonMat: 6, bossMat: 0, crown: 0, mora: 12500 },

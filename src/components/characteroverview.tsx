@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
@@ -6,7 +6,7 @@ import { ExpandMore } from '@material-ui/icons';
 import CharacterMaterial from './charactermaterial'
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
-import HandleImage from '../logic/handleImage'
+import AscensionStar from '../images/Ascension_Star.png'
 
 const useStyles = makeStyles((theme) => ({
 	plannerDetails: {
@@ -57,6 +57,13 @@ const useStyles = makeStyles((theme) => ({
         background: "#36384a",
         borderRadius: "100px",
         boxShadow: "0 3px 6px rgba(0,0,0,.23), 0 3px 6px rgba(0,0,0,.16)"
+	},
+    ascensionStar: {
+        minWidth:"20px", 
+        minHeight: "20px", 
+        backgroundSize: "contain",
+        margin: "0px 2px",
+        opacity: ".3",
     },
 	ascensionStars: {
 		minHeight: "15px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
@@ -136,6 +143,98 @@ export default function CharacterOverview(props: any) {
 	</Grid>
 	);
 
+	const initialAscensionStars = [
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+    ]
+	const [ascensionStars, setAscensionStars] = useState<any[]>(initialAscensionStars);
+
+    const setAscensionStarsOther = () => {
+		//console.log("called setAscensionStarOther", ascensionStars)
+		const ascensionLevel = objectInfo.desiredLevel;
+		//console.log("ascensionLevel:", ascensionLevel)
+		const starsTemp = [...ascensionStars]
+
+        for (let i = 0; i < ascensionLevel; i++) {
+			//console.log(i);
+            starsTemp[i].opacity = "1";
+        }
+        setAscensionStars(starsTemp)
+    }
+
+	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
+	<div key={index}>
+
+	<CardMedia
+		image= {AscensionStar}
+		className={classes.ascensionStar}
+		style={{opacity: star.opacity}}
+		//onClick={(e) => {setCurrentStarsClick(index)}}
+	/>
+	</div>
+	);
+
+	function getCurrentLevel() {
+		let level = objectInfo.currentLevel;
+		//console.log("getCurrentLevel", level);
+
+		if (level === 0) {
+			level = 1
+		} else if (level === 1) {
+			level = 20
+		} else if (level === 2) {
+			level = 40
+		} else if (level === 3) {
+			level = 50
+		} else if (level === 4) {
+			level = 60
+		} else if (level === 5) {
+			level = 70
+		} else if (level === 6) {
+			level = 80
+		}
+
+		return level;
+	}
+
+	function getDesiredLevel() {
+		let level = objectInfo.desiredLevel;
+		//console.log("getDesiredLevel", level);
+
+		if (level === 0) {
+			level = 1
+		}
+		if (level === 1) {
+			level = 20
+		}
+		if (level === 2) {
+			level = 40
+		}
+		if (level === 3) {
+			level = 50
+		}
+		if (level === 4) {
+			level = 60
+		}
+		if (level === 5) {
+			level = 70
+		}
+		if (level === 6) {
+			level = 80
+		}
+
+		return level;
+	}
+
+	useEffect(() => {
+		setAscensionStarsOther();
+	}, []);
+
+
 	return (
 		<Grid container spacing={3} direction="row" justify="center" className={classes.plannerDetails}>
 			<Grid item xs={3} className={classes.characterContainer}>
@@ -156,12 +255,12 @@ export default function CharacterOverview(props: any) {
 					<Typography variant="h2" align='center' style={{marginBottom: '4px'}}>
 						{objectInfo.name}
 					</Typography>
-					<CardMedia
-						image= {HandleImage("AscensionFour")}
-						className={classes.ascensionStars}>
-					</CardMedia>
+					<div style={{display: 'flex', justifyContent: 'center', marginBottom: '4px'}}>
+						{createAscensionStars}
+
+					</div>
 					<Typography variant="body1" align='center' style={{fontWeight: 700}}>
-						Level {objectInfo.currentLevel} - {objectInfo.desiredLevel}
+						Level {getCurrentLevel()} - {getDesiredLevel()}
 					</Typography>
 				</Card>
 			</Grid>
