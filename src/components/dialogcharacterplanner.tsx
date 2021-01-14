@@ -206,11 +206,11 @@ export default function DialogCharacterPlanner(props: any) {
 
         const starsTemp = [...currentStars]
         // reset stars
-        for (var i = 0; i <= 5; i++) {
+        for (let i = 0; i <= 5; i++) {
             starsTemp[i].opacity = "0.3";
         }
         // set stars based on index
-        for (var i =0; i <= index; i++) {
+        for (let i =0; i <= index; i++) {
             starsTemp[i].opacity = "1";
         }
         setCurrentStars(starsTemp)
@@ -221,11 +221,11 @@ export default function DialogCharacterPlanner(props: any) {
 
             const starsTemp = [...desiredStars]
             // reset stars
-            for (var i = 0; i <= 5; i++) {
+            for (let i = 0; i <= 5; i++) {
                 starsTemp[i].opacity = "0.3";
             }
             // set stars based on index
-            for (var i =0; i <= index; i++) {
+            for (let i =0; i <= index; i++) {
                 starsTemp[i].opacity = "1";
             }
             setDesiredStars(starsTemp)
@@ -335,10 +335,10 @@ export default function DialogCharacterPlanner(props: any) {
     }
     
     async function setImages(materials: any) {
-        for (var j = 0; j < materials.length; j++) {
+        for (let i = 0; i < materials.length; i++) {
             //console.log('running materials loop')
-            const materialImage = await(fetchImage(materials[j].name + '.png'))
-            materials[j].image = materialImage
+            const materialImage = await(fetchImage(materials[i].name + '.png'))
+            materials[i].image = materialImage
         }
         return materials
     }
@@ -354,6 +354,7 @@ export default function DialogCharacterPlanner(props: any) {
         a.name = character.name;
         a.image = character.image;
         a.typeImage = character.typeImage;
+        a.talentMat = character.talentMats.talentMat
         a.currentLevel = countCurrentStars();
         a.desiredLevel = countDesiredStars();
         
@@ -414,23 +415,23 @@ export default function DialogCharacterPlanner(props: any) {
 
     function countCurrentStars() {
         let count = 0;
-        for (var i = 0; i < currentStars.length; i++) {
-            if (currentStars[i].opacity == "1") {
+        for (let i = 0; i < currentStars.length; i++) {
+            if (currentStars[i].opacity === "1") {
                 count++
             }
          }
-        console.log("countCurrentStars:", count);
+        //console.log("countCurrentStars:", count);
         return count;
     }
 
     function countDesiredStars() {
         let count = 0;
-        for (var i = 0; i < desiredStars.length; i++) {
-            if (desiredStars[i].opacity == "1") {
+        for (let i = 0; i < desiredStars.length; i++) {
+            if (desiredStars[i].opacity === "1") {
                 count++
             }
          }
-        console.log("countDesiredStars:", count);
+        //console.log("countDesiredStars:", count);
         return count; 
     }
     

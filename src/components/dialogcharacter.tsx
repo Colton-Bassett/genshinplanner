@@ -1,8 +1,6 @@
 import React from 'react';
 import { CardMedia, makeStyles, Theme } from '@material-ui/core';
 
-import ElementElectro from '../images/Element_Electro.png'
-
 const useStyles = makeStyles((theme: Theme) => ({
     textContainer: {
         textAlign: "center", 

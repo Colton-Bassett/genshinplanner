@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
         textTransform: "none", fontSize: "20px",
 
     },
+    dialog: {
+        minWidth: '850px;',
+        maxWidth: '850px;',
+        minHeight: '600px;',
+        maxHeight: '600px;',
+    },
     dialogContent: {
         backgroundColor: '#1d1f29', 
         padding: '0px !important',
@@ -140,6 +146,7 @@ export default function AddCharacterButton(props: any) {
                 scroll={'paper'}
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
+                classes={{paper: classes.dialog}}
             >
                 <div className={classes.dialogTitleContainer}>
                 <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'block' : 'none', margin: 'auto'}}>

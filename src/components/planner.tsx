@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core';
 
 import AddCharacterButton from "./addcharacterbutton"
 import CharacterOverview from "./characteroverview"
-import MoraImage from '../images/mora.png';
 
 const useStyles = makeStyles((theme) => ({
     planner: {

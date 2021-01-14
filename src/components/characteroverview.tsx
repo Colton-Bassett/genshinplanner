@@ -15,14 +15,21 @@ const useStyles = makeStyles((theme) => ({
 	},
 	characterContainer: {
 		maxHeight: '275px',
-		minHeight: '404px',
+		minHeight: '418px',
 		minWidth: '170px',
 		//padding: '20px',
 	},
 	characterDetails: {
-		backgroundColor: "#272937", 
+		backgroundColor: "#353749", 
 		minHeight: '100%',
 		minWidth: '170px',
+
+	},
+	characterDetailsInside: {
+		backgroundColor: "#272937", 
+		borderBottomLeftRadius: "20px", 
+		borderBottomRightRadius: "20px", 
+		paddingBottom: '16px'
 	},
 	buttonContainer: {
 		padding: "16px"
@@ -71,25 +78,25 @@ const useStyles = makeStyles((theme) => ({
 	},
 	materialDetails: {
 		backgroundColor: '#272937 !important', 
-		minHeight: '380px', 
+		minHeight: '394px', 
 		minWidth: '100%',
 	},
 	materialCard: {
 		backgroundColor: '#222431 !important', 
-		minHeight: '332px', 
+		minHeight: '346px', 
 		minWidth: '100%',
 	},
 	materialHeader: {
-		paddingBottom: "6px"
+		//paddingBottom: "6px"
 	},
 	materialTitle: {
-		fontSize: "18px", 
-		fontWeight: "bold"
+		// fontSize: "18px", 
+		// fontWeight: "bold"
 	},
 	materialContent: {
-		padding: '24px',
+		padding: '8px 8px',
 		"&:last-child": {
-            paddingBottom: '26px'
+            paddingBottom: '16px'
           }
 	},
 	expandButton: {
@@ -119,6 +126,7 @@ export default function CharacterOverview(props: any) {
 		type: props.objectInfo.type,
 		typeImage: props.objectInfo.typeImage,
 		name: props.objectInfo.name,
+		talentMat: props.objectInfo.talentMat,
 		currentLevel: props.objectInfo.currentLevel,
 		desiredLevel: props.objectInfo.desiredLevel,
 		abilityOneCurrent: props.objectInfo.abilityOneCurrent,
@@ -131,14 +139,12 @@ export default function CharacterOverview(props: any) {
 		image: props.objectInfo.image,
 	}
 
-	const characters = props.characters;
-
 	const deleteObject = (index: any) => {
 		props.deleteMethod(index)
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
-	<Grid item xs={3} key={index}>
+	<Grid item xs={2} key={index}>
 		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
 	</Grid>
 	);
@@ -152,19 +158,6 @@ export default function CharacterOverview(props: any) {
         {opacity: "0.3"},
     ]
 	const [ascensionStars, setAscensionStars] = useState<any[]>(initialAscensionStars);
-
-    const setAscensionStarsOther = () => {
-		//console.log("called setAscensionStarOther", ascensionStars)
-		const ascensionLevel = objectInfo.desiredLevel;
-		//console.log("ascensionLevel:", ascensionLevel)
-		const starsTemp = [...ascensionStars]
-
-        for (let i = 0; i < ascensionLevel; i++) {
-			//console.log(i);
-            starsTemp[i].opacity = "1";
-        }
-        setAscensionStars(starsTemp)
-    }
 
 	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
 	<div key={index}>
@@ -231,6 +224,18 @@ export default function CharacterOverview(props: any) {
 	}
 
 	useEffect(() => {
+		const setAscensionStarsOther = () => {
+			//console.log("called setAscensionStarOther", ascensionStars)
+			const ascensionLevel = objectInfo.desiredLevel;
+			//console.log("ascensionLevel:", ascensionLevel)
+			const starsTemp = [...ascensionStars]
+	
+			for (let i = 0; i < ascensionLevel; i++) {
+				//console.log(i);
+				starsTemp[i].opacity = "1";
+			}
+			setAscensionStars(starsTemp)
+		}
 		setAscensionStarsOther();
 	}, []);
 
@@ -239,6 +244,8 @@ export default function CharacterOverview(props: any) {
 		<Grid container spacing={3} direction="row" justify="center" className={classes.plannerDetails}>
 			<Grid item xs={3} className={classes.characterContainer}>
 				<Card className={classes.characterDetails}>
+					<div className={classes.characterDetailsInside}>
+					
 					<div className={classes.buttonContainer}>
 						<Tooltip title="Edit" arrow>
 							<EditIcon className={classes.editButton}></EditIcon>
@@ -262,6 +269,26 @@ export default function CharacterOverview(props: any) {
 					<Typography variant="body1" align='center' style={{fontWeight: 700}}>
 						Level {getCurrentLevel()} - {getDesiredLevel()}
 					</Typography>
+					</div>
+					<div style={{backgroundColor: '#353749', minHeight: '116px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+						<Typography variant="body1" align='center' style={{fontWeight: 700, maxWidth: "120px", maxHeight: "72px", color: '#DEDEDE',}}>
+							Talent Level-Up Material: <p style={{margin: '0'}}>"{objectInfo.talentMat}"</p>
+						</Typography>
+					</div>
+					<Collapse in={expanded} timeout="auto" unmountOnExit>
+								<CardContent>
+									<Typography paragraph>
+										Method:
+									</Typography>
+									<Typography paragraph>
+										Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+										minutes.
+										Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+										minutes.
+									</Typography>
+								</CardContent>
+						</Collapse>
+
 				</Card>
 			</Grid>
 			<Grid item xs={9} style={{minHeight: '404px'}}>
@@ -281,22 +308,21 @@ export default function CharacterOverview(props: any) {
 									aria-expanded={expanded}
 									aria-label="show more"
 									style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0", marginTop: '8px', marginRight: '8px'}}
+									disabled
 								>
 								<ExpandMore className={classes.expandButton} />
 								</IconButton>
 							}
 							title={
-								<Typography className={classes.materialTitle}>
+								<Typography className={classes.materialTitle} variant="h2">
 									Materials Overview
 								</Typography>
 							}
 							/>
 							<CardContent className={classes.materialContent}>
-								<div style={{flexGrow: 1}}>
-									<Grid container >
+									<Grid container>
 										{characterMaterials}
 									</Grid>
-								</div>
 							</CardContent>
 							<Collapse in={expanded} timeout="auto" unmountOnExit>
 								<CardContent>

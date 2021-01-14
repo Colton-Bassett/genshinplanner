@@ -9,13 +9,6 @@ a:hover {
 
 a:visited { text-decoration: none; color:white; }
 
-.MuiDialog-paperWidthSm {
-	min-width: 850px;
-	max-width: 850px;
-	min-height: 600px;
-	max-height: 600px;
-}
-
 .Electro {
 	color: #F5BEF0;
 }
@@ -38,4 +31,8 @@ a:visited { text-decoration: none; color:white; }
 
 .Geo {
 	color: #ffe699;
+}
+
+.outlineOffset {
+	outline-offset: -5px;
 }
