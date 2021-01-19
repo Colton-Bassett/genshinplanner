@@ -120,10 +120,15 @@ const useStyles = makeStyles((theme) => ({
 export default function CharacterOverview(props: any) {
 	const classes = useStyles();
 
-	const [expanded, setExpanded] = React.useState(false);
-	const handleExpandClick = () => {
-		setExpanded(!expanded);
-	};
+	const initialAscensionStars = [
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+        {opacity: "0.3"},
+	]
+	
 	const objectInfo = {
 		index: props.objectInfo.index,
 		type: props.objectInfo.type,
@@ -142,37 +147,15 @@ export default function CharacterOverview(props: any) {
 		image: props.objectInfo.image,
 	}
 
+	const [expanded, setExpanded] = React.useState(false);
+	const [ascensionStars, setAscensionStars] = useState<any[]>(initialAscensionStars);
+
+	const handleExpandClick = () => {
+		setExpanded(!expanded);
+	};
 	const deleteObject = (index: any) => {
 		props.deleteMethod(index)
 	}
-
-	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
-	<Grid item key={index} style={{flexGrow: 0, maxWidth: '12.5%', flexBasis: '15%'}}>
-		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
-	</Grid>
-	);
-
-	const initialAscensionStars = [
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-    ]
-	const [ascensionStars, setAscensionStars] = useState<any[]>(initialAscensionStars);
-
-	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
-	<div key={index}>
-
-	<CardMedia
-		image= {AscensionStar}
-		className={classes.ascensionStar}
-		style={{opacity: star.opacity}}
-		//onClick={(e) => {setCurrentStarsClick(index)}}
-	/>
-	</div>
-	);
 
 	function getCurrentLevel() {
 		let level = objectInfo.currentLevel;
@@ -225,6 +208,24 @@ export default function CharacterOverview(props: any) {
 
 		return level;
 	}
+
+	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
+	<Grid item key={index} style={{flexGrow: 0, maxWidth: '12.5%', flexBasis: '15%'}}>
+		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
+	</Grid>
+	);
+
+	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
+	<div key={index}>
+
+	<CardMedia
+		image= {AscensionStar}
+		className={classes.ascensionStar}
+		style={{opacity: star.opacity}}
+		//onClick={(e) => {setCurrentStarsClick(index)}}
+	/>
+	</div>
+	);
 
 	useEffect(() => {
 		const setAscensionStarsOther = () => {
