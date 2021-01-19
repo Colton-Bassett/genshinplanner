@@ -7,9 +7,10 @@ import CharacterOverview from "./characteroverview"
 const useStyles = makeStyles((theme) => ({
     planner: {
 		backgroundColor: "#222431",
-		margin: 'auto',
-		minHeight: '1000px',
-		padding: '12px 24px 24px 24px',
+		minHeight: '62.5rem',
+		minWidth: '100%',
+		padding: '1.5rem',
+		boxSizing: 'border-box',
 		color: 'white'
     },
 }));
@@ -68,7 +69,6 @@ export default function Planner(props: any) {
 		]
 	}
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
-	
 	const [items, setItems] = React.useState(initialItems)
 
 	const deleteObject = (index: any) => {

@@ -1,29 +1,21 @@
 import React from 'react';
-import { Card, CardContent, makeStyles, Grid } from '@material-ui/core';
+import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     sidebar: {
         backgroundColor: '#20212C',
-        margin: "auto",
-        minHeight: "1000px",
+        minWidth: "100%",
         boxShadow: "none",
+        marginLeft: '1.5rem',
     },
-    sidebarContainer: {
-        marginLeft: "24px",
-        [theme.breakpoints.down('md')]: {
-            display: "none"
-        },
-    }
 }));
 
 export default function SideBar()  {
     const classes = useStyles();
         return (
-            <Grid item xs={3} className={classes.sidebarContainer} >
-                <Card className={classes.sidebar}> 
-                    <CardContent>
-                    </CardContent>
-                </Card>
-            </Grid>
+        <Card className={classes.sidebar}> 
+            <CardContent>
+            </CardContent>
+        </Card>
         );
     }

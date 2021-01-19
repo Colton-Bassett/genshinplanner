@@ -115,7 +115,7 @@ export default function CharacterMaterial( props: any ) {
                     <div onClick={handleClickOpen}>
                         <CardMedia
                         image= {image}
-                        style={{maxHeight: "40px", maxWidth: "40px", minHeight: "40px", minWidth: "40px", backgroundSize: 'contain', backgroundColor: '#36384A', backgroundOrigin: 'content-box', padding: '4px', borderTopLeftRadius: '3px', borderTopRightRadius: '3px'}}
+                        style={{maxHeight: "42px", maxWidth: "42px", minHeight: "42px", minWidth: "42px", backgroundSize: 'contain', backgroundColor: '#36384A', backgroundOrigin: 'content-box', padding: '4px', borderTopLeftRadius: '3px', borderTopRightRadius: '3px'}}
                         />
                         <Typography variant="body1" align="center" className={classes.text} style={{backgroundColor: '#1d1f29', borderBottomLeftRadius: '3px', borderBottomRightRadius: '3px'}}>
                             {abbreviateNumber(quantity)}

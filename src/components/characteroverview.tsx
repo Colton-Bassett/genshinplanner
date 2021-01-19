@@ -11,19 +11,22 @@ import AscensionStar from '../images/Ascension_Star.png'
 const useStyles = makeStyles((theme) => ({
 	plannerDetails: {
 		maxWidth: "100%", 
-		margin: "auto"
+		minWidth: "100%",
+		margin: "auto",
+		minHeight: "420px",
 	},
 	characterContainer: {
-		maxHeight: '275px',
-		minHeight: '418px',
+		//maxHeight: '275px',
+		//minHeight: '274px',
 		minWidth: '170px',
+		//display: 'flex',
 		//padding: '20px',
 	},
 	characterDetails: {
-		backgroundColor: "#353749", 
+		//backgroundColor: "#353749", 
+		backgroundColor: '#272937',
 		minHeight: '100%',
 		minWidth: '170px',
-
 	},
 	characterDetailsInside: {
 		backgroundColor: "#272937", 
@@ -78,8 +81,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	materialDetails: {
 		backgroundColor: '#272937 !important', 
-		minHeight: '394px', 
-		minWidth: '100%',
+		//minHeight: '394px', 
+		//minWidth: '100%',
 	},
 	materialCard: {
 		backgroundColor: '#222431 !important', 
@@ -94,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 		// fontWeight: "bold"
 	},
 	materialContent: {
-		padding: '8px 8px',
+		padding: '16px',
 		"&:last-child": {
             paddingBottom: '16px'
           }
@@ -144,7 +147,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
-	<Grid item xs={2} key={index}>
+	<Grid item key={index} style={{flexGrow: 0, maxWidth: '12.5%', flexBasis: '15%'}}>
 		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
 	</Grid>
 	);
@@ -270,11 +273,11 @@ export default function CharacterOverview(props: any) {
 						Level {getCurrentLevel()} - {getDesiredLevel()}
 					</Typography>
 					</div>
-					<div style={{backgroundColor: '#353749', minHeight: '116px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+					{/* <div style={{backgroundColor: '#353749', minHeight: '116px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
 						<Typography variant="body1" align='center' style={{fontWeight: 700, maxWidth: "120px", maxHeight: "72px", color: '#DEDEDE',}}>
 							Talent Level-Up Material: <p style={{margin: '0'}}>"{objectInfo.talentMat}"</p>
 						</Typography>
-					</div>
+					</div> */}
 					<Collapse in={expanded} timeout="auto" unmountOnExit>
 								<CardContent>
 									<Typography paragraph>
@@ -291,7 +294,7 @@ export default function CharacterOverview(props: any) {
 
 				</Card>
 			</Grid>
-			<Grid item xs={9} style={{minHeight: '404px'}}>
+			<Grid item xs={9} style={{minWidth: '420px'}}>
 				<Card className={classes.materialDetails}>
 					<div style={{padding: '24px'}}>
 						<Card className={classes.materialCard}>

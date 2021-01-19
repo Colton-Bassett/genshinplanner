@@ -1,32 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
-// getCharacter, deleteCharacter as deleteCharacterMutation
+//getCharacter, deleteCharacter as deleteCharacterMutation
 import { listCharacters } from './graphql/queries';
 // import { createCharacter as createCharacterMutation } from './graphql/mutations';
 
-import { Grid, ThemeProvider, StylesProvider, makeStyles } from '@material-ui/core';
+import { ThemeProvider, StylesProvider, makeStyles } from '@material-ui/core';
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import TopNav from "./components/topnav"
+import TopNav from "./components/nav"
 import AdBar from "./components/adbar"
 import Planner from "./components/planner"
 import SideBar from "./components/sidebar"
-import BottomNav from "./components/bottomnav"
+import BottomNav from "./components/footer"
 import DatabasePage from "./components/databasepage"
 
 const useStyles = makeStyles((theme) => ({
 	container: {
-		margin: 'auto',
-		display: 'flex'
+		display: 'flex', 
+		margin: 'auto', 
+		maxWidth: '75rem', 
+		overflow: 'auto', 
+		marginBottom: '1.5rem'
 	},
-	innerContainer: {
-		margin: 'auto'
+	mainContainer: {
+		display: "flex", 
+		maxWidth: '75%', 
+		flexBasis: '75%',
+		minWidth: '56.25rem',
+		boxSizing: 'border-box',
+		'@media (max-width: 80em)': {
+            margin: 'auto',
+		},
+		'@media (max-width: 60em)': {
+			minWidth: '43.75em',
+			maxWidth: '43.75em',
+		},
+		'@media (max-width: 45em)': {
+			minWidth: '31.25em',
+			maxWidth: '31.25em',
+		},
+		'@media (max-width: 35em)': {
+			minWidth: '100%',
+			maxWidth: '100%',
+			padding: '0em 1em',
+		},
 	},
-	mainContent: {
-		marginBottom: '30px',
-	}
+	sidebarContainer: {
+		display: 'flex', 
+		maxWidth: '25%', 
+		flexBasis: '25%',
+		'@media (max-width: 80em)': {
+            display: "none",
+        }
+	},
 }));
 
 export default function App() {
@@ -149,35 +177,36 @@ export default function App() {
 	// async function createCharacterWithoutDom() {
 	// 	console.log("createCharacterWithoutDom called")
 	// 	const f = { ...character};
-	// 	f.name = 'Albedo'
-	// 	f.type = 'Geo'
-	// 	f.typeImage = 'Geo.png'
-	// 	f.weapon = 'Sword'
+	// 	f.name = 'Ganyu'
+	// 	f.type = 'Cryo'
+	// 	f.typeImage = 'Cryo.png'
+	// 	f.weapon = 'Bow'
 	// 	f.stars = 'Five'
-	// 	f.description = "An alchemist based in Mondstadt, in the service of the Knights of Favonius."
-	// 	f.image = 'Albedo.png'
+	// 	f.description = "The secretary at Yuehai Pavilion. The blood of the qilin, an illuminated beast, flows within her veins."
+	// 	f.image = 'Ganyu.png'
 
-	// 	f.abilityOne.name = 'Favonius Bladework_-_Weiss'
+	// 	f.abilityOne.name = 'Liutian Archery'
 	// 	f.abilityOne.description = 'Normal Attack'
-	// 	f.abilityOne.image = 'Favonius Bladework_-_Weiss.png'
+	// 	f.abilityOne.image = 'Liutian_Archery.png'
 
-	// 	f.abilityTwo.name = "Abiogenesis: Solar Isotoma"
-	// 	f.abilityTwo.description = "Albedo creates a Solar Isotoma using alchemy, which deals AoE Geo DMG on appearance."
-	// 	f.abilityTwo.image = "Abiogenesis_:_Solar_Isotoma.png"
+	// 	f.abilityTwo.name = "Trail of the Qilin"
+	// 	f.abilityTwo.description = "Leaving a single Ice Lotus behind, Ganyu dashes backward, shunning all impurity and dealing AoE Cryo DMG."
+	// 	f.abilityTwo.image = "Trail_of_the_Qilin.png"
 
-	// 	f.abilityThree.name = "Rite of Progeniture: Tectonic Tide"
-	// 	f.abilityThree.description = "Under Albedo's command, Geo crystals surge and burst forth, dealing AoE Geo DMG in front of him."	
-	// 	f.abilityThree.image = "Rite_of_Progeniture_:_Tectonic_Tide.png"
+	// 	f.abilityThree.name = "Celestial Shower"
+	// 	f.abilityThree.description = "Coalesces frost and snow to summon a Sacred Cryo Pearl that exorcises evil. "	
+	// 	f.abilityThree.image = "Celestial_Shower.png"
 
-	// 	f.ascensionMats.matOne = 'Prithiva_Topaz'
-	// 	f.ascensionMats.matTwo = 'Basalt_Pillar'
-	// 	f.ascensionMats.specialty = 'Cecilia'
-	// 	f.ascensionMats.commonMat = "Divining_Scroll"
-	// 	f.talentMats.talentMat = 'Ballad'
-	// 	f.talentMats.bossMat = "Tusk_of_Monoceros_Caeli"
+	// 	f.ascensionMats.matOne = 'Shivada_Jade'
+	// 	f.ascensionMats.matTwo = 'Hoarfrost_Core'
+	// 	f.ascensionMats.specialty = 'Qingxin'
+	// 	f.ascensionMats.commonMat = "Whopperflower_Nectar"
+	// 	f.talentMats.talentMat = 'Diligence'
+	// 	f.talentMats.bossMat = "Shadow_of_the_Warrior"
 	// 	setCharacter(f);
 	// 	if (!character.name || !character.description) return;
 	// 	await API.graphql({ query: createCharacterMutation, variables: { input: character } });
+	// 	console.log("createCharacterWithoutDom complete");
 	// 	setCharacter(initialChar);
 	// }
 
@@ -192,19 +221,21 @@ export default function App() {
 				<StylesProvider injectFirst>
 					<TopNav></TopNav>
 					<AdBar></AdBar>
-						<Grid item xs={11} sm={11} md={10} lg={10} className={classes.container}>
-							<Grid item sm={12} md={12} lg={9} className={classes.mainContent}>
-								<Switch>
-									<Route path="/database">
-										<DatabasePage />
-									</Route>
-									<Route path="/">
-										<Planner characters={characters}></Planner>
-									</Route>
-								</Switch>
-							</Grid>	
+					<div className={classes.container}>
+						<div className={classes.mainContainer}>
+							<Switch>
+								<Route path="/database">
+									<DatabasePage />
+								</Route>
+								<Route path="/">
+									<Planner characters={characters}></Planner>
+								</Route>	
+							</Switch>
+						</div>
+						<div className={classes.sidebarContainer}>
 							<SideBar></SideBar>
-							</Grid>
+						</div>
+					</div>	
 					<BottomNav></BottomNav>
 				</StylesProvider>
 			</Router>
