@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import AddCharacterButton from "./addcharacterbutton"
+import NewCharacter from "./newcharacter"
 import CharacterOverview from "./characteroverview"
 
 const useStyles = makeStyles((theme) => ({
@@ -88,7 +88,7 @@ export default function Planner(props: any) {
 		<div className={classes.planner}> 
 			<h2>Genshin Impact Planner</h2>
 			{characterOverviews}
-			<AddCharacterButton characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></AddCharacterButton>
+			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></NewCharacter>
 		</div>
 	);
 }

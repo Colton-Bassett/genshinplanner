@@ -1,19 +1,40 @@
 import React from 'react';
-import { Card, Grid, makeStyles, Dialog, DialogActions, DialogContent, DialogContentText, Button, Tooltip, DialogTitle, Tabs, Tab } from '@material-ui/core';
+import { Card, makeStyles, Dialog, DialogActions, DialogContent, DialogContentText, Button, Tooltip, DialogTitle, Tabs, Tab } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 
 import DialogTab from './dialogtab'
 
 const useStyles = makeStyles((theme) => ({
-    container: {
+    addCharacter: {
         maxWidth: '100%',
         margin: 'auto',
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    addCharacterButton: {
+        flexGrow: 0, 
+        maxWidth: '25%', 
+        flexBasis: '25%', 
+        boxSizing: 'border-box', 
+        padding: '0.75rem',
+    },
+    addCharacterContent: {
+        flexGrow: 0, 
+        maxWidth: '75%', 
+        flexBasis: '75%', 
+        boxSizing: 'border-box', 
+        padding: '0.75rem'
     },
     card: {
         backgroundColor: "#272937 !important",
-        minWidth: '170px',
+        minWidth: '10.625rem',
         margin: 'auto',
-        minHeight: '275px',
+        minHeight: '17.188rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         '&:hover': {
             cursor: 'pointer',
             '& $add': {
@@ -21,38 +42,28 @@ const useStyles = makeStyles((theme) => ({
             }
          },
     },
-    addContainer: {
-        margin: 'auto',
-        position: 'relative',
-        minHeight: '275px',
-        cursor: 'pointer'
-    },
     add: {
-        fontSize: '100px',
+        fontSize: '6.25rem',
         color: '#A6A7AC',
-        margin: '0px',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        margin: '0rem',
     },
     dialogTitleContainer: {
         display: 'flex', 
         backgroundColor: '#222431',
     },
     tabLabel: {
-        textTransform: "none", fontSize: "20px",
+        textTransform: "none", fontSize: "1.25rem",
 
     },
     dialog: {
-        minWidth: '850px;',
-        maxWidth: '850px;',
-        minHeight: '600px;',
-        maxHeight: '600px;',
+        minWidth: '53.125rem;',
+        maxWidth: '53.125rem;',
+        minHeight: '37.5rem;',
+        maxHeight: '37.5rem;',
     },
     dialogContent: {
         backgroundColor: '#1d1f29', 
-        padding: '0px !important',
+        padding: '0rem !important',
     },
     dialogContentText: {
         outline: 'none'
@@ -60,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     dialogCancel: {
         color:"white", 
         textTransform: "none", 
-        paddingRight: "30px", 
+        paddingRight: "1.875rem", 
         fontSize: "1.1rem", 
         backgroundColor: 'transparent'
     },
@@ -72,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AddCharacterButton(props: any) {
+export default function NewCharacter(props: any) {
     const classes = useStyles();
 
     const characters = props.characters;
@@ -124,21 +135,20 @@ export default function AddCharacterButton(props: any) {
     }, [openDialog]);
 
     return (
-        <Grid container spacing={3} direction="row" justify="center" alignItems="center" className={classes.container}>
-            <Grid item xs={3}>
+        <div className={classes.addCharacter}>
+            <div className={classes.addCharacterButton}>
                 <Card className={classes.card} onClick={dialogOpen}> 
-                    <div className={classes.addContainer} >
                     <Tooltip title="Add Character" arrow>
                         <Add className={classes.add}>
                         </Add>
                     </Tooltip>
-                    </div>
                 </Card>
-            </Grid>
-            <Grid item xs={9}>
+            </div>
+            <div className={classes.addCharacterContent}>
                 <Card className={classes.card}>     
                 </Card>
-            </Grid>
+            </div>
+
             <Dialog
                 open={openDialog}
                 onClose={dialogClose}
@@ -148,23 +158,15 @@ export default function AddCharacterButton(props: any) {
                 aria-describedby="scroll-dialog-description"
                 classes={{paper: classes.dialog}}
             >
-                <div className={classes.dialogTitleContainer}>
-                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'block' : 'none', margin: 'auto'}}>
-                <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
-                    <Tab label="Genshin Impact Characters" {...tabID(0)} className={classes.tabLabel}  disableRipple/>
-					<Tab label="Genshin Impact Weapons" {...tabID(1)} className={classes.tabLabel} disableRipple />
-                </Tabs>
+                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#222431', justifyContent: 'center'}}>
+                    <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
+                        <Tab label="Genshin Impact Characters" {...tabID(0)} className={classes.tabLabel}  disableRipple/>
+                        <Tab label="Genshin Impact Weapons" {...tabID(1)} className={classes.tabLabel} disableRipple />
+                    </Tabs>
                 </DialogTitle>
-                </div>
                 <DialogContent className={classes.dialogContent}>
-                <DialogTab characters={characters} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} tabPanel={tabPanel} displayTabsTitle={displayTabsTitle}></DialogTab>
-                <DialogContentText
-                    id="scroll-dialog-description"
-                    ref={descriptionElementRef}
-                    tabIndex={-1}
-                    className={classes.dialogContentText}
-                >
-                </DialogContentText>
+                    <DialogTab characters={characters} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} tabPanel={tabPanel} displayTabsTitle={displayTabsTitle}>
+                    </DialogTab>
                 </DialogContent>
                 <DialogActions className={classes.dialogActions}>
                     <Button onClick={dialogClose} color="primary" className={classes.dialogCancel} disableRipple>
@@ -172,6 +174,6 @@ export default function AddCharacterButton(props: any) {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </Grid>
+        </div>
     );
 }

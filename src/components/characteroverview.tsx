@@ -9,33 +9,31 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import AscensionStar from '../images/Ascension_Star.png'
 
 const useStyles = makeStyles((theme) => ({
-	plannerDetails: {
+	plannerContainer: {
 		maxWidth: "100%", 
 		minWidth: "100%",
 		margin: "auto",
-		minHeight: "420px",
+		justifyContent: "center",
+		display: "flex",
+		flexWrap: "wrap",
+		boxSizing: "border-box",
 	},
-	characterContainer: {
-		//maxHeight: '275px',
-		//minHeight: '274px',
-		minWidth: '170px',
-		//display: 'flex',
-		//padding: '20px',
+	character: {
+		maxWidth: '25%',
+		flexBasis: '25%',
+		flexGrow: 0,
+		boxSizing: 'border-box',
+		padding: '0.75rem',
+		// add media sizes
 	},
-	characterDetails: {
+	characterCard: {
 		//backgroundColor: "#353749", 
 		backgroundColor: '#272937',
 		minHeight: '100%',
-		minWidth: '170px',
+		minWidth: '10.625rem',
 	},
-	characterDetailsInside: {
-		backgroundColor: "#272937", 
-		borderBottomLeftRadius: "20px", 
-		borderBottomRightRadius: "20px", 
-		paddingBottom: '16px'
-	},
-	buttonContainer: {
-		padding: "16px"
+	characterButtons: {
+		padding: "1rem"
 	},
 	editButton: {
 		color: '#A6A7AC !important',
@@ -53,57 +51,63 @@ const useStyles = makeStyles((theme) => ({
 		 },
 	},
 	characterImage: {
-		minHeight: "105px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
-		marginBottom: '16px',
+		minHeight: "6.563rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
+		marginBottom: '1rem',
 		backgroundColor: "rgb(54, 56, 74)",
 	},
     element: {
-        height: "18px", 
-        width: "18px",
-        position: "absolute",
-        top: "-4px",
-        right: "18px",
-        padding: "3px",
+        height: "1.75rem", 
+        width: "1.75rem",
+        // position: "absolute",
+        // // top: "0rem",
+		// right: "50rem",
+		float: "left",
+        padding: "0.188rem",
         background: "#36384a",
-        borderRadius: "100px",
-        boxShadow: "0 3px 6px rgba(0,0,0,.23), 0 3px 6px rgba(0,0,0,.16)"
+        borderRadius: "6.25rem",
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
 	},
     ascensionStar: {
-        minWidth:"20px", 
-        minHeight: "20px", 
+        minWidth:"1.25rem", 
+        minHeight: "1.25rem", 
         backgroundSize: "contain",
-        margin: "0px 2px",
+        margin: "0rem 0.125rem",
         opacity: ".3",
     },
 	ascensionStars: {
-		minHeight: "15px", maxWidth: "105px", borderRadius: "10px", margin: 'auto',
-		marginBottom: '4px',
+		minHeight: "1rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
+		marginBottom: '0.25rem',
 	},
-	materialDetails: {
+	materials: {
+		minWidth: '26.25rem', 
+		flexGrow: 0, 
+		maxWidth: '75%', 
+		flexBasis: '75%', 
+		padding: '0.75rem', 
+		boxSizing: 'border-box',
+		// add media sizes
+	},
+	materialContainer: {
 		backgroundColor: '#272937 !important', 
-		//minHeight: '394px', 
-		//minWidth: '100%',
+		padding: '1.5rem',
 	},
 	materialCard: {
 		backgroundColor: '#222431 !important', 
-		minHeight: '346px', 
+		minHeight: '21.625rem', 
 		minWidth: '100%',
 	},
 	materialHeader: {
-		//paddingBottom: "6px"
 	},
 	materialTitle: {
-		// fontSize: "18px", 
-		// fontWeight: "bold"
 	},
 	materialContent: {
-		padding: '16px',
+		padding: '1rem',
 		"&:last-child": {
-            paddingBottom: '16px'
+            paddingBottom: '1rem'
           }
 	},
 	expandButton: {
-		color: 'white', fontSize: '26px'
+		color: 'white', fontSize: '1.625rem'
 	},
 	expand: {
 		transform: 'rotate(0deg)',
@@ -210,9 +214,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
-	<Grid item key={index} style={{flexGrow: 0, maxWidth: '12.5%', flexBasis: '15%'}}>
 		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
-	</Grid>
 	);
 
 	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
@@ -245,12 +247,10 @@ export default function CharacterOverview(props: any) {
 
 
 	return (
-		<Grid container spacing={3} direction="row" justify="center" className={classes.plannerDetails}>
-			<Grid item xs={3} className={classes.characterContainer}>
-				<Card className={classes.characterDetails}>
-					<div className={classes.characterDetailsInside}>
-					
-					<div className={classes.buttonContainer}>
+		<div className={classes.plannerContainer}>
+			<div className={classes.character}>
+				<Card className={classes.characterCard}>		
+					<div className={classes.characterButtons}>
 						<Tooltip title="Edit" arrow>
 							<EditIcon className={classes.editButton}></EditIcon>
 						</Tooltip>
@@ -260,97 +260,89 @@ export default function CharacterOverview(props: any) {
 					</div>
 					<CardMedia
 						image= {objectInfo.image}
-						className={classes.characterImage}>		
+						className={classes.characterImage}>	
+						<img src={objectInfo.typeImage} alt="element" className={classes.element}></img>	
 					</CardMedia>
-					{/* <img src={objectInfo.typeImage} alt="element" className={classes.element}></img> */}
-					<Typography variant="h2" align='center' style={{marginBottom: '4px'}}>
+
+					<Typography variant="h2" align='center' style={{marginBottom: '0.25rem'}}>
 						{objectInfo.name}
 					</Typography>
-					<div style={{display: 'flex', justifyContent: 'center', marginBottom: '4px'}}>
+					<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
 						{createAscensionStars}
 
 					</div>
 					<Typography variant="body1" align='center' style={{fontWeight: 700}}>
 						Level {getCurrentLevel()} - {getDesiredLevel()}
 					</Typography>
-					</div>
-					{/* <div style={{backgroundColor: '#353749', minHeight: '116px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-						<Typography variant="body1" align='center' style={{fontWeight: 700, maxWidth: "120px", maxHeight: "72px", color: '#DEDEDE',}}>
-							Talent Level-Up Material: <p style={{margin: '0'}}>"{objectInfo.talentMat}"</p>
-						</Typography>
-					</div> */}
 					<Collapse in={expanded} timeout="auto" unmountOnExit>
-								<CardContent>
-									<Typography paragraph>
-										Method:
-									</Typography>
-									<Typography paragraph>
-										Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-										minutes.
-										Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-										minutes.
-									</Typography>
-								</CardContent>
-						</Collapse>
-
+						<CardContent>
+							<Typography paragraph>
+								Method:
+							</Typography>
+							<Typography paragraph>
+								Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+								minutes.
+								Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+								minutes.
+							</Typography>
+						</CardContent>
+					</Collapse>
 				</Card>
-			</Grid>
-			<Grid item xs={9} style={{minWidth: '420px'}}>
-				<Card className={classes.materialDetails}>
-					<div style={{padding: '24px'}}>
-						<Card className={classes.materialCard}>
-							<CardHeader
-							className={classes.materialHeader}
-							action={
-								<IconButton
-									disableFocusRipple
-									disableRipple
-									className={clsx(classes.expand, {
-									[classes.expandOpen]: expanded,
-									})}
-									onClick={handleExpandClick}
-									aria-expanded={expanded}
-									aria-label="show more"
-									style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0", marginTop: '8px', marginRight: '8px'}}
-									disabled
-								>
-								<ExpandMore className={classes.expandButton} />
-								</IconButton>
-							}
-							title={
-								<Typography className={classes.materialTitle} variant="h2">
-									Materials Overview
+			</div>
+			<div className={classes.materials}>
+				<Card className={classes.materialContainer}>
+					<Card className={classes.materialCard}>
+						<CardHeader
+						className={classes.materialHeader}
+						action={
+							<IconButton
+								disableFocusRipple
+								disableRipple
+								className={clsx(classes.expand, {
+								[classes.expandOpen]: expanded,
+								})}
+								onClick={handleExpandClick}
+								aria-expanded={expanded}
+								aria-label="show more"
+								style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0", marginTop: '0.5rem', marginRight: '0.5rem'}}
+								disabled
+							>
+							<ExpandMore className={classes.expandButton} />
+							</IconButton>
+						}
+						title={
+							<Typography className={classes.materialTitle} variant="h2">
+								Material Overview
+							</Typography>
+						}
+						/>
+						<CardContent className={classes.materialContent}>
+								<div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
+									{characterMaterials}
+								</div>
+						</CardContent>
+						<Collapse in={expanded} timeout="auto" unmountOnExit>
+							<CardContent>
+								<Typography paragraph>
+									Method:
 								</Typography>
-							}
-							/>
-							<CardContent className={classes.materialContent}>
-									<Grid container>
-										{characterMaterials}
-									</Grid>
+								<Typography paragraph>
+									Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+									minutes.
+								</Typography>
+								<Typography paragraph>
+									Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+									heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+									browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
+									and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
+									pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
+									saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+								</Typography>
 							</CardContent>
-							<Collapse in={expanded} timeout="auto" unmountOnExit>
-								<CardContent>
-									<Typography paragraph>
-										Method:
-									</Typography>
-									<Typography paragraph>
-										Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-										minutes.
-									</Typography>
-									<Typography paragraph>
-										Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-										heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-										browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-										and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-										pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-										saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-									</Typography>
-								</CardContent>
-							</Collapse>
-						</Card>
-					</div>
+						</Collapse>
+					</Card>
 				</Card>
-			</Grid>
-		</Grid>
+			</div>
+		</div>
 	);
 }

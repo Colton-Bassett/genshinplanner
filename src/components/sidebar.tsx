@@ -4,7 +4,7 @@ import { Card, CardContent, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     sidebar: {
         backgroundColor: '#20212C',
-        minWidth: "100%",
+        minWidth: "calc(100% - 1.5rem)",
         boxShadow: "none",
         marginLeft: '1.5rem',
     },

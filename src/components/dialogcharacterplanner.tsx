@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Card, CardContent, makeStyles, Grid, CardMedia, Typography, Slider } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
@@ -8,6 +8,7 @@ import AscensionStar from '../images/Ascension_Star.png'
 import { Storage } from 'aws-amplify';
 
 import SetMaterials from '../logic/setmaterials';
+import RangeSlider from './slider';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,9 +49,10 @@ const useStyles = makeStyles((theme) => ({
     element: {
         height: "28px", 
         width: "28px",
-        position: "absolute",
-        top: "26px",
-        right: "696px",
+        // position: "absolute",
+        // top: "26px",
+        // right: "696px",
+        float:"left",
         padding: "3px",
         background: "#36384a",
         borderRadius: "100px",
@@ -134,20 +136,40 @@ const marks = [
         label: '1',
     },
     {
+        value: 2,
+        label: '2',
+    },
+    {
         value: 3,
         label: '3',
+    },
+    {
+        value: 4,
+        label: '4',
     },
     {
         value: 5,
         label: '5',
     },
     {
+        value: 6,
+        label: '6',
+    },
+    {
         value: 7,
         label: '7',
     },
     {
+        value: 8,
+        label: '8',
+    },
+    {
         value: 9,
         label: '9',
+    },
+    {
+        value: 10,
+        label: '10',
     },
   ];
 
@@ -183,16 +205,9 @@ export default function DialogCharacterPlanner(props: any) {
     const [currentStars, setCurrentStars] = useState<any[]>(initialCurrentStars);
     const [desiredStars, setDesiredStars] = useState<any[]>(initialDesiredStars);
 
-    // let  [abilityOneCurrent, setAbilityOneCurrent] = useState<number>(0);
-    // let  [abilityOneDesired, setAbilityOneDesired] = useState<number>(9);
-    // let  [abilityTwoCurrent, setAbilityTwoCurrent] = useState<number>(0);
-    // let  [abilityTwoDesired, setAbilityTwoDesired] = useState<number>(9);
-    // let  [abilityThreeCurrent, setAbilityThreeCurrent] = useState<number>(0);
-    // let  [abilityThreeDesired, setAbilityThreeDesired] = useState<number>(9);
-    // const [abilityOne, setAbilityOne] = React.useState<number[]>([1, 9]);
-    let abilityOne: number[] = [1,9];
-    let abilityTwo: number[] = [1,9];
-    let abilityThree: number[] = [1,9];
+    const [abilityOne, setAbilityOne] = React.useState<number[]>([1, 10]);
+    const [abilityTwo, setAbilityTwo] = React.useState<number[]>([1, 10]);
+    const [abilityThree, setAbilityThree] = React.useState<number[]>([1, 10]);
 
     function setCurrentStarsClick(index: any) {
         if (index === 5) {
@@ -230,102 +245,6 @@ export default function DialogCharacterPlanner(props: any) {
             }
             setDesiredStars(starsTemp)
             //console.log("desiredStars:", desiredStars);
-    }
-
-    function RangeSlider() {
-        //const classes = useStyles();
-        const [value, setValue] = React.useState<number[]>([1, 9]);
-      
-        const handleChange = (event: any, newValue: number | number[]) => {
-            setValue(newValue as number[]);
-            //console.log("rangeSlider values:", value)
-            abilityOne = value;
-            //console.log(abilityOne);
-        };
-      
-        return (
-          <div>
-            <Typography id="range-slider" gutterBottom>
-    
-            </Typography>
-            <Slider
-                value={value}
-                onChange={handleChange}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                getAriaValueText={valuetext}
-                //color="secondary"
-                marks={marks}
-                style={{backgroundColor: "#36384A",}}
-                min={1}
-                max={9}
-            />
-          </div>
-        );
-    }
-
-    function RangeSliderTwo() {
-        //const classes = useStyles();
-        const [value, setValue] = React.useState<number[]>([1, 9]);
-      
-        const handleChange = (event: any, newValue: number | number[]) => {
-            setValue(newValue as number[]);
-            //console.log("rangeSlider values:", value)
-            abilityTwo = value;
-            //console.log(abilityTwo);
-        };
-      
-        return (
-          <div>
-            <Typography id="range-slider" gutterBottom>
-    
-            </Typography>
-            <Slider
-                value={value}
-                onChange={handleChange}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                getAriaValueText={valuetext}
-                //color="secondary"
-                marks={marks}
-                style={{backgroundColor: "#36384A",}}
-                min={1}
-                max={9}
-            />
-          </div>
-        );
-    }
-
-    function RangeSliderThree() {
-        //const classes = useStyles();
-        const [value, setValue] = React.useState<number[]>([1, 9]);
-      
-        const handleChange = (event: any, newValue: number | number[]) => {
-            setValue(newValue as number[]);
-            //console.log("rangeSlider values:", value)
-            abilityThree = value;
-            //console.log(abilityThree);
-        };
-      
-        return (
-          <div>
-            <Typography id="range-slider" gutterBottom>
-    
-            </Typography>
-            <Slider
-                value={value}
-                onChange={handleChange}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                getAriaValueText={valuetext}
-                //color="secondary"
-                marks={marks}
-                style={{backgroundColor: "#36384A",}}
-                min={1}
-                max={9}
-            />
-          </div>
-        );
     }
 
 	async function fetchImage(name: any) {  
@@ -436,6 +355,11 @@ export default function DialogCharacterPlanner(props: any) {
     }
     
     //const createDesiredStars;
+
+    // useEffect(() => {
+    //     console.log("Slider value: " + abilityOne);
+    //   }, [abilityOne]);
+      
     
     return (
         <Card className={classes.root}> 
@@ -453,9 +377,9 @@ export default function DialogCharacterPlanner(props: any) {
                             component="img"
                             alt="Character Image"
                             image={character.image}
-                            className={classes.characterImage}
-                            />
-                            <img src={character.typeImage} alt="element" className={classes.element}></img>
+                            className={classes.characterImage}>
+                            {/* <img src={character.typeImage} alt="element" className={classes.element}></img> */}
+                            </CardMedia>
                         </Grid>
                         <Grid container xs={5} direction="row" justify="flex-start" alignItems="center" className={classes.characterOuterContainer}>
                             <Grid container xs={12} direction="column" justify="center" alignItems="flex-start" className={classes.characterInfoContainer}>
@@ -533,7 +457,7 @@ export default function DialogCharacterPlanner(props: any) {
                                     <Grid item xs={6}>
                                         <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
                                         <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                                        <RangeSlider></RangeSlider>
+                                        <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -554,7 +478,7 @@ export default function DialogCharacterPlanner(props: any) {
                                     <Grid item xs={6}>
                                         <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
                                         <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                                        <RangeSliderTwo></RangeSliderTwo>
+                                        <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -575,7 +499,7 @@ export default function DialogCharacterPlanner(props: any) {
                                     <Grid item xs={6}>
                                         <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
                                         <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                                        <RangeSliderThree></RangeSliderThree>
+                                        <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
                                     </Grid>
                                 </Grid>
                             </Grid>

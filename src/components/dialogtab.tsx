@@ -1,43 +1,43 @@
 import React from 'react';
-import { Grid, Box } from '@material-ui/core';
-// import { makeStyles, Theme } from '@material-ui/core/styles';
+
+import { makeStyles } from '@material-ui/core';
 
 import DialogCharacter from './dialogcharacter'
 import DialogCharacterPlanner from './dialogcharacterplanner'
+import TabPanel from './tabpanel'
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: any;
-  value: any;
-}
+const useStyles = makeStyles(() => ({
+	charactersContainer: {
+		display: 'flex', 
+		flexWrap: 'wrap', 
+		boxSizing: 'border-box', 
+		alignItems: 'flex-start', 
+		width: '95%', 
+		margin: 'auto', 
+		marginTop: '0.5rem'
+	},
+	character: {
+		boxSizing: 'border-box', 
+		display: 'flex', 
+		padding: '0.625rem', 
+		justifyContent: 'center', 
+		width: '16.666667%'
+	},
+	weaponsContainer: {
+		display: 'flex', 
+		flexWrap: 'wrap', 
+		boxSizing: 'border-box', 
+		alignItems: 'flex-start', 
+		width: '95%', 
+		margin: 'auto', 
+		marginTop: '0.5rem'
+	},
+}));
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={2}>
-          <div>{children}</div>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-
-
-// const useStyles = makeStyles((theme: Theme) => ({
-// }));
 
 export default function DialogTab(props: any) {
-    // const classes = useStyles();
+	const classes = useStyles();
+
     const characters = props.characters;
     const dialogClose = props.dialogClose;
     const ascensionDetails = props.ascensionDetails;
@@ -45,7 +45,6 @@ export default function DialogTab(props: any) {
     const items = props.items;
     const setItems = props.setItems;
     const displayTabsTitle = props.displayTabsTitle;
-
     const tabPanel = props.tabPanel;
 		
     const [showChars, setShowChars] = React.useState(true)
@@ -58,39 +57,32 @@ export default function DialogTab(props: any) {
     }
 
     const populateDialogCharacters = characters.map((character: { name: any; }, index: any) => 
-        <Grid key={index} item xs={2} onClick={() => {
+        <div key={index} className={classes.character} onClick={() => {
             openCharacterPlanner(character);
         }}>
         	<DialogCharacter character={character} ></DialogCharacter>
-        </Grid>
-	);
-
-	const DialogCharacterContainer = () => (
-		<Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
-			{ populateDialogCharacters } 
-		</Grid>
+        </div>
 	);
 
 	const DialogTabMain = () => (
-		<div >
+		<div>
 			<TabPanel value={tabPanel} index={0}>
-				<Grid item xs={11}  style={{margin: "auto", }}>
-					<DialogCharacterContainer></DialogCharacterContainer>
-				</Grid>
-
+				<div className={classes.charactersContainer}>
+					{ populateDialogCharacters } 
+				</div>
 			</TabPanel>
 			<TabPanel value={tabPanel} index={1}>
-				<Grid item xs={11} style={{margin: "auto", }}>
+				<div className={classes.weaponsContainer}>
 					Coming soon
-				</Grid>
+				</div>
 			</TabPanel>	
 		</div>
 	)
 
-  return (
-	<div>
-		{ showChars ? <DialogTabMain></DialogTabMain> : null }
-		{ !showChars ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
-	</div>	
-  	);
+	return (
+		<div>
+			{ showChars ? <DialogTabMain></DialogTabMain> : null }
+			{ !showChars ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
+		</div>	
+	);
 }

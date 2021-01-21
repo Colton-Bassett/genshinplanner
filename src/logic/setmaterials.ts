@@ -586,6 +586,40 @@ function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: s
     }
 }
 
+function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: string, materials: any) {
+    switch(ability) {
+        case "abilityOne":
+            let talentLevel = ascensionDetails.abilityOneDesired;
+                if (talentLevel === 10) {
+                    let abilityMat = {name: "", quantity: 0, image: ""};
+                    abilityMat.name = "Crown_of_Insight"
+                    abilityMat.quantity = 1
+                    addMaterial(abilityMat, materials);
+                }
+            return
+        case "abilityTwo":
+            let talentLevel2 = ascensionDetails.abilityTwoDesired;
+                if (talentLevel2 === 10) {
+
+                    let abilityMat = {name: "", quantity: 0, image: ""};
+                    abilityMat.name = "Crown_of_Insight"
+                    abilityMat.quantity = 1
+                    addMaterial(abilityMat, materials);
+                }
+            return
+        case "abilityThree":
+            let talentLevel3 = ascensionDetails.abilityThreeDesired;
+                if (talentLevel3 === 10) {
+
+                    let abilityMat = {name: "", quantity: 0, image: ""};
+                    abilityMat.name = "Crown_of_Insight"
+                    abilityMat.quantity = 1
+                    addMaterial(abilityMat, materials);
+                }
+            }
+            return
+    }
+
 // const c = {
 //     ascensionMats: {matOne: 'Vajrada_Amethyst', matTwo: 'Lightning_Prism', specialty: 'Wolfhook', commonMat: 'Damaged_Mask'},
 //     talentMats: {bossMat: "Dvalin's_Claw", talentMat: "Resistance"}
@@ -611,6 +645,7 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
         addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials);
         addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials);
         addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityOne", materials);
     }
 
     if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
@@ -622,6 +657,7 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
         addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials);
         addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials);
         addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityTwo", materials);
     }
 
     if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
@@ -633,6 +669,7 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
         addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials);
         addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials);
         addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityThree", materials);
     }
 }
 
