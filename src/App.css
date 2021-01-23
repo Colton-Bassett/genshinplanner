@@ -32,7 +32,3 @@ a:visited { text-decoration: none; color:white; }
 .Geo {
 	color: #ffe699;
 }
-
-.outlineOffset {
-	outline-offset: -5px;
-}

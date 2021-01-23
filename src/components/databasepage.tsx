@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "#222431 !important",
 		minWidth: '70%',
 		margin: 'auto',
-		minHeight: '1000px',
+		minHeight: '62.5rem',
     },
     container: {
 		paddingLeft: theme.spacing(2),

@@ -76,37 +76,31 @@ export default function App() {
 	});
 	theme.typography.h1 = {
 		lineHeight: '1.3em',
-		fontSize: '24px',
+		fontSize: '1.5rem',
 		fontWeight: 700,
 		margin: 0
-		// '@media (min-width:600px)': {
-		//   fontSize: '1.5rem',
-		// },
-		// [theme.breakpoints.up('md')]: {
-		//   fontSize: '2.4rem',
-		// },
 	};
 	theme.typography.h2 = {
 		lineHeight: '1.3em',
-		fontSize: '20px',
+		fontSize: '1.25rem',
 		fontWeight: 600,
 		margin: 0
 	};
 	theme.typography.h3 = {
 		lineHeight: '1.3em',
-		fontSize: '18px',
+		fontSize: '1.125rem',
 		fontWeight: 500,
 		margin: 0
 	};
 	theme.typography.h5 = {
 		lineHeight: '1.3em',
-		fontSize: '16px',
+		fontSize: '1rem',
 		fontWeight: 400,
 		margin: 0	
 	};
 	theme.typography.h6 = {
 		lineHeight: '1.3em',
-		fontSize: '14px',
+		fontSize: '0.875rem',
 		fontWeight: 400,
 		margin: 0	
 	}

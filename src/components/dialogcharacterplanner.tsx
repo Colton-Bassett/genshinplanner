@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import { Card, CardContent, makeStyles, Grid, CardMedia, Typography, Slider } from '@material-ui/core';
+import React, {useState, } from 'react';
+import { Card, makeStyles, CardMedia, Typography, } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
-import Characterbg from '../images/characterbg.png'
+//import Characterbg from '../images/characterbg.png'
 import AscensionStar from '../images/Ascension_Star.png'
 import { Storage } from 'aws-amplify';
 
@@ -12,123 +12,154 @@ import RangeSlider from './slider';
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: '#20212C !important',
-        boxShadow: "none !important",
-        position: "relative",
+    character: {
     },
-    headerContainer: {
-        position: "relative"
+    characterHeader: {
+        position: 'relative', 
+        display: 'flex', 
+        overflow: 'hidden', 
+        padding: '1.563rem 0rem',
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        borderBottom: 'solid 5px #36384a'
     },
-    header: {
-        padding: "0px",
-        "&:last-child": {
-            paddingBottom: '0px'
-          },
-        position: 'absolute',
-        top: '0%',
-        left: '0%',
-        height: '100%',
-        width: '100%',
-        background: "rgba(29,31,41,.3)"
-    },
-    characterOuterContainer: {
-        height: "100%", 
+    backgroundImage: {
+        position: 'absolute', 
+        left: 0, 
+        top: 0, 
+        width: '100%', 
+        height: '100%', 
+        zIndex: 1, 
+        backgroundPosition: '50% 40%', 
+        boxSizing: 'border-box', 
+        backgroundImage: 'url(https://rerollcdn.com/GENSHIN/UI/character-background.png)', 
+        opacity: 0.6,
     },
     characterImageContainer: {
-       margin: "auto",
+        maxWidth: '20%', 
+        minWidth: '20%', 
+        zIndex: 3, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        display: 'flex'
     },
     characterImage: {
-        maxHeight: "96px",
-        maxWidth: "96px",
-        boxShadow: "0 3px 6px rgba(0,0,0,.23), 0 3px 6px rgba(0,0,0,.16)",
+        maxHeight: "6rem",
+        minWidth: '6rem',
+        minHeight: '6rem',
+        maxWidth: "6rem",
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         backgroundColor: "#36384a",
-        borderRadius: "6px",
-        marginRight: "12px",
+        borderRadius: "0.375rem",
+        zIndex: 3,
     },
     element: {
-        height: "28px", 
-        width: "28px",
-        // position: "absolute",
-        // top: "26px",
-        // right: "696px",
+        height: "1.75rem", 
+        width: "1.75rem",
         float:"left",
-        padding: "3px",
+        padding: "0.188rem",
         background: "#36384a",
-        borderRadius: "100px",
-        boxShadow: "0 3px 6px rgba(0,0,0,.23), 0 3px 6px rgba(0,0,0,.16)"
+        borderRadius: "6.25rem",
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
+    },
+    characterTitle: {
+        maxWidth: '60%', 
+        minWidth: '60%', 
+        zIndex: 3, 
+        display: 'flex', 
+        flexDirection: 'column'
+    },
+    buttons: {
+        maxWidth: '20%', 
+        minWidth: '20%', 
+        zIndex: 3, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        display: 'flex',
+    },
+    buttonContainer: {
+        marginRight: '2rem'
     },
     checkIcon: {
         fontSize: "2.75rem;",
         backgroundColor: "#272937",
         color: "#58CCA5",
-        marginRight: "24px",
-        cursor: "pointer"
+        marginRight: "1.5rem",
+        cursor: "pointer",
+        borderRadius: '0.188rem',
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
     },
     closeIcon: {
         fontSize: "2.75rem;",
         backgroundColor: "#272937",
         color: "#f56262",
-        cursor: "pointer"
+        cursor: "pointer",
+        borderRadius: '0.188rem',
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
     },
-    characterInfoContainer: {
-        paddingLeft: "8px",
-        minHeight: "96px",
+    characterContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexGrow: 0,
+        maxWidth: '60%',
+        flexBasis: '60%',
+        margin: 'auto',
     },
-    levelContainer: {
-        margin: "auto",
-    },
-    levelPadding: {
-  
-    },
-    ascensionContainer: {
+    ascension: {
         backgroundColor: "#272937",
-        minHeight: "200px",
-        maxHeight: "200px",
-    },
-    ascensionImage: {
-        minHeight: "30px", 
-        borderRadius: "10px",
-    },
-    ascensionImageContainer: {
-		maxWidth: "150px", 
-		margin: 'auto'
+        minHeight: "13.75rem",
+        maxHeight: "13.75rem",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        boxSizing: 'border-box',
+        padding: '1rem',
+        borderRadius: '0.188rem',
     },
     ascensionStar: {
-        minWidth:"25px", 
-        minHeight: "25px", 
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
         backgroundSize: "contain",
-        margin: "0px 2px",
+        margin: "0rem 0.125rem",
         opacity: ".3",
         '&:hover': {
             cursor: "pointer"
          },
     },
-    talentCard: {
-        minHeight: "200px", 
-        maxHeight: "200px",
-        minWidth: "160px", 
+    talent: {
         backgroundColor: "#272937",
-        padding: "16px",
-        marginBottom: "32px"
+        minHeight: "13.75rem",
+        maxHeight: "13.75rem",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        boxSizing: 'border-box',
+        padding: '1rem',
+        borderRadius: '0.188rem',
+        marginBottom: '2rem'
     },
     talentImage: {
-        minHeight: "53px", minWidth:"53px", maxHeight: "53px", maxWidth: "53px", 
-        borderRadius: "6px", 
+        minHeight: "3.313rem", minWidth:"3.313rem", maxHeight: "3.313rem", maxWidth: "3.313rem", 
+        borderRadius: "0.375rem", 
         backgroundColor: "#36384A", 
         margin: "auto", 
+        boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+    },
+    talentName: {
+        fontWeight: 700, color: "#FFCC62", width: '100%'
     },
     talentNameText: {
         fontWeight: 700, color: "#FFCC62"
     },
-    rootSlider: {
-        width: 300,
-    }
+    talentSlider: {
+        flexBasis: '50%'
+    },
 }));
 
-function valuetext(value: number) {
-    return `${value}°C`;
-}
+// function valuetext(value: number) {
+//     return `${value}°C`;
+// }
 
 const marks = [
     {
@@ -355,158 +386,113 @@ export default function DialogCharacterPlanner(props: any) {
     }
     
     //const createDesiredStars;
-
     // useEffect(() => {
     //     console.log("Slider value: " + abilityOne);
     //   }, [abilityOne]);
       
-    
     return (
-        <Card className={classes.root}> 
-            <div className={classes.headerContainer}>
-                <CardMedia
-                component="img"
-                alt="Character Background"
-                height="160"
-                image={Characterbg}
-                />
-                <div className={classes.header}>
-                    <Grid container direction="row" justify="flex-start" style={{height: "100%"}}>
-                        <Grid container xs={2} direction="row" justify="flex-end" className={classes.characterImageContainer}>
-                            <CardMedia
-                            component="img"
-                            alt="Character Image"
-                            image={character.image}
-                            className={classes.characterImage}>
-                            {/* <img src={character.typeImage} alt="element" className={classes.element}></img> */}
-                            </CardMedia>
-                        </Grid>
-                        <Grid container xs={5} direction="row" justify="flex-start" alignItems="center" className={classes.characterOuterContainer}>
-                            <Grid container xs={12} direction="column" justify="center" alignItems="flex-start" className={classes.characterInfoContainer}>
-                                <Grid item style={{marginBottom: "6px"}}>
-                                    <Typography variant="h3">
-                                        Genshin Impact
-                                    </Typography>
-
-                                </Grid>
-                                <Grid item style={{marginBottom: "6px"}}>
-                                    <Typography variant="h1">
-                                        {character.name} Ascension Planner
-                                    </Typography>
-                                </Grid>
-                                <Grid item style={{marginBottom: "0px" }}> 
-                                    <Typography variant="h5">
-                                        <span className={elementColor}>{character.type}</span> &#8226; {character.weapon}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        <Grid container xs={4} direction="row" justify="center" style={{margin: "auto"}}>
-                            <CheckIcon className={classes.checkIcon} onClick={submitDialog}></CheckIcon>
-                            <CloseIcon className={classes.closeIcon} onClick={dialogClose}></CloseIcon>
-                        </Grid>
-                    </Grid>
+        <div className={classes.character}> 
+            <div className={classes.characterHeader}>
+                <div className={classes.backgroundImage}>
+                </div>
+                <div className={classes.characterImageContainer}>
+                    <CardMedia
+                        image={character.image}
+                        className={classes.characterImage}>
+                        <img src={character.typeImage} alt="element" className={classes.element}></img>	
+                    </CardMedia>
+                </div>
+                <div className={classes.characterTitle}>
+                    <Typography variant="h3" style={{width: '50%'}}>
+                        Genshin Impact
+                    </Typography>
+                    <Typography variant="h1" style={{width: '50%'}}>
+                        {character.name} Ascension Planner
+                    </Typography>
+                    <Typography variant="h5" style={{width: '50%'}}>
+                        <span className={elementColor}>{character.type}</span> &#8226; {character.weapon}
+                    </Typography>
+                </div>
+                <div className={classes.buttons}>
+                    <div className={classes.buttonContainer}>
+                        <CheckIcon className={classes.checkIcon} onClick={submitDialog}></CheckIcon>
+                        <CloseIcon className={classes.closeIcon} onClick={dialogClose}></CloseIcon>
+                    </div>
                 </div>
             </div>
-
-            <CardContent>
-                <Grid container xs={7} direction="row" justify="center" alignItems="center" className={classes.levelContainer}>
-                    <Grid item xs={12}>
-                        <Typography variant="h1" style={{marginBottom:"16px"}}>
-                            Levels
+            <div className={classes.characterContainer}>
+                <Typography variant="h1" style={{margin: '1.5rem 0rem'}}>
+                    Levels
+                </Typography>
+                <Card className={classes.ascension}>
+                        <Typography variant="h2" align="center" style={{width: '100%'}}>
+                            Current Level
                         </Typography>
-                        <Grid container direction="row" justify="center" alignItems="center" className={classes.ascensionContainer}>
-                            <Grid item xs={12} style={{marginTop: "16px"}}>
-                                <Typography variant="h2" align="center">
-                                    Current Level
-                                </Typography>
-                            </Grid>
-                            <div style={{ display: "flex", marginBottom: "16px"}} >
-                                {createCurrentStars}
-                            </div>
-
-                            <Grid item xs={12} className={classes.levelPadding}>
-                                <Typography variant="h2" align="center">
-                                    Desired Level
-                                </Typography>
-                            </Grid>
-                            <div style={{ display: "flex", marginBottom: "16px" }}className={classes.levelPadding}>
-                                {createDesiredStars}
-                            </div>
-                        </Grid>
-
-                        <Typography variant="h1" style={{marginTop: "16px", marginBottom: "16px"}}>
-                            Talents
+                    <div style={{ display: "flex" }} >
+                        {createCurrentStars}
+                    </div>
+                        <Typography variant="h2" align="center" style={{width: '100%'}}>
+                            Desired Level
                         </Typography>
-
-                        <Grid container direction="row" justify="space-between" alignItems="center">
-                            <Grid container justify="center" className={classes.talentCard}>
-                                <Grid item xs={12}>
-                                    <CardMedia
-                                        image= {character.abilityOne.image}
-                                        className={classes.talentImage}
-                                    />
-                                    <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                        {character.abilityOne.name}
-                                    </Typography>
-                                    <Typography variant="h6" align="center" style={{marginBottom: "16px"}}>
-                                        Normal Attack
-                                    </Typography>
-                                </Grid>
-                                <Grid container justify="center" alignItems="flex-end">
-                                    <Grid item xs={6}>
-                                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                                        <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid container justify="center" className={classes.talentCard}>
-                                <Grid item xs={12}>
-                                    <CardMedia
-                                        image= {character.abilityTwo.image}
-                                        className={classes.talentImage}
-                                    />
-                                    <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                        {character.abilityTwo.name}
-                                    </Typography>
-                                    <Typography variant="h6" align="center" style={{marginBottom: "16px"}}>
-                                        Elemental Skill
-                                    </Typography>
-                                </Grid>
-                                <Grid container justify="center" alignItems="flex-end">
-                                    <Grid item xs={6}>
-                                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                                        <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid container justify="center" className={classes.talentCard}>
-                                <Grid item xs={12}>
-                                    <CardMedia
-                                        image= {character.abilityThree.image}
-                                        className={classes.talentImage}
-                                    />
-                                    <Typography variant="h5" align="center" className={classes.talentNameText}>
-                                        {character.abilityThree.name}
-                                    </Typography>
-                                    <Typography variant="h6" align="center" style={{marginBottom: "16px"}}>
-                                        Elemental Burst
-                                    </Typography>
-                                </Grid>
-                                <Grid container justify="center" alignItems="flex-end">
-                                    <Grid item xs={6}>
-                                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                                        <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </CardContent>
-        </Card>
+                    <div style={{ display: "flex" }}>
+                        {createDesiredStars}
+                    </div>
+                </Card>
+                <Typography variant="h1" style={{margin: '1.5rem 0rem'}}>
+                    Talents
+                </Typography>
+                <Card className={classes.talent}>
+                    <CardMedia
+                        image= {character.abilityOne.image}
+                        className={classes.talentImage}
+                    />
+                    <Typography variant="h5" align="center" className={classes.talentName}>
+                        {character.abilityOne.name}
+                    </Typography>
+                    <Typography variant="h6" align="center" style={{width: '100%'}}>
+                        Normal Attack
+                    </Typography>
+                    <div className={classes.talentSlider}>
+                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                        <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
+                    </div>
+                </Card>
+                <Card className={classes.talent}>
+                    <CardMedia
+                        image= {character.abilityTwo.image}
+                        className={classes.talentImage}
+                    />
+                    <Typography variant="h5" align="center" className={classes.talentName}>
+                        {character.abilityTwo.name}
+                    </Typography>
+                    <Typography variant="h6" align="center" style={{width: '100%'}}>
+                        Normal Attack
+                    </Typography>
+                    <div className={classes.talentSlider}>
+                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                        <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
+                    </div>
+                </Card>
+                <Card className={classes.talent}>
+                    <CardMedia
+                        image= {character.abilityThree.image}
+                        className={classes.talentImage}
+                    />
+                    <Typography variant="h5" align="center" className={classes.talentName}>
+                        {character.abilityThree.name}
+                    </Typography>
+                    <Typography variant="h6" align="center" style={{width: '100%'}}>
+                        Normal Attack
+                    </Typography>
+                    <div className={classes.talentSlider}>
+                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                        <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
+                    </div>
+                </Card>
+            </div>
+        </div>
     );
 }

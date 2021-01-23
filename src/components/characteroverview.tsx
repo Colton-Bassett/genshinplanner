@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
-import { Card, Grid, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
+import { Card, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
 import CharacterMaterial from './charactermaterial'
@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: "6.563rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
 		marginBottom: '1rem',
 		backgroundColor: "rgb(54, 56, 74)",
+		boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
 	},
     element: {
         height: "1.75rem", 

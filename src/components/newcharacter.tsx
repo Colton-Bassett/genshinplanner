@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, makeStyles, Dialog, DialogActions, DialogContent, DialogContentText, Button, Tooltip, DialogTitle, Tabs, Tab } from '@material-ui/core';
+import { Card, makeStyles, Dialog, DialogActions, DialogContent, Button, Tooltip, DialogTitle, Tabs, Tab } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 
 import DialogTab from './dialogtab'
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'transparent'
     },
     dialogActions: {
-        backgroundColor: '#222431',    
+        backgroundColor: '#222431',   
     },
     indicator: {
         backgroundColor: 'green'
