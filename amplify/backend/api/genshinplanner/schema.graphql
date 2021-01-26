@@ -11,7 +11,7 @@ type Character @model {
 	abilityTwo: Ability
 	abilityThree: Ability
 	ascensionMats: Ascension
-  talentMats: Talent
+  	talentMats: Talent
 }
 
 type Ability {
@@ -21,8 +21,8 @@ type Ability {
 }
 
 type Talent {
-  talentMat: String
-  bossMat: String
+	talentMat: String
+	bossMat: String
 }
 
 type Ascension {
@@ -30,4 +30,14 @@ type Ascension {
 	matTwo: String
 	specialty: String
 	commonMat: String
+}
+
+type Weapon @model {
+	id: ID!
+	name: String!
+	type: String
+	stars: String
+	description: String
+	image: String
+	ascensionMats: Ascension
 }

@@ -128,3 +128,66 @@ export const deleteCharacter = /* GraphQL */ `
     }
   }
 `;
+export const createWeapon = /* GraphQL */ `
+  mutation CreateWeapon(
+    $input: CreateWeaponInput!
+    $condition: ModelWeaponConditionInput
+  ) {
+    createWeapon(input: $input, condition: $condition) {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;
+export const updateWeapon = /* GraphQL */ `
+  mutation UpdateWeapon(
+    $input: UpdateWeaponInput!
+    $condition: ModelWeaponConditionInput
+  ) {
+    updateWeapon(input: $input, condition: $condition) {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;
+export const deleteWeapon = /* GraphQL */ `
+  mutation DeleteWeapon(
+    $input: DeleteWeaponInput!
+    $condition: ModelWeaponConditionInput
+  ) {
+    deleteWeapon(input: $input, condition: $condition) {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;

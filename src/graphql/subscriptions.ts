@@ -119,3 +119,57 @@ export const onDeleteCharacter = /* GraphQL */ `
     }
   }
 `;
+export const onCreateWeapon = /* GraphQL */ `
+  subscription OnCreateWeapon {
+    onCreateWeapon {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;
+export const onUpdateWeapon = /* GraphQL */ `
+  subscription OnUpdateWeapon {
+    onUpdateWeapon {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;
+export const onDeleteWeapon = /* GraphQL */ `
+  subscription OnDeleteWeapon {
+    onDeleteWeapon {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;

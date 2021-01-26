@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
 //getCharacter, deleteCharacter as deleteCharacterMutation
-import { listCharacters } from './graphql/queries';
+import { listCharacters, listWeapons } from './graphql/queries';
 // import { createCharacter as createCharacterMutation } from './graphql/mutations';
+import { createWeapon as createWeaponMutation } from './graphql/mutations';
 
 import { ThemeProvider, StylesProvider, makeStyles } from '@material-ui/core';
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
@@ -113,11 +114,20 @@ export default function App() {
 		stars: string,
 		description: string, 
 		image: string, 
-		abilityOne: { name: string, image: string, description: string}, 
-		abilityTwo: { name: string, image: string, description: string}, 
-		abilityThree: { name: string, image: string, description: string}, 
-		ascensionMats: { matOne: string, matTwo: string, specialty: string, commonMat: string},
-		talentMats: {talentMat: string, bossMat: string}
+		abilityOne: { name: string, image: string, description: string }, 
+		abilityTwo: { name: string, image: string, description: string }, 
+		abilityThree: { name: string, image: string, description: string }, 
+		ascensionMats: { matOne: string, matTwo: string, specialty: string, commonMat: string },
+		talentMats: { talentMat: string, bossMat: string }
+	}
+
+	interface Weap {
+		name: string,
+		type: string,
+		stars: string,
+		description: string,
+		image: string,
+		ascensionMats: { matOne: string, matTwo: string, specialty: string, commonMat: string },
 	}
 	// const initialChar = { 
 	// 	name: '', 
@@ -133,8 +143,20 @@ export default function App() {
 	// 	ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },
 	// 	talentMats: { talentMat: '', bossMat: '' }
 	// }
+
+	const initialWeap = {
+		name: '', 
+		type: '', 
+		stars: '',
+		description: '', 
+		image: '', 
+		ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },		
+	}
+
 	const [characters, setCharacters] = useState<[Char]>();
 	// const [character, setCharacter] = useState<Char>(initialChar);
+	const [weapons, setWeapons] = useState<[Weap]>();
+	const [weapon, setWeapon] = useState<Weap>(initialWeap);
 	
 	async function fetchCharacters() {
 		const apiData: any = await API.graphql({ query: listCharacters });
@@ -166,6 +188,20 @@ export default function App() {
 		}))
 		console.log("fetchCharacters:", apiData.data.listCharacters.items)
 		setCharacters(apiData.data.listCharacters.items);
+	}
+
+	async function fetchWeapons() {
+		const apiData: any = await API.graphql({ query: listWeapons });
+		const weaponsFromAPI = apiData.data.listWeapons.items;
+		await Promise.all(weaponsFromAPI.map(async (weapon: any) => {
+			if (weapon.image) {
+				const image = await Storage.get(weapon.image);
+				weapon.image = image;
+			}
+			return weapon;
+		}))
+		console.log("fetchWeapons:", apiData.data.listWeapons.items)
+		setWeapons(apiData.data.listWeapons.items);
 	}
 
 	// async function createCharacterWithoutDom() {
@@ -204,9 +240,37 @@ export default function App() {
 	// 	setCharacter(initialChar);
 	// }
 
+
+
+
+
 	useEffect(() => {
+		async function createWeaponWithoutDom() {
+			console.log("createWeaponWithoutDom called")
+			const f = { ...weapon};
+			f.name = "Prototype Starglitter"
+			f.type = 'Polearm'
+			f.stars = 'Four'
+			f.description = "A grudge discovered in the Blackcliff Forge. The glimmers along the sharp edge are like stars in the night."
+			f.image = "Prototype_Starglitter.png"
+	
+			f.ascensionMats.matOne = "Grain_of_Aerosiderite"
+			f.ascensionMats.matTwo = "Fragile_Bone_Shard"
+			f.ascensionMats.specialty = 'N/A'
+			f.ascensionMats.commonMat = "Damaged_Mask"
+			setWeapon(f);
+			if (!weapon.name || !weapon.description) return; 
+			await API.graphql({ query: createWeaponMutation, variables: { input: weapon } });
+			console.log("createWeaponWithoutDom complete ");
+			// reset
+			setWeapon(initialWeap);
+		}
+
 		fetchCharacters();
+		//createWeaponWithoutDom();
+		fetchWeapons();
 		//createCharacterWithoutDom();
+
 	}, []);
 
 	return (
@@ -222,7 +286,7 @@ export default function App() {
 									<DatabasePage />
 								</Route>
 								<Route path="/">
-									<Planner characters={characters}></Planner>
+									<Planner characters={characters} weapons={weapons}></Planner>
 								</Route>	
 							</Switch>
 						</div>

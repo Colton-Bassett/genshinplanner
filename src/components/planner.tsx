@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Planner(props: any) {
 	const classes = useStyles();
 	const characters = props.characters;
+	const weapons = props.weapons;
 
 	interface materialTemplate {
 		name: string,
@@ -88,7 +89,7 @@ export default function Planner(props: any) {
 		<div className={classes.planner}> 
 			<h2>Genshin Impact Planner</h2>
 			{characterOverviews}
-			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></NewCharacter>
+			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} weapons={weapons}></NewCharacter>
 		</div>
 	);
 }

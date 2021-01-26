@@ -86,3 +86,45 @@ export const listCharacters = /* GraphQL */ `
     }
   }
 `;
+export const getWeapon = /* GraphQL */ `
+  query GetWeapon($id: ID!) {
+    getWeapon(id: $id) {
+      id
+      name
+      type
+      stars
+      description
+      image
+      ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+      }
+    }
+  }
+`;
+export const listWeapons = /* GraphQL */ `
+  query ListWeapons(
+    $filter: ModelWeaponFilterInput
+    $nextToken: String
+  ) {
+    listWeapons(filter: $filter, limit: 100, nextToken: $nextToken) {
+      items {
+        id
+        name
+        type
+        stars
+        description
+        image
+        ascensionMats {
+        matOne
+        matTwo
+        specialty
+        commonMat
+        }
+      }
+      nextToken
+    }
+  }
+`;

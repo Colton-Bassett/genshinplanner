@@ -3,7 +3,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import DialogCharacter from './dialogcharacter'
+import DialogWeapon from './dialogweapon';
 import DialogCharacterPlanner from './dialogcharacterplanner'
+import DialogWeaponPlanner from './dialogweaponplanner'
 import TabPanel from './tabpanel'
 
 const useStyles = makeStyles(() => ({
@@ -38,7 +40,8 @@ const useStyles = makeStyles(() => ({
 export default function DialogTab(props: any) {
 	const classes = useStyles();
 
-    const characters = props.characters;
+	const characters = props.characters;
+	const weapons = props.weapons;
     const dialogClose = props.dialogClose;
     const ascensionDetails = props.ascensionDetails;
     const setAscensionDetails = props.setAscensionDetails;
@@ -47,13 +50,24 @@ export default function DialogTab(props: any) {
     const displayTabsTitle = props.displayTabsTitle;
     const tabPanel = props.tabPanel;
 		
-    const [showChars, setShowChars] = React.useState(true)
-    const [currentCharacter, setCurrentCharacter] = React.useState("Character");
+	const [showPlanner, setShowPlanner] = React.useState(false)
+	const [showWeaponPlanner, setShowWeaponPlanner] = React.useState(false)
+	const [showCharacterPlanner, setShowCharacterPlanner] = React.useState(false)
+	const [currentCharacter, setCurrentCharacter] = React.useState("Character");
+	const [currentWeapon, setCurrentWeapon] = React.useState("Weapon");
 
     const openCharacterPlanner = (char: any) => {
         displayTabsTitle();
-        setShowChars(!showChars)	
+		setShowPlanner(!showPlanner)	
+		setShowCharacterPlanner(!showCharacterPlanner)
         setCurrentCharacter(char)
+	}
+	
+    const openWeaponPlanner = (weapon: any) => {
+		displayTabsTitle();
+		setShowPlanner(!showPlanner)	
+        setShowWeaponPlanner(!showWeaponPlanner)	
+        setCurrentWeapon(weapon)
     }
 
     const populateDialogCharacters = characters.map((character: { name: any; }, index: any) => 
@@ -61,6 +75,14 @@ export default function DialogTab(props: any) {
             openCharacterPlanner(character);
         }}>
         	<DialogCharacter character={character} ></DialogCharacter>
+        </div>
+	);
+
+    const populateDialogWeapons = weapons.map((weapon: { name: any; }, index: any) => 
+        <div key={index} className={classes.character} onClick={() => {
+            openWeaponPlanner(weapon);
+        }}>
+        	<DialogWeapon weapon={weapon} ></DialogWeapon>
         </div>
 	);
 
@@ -73,7 +95,7 @@ export default function DialogTab(props: any) {
 			</TabPanel>
 			<TabPanel value={tabPanel} index={1}>
 				<div className={classes.weaponsContainer}>
-					Coming soon
+					{ populateDialogWeapons }
 				</div>
 			</TabPanel>	
 		</div>
@@ -81,8 +103,9 @@ export default function DialogTab(props: any) {
 
 	return (
 		<div>
-			{ showChars ? <DialogTabMain></DialogTabMain> : null }
-			{ !showChars ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
+			{ !showPlanner ? <DialogTabMain></DialogTabMain> : null }
+			{ showCharacterPlanner ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
+			{ showWeaponPlanner ? <DialogWeaponPlanner weapon={currentWeapon} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogWeaponPlanner> : null }
 		</div>	
 	);
 }
