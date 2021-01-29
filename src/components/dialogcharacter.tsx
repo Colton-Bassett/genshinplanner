@@ -12,6 +12,14 @@ const useStyles = makeStyles((theme: Theme) => ({
         borderRadius: '0.375rem', 
         cursor: "pointer",
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        transition: 'transform .2s;', /* Animation */
+        overflow: 'visible',
+        '&:hover': {
+            boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
+            borderRadius: "0.188rem",
+            transform: 'scale(1.05);',
+            cursor: 'pointer',
+         },
     },
     name: {
         textAlign: "center", 

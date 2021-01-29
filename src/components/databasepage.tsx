@@ -3,14 +3,15 @@ import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-		backgroundColor: "#222431 !important",
-		minWidth: '70%',
-		margin: 'auto',
+		backgroundColor: "#222431",
 		minHeight: '62.5rem',
+		minWidth: '100%',
+		padding: '1.5rem',
+		boxSizing: 'border-box',
+		color: 'white'
     },
     container: {
-		paddingLeft: theme.spacing(2),
-		paddingRight: theme.spacing(2),
+
     },
 }));
 
@@ -19,9 +20,7 @@ export default function DatabasePage() {
 	return (
 		<Card className={classes.root}> 
 			<div className={classes.container}>
-				<CardContent>
-					<h2>Database <span style={{color: "#A6A7AC"}}>(Coming Soon)</span></h2>
-				</CardContent>
+				<h2 style={{paddingLeft: '0.75rem'}}>Database <span style={{color: "#A6A7AC"}}>(Coming Soon)</span></h2>
 			</div>
 		</Card>
 	);

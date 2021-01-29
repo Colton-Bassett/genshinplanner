@@ -3,10 +3,13 @@ import clsx from 'clsx';
 import { Card, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
+import Star from '../images/star.png'
+
 import CharacterMaterial from './charactermaterial'
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AscensionStar from '../images/Ascension_Star.png'
+import FivestarBackground from '../images/fourstar_background_sm.png'
 
 const useStyles = makeStyles((theme) => ({
 	plannerContainer: {
@@ -56,6 +59,28 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "rgb(54, 56, 74)",
 		boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
 	},
+	characterImageContainer: {
+		// backgroundImage: `url(${FivestarBackground})`, 
+		// minHeight: "6.563rem", 
+		// maxWidth: "6.563rem", 
+		// borderRadius: "0.625rem", 
+		// margin: 'auto', 
+		// backgroundSize: 'cover', 
+		position: 'relative'
+	},
+    stars: {
+        display: 'flex', 
+        flexDirection: 'row', 
+		maxWidth: '12.5rem',
+		position: 'absolute',
+		bottom: '-0.25rem',
+		left: 0,
+		justifyContent: 'center',
+		width: '100%'
+    },
+    star: {
+        minHeight: '1.15rem', minWidth: '1.15rem'
+    },
     element: {
         height: "1.75rem", 
         width: "1.75rem",
@@ -139,6 +164,7 @@ export default function CharacterOverview(props: any) {
 		type: props.objectInfo.type,
 		typeImage: props.objectInfo.typeImage,
 		name: props.objectInfo.name,
+		stars: props.objectInfo.stars,
 		talentMat: props.objectInfo.talentMat,
 		currentLevel: props.objectInfo.currentLevel,
 		desiredLevel: props.objectInfo.desiredLevel,
@@ -214,6 +240,47 @@ export default function CharacterOverview(props: any) {
 		return level;
 	}
 
+	function elementImage() {
+		if (objectInfo.type === "character") {
+			return <img src={objectInfo.typeImage} alt="element" className={classes.element}></img>
+		}
+	}
+
+	function weaponRarity() {
+		//console.log(objectInfo)
+		if (objectInfo.type === "weapon") {
+			return createRarityStars()
+		}
+	}
+
+	function createRarityStars() {
+		var stars = []
+		if (objectInfo.stars === "Four") {
+			//console.log("CreateRarityStars Four")
+			for (let i = 0; i < 4; i++) {
+				stars.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+
+			}
+
+		} else{
+			//console.log("CreateRarityStars Five")
+			for (let i = 0; i < 5; i++) {
+				stars.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+			}
+
+		}
+		//console.log("CreateRarityStars stars", stars)
+		return <div className={classes.stars}>{stars}</div>
+	}
+
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
 		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
 	);
@@ -246,7 +313,6 @@ export default function CharacterOverview(props: any) {
 		setAscensionStarsOther();
 	}, []);
 
-
 	return (
 		<div className={classes.plannerContainer}>
 			<div className={classes.character}>
@@ -259,13 +325,18 @@ export default function CharacterOverview(props: any) {
 							<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index)}></CancelIcon>
 						</Tooltip>
 					</div>
-					<CardMedia
-						image= {objectInfo.image}
-						className={classes.characterImage}>	
-						<img src={objectInfo.typeImage} alt="element" className={classes.element}></img>	
-					</CardMedia>
+					<div className={classes.characterImageContainer}>
+						<CardMedia
+							image= {objectInfo.image}
+							className={classes.characterImage}>	
+							{elementImage()}
+							
+						</CardMedia>
+							{weaponRarity()}
+					</div>
 
-					<Typography variant="h2" align='center' style={{marginBottom: '0.25rem'}}>
+
+					<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
 						{objectInfo.name}
 					</Typography>
 					<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
@@ -273,7 +344,7 @@ export default function CharacterOverview(props: any) {
 
 					</div>
 					<Typography variant="body1" align='center' style={{fontWeight: 700}}>
-						Level {getCurrentLevel()} - {getDesiredLevel()}
+						Lv. {getCurrentLevel()} - {getDesiredLevel()}
 					</Typography>
 					<Collapse in={expanded} timeout="auto" unmountOnExit>
 						<CardContent>

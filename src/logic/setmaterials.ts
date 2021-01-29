@@ -291,7 +291,6 @@ function getTalentMat(talentMaterial: any, talentLevel: number) {
                 return "Philosophies_of_Gold"
             }
     }
-
 }
 
 function getTalentMatAmount(talentLevel: number) {

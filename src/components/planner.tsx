@@ -47,6 +47,7 @@ export default function Planner(props: any) {
 		type: '',
 		name: 'Razor',
 		image: '',
+		stars: '',
 
 		currentLevel: '',
 		desiredLevel: '',
@@ -87,7 +88,7 @@ export default function Planner(props: any) {
 
 	return (
 		<div className={classes.planner}> 
-			<h2>Genshin Impact Planner</h2>
+			<h2 style={{paddingLeft: '0.75rem'}}>Genshin Impact Planner</h2>
 			{characterOverviews}
 			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} weapons={weapons}></NewCharacter>
 		</div>

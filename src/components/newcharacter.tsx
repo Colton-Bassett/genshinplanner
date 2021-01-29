@@ -35,10 +35,16 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        transition: 'transform .2s;', /* Animation */
+        overflow: 'visible',
         '&:hover': {
+            boxShadow: '0rem 0rem 0rem 0.25rem #e9e5dc;',
+            borderRadius: "0.188rem",
+            transform: 'scale(1.05);',
             cursor: 'pointer',
+            color: 'white',
             '& $add': {
-                color: "#fff",
+                color: 'white',
             }
          },
     },
@@ -47,13 +53,24 @@ const useStyles = makeStyles((theme) => ({
         color: '#A6A7AC',
         margin: '0rem',
     },
+    blankCard: {
+        backgroundColor: "#272937 !important",
+        minWidth: '10.625rem',
+        margin: 'auto',
+        minHeight: '17.188rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     dialogTitleContainer: {
         display: 'flex', 
         backgroundColor: '#222431',
     },
     tabLabel: {
         textTransform: "none", fontSize: "1.25rem",
-
+        '&:hover': {
+            color: 'white',
+        }
     },
     dialog: {
         minWidth: '53.125rem;',
@@ -69,14 +86,18 @@ const useStyles = makeStyles((theme) => ({
         outline: 'none'
     },
     dialogCancel: {
-        color:"white", 
+        color: "#A6A7AC",
         textTransform: "none", 
         paddingRight: "1.875rem", 
         fontSize: "1.1rem", 
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        '&:hover': {
+            color: 'white'
+         },
     },
     dialogActions: {
-        backgroundColor: '#222431',   
+        backgroundColor: '#222431',
+        borderTop: "0.2rem solid #36384a",   
     },
     indicator: {
         backgroundColor: 'green'
@@ -146,7 +167,7 @@ export default function NewCharacter(props: any) {
                 </Card>
             </div>
             <div className={classes.addCharacterContent}>
-                <Card className={classes.card}>     
+                <Card className={classes.blankCard}>     
                 </Card>
             </div>
 
@@ -159,7 +180,7 @@ export default function NewCharacter(props: any) {
                 aria-describedby="scroll-dialog-description"
                 classes={{paper: classes.dialog}}
             >
-                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#222431', justifyContent: 'center'}}>
+                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#222431', justifyContent: 'center', borderBottom: "0.313rem solid #36384a",}}>
                     <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
                         <Tab label="Genshin Impact Characters" {...tabID(0)} className={classes.tabLabel}  disableRipple/>
                         <Tab label="Genshin Impact Weapons" {...tabID(1)} className={classes.tabLabel} disableRipple />

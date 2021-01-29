@@ -32,6 +32,14 @@ type Ascension {
 	commonMat: String
 }
 
+type Sources {
+	sourceOne: String
+	sourceTwo: String
+	sourceThree: String
+	sourceFour: String
+	sourceFive: String
+}
+
 type Weapon @model {
 	id: ID!
 	name: String!
@@ -40,4 +48,14 @@ type Weapon @model {
 	description: String
 	image: String
 	ascensionMats: Ascension
+}
+
+type Material @model {
+	id: ID!
+	name: String!
+	type: Strings
+	stars: String
+	description: String
+	image: String
+	sources: Sources
 }

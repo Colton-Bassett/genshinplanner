@@ -3,11 +3,11 @@ import { Card, makeStyles, CardMedia, Typography, } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
-//import Characterbg from '../images/characterbg.png'
+import Characterbg from '../images/characterbg.png'
 import AscensionStar from '../images/Ascension_Star.png'
-import { Storage } from 'aws-amplify';
 
 import SetMaterials from '../logic/setmaterials';
+import SetImages from '../logic/setimages'
 import RangeSlider from './slider';
 
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden', 
         padding: '1.563rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        borderBottom: 'solid 5px #36384a'
+        borderBottom: 'solid 0.313rem #36384a'
     },
     backgroundImage: {
         position: 'absolute', 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1, 
         backgroundPosition: '50% 40%', 
         boxSizing: 'border-box', 
-        backgroundImage: 'url(https://rerollcdn.com/GENSHIN/UI/character-background.png)', 
+        backgroundImage: `url(${Characterbg})`,
         opacity: 0.6,
     },
     characterImageContainer: {
@@ -86,7 +86,15 @@ const useStyles = makeStyles((theme) => ({
         marginRight: "1.5rem",
         cursor: "pointer",
         borderRadius: '0.188rem',
-        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        transition: 'transform .2s;', /* Animation */
+        overflow: 'visible',
+        '&:hover': {
+            boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
+            borderRadius: "0.188rem",
+            transform: 'scale(1.05);',
+            cursor: 'pointer',
+         },
     },
     closeIcon: {
         fontSize: "2.75rem;",
@@ -94,7 +102,15 @@ const useStyles = makeStyles((theme) => ({
         color: "#f56262",
         cursor: "pointer",
         borderRadius: '0.188rem',
-        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        transition: 'transform .2s;', /* Animation */
+        overflow: 'visible',
+        '&:hover': {
+            boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
+            borderRadius: "0.188rem",
+            transform: 'scale(1.05);',
+            cursor: 'pointer',
+         },
     },
     characterContainer: {
         justifyContent: 'center',
@@ -123,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "0rem 0.125rem",
         opacity: ".3",
         '&:hover': {
-            cursor: "pointer"
+            cursor: "pointer",
          },
     },
     talent: {
@@ -278,28 +294,13 @@ export default function DialogCharacterPlanner(props: any) {
             //console.log("desiredStars:", desiredStars);
     }
 
-	async function fetchImage(name: any) {  
-        const image = await Storage.get(name);
-        //console.log("fetchImage image:", image);
-		return image;
-    }
-    
-    async function setImages(materials: any) {
-        for (let i = 0; i < materials.length; i++) {
-            //console.log('running materials loop')
-            const materialImage = await(fetchImage(materials[i].name + '.png'))
-            materials[i].image = materialImage
-        }
-        return materials
-    }
-
     async function submitDialog() {
         let i = [...items]
         //console.log("here is temp i", i);
         //console.log("here is value:", abilityOne);
         let a = {...ascensionDetails}
         a.index = items.length;
-        a.type = 'Character';
+        a.type = 'character';
         //console.log("character name:", character);
         a.name = character.name;
         a.image = character.image;
@@ -330,7 +331,7 @@ export default function DialogCharacterPlanner(props: any) {
 
         a.materials = SetMaterials(character, a);
 
-        const matties = await setImages(a.materials);
+        const matties = await SetImages(a.materials);
         a.materials = matties;
 
         //setAscensionDetails(a);
