@@ -15,8 +15,7 @@ const useStyles = makeStyles(() => ({
 		boxSizing: 'border-box', 
 		alignItems: 'flex-start', 
 		width: '95%', 
-		margin: 'auto', 
-		marginTop: '0.5rem'
+		margin: '1.5rem auto', 
 	},
 	character: {
 		boxSizing: 'border-box', 

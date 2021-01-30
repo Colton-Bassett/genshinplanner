@@ -191,3 +191,72 @@ export const deleteWeapon = /* GraphQL */ `
     }
   }
 `;
+export const createMaterial = /* GraphQL */ `
+  mutation CreateMaterial(
+    $input: CreateMaterialInput!
+    $condition: ModelMaterialConditionInput
+  ) {
+    createMaterial(input: $input, condition: $condition) {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;
+export const updateMaterial = /* GraphQL */ `
+  mutation UpdateMaterial(
+    $input: UpdateMaterialInput!
+    $condition: ModelMaterialConditionInput
+  ) {
+    updateMaterial(input: $input, condition: $condition) {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;
+export const deleteMaterial = /* GraphQL */ `
+  mutation DeleteMaterial(
+    $input: DeleteMaterialInput!
+    $condition: ModelMaterialConditionInput
+  ) {
+    deleteMaterial(input: $input, condition: $condition) {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;

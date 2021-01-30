@@ -8,6 +8,8 @@ import Characterbg from '../images/characterbg.png'
 import SetWeaponMaterials from '../logic/setweaponmaterials';
 import SetImages from '../logic/setimages'
 
+import Star from '../images/star.png'
+
 const useStyles = makeStyles(() => ({
 
     weapon: {
@@ -39,7 +41,7 @@ const useStyles = makeStyles(() => ({
         zIndex: 3, 
         justifyContent: 'center', 
         alignItems: 'center', 
-        display: 'flex'
+        display: 'flex',
     },
     weaponImage: {
         maxHeight: "6rem",
@@ -50,15 +52,17 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#36384a",
         borderRadius: "0.375rem",
         zIndex: 3,
+        display: 'flex',
+        justifyContent: 'center',
     },
-    element: {
-        height: "1.75rem", 
-        width: "1.75rem",
-        float:"left",
-        padding: "0.188rem",
-        background: "#36384a",
-        borderRadius: "6.25rem",
-        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
+    stars: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        maxWidth: '12.5rem',
+        position: 'absolute', bottom: '-.25rem', justifyContent: 'center'
+    },
+    star: {
+        minHeight: '1.15rem', minWidth: '1.15rem', 
     },
     weaponTitle: {
         maxWidth: '60%', 
@@ -256,6 +260,32 @@ export default function DialogWeaponPlanner(props: any) {
         return count; 
     }
 
+    function createRarityStars() {
+		var stars = []
+		if (weapon.stars === "Four") {
+			//console.log("CreateRarityStars Four")
+			for (let i = 0; i < 4; i++) {
+				stars.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+
+			}
+		} else{
+			//console.log("CreateRarityStars Five")
+			for (let i = 0; i < 5; i++) {
+				stars.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+			}
+		}
+		//console.log("CreateRarityStars stars", stars)
+		return <div className={classes.stars}>{stars}</div>
+	}
+
 
     async function submitDialog() {
         let i = [...items]
@@ -300,10 +330,15 @@ export default function DialogWeaponPlanner(props: any) {
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.weaponImageContainer}>
+                <div style={{position: 'relative', justifyContent: 'center'}}>
+
+                    
                     <CardMedia
                         image={weapon.image}
                         className={classes.weaponImage}>
+                        {createRarityStars()}
                     </CardMedia>
+                </div>  
                 </div>
                 <div className={classes.weaponTitle}>
                     <Typography variant="h3" style={{width: '50%'}}>

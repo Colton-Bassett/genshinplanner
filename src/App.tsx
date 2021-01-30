@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
 //getCharacter, deleteCharacter as deleteCharacterMutation
-import { listCharacters, listWeapons } from './graphql/queries';
+import { listCharacters, listWeapons, listMaterials } from './graphql/queries';
 // import { createCharacter as createCharacterMutation } from './graphql/mutations';
 import { createWeapon as createWeaponMutation } from './graphql/mutations';
+import { createMaterial as createMaterialMutation } from './graphql/mutations';
 
 import { ThemeProvider, StylesProvider, makeStyles } from '@material-ui/core';
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
@@ -129,6 +130,15 @@ export default function App() {
 		image: string,
 		ascensionMats: { matOne: string, matTwo: string, specialty: string, commonMat: string },
 	}
+	interface Material {
+		name: string,
+		type: string,
+		stars: string,
+		position: string,
+		description: string,
+		image: string,
+		sources: { sourceOne: string, sourceTwo: string, sourceThree: string, sourceFour: string, sourceFive: string }
+	}
 	// const initialChar = { 
 	// 	name: '', 
 	// 	type: '', 
@@ -153,10 +163,22 @@ export default function App() {
 		ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },		
 	}
 
+	const initialMaterial = {
+		name: '', 
+		type: '', 
+		stars: '',
+		position: '',
+		description: '', 
+		image: '', 
+		sources: { sourceOne: '', sourceTwo: '', sourceThree: '', sourceFour: '', sourceFive: '' },		
+	}
+
 	const [characters, setCharacters] = useState<[Char]>();
 	// const [character, setCharacter] = useState<Char>(initialChar);
 	const [weapons, setWeapons] = useState<[Weap]>();
 	const [weapon, setWeapon] = useState<Weap>(initialWeap);
+	const [materials, setMaterials] = useState<[Material]>();
+	const [material, setMaterial] = useState<Material>(initialMaterial);
 	
 	async function fetchCharacters() {
 		const apiData: any = await API.graphql({ query: listCharacters });
@@ -187,7 +209,11 @@ export default function App() {
 			return character;
 		}))
 		console.log("fetchCharacters:", apiData.data.listCharacters.items)
-		setCharacters(apiData.data.listCharacters.items);
+
+		// sorting alphabetically
+		const c = (apiData.data.listCharacters.items);
+		c?.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name));
+		setCharacters(c)
 	}
 
 	async function fetchWeapons() {
@@ -201,7 +227,31 @@ export default function App() {
 			return weapon;
 		}))
 		console.log("fetchWeapons:", apiData.data.listWeapons.items)
-		setWeapons(apiData.data.listWeapons.items);
+		const w = (apiData.data.listWeapons.items);
+		
+		// sort by stars, then alphabetically
+		w?.sort((a: { stars: any; name: any; }, b: { stars: any; name: any; }) => (a.stars > b.stars) ? 1 : (a.stars === b.stars) ? ((a.name > b.name) ? 1 : -1) : -1 )
+		setWeapons(w)
+	}
+
+	async function fetchMaterials() {
+		const apiData: any = await API.graphql({ query: listMaterials });
+		const materialsFromAPI = apiData.data.listMaterials.items;
+		await Promise.all(materialsFromAPI.map(async (material: any) => {
+			if (material.image) {
+				const image = await Storage.get(material.image);
+				material.image = image;
+			}
+			return material;
+		}))
+		console.log("fetchMaterial:", apiData.data.listMaterials.items)
+		const m = (apiData.data.listMaterials.items);
+		
+		// sort by stars, then alphabetically
+		//m?.sort((a: { stars: any; name: any; }, b: { stars: any; name: any; }) => (a.stars > b.stars) ? 1 : (a.stars === b.stars) ? ((a.name > b.name) ? 1 : -1) : -1 )
+		m?.sort((a: { position: string; }, b: { position: any; }) => a.position.localeCompare(b.position));
+
+		setMaterials(m)
 	}
 
 	// async function createCharacterWithoutDom() {
@@ -240,36 +290,60 @@ export default function App() {
 	// 	setCharacter(initialChar);
 	// }
 
-
-
-
-
 	useEffect(() => {
-		async function createWeaponWithoutDom() {
-			console.log("createWeaponWithoutDom called")
-			const f = { ...weapon};
-			f.name = "Prototype Starglitter"
-			f.type = 'Polearm'
-			f.stars = 'Four'
-			f.description = "A grudge discovered in the Blackcliff Forge. The glimmers along the sharp edge are like stars in the night."
-			f.image = "Prototype_Starglitter.png"
+		// async function createWeaponWithoutDom() {
+		// 	console.log("createWeaponWithoutDom called")
+		// 	const f = { ...weapon};
+		// 	f.name = "Whiteblind"
+		// 	f.type = 'Claymore'
+		// 	f.stars = 'Four'
+		// 	f.description = "An exotic sword with one section of the blade left blunt. It made its way into Liyue via the hands of foreign traders. Incredibly powerful in the hands of someone who knows how to use it."
+		// 	f.image = "Whiteblind.png"
 	
-			f.ascensionMats.matOne = "Grain_of_Aerosiderite"
-			f.ascensionMats.matTwo = "Fragile_Bone_Shard"
-			f.ascensionMats.specialty = 'N/A'
-			f.ascensionMats.commonMat = "Damaged_Mask"
-			setWeapon(f);
-			if (!weapon.name || !weapon.description) return; 
-			await API.graphql({ query: createWeaponMutation, variables: { input: weapon } });
-			console.log("createWeaponWithoutDom complete ");
+		// 	f.ascensionMats.matOne = "Luminous_Sands_from_Guyun"
+		// 	f.ascensionMats.matTwo = "Hunter's_Sacrificial_Knife"
+		// 	f.ascensionMats.specialty = 'N/A'
+		// 	f.ascensionMats.commonMat = "Treasure_Hoarder_Insignia"
+		// 	setWeapon(f);
+		// 	if (!weapon.name || !weapon.description) return; 
+		// 	await API.graphql({ query: createWeaponMutation, variables: { input: weapon } });
+		// 	console.log("createWeaponWithoutDom complete ");
+		// 	// reset
+		// 	setWeapon(initialWeap);
+		// }
+
+		async function createMaterialWithoutDom() {
+			console.log("createMaterialWithoutDom called")
+			const f = { ...material};
+			f.name = "Ominous Mask"
+			f.type = 'Character Level Up Material'
+			f.stars = 'Three'
+			f.position = "29"
+			f.description = "A glossy bone mask with oil markings painted on it, meant to intimidate enemies."
+			f.image = "Ominous_Mask.png"
+	
+			f.sources.sourceOne = "Dropped by Lv. 60+ hilichurls"
+			f.sources.sourceTwo = "Dropped by some  Lv. 60+ samachurls"
+			f.sources.sourceThree = "Dropped by some Lv. 60+ large hilichurls"
+			f.sources.sourceFour = "Crafted"
+			f.sources.sourceFive = ""
+
+			setMaterial(f);
+			if (!material.name || !material.description) return; 
+			await API.graphql({ query: createMaterialMutation, variables: { input: material } });
+			console.log("createMaterialWithoutDom complete");
 			// reset
-			setWeapon(initialWeap);
+			setMaterial(initialMaterial);
 		}
 
-		fetchCharacters();
-		//createWeaponWithoutDom();
-		fetchWeapons();
 		//createCharacterWithoutDom();
+		//createWeaponWithoutDom();
+		//createMaterialWithoutDom();
+
+		//fetchCharacters()
+		//fetchWeapons();
+		//fetchMaterials();
+
 
 	}, []);
 

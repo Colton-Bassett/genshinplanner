@@ -173,3 +173,63 @@ export const onDeleteWeapon = /* GraphQL */ `
     }
   }
 `;
+export const onCreateMaterial = /* GraphQL */ `
+  subscription OnCreateMaterial {
+    onCreateMaterial {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;
+export const onUpdateMaterial = /* GraphQL */ `
+  subscription OnUpdateMaterial {
+    onUpdateMaterial {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;
+export const onDeleteMaterial = /* GraphQL */ `
+  subscription OnDeleteMaterial {
+    onDeleteMaterial {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;

@@ -123,6 +123,8 @@ const useStyles = makeStyles((theme) => ({
 		minWidth: '100%',
 	},
 	materialHeader: {
+		paddingLeft: '1.5rem',
+		paddingRight: '1.5rem'
 	},
 	materialTitle: {
 	},

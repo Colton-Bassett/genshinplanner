@@ -128,3 +128,49 @@ export const listWeapons = /* GraphQL */ `
     }
   }
 `;
+export const getMaterial = /* GraphQL */ `
+  query GetMaterial($id: ID!) {
+    getMaterial(id: $id) {
+      id
+      name
+      type
+      stars
+      position
+      description
+      image
+      sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+      }
+    }
+  }
+`;
+export const listMaterials = /* GraphQL */ `
+  query ListMaterials(
+    $filter: ModelMaterialFilterInput
+    $nextToken: String
+  ) {
+    listMaterials(filter: $filter, limit: 100, nextToken: $nextToken) {
+      items {
+        id
+        name
+        type
+        stars
+        position
+        description
+        image
+        sources {
+        sourceOne
+        sourceTwo
+        sourceThree
+        sourceFour
+        sourceFive
+        }
+      }
+      nextToken
+    }
+  }
+`;

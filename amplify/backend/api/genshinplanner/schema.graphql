@@ -53,8 +53,9 @@ type Weapon @model {
 type Material @model {
 	id: ID!
 	name: String!
-	type: Strings
+	type: String
 	stars: String
+	position: String
 	description: String
 	image: String
 	sources: Sources
