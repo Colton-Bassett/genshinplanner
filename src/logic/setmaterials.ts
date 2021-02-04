@@ -1,3 +1,25 @@
+interface Material {
+    name: string,
+    type: string,
+    quantity: number,
+    stars: string,
+    position: string,
+    description: string,
+    image: string,
+    sources: { sourceOne: string, sourceTwo: string, sourceThree: string, sourceFour: string, sourceFive: string }
+}
+
+const initialMaterial = {
+    name: '', 
+    type: '', 
+    quantity: 0,
+    stars: '',
+    position: '',
+    description: '', 
+    image: '', 
+    sources: { sourceOne: '', sourceTwo: '', sourceThree: '', sourceFour: '', sourceFive: '' },		
+}
+
 const ascensionCosts = {
     one : { matOne: 1, matTwo: 0, specialty: 3, commonMat: 3, mora: 44000, heroswit: 7 },
     two : { matOne: 3, matTwo: 2, specialty: 10, commonMat: 15, mora: 155600, heroswit: 29 },
@@ -452,168 +474,180 @@ function getTalentMoraAmount(talentLevel: number) {
     }
 }
 
-function addMaterial(mat: any, materials: any) {
+function addMaterial(mat: any, materials: any, allMaterials: any) {
     //console.log(mat.quantity)
+    //console.log("allMaterials:", allMaterials);
     let duplicateMaterial = materials.find((material: { name: any; }) => material.name === mat.name)
     if (duplicateMaterial) {
         duplicateMaterial.quantity += mat.quantity
     } else {
+        const tempName = mat.name.replace(/_/g, ' ');
+        let masterMaterial = allMaterials.find((element: { name: any; }) => element.name === tempName)
+        mat.description = masterMaterial.description;
+        mat.stars = masterMaterial.stars;
+        mat.type = masterMaterial.type;
+        mat.position = masterMaterial.position;
+        mat.sources.sourceOne = masterMaterial.sources.sourceOne;
+        mat.sources.sourceTwo = masterMaterial.sources.sourceTwo;
+        mat.sources.sourceThree = masterMaterial.sources.sourceThree;
+        mat.sources.sourceFour = masterMaterial.sources.sourceFour;
+        mat.sources.sourceFive = masterMaterial.sources.sourceFive;
         materials.push(mat)
     }
 }
 
-function addTalentMaterial(character: any, ascensionDetails: any, ability: string, materials: any) {
+function addTalentMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
             for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
-                let abilityMat = {name: "", quantity: 0, image: ""};
+                let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
                 abilityMat.quantity = getTalentMatAmount(talentLevel)!;
-                addMaterial(abilityMat, materials);
+                addMaterial(abilityMat, materials, allMaterials);
             }
             return
         case "abilityTwo":
             for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
-                let abilityMat = {name: "", quantity: 0, image: ""};
+                let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
                 abilityMat.quantity = getTalentMatAmount(talentLevel)!;
-                addMaterial(abilityMat, materials);
+                addMaterial(abilityMat, materials, allMaterials);
             }
             return
         case "abilityThree":
             for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
-                let abilityMat = {name: "", quantity: 0, image: ""};
+                let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
                 abilityMat.quantity = getTalentMatAmount(talentLevel)!;
-                addMaterial(abilityMat, materials);
+                addMaterial(abilityMat, materials, allMaterials);
             }
             return
     }
 }
 
-function addTalentCommonMaterial(character: any, ascensionDetails: any, ability: string, materials: any) {
+function addTalentCommonMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
             for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
-                let commonMat = {name: "", quantity: 0, image: ""};
+                let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 commonMat.name = getTalentCommonMat(character.ascensionMats.commonMat, talentLevel)!;
                 commonMat.quantity = getTalentCommonMatAmount(talentLevel)!;
-                addMaterial(commonMat, materials);
+                addMaterial(commonMat, materials, allMaterials);
             }
             return
         case "abilityTwo":
             for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
-                let commonMat = {name: "", quantity: 0, image: ""};
+                let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 commonMat.name = getTalentCommonMat(character.ascensionMats.commonMat, talentLevel)!;
                 commonMat.quantity = getTalentCommonMatAmount(talentLevel)!;
-                addMaterial(commonMat, materials);
+                addMaterial(commonMat, materials, allMaterials);
             }
             return
         case "abilityThree":
             for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
-                let commonMat = {name: "", quantity: 0, image: ""};
+                let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 commonMat.name = getTalentCommonMat(character.ascensionMats.commonMat, talentLevel)!;
                 commonMat.quantity = getTalentCommonMatAmount(talentLevel)!;
-                addMaterial(commonMat, materials);
+                addMaterial(commonMat, materials, allMaterials);
             }
             return
     }
 }
 
-function addTalentBossMaterial(character: any, ascensionDetails: any, ability: string, materials: any) {
+function addTalentBossMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
             for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
                 if (talentLevel >= 7) {
-                    let bossMat = {name: "", quantity: 0, image: ""};
+                    let bossMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     bossMat.name = character.talentMats.bossMat;
                     bossMat.quantity = getTalentBossMatAmount(talentLevel);
-                    addMaterial(bossMat, materials);
+                    addMaterial(bossMat, materials, allMaterials);
                 }
             } 
             return
         case "abilityTwo":
             for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
                 if (talentLevel >= 7) {
-                    let bossMat = {name: "", quantity: 0, image: ""};
+                    let bossMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     bossMat.name = character.talentMats.bossMat;
                     bossMat.quantity = getTalentBossMatAmount(talentLevel);
-                    addMaterial(bossMat, materials);
+                    addMaterial(bossMat, materials, allMaterials);
                 }
             } 
             return
         case "abilityThree":
             for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
                 if (talentLevel >= 7) {
-                    let bossMat = {name: "", quantity: 0, image: ""};
+                    let bossMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     bossMat.name = character.talentMats.bossMat;
                     bossMat.quantity = getTalentBossMatAmount(talentLevel);
-                    addMaterial(bossMat, materials);
+                    addMaterial(bossMat, materials, allMaterials);
                 }
             } 
             return
     }
 }
 
-function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: string, materials: any) {
+function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
             for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
-                let mora = {name: "", quantity: 0, image: ""};
+                let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 mora.name = "Mora";
                 mora.quantity = getTalentMoraAmount(talentLevel)!;
                 //console.log("addTalentMoraMaterial mora.quantity:", mora.quantity);
-                addMaterial(mora, materials);
+                addMaterial(mora, materials, allMaterials);
             }
             return
         case "abilityTwo":
             for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
-                let mora = {name: "", quantity: 0, image: ""};
+                let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 mora.name = "Mora";
                 mora.quantity = getTalentMoraAmount(talentLevel)!;
-                addMaterial(mora, materials);
+                addMaterial(mora, materials, allMaterials);
             }
             return
         case "abilityThree":
             for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
-                let mora = {name: "", quantity: 0, image: ""};
+                let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 mora.name = "Mora";
                 mora.quantity = getTalentMoraAmount(talentLevel)!;
-                addMaterial(mora, materials);
+                addMaterial(mora, materials, allMaterials);
             }
             return
     }
 }
 
-function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: string, materials: any) {
+function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
             let talentLevel = ascensionDetails.abilityOneDesired;
                 if (talentLevel === 10) {
-                    let abilityMat = {name: "", quantity: 0, image: ""};
+                    let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     abilityMat.name = "Crown_of_Insight"
                     abilityMat.quantity = 1
-                    addMaterial(abilityMat, materials);
+                    addMaterial(abilityMat, materials, allMaterials);
                 }
             return
         case "abilityTwo":
             let talentLevel2 = ascensionDetails.abilityTwoDesired;
                 if (talentLevel2 === 10) {
 
-                    let abilityMat = {name: "", quantity: 0, image: ""};
+                    let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     abilityMat.name = "Crown_of_Insight"
                     abilityMat.quantity = 1
-                    addMaterial(abilityMat, materials);
+                    addMaterial(abilityMat, materials, allMaterials);
                 }
             return
         case "abilityThree":
             let talentLevel3 = ascensionDetails.abilityThreeDesired;
                 if (talentLevel3 === 10) {
 
-                    let abilityMat = {name: "", quantity: 0, image: ""};
+                    let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     abilityMat.name = "Crown_of_Insight"
                     abilityMat.quantity = 1
-                    addMaterial(abilityMat, materials);
+                    addMaterial(abilityMat, materials, allMaterials);
                 }
             }
             return
@@ -634,17 +668,17 @@ function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: 
 //     abilityThreeDesired: 8,
 // }
 
-function setTalentMaterials(character: any, ascensionDetails: any, materials: any) {
+function setTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
     if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
         // do nothing
         console.log("setTalentMaterials is doing nothing, abilityOne")
     } else {
         ascensionDetails.abilityOneCurrent += 1;
-        addTalentMaterial(character, ascensionDetails, "abilityOne", materials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityOne", materials);
+        addTalentMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
     }
 
     if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
@@ -652,11 +686,11 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
         console.log("setTalentMaterials is doing nothing, abilityTwo")
     } else {
         ascensionDetails.abilityTwoCurrent += 1;
-        addTalentMaterial(character, ascensionDetails, "abilityTwo", materials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityTwo", materials);
+        addTalentMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
     }
 
     if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
@@ -664,62 +698,65 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
         console.log("setTalentMaterials is doing nothing, abilityThree")
     } else {
         ascensionDetails.abilityThreeCurrent += 1;
-        addTalentMaterial(character, ascensionDetails, "abilityThree", materials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityThree", materials);
+        addTalentMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
     }
 }
 
-export default function SetMaterials(character: any, ascensionDetails: any) {
+export default function SetMaterials(character: any, ascensionDetails: any, allMaterials: any) {
     //console.log("SetMaterials character:", character);
     console.log("SetMaterials() AscensionDetails:", ascensionDetails);
     let materials: any[] = [];
 
     for (let level = ascensionDetails.currentLevel +1; level <= ascensionDetails.desiredLevel; level++) {
-        let matOne = {name: "", quantity: 0, image: ""};
+        let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matOne.name = getMatOne(character.ascensionMats.matOne, level)!;
         matOne.quantity = getMatOneAmount(level)!;
         // matOne.image = getImage()
-        addMaterial(matOne, materials);
+        addMaterial(matOne, materials, allMaterials);
 
-        let matTwo = {name: "", quantity: 0, image: ""};
+        let matTwo = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matTwo.name = character.ascensionMats.matTwo;
         matTwo.quantity = getMatTwoAmount(level)!;
         // matTwo.image = getImage()
         if (level === 1) {
             // do nothing
         } else {
-            addMaterial(matTwo, materials);
+            addMaterial(matTwo, materials, allMaterials);
         }
 
-        let specialty = {name: "", quantity: 0, image: ""};
+        let specialty = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         specialty.name = character.ascensionMats.specialty;
         specialty.quantity = getSpecialtyAmount(level)!;
         // specialty.image = getImage()
-        addMaterial(specialty, materials);
+        addMaterial(specialty, materials, allMaterials);
 
-        let commonMat = {name: "", quantity: 0, image: ""};
+        let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         commonMat.name = getCommonMat(character.ascensionMats.commonMat, level)!;
         commonMat.quantity = getCommonMatAmount(level)!;
         // commonMat.image = getImage()
-        addMaterial(commonMat, materials);
+        addMaterial(commonMat, materials, allMaterials);
 
-        let mora = {name: "", quantity: 0, image: ""};
+        let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         mora.name = "Mora";
         mora.quantity = getAscenionMoraAmount(level)!;
         // mora.image = getImage()
-        addMaterial(mora, materials);
+        addMaterial(mora, materials, allMaterials);
 
-        let heroswit = {name: "", quantity: 0, image: ""}
+        let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         heroswit.name="Hero's_Wit";
         heroswit.quantity = getHerosWitAmount(level)!;
-        addMaterial(heroswit, materials);
+        addMaterial(heroswit, materials, allMaterials);
     }
 
-    setTalentMaterials(character, ascensionDetails, materials);
+    setTalentMaterials(character, ascensionDetails, materials, allMaterials);
     console.log("SetMaterials() Return Materials:", materials);
+
+    // sorting by position
+    materials?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position));
 
     return materials;
 

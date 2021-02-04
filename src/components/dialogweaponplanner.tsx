@@ -157,6 +157,7 @@ export default function DialogWeaponPlanner(props: any) {
     //const setAscensionDetails = props.setAscensionDetails;
     const items = props.items;
     const setItems = props.setItems;
+    const materials = props.materials;
 
     const initialCurrentStars = [
         {opacity: "0.3"},
@@ -311,7 +312,7 @@ export default function DialogWeaponPlanner(props: any) {
         //     {name: "Fragment_of_Decarabian's_Epic", quantity: "14", image: ""}, {name: "Scattered_Piece_of_Decarabian's_Dream", quantity: "6", image: ""}, 
         // ]
 
-        a.materials = SetWeaponMaterials(weapon, a);
+        a.materials = SetWeaponMaterials(weapon, a, materials);
         const matties = await SetImages(a.materials);
         a.materials = matties;
 

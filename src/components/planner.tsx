@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 
 import NewCharacter from "./newcharacter"
 import CharacterOverview from "./characteroverview"
+import Summary from "./summary"
 
 const useStyles = makeStyles((theme) => ({
     planner: {
@@ -19,6 +20,7 @@ export default function Planner(props: any) {
 	const classes = useStyles();
 	const characters = props.characters;
 	const weapons = props.weapons;
+	const materials = props.materials;
 
 	interface materialTemplate {
 		name: string,
@@ -90,7 +92,7 @@ export default function Planner(props: any) {
 		<div className={classes.planner}> 
 			<h2 style={{paddingLeft: '0.75rem'}}>Genshin Impact Planner</h2>
 			{characterOverviews}
-			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} weapons={weapons}></NewCharacter>
+			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} weapons={weapons} materials={materials}></NewCharacter>
 		</div>
 	);
 }

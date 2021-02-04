@@ -47,7 +47,8 @@ export default function DialogTab(props: any) {
     const items = props.items;
     const setItems = props.setItems;
     const displayTabsTitle = props.displayTabsTitle;
-    const tabPanel = props.tabPanel;
+	const tabPanel = props.tabPanel;
+	const materials = props.materials;
 		
 	const [showPlanner, setShowPlanner] = React.useState(false)
 	const [showWeaponPlanner, setShowWeaponPlanner] = React.useState(false)
@@ -103,8 +104,8 @@ export default function DialogTab(props: any) {
 	return (
 		<div>
 			{ !showPlanner ? <DialogTabMain></DialogTabMain> : null }
-			{ showCharacterPlanner ? <DialogCharacterPlanner character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
-			{ showWeaponPlanner ? <DialogWeaponPlanner weapon={currentWeapon} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogWeaponPlanner> : null }
+			{ showCharacterPlanner ? <DialogCharacterPlanner materials={materials} character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogCharacterPlanner> : null }
+			{ showWeaponPlanner ? <DialogWeaponPlanner materials={materials} weapon={currentWeapon} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems}></DialogWeaponPlanner> : null }
 		</div>	
 	);
 }

@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
     },
 	navContainer: {
-        maxWidth: '75rem', 
+        maxWidth: '65rem', 
         margin: 'auto',
         boxSizing: 'border-box',
 		'@media (max-width: 80em)': {
-            minWidth: '56.25em',
-            maxWidth: '56.25em',
+            minWidth: '65em',
+            maxWidth: '65em', 
 		},
         '@media (max-width: 60em)': {
 			minWidth: '43.75em',

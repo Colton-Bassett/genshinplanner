@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     stars: {
         display: 'flex', 
         flexDirection: 'row', 
-		maxWidth: '12.5rem',
+		//maxWidth: '12.5rem',
 		position: 'absolute',
 		bottom: '-0.25rem',
 		left: 0,
@@ -284,34 +284,33 @@ export default function CharacterOverview(props: any) {
 	}
 
 	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
-		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image}></CharacterMaterial>
+		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
 	);
 
 	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
-	<div key={index}>
+		<div key={index}>
 
-	<CardMedia
-		image= {AscensionStar}
-		className={classes.ascensionStar}
-		style={{opacity: star.opacity}}
-		//onClick={(e) => {setCurrentStarsClick(index)}}
-	/>
-	</div>
+		<CardMedia
+			image= {AscensionStar}
+			className={classes.ascensionStar}
+			style={{opacity: star.opacity}}
+			//onClick={(e) => {setCurrentStarsClick(index)}}
+		/>
+		</div>
 	);
 
-	useEffect(() => {
-		const setAscensionStarsOther = () => {
-			//console.log("called setAscensionStarOther", ascensionStars)
-			const ascensionLevel = objectInfo.desiredLevel;
-			//console.log("ascensionLevel:", ascensionLevel)
-			const starsTemp = [...ascensionStars]
-	
-			for (let i = 0; i < ascensionLevel; i++) {
-				//console.log(i);
-				starsTemp[i].opacity = "1";
-			}
-			setAscensionStars(starsTemp)
+	const setAscensionStarsOther = () => {
+		const ascensionLevel = objectInfo.desiredLevel;
+		const starsTemp = [...ascensionStars]
+
+		for (let i = 0; i < ascensionLevel; i++) {
+			//console.log(i);
+			starsTemp[i].opacity = "1";
 		}
+		setAscensionStars(starsTemp)
+	}
+
+	useEffect(() => {
 		setAscensionStarsOther();
 	}, []);
 

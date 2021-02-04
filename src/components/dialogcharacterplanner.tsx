@@ -228,6 +228,7 @@ export default function DialogCharacterPlanner(props: any) {
     //const setAscensionDetails = props.setAscensionDetails;
     const items = props.items;
     const setItems = props.setItems;
+    const materials = props.materials;
 
     let elementColor = character.type;
 
@@ -329,7 +330,7 @@ export default function DialogCharacterPlanner(props: any) {
         // ]
 
 
-        a.materials = SetMaterials(character, a);
+        a.materials = SetMaterials(character, a, materials);
 
         const matties = await SetImages(a.materials);
         a.materials = matties;

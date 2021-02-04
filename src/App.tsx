@@ -17,19 +17,20 @@ import Planner from "./components/planner"
 import SideBar from "./components/sidebar"
 import BottomNav from "./components/footer"
 import DatabasePage from "./components/databasepage"
+import Summary from "./components/summary"
 
 const useStyles = makeStyles((theme) => ({
 	container: {
 		display: 'flex', 
 		margin: 'auto', 
-		maxWidth: '75rem', 
+		maxWidth: '65rem', 
 		overflow: 'auto', 
 		marginBottom: '1.5rem'
 	},
 	mainContainer: {
-		display: "flex", 
-		maxWidth: '75%', 
-		flexBasis: '75%',
+		display: "block", 
+		maxWidth: '100%', 
+		flexBasis: '100%',
 		minWidth: '56.25rem',
 		boxSizing: 'border-box',
 		'@media (max-width: 80em)': {
@@ -289,6 +290,29 @@ export default function App() {
 	// 	console.log("createCharacterWithoutDom complete");
 	// 	setCharacter(initialChar);
 	// }
+	async function createMaterialWithoutDom() {
+		console.log("createMaterialWithoutDom called")
+		const f = { ...material};
+		f.name = "Chunk of Aerosiderite"
+		f.type = 'Weapon Ascension Material'
+		f.stars = 'Five'
+		f.position = "148"
+		f.description = "When Khaenri'ah was destroyed, a great sinner created endless monsters with alien, dark blood flowing through their veins. They rampaged across the land, destroying all in their paths. Their lives were mutations, caused by powers beyond this world. The black serpentine dragon Durin that attacked Mondstadt was such a mutation."
+		f.image = "Chunk_of_Aerosiderite.png"
+
+		f.sources.sourceOne = "Domain of Forgery: Trial Grounds of Thunder (Wednesday/Saturday/Sunday)"
+		f.sources.sourceTwo = "Crafted"
+		f.sources.sourceThree = ""
+		f.sources.sourceFour = ""
+		f.sources.sourceFive = ""
+
+		setMaterial(f);
+		if (!material.name || !material.description) return; 
+		await API.graphql({ query: createMaterialMutation, variables: { input: material } });
+		console.log("createMaterialWithoutDom complete ");
+		// reset
+		setMaterial(initialMaterial);
+	}
 
 	useEffect(() => {
 		// async function createWeaponWithoutDom() {
@@ -312,37 +336,15 @@ export default function App() {
 		// 	setWeapon(initialWeap);
 		// }
 
-		async function createMaterialWithoutDom() {
-			console.log("createMaterialWithoutDom called")
-			const f = { ...material};
-			f.name = "Ominous Mask"
-			f.type = 'Character Level Up Material'
-			f.stars = 'Three'
-			f.position = "29"
-			f.description = "A glossy bone mask with oil markings painted on it, meant to intimidate enemies."
-			f.image = "Ominous_Mask.png"
-	
-			f.sources.sourceOne = "Dropped by Lv. 60+ hilichurls"
-			f.sources.sourceTwo = "Dropped by some  Lv. 60+ samachurls"
-			f.sources.sourceThree = "Dropped by some Lv. 60+ large hilichurls"
-			f.sources.sourceFour = "Crafted"
-			f.sources.sourceFive = ""
 
-			setMaterial(f);
-			if (!material.name || !material.description) return; 
-			await API.graphql({ query: createMaterialMutation, variables: { input: material } });
-			console.log("createMaterialWithoutDom complete");
-			// reset
-			setMaterial(initialMaterial);
-		}
 
 		//createCharacterWithoutDom();
 		//createWeaponWithoutDom();
 		//createMaterialWithoutDom();
 
-		//fetchCharacters()
-		//fetchWeapons();
-		//fetchMaterials();
+		fetchCharacters()
+		fetchWeapons();
+		fetchMaterials();
 
 
 	}, []);
@@ -360,13 +362,14 @@ export default function App() {
 									<DatabasePage />
 								</Route>
 								<Route path="/">
-									<Planner characters={characters} weapons={weapons}></Planner>
+									<Planner characters={characters} weapons={weapons} materials={materials}></Planner>
+									<Summary></Summary>
 								</Route>	
 							</Switch>
 						</div>
-						<div className={classes.sidebarContainer}>
+						{/* <div className={classes.sidebarContainer}>
 							<SideBar></SideBar>
-						</div>
+						</div> */}
 					</div>	
 					<BottomNav></BottomNav>
 				</StylesProvider>

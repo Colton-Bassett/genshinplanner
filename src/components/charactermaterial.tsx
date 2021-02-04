@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardMedia, Typography, makeStyles } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -7,7 +7,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Place } from '@material-ui/icons';
 
 import Star from '../images/star.png'
-import BackgroundImage from '../images/fivestar_background.png'
+import FivestarBackground from '../images/fivestar_background.png'
+import FourstarBackground from '../images/fourstar_background.png'
+import ThreestarBackground from '../images/threestar_background.png'
+import TwoStarBackground from '../images/twostar_background.png'
+import OnestarBackground from '../images/onestar_background.png'
 
 const useStyles = makeStyles((theme) => ({
     material: {
@@ -61,14 +65,14 @@ const useStyles = makeStyles((theme) => ({
     dialogTitle: {
         outline: "0.188rem solid rgb(145, 82, 41, 1)", padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem'
     },
-    materialHeader: {
-        backgroundColor:"#272b30", 
-        padding: '.75rem 1.5rem', 
-        borderBottom: "0.4rem solid #b99050", 
-        backgroundImage: `url(${BackgroundImage})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: '50%',
-    },
+    // materialHeader: {
+    //     backgroundColor:"#272b30", 
+    //     padding: '.75rem 1.5rem', 
+    //     borderBottom: "0.4rem solid #b99050", 
+    //     backgroundImage: `url(${backgroundImage})`, 
+    //     backgroundSize: 'cover', 
+    //     backgroundPosition: '50%',
+    // },
     materialHeaderContainer: {
         display: 'flex'
     },
@@ -104,9 +108,17 @@ const useStyles = makeStyles((theme) => ({
     star: {
         minHeight: '1.5rem', minWidth: '1.5rem'
     },
-
-    materialDescription: {
-
+    sourceContainer: {
+        border: '0.063rem solid rgb(255, 255, 255, .25)', 
+        marginBottom: '.5rem', 
+        minHeight: '3.5rem', 
+        display: 'flex'
+    },
+    source: {
+        padding: '0.5rem 0.65rem', 
+        maxWidth: '21.875rem', 
+        alignItems: 'center', 
+        display: 'flex' 
     }
 }));
 
@@ -116,6 +128,15 @@ export default function CharacterMaterial( props: any ) {
     const name = props.name;
     const quantity = props.quantity;
     const image = props.image;
+    const type = props.type;
+    const stars = props.stars;
+    const description = props.description;
+    const sources = props.sources;
+    const [backgroundImage, setBackgroundImage] = useState<string>();
+    const [titleColor, setTitleColor] = useState<string>();
+    const [titleOutline, setTitleOutline] = useState<string>();
+    const [headerBorder,setHeaderBorder] = useState<string>();
+
 
 	var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
 
@@ -153,6 +174,161 @@ export default function CharacterMaterial( props: any ) {
         return newText
     }
 
+    function handleBackgroundImage() {
+        switch(stars) {
+            case "One":
+                setBackgroundImage(OnestarBackground);
+                return
+            case "Two":
+                setBackgroundImage(TwoStarBackground);
+                return
+            case "Three":
+                setBackgroundImage(ThreestarBackground);
+                return
+            case "Four":
+                setBackgroundImage(FourstarBackground);
+                return
+            case "Five":
+                setBackgroundImage(FivestarBackground);
+                return
+        }
+    }
+
+    function handleTitleColor() {
+        switch(stars) {
+            case "One":
+                // silver
+                setTitleColor("#72778b");
+                setTitleOutline("0.188rem solid rgb(89, 92, 107)");
+                setHeaderBorder("0.4rem solid #696f78");
+
+                return
+            case "Two":
+                // green
+                setTitleColor("#2a9072");
+                setTitleOutline("0.188rem solid rgb(35, 111, 89)");
+                setHeaderBorder("0.4rem solid #577f63");
+                return
+            case "Three":
+                // blue
+                setTitleColor("#5180cc");
+                setTitleOutline("0.188rem solid rgb(64, 99, 156)");
+                setHeaderBorder("0.4rem solid #447d8d");
+                return
+            case "Four":
+                // purple
+                setTitleColor("#a156e0");
+                setTitleOutline("0.188rem solid rgb(124, 68, 171)");
+                setHeaderBorder("0.4rem solid #9674a3");
+                return
+            case "Five":
+                // orange
+                setTitleColor("#bd6932");
+                setTitleOutline("0.188rem solid rgb(145, 82, 41, 1)");
+                setHeaderBorder("0.4rem solid #b99050");
+                return
+        }
+    }
+
+    function createSources() {
+        const sourcesDOM = []
+        if (sources.sourceOne.length > 1) {
+            sourcesDOM.push( <div className={classes.sourceContainer} key={1}>
+            <Typography className={classes.source} variant="h3">
+                {sources.sourceOne}
+            </Typography>
+        </div>)
+        }
+        if (sources.sourceTwo.length > 1) {
+            sourcesDOM.push( <div className={classes.sourceContainer} key={2}>
+            <Typography className={classes.source} variant="h3">
+                {sources.sourceTwo}
+            </Typography>
+        </div>)
+        }
+        if (sources.sourceThree.length > 1) {
+            sourcesDOM.push( <div className={classes.sourceContainer} key={3}>
+            <Typography className={classes.source} variant="h3">
+                {sources.sourceThree}
+            </Typography>
+        </div>)
+        }
+        if (sources.sourceFour.length > 1) {
+            sourcesDOM.push( <div className={classes.sourceContainer} key={4}>
+            <Typography className={classes.source} variant="h3">
+                {sources.sourceFour}
+            </Typography>
+        </div>)
+        }
+        if (sources.sourceFive.length > 1) {
+            sourcesDOM.push( <div className={classes.sourceContainer} key={5}>
+            <Typography className={classes.source} variant="h3">
+                {sources.sourceFive}
+            </Typography>
+        </div>)
+        }
+        return sourcesDOM
+    }
+
+    function createRarityStars() {
+        var starsDOM = []
+        if (stars === "One") {
+			for (let i = 0; i < 1; i++) {
+				starsDOM.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+			}     
+        }   
+        if (stars === "Two") {
+			for (let i = 0; i < 2; i++) {
+				starsDOM.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+			}     
+        }   
+        if (stars === "Three") {
+			for (let i = 0; i < 3; i++) {
+				starsDOM.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+			}     
+        }   
+		if (stars === "Four") {
+			for (let i = 0; i < 4; i++) {
+				starsDOM.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+
+			}
+        } 
+        if (stars === "Five") {
+			for (let i = 0; i < 5; i++) {
+				starsDOM.push(<CardMedia
+					image= {Star}
+					className= {classes.star}
+					key= {i}
+				/>)
+
+			}
+        }
+		//console.log("CreateRarityStars stars", stars)
+		return <div className={classes.stars}>{starsDOM}</div>
+	}
+
+    useEffect(() => {
+        handleBackgroundImage();
+        handleTitleColor();
+
+	}, []);
+
     return (
         <div className={classes.material}>
             <div className={classes.materialContainer} >
@@ -174,41 +350,20 @@ export default function CharacterMaterial( props: any ) {
                     aria-describedby="alert-dialog-description"
                     classes={{paper: classes.dialog}}
                     >
-                    <DialogTitle id="alert-dialog-title" style={{backgroundColor: "#bd6932", padding: "0rem"}}>
-                        <div className={classes.dialogTitle}>
+                    <DialogTitle id="alert-dialog-title" style={{backgroundColor: `${titleColor}`, padding: "0rem"}}>
+                        <div style={{outline: `${titleOutline}`, padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem'}}>
                         <Typography variant="h1">
                             {formatText(name)} 
                         </Typography>
                         </div>
                     </DialogTitle>
-                    <DialogContent className={classes.materialHeader}>
+                    <DialogContent style={{ backgroundColor:"#272b30", padding: '.75rem 1.5rem', borderBottom: `${headerBorder}`, backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: '50%',}}>
                         <div className={classes.materialHeaderContainer}>
                             <div className={classes.materialHeaderData}>                      
                                 <Typography variant="h3" className={classes.materialType}>
-                                    Character Level Up Material
+                                    {type}
                                 </Typography>
-                                <div className={classes.stars}>
-                                    <CardMedia
-                                        image= {Star}
-                                        className= {classes.star}
-                                        />
-                                    <CardMedia
-                                        image= {Star}
-                                        className= {classes.star}
-                                    />
-                                    <CardMedia
-                                        image= {Star}
-                                        className= {classes.star}
-                                    />
-                                    <CardMedia
-                                        image= {Star}
-                                        className= {classes.star}
-                                    />
-                                    <CardMedia
-                                        image= {Star}
-                                        className= {classes.star}
-                                    />
-                                </div>
+                                {createRarityStars()}
                             </div>
                             <div className={classes.materialHeaderImageContainer}>
                                 <CardMedia
@@ -220,22 +375,13 @@ export default function CharacterMaterial( props: any ) {
                     </DialogContent>
                     <DialogContent style={{backgroundColor: "#36384A", padding: '2rem 1.5rem', height: '17.5rem'}}>
                         <DialogContentText id="alert-dialog-description" variant="h3" style={{marginBottom:  '1.5rem'}}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            {description}
                         </DialogContentText>
                         <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1rem'}} >
                             <Place style={{fontSize: '1.25rem'}}></Place>
                             <span style={{fontSize:'1.125rem'}}> &nbsp;Source</span>
                         </div>
-                        <div style={{border: '0.063rem solid rgb(255, 255, 255, .25)', marginBottom: '.5rem', minHeight: '3.5rem' }}>
-                            <Typography style={{padding: '0.5rem 0.65rem', maxWidth: '21.875rem'  }} variant="h3">
-                                Domain of Forgery: Trial Grounds of Thunder <span style={{color: '#ffcc32'}}>(Wednesday/Saturday/Sunday)</span>
-                            </Typography>
-                        </div>
-                        <div style={{border: '0.063rem solid rgb(255, 255, 255, .25)', marginBottom: '.5rem', minHeight: '3.5rem', display: 'flex' }}> 
-                            <Typography style={{padding: '0.5rem 0.65rem', maxWidth: '21.875rem', alignItems: 'center', display: 'flex'  }} variant="h3">
-                                Crafted
-                            </Typography>
-                        </div>
+                        {createSources()}
                     </DialogContent>
                 </Dialog>
             </div> 

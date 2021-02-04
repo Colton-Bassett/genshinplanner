@@ -14,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
         height: "5.625rem",
         margin: "auto",
 		display: 'flex', 
-		maxWidth: '75rem', 
+		maxWidth: '65rem', 
 		overflow: 'auto', 
         justifyContent: 'center',
         alignItems: 'center',
         boxSizing: 'border-box',
         '@media (max-width: 80em)': {
-            minWidth: '56.25em',
-            maxWidth: '56.25em',
+            minWidth: '65em', 
+            maxWidth: '65em', 
 		},
 		'@media (max-width: 60em)': {
 			minWidth: '43.75em',

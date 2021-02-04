@@ -8,12 +8,9 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         backgroundColor: '#222431',
         borderTop: '0.063rem solid #36384a',
-        //justifyContent: 'center',
-        //boxSizing: 'border-box',
-        //flexWrap: 'wrap',
     },
     footerContainer: {
-        maxWidth: '75rem', 
+        maxWidth: '65rem', 
         margin: 'auto',
         minWidth: '56.25rem',
         '@media (max-width: 60em)': {

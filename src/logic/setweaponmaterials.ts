@@ -472,17 +472,30 @@ function getOreAmount(level: number, stars: string) {
     }
 }
 
-function addMaterial(mat: any, materials: any) {
-    //console.log(mat.quantity)
+function addMaterial(mat: any, materials: any, allMaterials: any) {
+    console.log("mat:", mat);
     let duplicateMaterial = materials.find((material: { name: any; }) => material.name === mat.name)
     if (duplicateMaterial) {
         duplicateMaterial.quantity += mat.quantity
     } else {
+        const tempName = mat.name.replace(/_/g, ' ');
+        console.log("tempName", tempName);
+        let masterMaterial = allMaterials.find((element: { name: any; }) => element.name === tempName)
+        console.log("addMaterial masterMaterial", masterMaterial);
+        mat.description = masterMaterial.description;
+        mat.stars = masterMaterial.stars;
+        mat.type = masterMaterial.type;
+        mat.position = masterMaterial.position;
+        mat.sources.sourceOne = masterMaterial.sources.sourceOne;
+        mat.sources.sourceTwo = masterMaterial.sources.sourceTwo;
+        mat.sources.sourceThree = masterMaterial.sources.sourceThree;
+        mat.sources.sourceFour = masterMaterial.sources.sourceFour;
+        mat.sources.sourceFive = masterMaterial.sources.sourceFive;
         materials.push(mat)
     }
 }
 
-export default function SetWeaponMaterials(weapon: any, ascensionDetails: any) {
+export default function SetWeaponMaterials(weapon: any, ascensionDetails: any, allMaterials: any) {
     //console.log("SetWeaponMaterials() AscensionDetails:", ascensionDetails);
     //console.log("SetWeaponMaterials() weapon:", weapon)
     //console.log("stars:", ascensionDetails.stars);
@@ -490,45 +503,48 @@ export default function SetWeaponMaterials(weapon: any, ascensionDetails: any) {
     let materials: any[] = [];
 
     for (let level = ascensionDetails.currentLevel +1; level <= ascensionDetails.desiredLevel; level++) {
-        let matOne = {name: "", quantity: 0, image: ""};
+        let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matOne.name = getMatOne(weapon.ascensionMats.matOne, level)!;
         matOne.quantity = getMatOneAmount(level, ascensionDetails.stars)!;
         // matOne.image = getImage()
         //console.log("matOne", matOne)
-        addMaterial(matOne, materials);
+        addMaterial(matOne, materials, allMaterials);
 
-        let matTwo = {name: "", quantity: 0, image: ""};
+        let matTwo = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matTwo.name = getMatTwo(weapon.ascensionMats.matTwo, level)!;
         matTwo.quantity = getMatTwoAmount(level, ascensionDetails.stars)!;
         // matTwo.image = getImage()
         //console.log("matTwo", matTwo)
-        addMaterial(matTwo, materials);
+        addMaterial(matTwo, materials, allMaterials);
 
-        let commonMat = {name: "", quantity: 0, image: ""};
+        let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         commonMat.name = getCommonMat(weapon.ascensionMats.commonMat, level)!;
         commonMat.quantity = getCommonMatAmount(level, ascensionDetails.stars)!;
         // commonMat.image = getImage()
         //console.log("commonMat", commonMat)
-        addMaterial(commonMat, materials);
+        addMaterial(commonMat, materials, allMaterials);
 
-        let levelMora = {name: "", quantity: 0, image: ""};
+        let levelMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         levelMora.name = "Mora";
         levelMora.quantity = getLevelMoraAmount(level, ascensionDetails.stars)!;
         // mora.image = getImage()
-        addMaterial(levelMora, materials);
+        addMaterial(levelMora, materials, allMaterials);
 
-        let ascensionMora = {name: "", quantity: 0, image: ""};
+        let ascensionMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         ascensionMora.name = "Mora";
         ascensionMora.quantity = getAscensionMoraAmount(level, ascensionDetails.stars)!;
         // mora.image = getImage()
-        addMaterial(ascensionMora, materials);
+        addMaterial(ascensionMora, materials, allMaterials);
 
-        let ore = {name: "", quantity: 0, image: ""};
+        let ore = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         ore.name = "Mystic_Enhancement_Ore";
         ore.quantity = getOreAmount(level, ascensionDetails.stars)!;
-        addMaterial(ore, materials);
+        addMaterial(ore, materials, allMaterials);
     }
 
     console.log("SetWeaponMaterials() Return Materials:", materials);
+    // sorting by position
+    materials?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position));
+
     return materials;
 }
