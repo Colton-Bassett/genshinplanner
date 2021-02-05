@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
         boxSizing: 'border-box', 
         padding: '0rem 1rem', 
         marginBottom: '1.5rem',
+
     },
     adbarContainer: {
         backgroundColor: '#20212C',
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         boxSizing: 'border-box',
+        borderRadius: '0.25rem',
         '@media (max-width: 80em)': {
             minWidth: '65em', 
             maxWidth: '65em', 

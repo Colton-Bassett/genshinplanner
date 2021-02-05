@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core';
 import NewCharacter from "./newcharacter"
 import CharacterOverview from "./characteroverview"
 import Summary from "./summary"
+import DeleteObject from "../logic/deleteObject"
+import deleteObject from '../logic/deleteObject';
 
 const useStyles = makeStyles((theme) => ({
     planner: {
@@ -12,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
 		minWidth: '100%',
 		padding: '1.5rem',
 		boxSizing: 'border-box',
-		color: 'white'
+		color: 'white',
+		borderRadius: '0.25rem'
     },
 }));
 
@@ -21,6 +24,8 @@ export default function Planner(props: any) {
 	const characters = props.characters;
 	const weapons = props.weapons;
 	const materials = props.materials;
+	const summary = props.summary;
+	const setSummary = props.setSummary;
 
 	interface materialTemplate {
 		name: string,
@@ -75,24 +80,15 @@ export default function Planner(props: any) {
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
 	const [items, setItems] = React.useState(initialItems)
 
-	const deleteObject = (index: any) => {
-		console.log("deleteObjects id:", items)
-		let tempObjects = [...items]
-		console.log("deleteObject has been called!", tempObjects)
-		const filteredObjects = tempObjects.filter(item => item.index !== index);
-		setItems(filteredObjects);
-		console.log("objects:", items)
-	}
-
 	const characterOverviews = items.map((item) => 
-	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={deleteObject} characters={characters}></CharacterOverview>
+	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={deleteObject} items={items} setItems={setItems} characters={characters}></CharacterOverview>
 	);
 
 	return (
 		<div className={classes.planner}> 
 			<h2 style={{paddingLeft: '0.75rem'}}>Genshin Impact Planner</h2>
 			{characterOverviews}
-			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} weapons={weapons} materials={materials}></NewCharacter>
+			<NewCharacter characters={characters} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} weapons={weapons} materials={materials} summary={summary} setSummary={setSummary}></NewCharacter>
 		</div>
 	);
 }

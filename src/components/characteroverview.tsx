@@ -179,6 +179,8 @@ export default function CharacterOverview(props: any) {
 		materials: props.objectInfo.materials,
 		image: props.objectInfo.image,
 	}
+	const setItems = props.setItems;
+	const items = props.items;
 
 	const [expanded, setExpanded] = React.useState(false);
 	const [ascensionStars, setAscensionStars] = useState<any[]>(initialAscensionStars);
@@ -186,8 +188,8 @@ export default function CharacterOverview(props: any) {
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
-	const deleteObject = (index: any) => {
-		props.deleteMethod(index)
+	const deleteObject = (index: any, items: any, setItems: any) => {
+		props.deleteMethod(index, items, setItems)
 	}
 
 	function getCurrentLevel() {
@@ -323,7 +325,7 @@ export default function CharacterOverview(props: any) {
 							<EditIcon className={classes.editButton}></EditIcon>
 						</Tooltip>
 						<Tooltip title="Delete" arrow>
-							<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index)}></CancelIcon>
+							<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index, items, setItems)}></CancelIcon>
 						</Tooltip>
 					</div>
 					<div className={classes.characterImageContainer}>

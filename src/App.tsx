@@ -174,7 +174,14 @@ export default function App() {
 		sources: { sourceOne: '', sourceTwo: '', sourceThree: '', sourceFour: '', sourceFive: '' },		
 	}
 
+	const initialSummary = [
+		{name: '', type: '', stars: '', position: '', description: '', image: '', sources: { sourceOne: '', sourceTwo: '', sourceThree: '', sourceFour: '', sourceFive: '' }}
+        
+    ]
+
 	const [characters, setCharacters] = useState<[Char]>();
+	const [summary, setSummary] = useState<[]>([]);
+	const [showSummary, setShowSummary] = useState(false);
 	// const [character, setCharacter] = useState<Char>(initialChar);
 	const [weapons, setWeapons] = useState<[Weap]>();
 	const [weapon, setWeapon] = useState<Weap>(initialWeap);
@@ -362,8 +369,9 @@ export default function App() {
 									<DatabasePage />
 								</Route>
 								<Route path="/">
-									<Planner characters={characters} weapons={weapons} materials={materials}></Planner>
-									<Summary></Summary>
+									<Planner characters={characters} weapons={weapons} materials={materials} summary={summary} setSummary={setSummary}></Planner>
+									<Summary summary={summary}></Summary>
+									{/* {showSummary ? <Summary summary={summary} setShowSummary={setShowSummary}></Summary> : null} */}
 								</Route>	
 							</Switch>
 						</div>

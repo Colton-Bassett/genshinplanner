@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Card, makeStyles, Collapse, IconButton } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
+import CharacterMaterial from './charactermaterial'
 const useStyles = makeStyles((theme) => ({
     summary: {
 		backgroundColor: "#222431",
@@ -13,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         minHeight: '5.625rem',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: '0.25rem'
     },
     summaryHeader: {
         minWidth: "calc(100% - 4.5rem)", 
@@ -56,22 +58,14 @@ const useStyles = makeStyles((theme) => ({
 export default function NewCharacter(props: any) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const summary = props.summary;
     const handleExpandClick = () => {
 		setExpanded(!expanded);
-	};
-
-    function createMockups(count: number) {
-        let divs = []
-        for (let i = 0; i < count; i++) {
-            divs.push(
-                <div style={{padding: '.5rem'}} key={i}>
-                    <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
-                    </Card>
-                </div> 
-            )
-        }
-        return <Card style={{backgroundColor: '#222431', display: 'flex', flexWrap: 'wrap', padding: '1rem', justifyContent: 'center'}}>{divs}</Card>
-    }
+    };
+    
+	const summaryMaterials = summary.map((material: any, index: any) => 
+		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
+	);
 
     return (
         <div className={classes.summary}> 
@@ -93,8 +87,10 @@ export default function NewCharacter(props: any) {
                     </IconButton>
                 </div>
             </div>    
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-            {createMockups(65)} 
+            <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: '100%'}}>
+            <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
+                {summaryMaterials}
+            </div>
             </Collapse>
         </div>
         

@@ -6,6 +6,7 @@ import AscensionStar from '../images/Ascension_Star.png'
 import Characterbg from '../images/characterbg.png'
 
 import SetWeaponMaterials from '../logic/setweaponmaterials';
+import CreateNewSummary from '../logic/createNewSummary'
 import SetImages from '../logic/setimages'
 
 import Star from '../images/star.png'
@@ -158,6 +159,8 @@ export default function DialogWeaponPlanner(props: any) {
     const items = props.items;
     const setItems = props.setItems;
     const materials = props.materials;
+    const summary = props.summary;
+    const setSummary = props.setSummary;
 
     const initialCurrentStars = [
         {opacity: "0.3"},
@@ -285,7 +288,28 @@ export default function DialogWeaponPlanner(props: any) {
 		}
 		//console.log("CreateRarityStars stars", stars)
 		return <div className={classes.stars}>{stars}</div>
-	}
+    }
+    
+    function dialogAddMaterial(material: any, newSummary: any) {
+        let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
+        if (duplicateMaterial) {
+            duplicateMaterial.quantity += material.quantity
+        } else {
+            newSummary.push(material);
+        }
+    }
+
+    function createNewSummary(materials: any) {
+        let newSummary = summary;
+        if (newSummary.length < 1) {
+            return newSummary = materials;
+        } else {
+            for (let i = 0; i < materials.length; i++) {
+                dialogAddMaterial(materials[i], newSummary);
+            }
+        }
+        return newSummary;
+    }
 
 
     async function submitDialog() {
@@ -320,6 +344,14 @@ export default function DialogWeaponPlanner(props: any) {
         //console.log("ascensionDetails", a);
         i.push(a)
         setItems(i);
+
+        //// adding this weapon's materials to summary
+        let newSummary = CreateNewSummary(matties, summary);
+        //// sorting newSummary
+        newSummary?.sort((a: { position: string; }, b: { position: string; }) => parseFloat(a.position) - parseFloat(b.position));
+
+        console.log("newSummary:", newSummary);
+        setSummary(newSummary)
 
         dialogClose()
     }

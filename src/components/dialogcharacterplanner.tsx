@@ -8,6 +8,7 @@ import AscensionStar from '../images/Ascension_Star.png'
 
 import SetMaterials from '../logic/setmaterials';
 import SetImages from '../logic/setimages'
+import CreateNewSummary from '../logic/createNewSummary'
 import RangeSlider from './slider';
 
 
@@ -229,6 +230,8 @@ export default function DialogCharacterPlanner(props: any) {
     const items = props.items;
     const setItems = props.setItems;
     const materials = props.materials;
+    const summary = props.summary;
+    const setSummary = props.setSummary;
 
     let elementColor = character.type;
 
@@ -256,6 +259,27 @@ export default function DialogCharacterPlanner(props: any) {
     const [abilityOne, setAbilityOne] = React.useState<number[]>([1, 10]);
     const [abilityTwo, setAbilityTwo] = React.useState<number[]>([1, 10]);
     const [abilityThree, setAbilityThree] = React.useState<number[]>([1, 10]);
+
+    // function dialogAddMaterial(material: any, newSummary: any) {
+    //     let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
+    //     if (duplicateMaterial) {
+    //         duplicateMaterial.quantity += material.quantity
+    //     } else {
+    //         newSummary.push(material);
+    //     }
+    // }
+
+    // function createNewSummary(materials: any) {
+    //     let n = summary;
+    //     if (n.length < 1) {
+    //         return n = materials;
+    //     } else {
+    //         for (let i = 0; i < materials.length; i++) {
+    //             dialogAddMaterial(materials[i], n);
+    //         }
+    //     }
+    //     return n;
+    // }
 
     function setCurrentStarsClick(index: any) {
         if (index === 5) {
@@ -295,6 +319,17 @@ export default function DialogCharacterPlanner(props: any) {
             //console.log("desiredStars:", desiredStars);
     }
 
+    function dialogAddMaterial(material: any, newSummary: any) {
+        console.log("dialogAddMaterial was called")
+        let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
+        console.log("duplicateMaterial:", duplicateMaterial);
+        if (duplicateMaterial) {
+            duplicateMaterial.quantity += material.quantity
+        } else {
+            newSummary.push(material);
+        }
+    }
+
     async function submitDialog() {
         let i = [...items]
         //console.log("here is temp i", i);
@@ -319,17 +354,6 @@ export default function DialogCharacterPlanner(props: any) {
         a.abilityThreeCurrent = abilityThree[0];
         a.abilityThreeDesired = abilityThree[1];
 
-        // a.materials = [
-        //     {name: "Vajrada_Amethyst_Sliver", quantity: "1", image: MoraImage}, {name: "Mora", quantity: "1.1M", image: MoraImage},
-        //     {name: "Vajrada_Amethyst_Fragment", quantity: "9", image: MoraImage}, {name: "Hero's_Wit", quantity: "150", image: MoraImage},
-        //     {name: "Vajrada_Amethyst_Chunk", quantity: "9", image: MoraImage}, {name: "Damaged_Mask", quantity: "33", image: MoraImage},
-        //     {name: "Vajrada_Amethyst_Gemstone", quantity: "7", image: MoraImage}, {name: "Stained_Mask", quantity: "96", image: MoraImage},
-        //     {name: "Lightning_Prism", quantity: "46", image: MoraImage}, {name: "Ominous_Mask", quantity: "66", image: MoraImage},
-        //     {name: "Wolfhook", quantity: "168", image: MoraImage}, {name: "Guide_to_Resistance", quantity: "9", image: MoraImage}, 
-        //     {name: "Teachings_of_Resistance", quantity: "63", image: MoraImage}, {name: "Philosophies_of_Resistance", quantity: "30", image: MoraImage}, {name: "Dvalins_Claw", quantity: "6", image: MoraImage},
-        // ]
-
-
         a.materials = SetMaterials(character, a, materials);
 
         const matties = await SetImages(a.materials);
@@ -339,6 +363,16 @@ export default function DialogCharacterPlanner(props: any) {
         //console.log("ascensionDetails", a);
         i.push(a)
         setItems(i);
+
+
+
+        //// adding this characters's materials to summary
+        let newSummary = CreateNewSummary(matties, summary);
+        //// sorting newSummary
+        newSummary?.sort((a: { position: string; }, b: { position: string; }) => parseFloat(a.position) - parseFloat(b.position));
+
+        console.log("newSummary:", newSummary);
+        setSummary(newSummary)
 
         dialogClose()
     }

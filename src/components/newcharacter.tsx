@@ -112,6 +112,8 @@ export default function NewCharacter(props: any) {
     const ascensionDetails = props.ascensionDetails;
     const setAscensionDetails = props.setAscensionDetails;
     const materials = props.materials;
+    const summary = props.summary;
+    const setSummary = props.setSummary;
 
     const items = props.items;
     const setItems = props.setItems;
@@ -188,7 +190,7 @@ export default function NewCharacter(props: any) {
                     </Tabs>
                 </DialogTitle>
                 <DialogContent className={classes.dialogContent}>
-                    <DialogTab characters={characters} weapons={weapons} materials={materials} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} tabPanel={tabPanel} displayTabsTitle={displayTabsTitle}>
+                    <DialogTab characters={characters} weapons={weapons} materials={materials} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} tabPanel={tabPanel} displayTabsTitle={displayTabsTitle} summary={summary} setSummary={setSummary}>
                     </DialogTab>
                 </DialogContent>
                 <DialogActions className={classes.dialogActions}>
