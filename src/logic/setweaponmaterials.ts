@@ -473,7 +473,7 @@ function getOreAmount(level: number, stars: string) {
 }
 
 function addMaterial(mat: any, materials: any, allMaterials: any) {
-    console.log("mat:", mat);
+    //console.log("mat:", mat);
     let duplicateMaterial = materials.find((material: { name: any; }) => material.name === mat.name)
     if (duplicateMaterial) {
         duplicateMaterial.quantity += mat.quantity

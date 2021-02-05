@@ -357,6 +357,7 @@ export default function DialogCharacterPlanner(props: any) {
         a.materials = SetMaterials(character, a, materials);
 
         const matties = await SetImages(a.materials);
+        const tempMatties = JSON.parse(JSON.stringify(matties));
         a.materials = matties;
 
         //setAscensionDetails(a);
@@ -364,10 +365,8 @@ export default function DialogCharacterPlanner(props: any) {
         i.push(a)
         setItems(i);
 
-
-
         //// adding this characters's materials to summary
-        let newSummary = CreateNewSummary(matties, summary);
+        let newSummary = CreateNewSummary(tempMatties, summary);
         //// sorting newSummary
         newSummary?.sort((a: { position: string; }, b: { position: string; }) => parseFloat(a.position) - parseFloat(b.position));
 

@@ -338,6 +338,7 @@ export default function DialogWeaponPlanner(props: any) {
 
         a.materials = SetWeaponMaterials(weapon, a, materials);
         const matties = await SetImages(a.materials);
+        const tempMatties = JSON.parse(JSON.stringify(matties));
         a.materials = matties;
 
         //setAscensionDetails(a);
@@ -346,11 +347,11 @@ export default function DialogWeaponPlanner(props: any) {
         setItems(i);
 
         //// adding this weapon's materials to summary
-        let newSummary = CreateNewSummary(matties, summary);
+        let newSummary = CreateNewSummary(tempMatties, summary);
         //// sorting newSummary
         newSummary?.sort((a: { position: string; }, b: { position: string; }) => parseFloat(a.position) - parseFloat(b.position));
 
-        console.log("newSummary:", newSummary);
+        //console.log("dialogWeaponPlanner Summary::", newSummary);
         setSummary(newSummary)
 
         dialogClose()

@@ -4,8 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import NewCharacter from "./newcharacter"
 import CharacterOverview from "./characteroverview"
 import Summary from "./summary"
-import DeleteObject from "../logic/deleteObject"
-import deleteObject from '../logic/deleteObject';
+import DeleteObject from '../logic/deleteObject';
 
 const useStyles = makeStyles((theme) => ({
     planner: {
@@ -81,7 +80,7 @@ export default function Planner(props: any) {
 	const [items, setItems] = React.useState(initialItems)
 
 	const characterOverviews = items.map((item) => 
-	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={deleteObject} items={items} setItems={setItems} characters={characters}></CharacterOverview>
+	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={DeleteObject} items={items} setItems={setItems} characters={characters} summary={summary} setSummary={setSummary}></CharacterOverview>
 	);
 
 	return (
