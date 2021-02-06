@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
         boxSizing: 'border-box',
         borderRadius: '0.25rem',
         '@media (max-width: 80em)': {
-            minWidth: '65em', 
-            maxWidth: '65em', 
+            minWidth: '58em', 
+            maxWidth: '58em', 
 		},
 		'@media (max-width: 60em)': {
 			minWidth: '43.75em',

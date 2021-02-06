@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden', 
         padding: '1.563rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        borderBottom: 'solid 0.313rem #36384a'
+        borderBottom: 'solid 0.313rem #36384a',
+        // maxHeight: '6.563rem',
     },
     backgroundImage: {
         position: 'absolute', 
@@ -78,7 +79,17 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     buttonContainer: {
-        marginRight: '2rem'
+        display: 'flex',
+        justifyContent: 'center',
+        marginRight: '2rem',
+        '@media (max-width: 60em)': {
+            marginRight: '2rem',
+        },
+        '@media (max-width: 45em)': {
+            //marginRight: '5rem',
+            display: 'block',
+            marginRight: '0rem'
+		},
     },
     checkIcon: {
         fontSize: "2.75rem;",
@@ -245,7 +256,7 @@ export default function DialogCharacterPlanner(props: any) {
 
     ]
     const initialDesiredStars = [
-        {starOne: {opacity: "0.3"}},
+        {starOne: {opacity: "1"}},
         {starTwo: {opacity: "0.3"}},
         {starThree: {opacity: "0.3"}},
         {starFour: {opacity: "0.3"}},

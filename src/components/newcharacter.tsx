@@ -19,17 +19,26 @@ const useStyles = makeStyles((theme) => ({
         flexBasis: '25%', 
         boxSizing: 'border-box', 
         padding: '0.75rem',
+        '@media (max-width: 60em)': {
+            maxWidth: '100%',
+            flexBasis: '100%',
+        },
+        '@media (max-width: 25em)': {
+            minWidth: '20em', 
+            maxWidth: '20em', 
+		},
+        
     },
     addCharacterContent: {
-        flexGrow: 0, 
-        maxWidth: '75%', 
-        flexBasis: '75%', 
+        flexGrow: 1, 
         boxSizing: 'border-box', 
-        padding: '0.75rem'
+        padding: '0.75rem',
+        '@media (max-width: 60em)': {
+            display: 'none',
+		},
     },
     card: {
         backgroundColor: "#272937 !important",
-        minWidth: '10.625rem',
         margin: 'auto',
         minHeight: '17.188rem',
         display: 'flex',
@@ -40,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.25rem #e9e5dc;',
             borderRadius: "0.188rem",
-            transform: 'scale(1.05);',
+            transform: 'scale(1.01);',
             cursor: 'pointer',
             color: 'white',
             '& $add': {
@@ -70,13 +79,35 @@ const useStyles = makeStyles((theme) => ({
         textTransform: "none", fontSize: "1.25rem",
         '&:hover': {
             color: 'white',
-        }
+        },
+        '@media (max-width:45em)': {
+            fontSize: "1rem",
+        },
+        '@media (max-width:35em)': {
+            fontSize: ".8rem",
+        },
+        '@media (max-width: 25em)': {
+			fontSize: ".6rem"
+		},
     },
     dialog: {
         minWidth: '53.125rem;',
         maxWidth: '53.125rem;',
         minHeight: '37.5rem;',
         maxHeight: '37.5rem;',
+        '@media (max-width: 60em)': {
+			minWidth: '43.75em',
+			maxWidth: '43.75em',
+        },
+		'@media (max-width: 45em)': {
+			minWidth: '31.25em',
+			maxWidth: '31.25em',
+		},
+		'@media (max-width: 35em)': {
+			minWidth: '100%',
+            maxWidth: '100%',
+            padding: '0rem 1rem',
+		},
     },
     dialogContent: {
         backgroundColor: '#1d1f29', 

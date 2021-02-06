@@ -14,7 +14,10 @@ const useStyles = makeStyles((theme) => ({
 		padding: '1.5rem',
 		boxSizing: 'border-box',
 		color: 'white',
-		borderRadius: '0.25rem'
+		borderRadius: '0.25rem',
+		'@media (max-width: 25em)': {
+			padding: '0.5rem',
+		},
     },
 }));
 

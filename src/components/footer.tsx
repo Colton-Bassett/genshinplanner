@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '65rem', 
         margin: 'auto',
         minWidth: '56.25rem',
+        '@media (max-width: 80em)': {
+            minWidth: '58em', 
+            maxWidth: '58em', 
+		},
         '@media (max-width: 60em)': {
 			minWidth: '43.75em',
 			maxWidth: '43.75em',
@@ -110,12 +114,12 @@ export default function BottomNav() {
             <div className={classes.footerContainer}>
                 <div className={classes.footerMain}> 
                     <div className={classes.footerOne}>
-                        <h3 className={classes.title}>IMPACT.GG</h3>
+                        <h3 className={classes.title}>ANEMO.GG</h3>
                         <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                            <span style={{fontWeight:800}}>Impact.gg</span> is not affiliated with or endorsed by miHoYo.
+                            <span style={{fontWeight:800}}>Anemo.gg</span> is not affiliated with or endorsed by miHoYo.
                         </Typography>
                         <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                            <span style={{fontWeight:800}}>Impact.gg</span> is a Database and Planner for the Genshin Impact 
+                            <span style={{fontWeight:800}}>Anemo.gg</span> is a Database and Planner for the Genshin Impact 
                             game for PC, Switch, Playstation 4, and mobile
                             game app on iOS and Android.
                         </Typography>

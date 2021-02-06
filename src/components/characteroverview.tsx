@@ -27,7 +27,11 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 0,
 		boxSizing: 'border-box',
 		padding: '0.75rem',
-		// add media sizes
+		'@media (max-width: 60em)': {
+			maxWidth: '100%',
+			flexBasis: '100%',
+			minWidth: '20rem'
+		},
 	},
 	characterCard: {
 		//backgroundColor: "#353749", 
@@ -68,6 +72,12 @@ const useStyles = makeStyles((theme) => ({
 		// backgroundSize: 'cover', 
 		position: 'relative'
 	},
+	characterLevel: {
+		fontWeight: 700,
+		'@media (max-width: 60em)': {
+			paddingBottom: '1.5rem', 
+		},
+	},
     stars: {
         display: 'flex', 
         flexDirection: 'row', 
@@ -105,13 +115,16 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '0.25rem',
 	},
 	materials: {
-		minWidth: '26.25rem', 
+		minWidth: '20rem', 
 		flexGrow: 0, 
 		maxWidth: '75%', 
 		flexBasis: '75%', 
 		padding: '0.75rem', 
 		boxSizing: 'border-box',
-		// add media sizes
+		'@media (max-width: 60em)': {
+			maxWidth: '100%',
+			flexBasis: '100%',
+		},
 	},
 	materialContainer: {
 		backgroundColor: '#272937 !important', 
@@ -121,17 +134,27 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#222431 !important', 
 		minHeight: '21.625rem', 
 		minWidth: '100%',
+		boxSizing: 'border-box',
+		padding: '1.5rem'
 	},
 	materialHeader: {
-		paddingLeft: '1.5rem',
-		paddingRight: '1.5rem'
+		marginLeft: '.75rem',
+		marginRight: '.75rem',
+		marginBottom: '1.5rem',
+		padding: 0,
+		'@media (max-width: 80em)': {
+			marginLeft: '.5rem',
+			marginRight: '.5rem',
+		},
 	},
 	materialTitle: {
 	},
 	materialContent: {
-		padding: '1rem',
+		padding: '0rem',
+		// width: 'calc(100% + 2rem)',
+		// margin: '-1rem',
 		"&:last-child": {
-            paddingBottom: '1rem'
+            paddingBottom: '0rem'
           }
 	},
 	expandButton: {
@@ -348,7 +371,7 @@ export default function CharacterOverview(props: any) {
 						{createAscensionStars}
 
 					</div>
-					<Typography variant="body1" align='center' style={{fontWeight: 700}}>
+					<Typography variant="body1" align='center' className={classes.characterLevel}>
 						Lv. {getCurrentLevel()} - {getDesiredLevel()}
 					</Typography>
 					<Collapse in={expanded} timeout="auto" unmountOnExit>

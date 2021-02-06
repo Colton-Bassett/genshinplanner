@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex', 
 		margin: 'auto', 
 		maxWidth: '65rem', 
+		minWidth: '20rem',
 		overflow: 'auto', 
 		marginBottom: '1.5rem'
 	},
@@ -31,10 +32,11 @@ const useStyles = makeStyles((theme) => ({
 		display: "block", 
 		maxWidth: '100%', 
 		flexBasis: '100%',
-		minWidth: '56.25rem',
 		boxSizing: 'border-box',
+		margin: 'auto',
 		'@media (max-width: 80em)': {
-            margin: 'auto',
+			minWidth: '58em',
+			maxWidth: '58em',
 		},
 		'@media (max-width: 60em)': {
 			minWidth: '43.75em',

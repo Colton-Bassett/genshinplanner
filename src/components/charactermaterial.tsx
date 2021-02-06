@@ -17,12 +17,18 @@ const useStyles = makeStyles((theme) => ({
     material: {
         paddingBottom: "1rem",
         display: "flex",
-        flexWrap: "wrap",
         boxSizing: "border-box",
-        justifyContent: "center",
-        flexGrow: 0, 
+        justifyContent: 'center',
         maxWidth: '12.5%', 
-        flexBasis: '12.5%'
+        flexBasis: '12.5%',
+        '@media (max-width: 45em)': {
+            maxWidth: '20%', 
+            flexBasis: '20%'
+        },
+        '@media (max-width: 35em)': {
+            maxWidth: '33%', 
+            flexBasis: '33%'
+		},
 	},
     materialContainer: {
         transition: 'transform .2s;', /* Animation */
