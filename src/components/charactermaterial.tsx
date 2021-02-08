@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'contain', 
         backgroundColor: '#36384A', 
         backgroundOrigin: 'content-box', 
+        // backgroundImage: `url(${FivestarBackground})`, 
         padding: '0.25rem', 
         borderTopLeftRadius: '0.188rem', 
         borderTopRightRadius: '0.188rem',

@@ -153,7 +153,7 @@ export const listMaterials = /* GraphQL */ `
     $filter: ModelMaterialFilterInput
     $nextToken: String
   ) {
-    listMaterials(filter: $filter, limit:200, nextToken: $nextToken) {
+    listMaterials(filter: $filter, limit: 200, nextToken: $nextToken) {
       items {
         id
         name

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core';
 
 import NewCharacter from "./newcharacter"
 import CharacterOverview from "./characteroverview"
-import Summary from "./summary"
 import DeleteObject from '../logic/deleteObject';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +20,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+interface materialTemplate {
+	name: string,
+	quantity: string,
+	image: string,
+}
+interface ItemTemplate {
+	index: number,
+	type: string,
+	name: string,
+	currentLevel: number,
+	desiredLevel: number,
+	abilityOneCurrent: number,
+	abilityOneDesired: number,
+	abilityTwoCurrent: number,
+	abilityTwoDesired: number,
+	abilityThreeCurrent: number,
+	abilityThreeDesired: number,
+	image: string,
+	materials: Array<materialTemplate>
+}
+
 export default function Planner(props: any) {
 	const classes = useStyles();
 	const characters = props.characters;
@@ -29,26 +49,6 @@ export default function Planner(props: any) {
 	const summary = props.summary;
 	const setSummary = props.setSummary;
 
-	interface materialTemplate {
-		name: string,
-		quantity: string,
-		image: string,
-	}
-	interface ItemTemplate {
-		index: number,
-		type: string,
-		name: string,
-		currentLevel: number,
-		desiredLevel: number,
-		abilityOneCurrent: number,
-		abilityOneDesired: number,
-		abilityTwoCurrent: number,
-		abilityTwoDesired: number,
-		abilityThreeCurrent: number,
-		abilityThreeDesired: number,
-		image: string,
-		materials: Array<materialTemplate>
-	}
 	const initialItems: Array<ItemTemplate> = []
 	
 	const initialAscensionDetails = {
@@ -82,8 +82,8 @@ export default function Planner(props: any) {
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
 	const [items, setItems] = React.useState(initialItems)
 
-	const characterOverviews = items.map((item) => 
-	<CharacterOverview key={item.index} objectInfo={item} deleteMethod={DeleteObject} items={items} setItems={setItems} characters={characters} summary={summary} setSummary={setSummary}></CharacterOverview>
+	const characterOverviews = items && items.map((item) => 
+		<CharacterOverview key={item.index} objectInfo={item} deleteMethod={DeleteObject} items={items} setItems={setItems} characters={characters} summary={summary} setSummary={setSummary}></CharacterOverview>
 	);
 
 	return (

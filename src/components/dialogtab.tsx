@@ -72,7 +72,7 @@ export default function DialogTab(props: any) {
         setCurrentWeapon(weapon)
     }
 
-    const populateDialogCharacters = characters.map((character: { name: any; }, index: any) => 
+    const populateDialogCharacters = characters && characters.map((character: { name: any; }, index: any) => 
         <div key={index} className={classes.character} onClick={() => {
             openCharacterPlanner(character);
         }}>
@@ -80,7 +80,7 @@ export default function DialogTab(props: any) {
         </div>
 	);
 
-    const populateDialogWeapons = weapons.map((weapon: { name: any; }, index: any) => 
+    const populateDialogWeapons = weapons && weapons.map((weapon: { name: any; }, index: any) => 
         <div key={index} className={classes.character} onClick={() => {
             openWeaponPlanner(weapon);
         }}>
