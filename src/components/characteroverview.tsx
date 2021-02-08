@@ -46,16 +46,20 @@ const useStyles = makeStyles((theme) => ({
 		color: '#A6A7AC !important',
 		cursor: 'pointer',
 		'&:hover': {
+			transform: 'scale(1.15);',
+			cursor: 'pointer',
 			color: "#fff !important",
-		 },
+        },
 	},
 	cancelButton: {
 		color: '#A6A7AC !important',
 		float: 'right',
 		cursor: 'pointer',
 		'&:hover': {
+			transform: 'scale(1.15);',
+			cursor: 'pointer',
 			color: "#fff !important",
-		 },
+        },
 	},
 	characterImage: {
 		minHeight: "6.563rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
@@ -64,12 +68,6 @@ const useStyles = makeStyles((theme) => ({
 		boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
 	},
 	characterImageContainer: {
-		// backgroundImage: `url(${FivestarBackground})`, 
-		// minHeight: "6.563rem", 
-		// maxWidth: "6.563rem", 
-		// borderRadius: "0.625rem", 
-		// margin: 'auto', 
-		// backgroundSize: 'cover', 
 		position: 'relative'
 	},
 	characterLevel: {

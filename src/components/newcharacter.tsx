@@ -91,10 +91,10 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     dialog: {
-        minWidth: '53.125rem;',
-        maxWidth: '53.125rem;',
-        minHeight: '37.5rem;',
-        maxHeight: '37.5rem;',
+        minWidth: '50em',
+        maxWidth: '50em',
+        minHeight: '40rem;',
+        maxHeight: '40rem;',
         '@media (max-width: 60em)': {
 			minWidth: '43.75em',
 			maxWidth: '43.75em',

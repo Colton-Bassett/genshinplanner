@@ -256,7 +256,7 @@ export default function DialogCharacterPlanner(props: any) {
 
     ]
     const initialDesiredStars = [
-        {starOne: {opacity: "1"}},
+        {starOne: {opacity: "0.3"}},
         {starTwo: {opacity: "0.3"}},
         {starThree: {opacity: "0.3"}},
         {starFour: {opacity: "0.3"}},

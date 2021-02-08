@@ -60,7 +60,7 @@ const useStyles = makeStyles(() => ({
         display: 'flex', 
         flexDirection: 'row', 
         maxWidth: '12.5rem',
-        position: 'absolute', bottom: '-.25rem', justifyContent: 'center'
+        position: 'absolute', bottom: '0.25rem', justifyContent: 'center'
     },
     star: {
         minHeight: '1.15rem', minWidth: '1.15rem', 
