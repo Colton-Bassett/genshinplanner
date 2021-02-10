@@ -1,5 +1,5 @@
-import React, {useState, } from 'react';
-import { Card, makeStyles, CardMedia, Typography, } from '@material-ui/core';
+import React, {useState, useEffect } from 'react';
+import { Card, makeStyles, CardMedia, Typography, Button, } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -245,6 +245,7 @@ export default function DialogCharacterPlanner(props: any) {
     const setSummary = props.setSummary;
 
     let elementColor = character.type;
+    const theRef = React.createRef<HTMLDivElement>();
 
     const initialCurrentStars = [
         {opacity: "0.3"},
@@ -430,15 +431,21 @@ export default function DialogCharacterPlanner(props: any) {
         //console.log("countDesiredStars:", count);
         return count; 
     }
-    
-    //const createDesiredStars;
-    // useEffect(() => {
-    //     console.log("Slider value: " + abilityOne);
-    //   }, [abilityOne]);
+
+    const scrollToTop = () => {
+        if (null !== theRef.current) {
+            theRef.current.scrollIntoView({behavior: "smooth"});
+          }
+    }
+
+    useEffect(() => {
+        scrollToTop();
+
+    }, []);
       
     return (
-        <div className={classes.character}> 
-            <div className={classes.characterHeader}>
+        <div className={classes.character} ref={theRef}> 
+            <div className={classes.characterHeader} >
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.characterImageContainer}>
@@ -447,6 +454,7 @@ export default function DialogCharacterPlanner(props: any) {
                         className={classes.characterImage}>
                         <img src={character.typeImage} alt="element" className={classes.element}></img>	
                     </CardMedia>
+
                 </div>
                 <div className={classes.characterTitle}>
                     <Typography variant="h3" style={{width: '50%'}}>
@@ -513,7 +521,7 @@ export default function DialogCharacterPlanner(props: any) {
                         {character.abilityTwo.name}
                     </Typography>
                     <Typography variant="h6" align="center" style={{width: '100%'}}>
-                        Normal Attack
+                        Elemental Skill
                     </Typography>
                     <div className={classes.talentSlider}>
                         <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
@@ -530,7 +538,7 @@ export default function DialogCharacterPlanner(props: any) {
                         {character.abilityThree.name}
                     </Typography>
                     <Typography variant="h6" align="center" style={{width: '100%'}}>
-                        Normal Attack
+                        Elemental Burst
                     </Typography>
                     <div className={classes.talentSlider}>
                         <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>

@@ -159,6 +159,7 @@ export default function NewCharacter(props: any) {
 
     const dialogClose = () => {
         setOpenDialog(false);
+
     };
 
     function tabID(index: any) {
@@ -174,6 +175,7 @@ export default function NewCharacter(props: any) {
 
     const showTabsTitle = () => {
         setTabsTitle(true)
+        setTabPanel(0);
     }
 
     const tabChange = (event: React.ChangeEvent<{}>, value: number) => {

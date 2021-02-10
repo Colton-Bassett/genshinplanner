@@ -47,10 +47,11 @@ const useStyles = makeStyles((theme: Theme) => ({
         display: 'flex', 
         flexDirection: 'row', 
         maxWidth: '12.5rem',
-        position: 'absolute', bottom: '0rem', justifyContent: 'center'
+        position: 'absolute', bottom: '0.25rem', justifyContent: 'center'
     },
     star: {
-        minHeight: '0.8rem', minWidth: '0.8rem', overflow: 'auto', boxSizing: 'border-box'
+        minHeight: '0.8rem', minWidth: '0.8rem', overflow: 'auto', boxSizing: 'border-box', marginLeft: '-0.15rem', verticalAlign: 'middle', borderStyle: 'none',
+        backgroundColor: "#36384a",
     },
 }));
 
@@ -65,24 +66,39 @@ export default function DialogWeapon(props: any) {
 		if (weapon.stars === "Four") {
 			//console.log("CreateRarityStars Four")
 			for (let i = 0; i < 4; i++) {
-				stars.push(<CardMedia
-					image= {Star}
-					className= {classes.star}
-					key= {i}
-				/>)
-
+				if (i === 0) {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						style={{marginLeft: 0}}
+						key= {i}
+					/>)					
+				} else {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						key= {i}
+					/>)
+				}
 			}
 		} else{
-			//console.log("CreateRarityStars Five")
 			for (let i = 0; i < 5; i++) {
-				stars.push(<CardMedia
-					image= {Star}
-					className= {classes.star}
-					key= {i}
-				/>)
+				if (i === 0) {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						style={{marginLeft: 0}}
+						key= {i}
+					/>)					
+				} else {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						key= {i}
+					/>)
+				}
 			}
 		}
-		//console.log("CreateRarityStars stars", stars)
 		return <div className={classes.stars}>{stars}</div>
 	}
 
@@ -92,7 +108,7 @@ export default function DialogWeapon(props: any) {
                 <CardMedia
                 image= {weapon.image}
                 className={classes.weaponImage}>
-                {/* {createRarityStars()} */}
+                {createRarityStars()}
                 </CardMedia>  
             </div>    
             <div className={classes.name}>

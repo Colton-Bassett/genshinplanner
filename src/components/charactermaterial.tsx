@@ -42,18 +42,20 @@ const useStyles = makeStyles((theme) => ({
          backgroundColor: '#1d1f29'
     },
     materialImage: {
-        maxHeight: "2.625rem", 
-        maxWidth: "2.625rem", 
-        minHeight: "2.625rem", 
-        minWidth: "2.625rem", 
-        backgroundSize: 'contain', 
-        backgroundColor: '#36384A', 
-        backgroundOrigin: 'content-box', 
-        // backgroundImage: `url(${FivestarBackground})`, 
+        maxHeight: "2.7rem", 
+        maxWidth: "2.7rem", 
+        minHeight: "2.7rem", 
+        minWidth: "2.7rem", 
+        backgroundSize: '110%, cover', 
+        backgroundColor: '#36384A',
+        backgroundOrigin: 'content-box, border-box', 
         padding: '0.25rem', 
         borderTopLeftRadius: '0.188rem', 
         borderTopRightRadius: '0.188rem',
         borderBottomRightRadius: '.9rem',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        opacity: '1, 0.5'
     },
     text: {
         fontWeight: 700,
@@ -113,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '12.5rem'
     },
     star: {
-        minHeight: '1.5rem', minWidth: '1.5rem'
+        minHeight: '1.5rem', minWidth: '1.5rem', borderStyle: 'none', verticalAlign: 'middle'
     },
     sourceContainer: {
         border: '0.063rem solid rgb(255, 255, 255, .25)', 
@@ -143,7 +145,6 @@ export default function CharacterMaterial( props: any ) {
     const [titleColor, setTitleColor] = useState<string>();
     const [titleOutline, setTitleOutline] = useState<string>();
     const [headerBorder,setHeaderBorder] = useState<string>();
-
 
 	var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
 
@@ -285,7 +286,7 @@ export default function CharacterMaterial( props: any ) {
 					image= {Star}
 					className= {classes.star}
 					key= {i}
-				/>)
+                />)
 			}     
         }   
         if (stars === "Two") {
@@ -341,10 +342,13 @@ export default function CharacterMaterial( props: any ) {
             <div className={classes.materialContainer} >
             {/* <Tooltip title={formatText(name)} placement="bottom"> */}
                 <div onClick={handleClickOpen}>
-                    <CardMedia
-                    image= {image}
+                    {/* <CardMedia
+                    image= {`${image}, linear-gradient(red, yellow)`}
                     className={classes.materialImage}
-                    />
+
+                    /> */}
+                    <div className={classes.materialImage} style={{backgroundImage: `url(${image}), url(${backgroundImage})`}}>
+                    </div>
                     <Typography variant="body1" align="center" className={classes.text}>
                         {abbreviateNumber(quantity)}
                     </Typography>

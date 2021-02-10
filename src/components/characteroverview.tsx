@@ -9,7 +9,6 @@ import CharacterMaterial from './charactermaterial'
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AscensionStar from '../images/Ascension_Star.png'
-import FivestarBackground from '../images/fourstar_background_sm.png'
 
 const useStyles = makeStyles((theme) => ({
 	plannerContainer: {
@@ -34,10 +33,22 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	characterCard: {
-		//backgroundColor: "#353749", 
-		backgroundColor: '#272937',
+		backgroundColor: "#353749", 
+		// backgroundColor: '#272937',
 		minHeight: '100%',
 		minWidth: '10.625rem',
+		display: 'flex',
+		flexDirection: 'column',
+	},
+	characterCardContainer: {
+		borderBottomRightRadius: '3.5rem', 
+		//borderBottomLeftRadius: '1rem', 
+		backgroundColor: '#272937', 
+		paddingBottom: '1.25rem'
+	},
+	characterCardContainerWeapon: {
+		backgroundColor: '#272937', 
+		flex: 1,
 	},
 	characterButtons: {
 		padding: "1rem"
@@ -71,23 +82,37 @@ const useStyles = makeStyles((theme) => ({
 		position: 'relative'
 	},
 	characterLevel: {
+		minWidth: '60%',
 		fontWeight: 700,
+		marginBottom: '.15rem',
+
+		'@media (max-width: 60em)': {
+			paddingBottom: '1.5rem', 
+		},
+	},
+	talentLevel: {
+		minWidth: '60%',
+		fontWeight: 700,
+		marginBottom: '.15rem',
+		color: '#a7b1c1',
+
 		'@media (max-width: 60em)': {
 			paddingBottom: '1.5rem', 
 		},
 	},
     stars: {
-        display: 'flex', 
-        flexDirection: 'row', 
-		//maxWidth: '12.5rem',
 		position: 'absolute',
-		bottom: '-0.25rem',
+		bottom: '.25rem',
 		left: 0,
+		width: '100%',
+		zIndex: 5,
+		display: 'flex',
 		justifyContent: 'center',
-		width: '100%'
+
     },
     star: {
-        minHeight: '1.15rem', minWidth: '1.15rem'
+		minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
+		// backgroundColor: "#36384a",
     },
     element: {
         height: "1.75rem", 
@@ -267,6 +292,33 @@ export default function CharacterOverview(props: any) {
 		return level;
 	}
 
+	function getCurrentTalentLevel(num: number) {
+		// accounting for -1 is because all talents are +1 in setMaterials.ts
+		if (objectInfo.type === "character") {
+			switch(num) {
+				case 1:
+					return objectInfo.abilityOneCurrent - 1;
+				case 2:
+					return objectInfo.abilityTwoCurrent - 1;
+				case 3:
+					return objectInfo.abilityThreeCurrent - 1;
+			}
+		}
+	}
+
+	function getDesiredTalentLevel(num: number) {
+		if (objectInfo.type === "character") {
+			switch(num) {
+				case 1:
+					return objectInfo.abilityOneDesired;
+				case 2:
+					return objectInfo.abilityTwoDesired;
+				case 3:
+					return objectInfo.abilityThreeDesired;
+			}
+		}
+	}
+
 	function elementImage() {
 		if (objectInfo.type === "character") {
 			return <img src={objectInfo.typeImage} alt="element" className={classes.element}></img>
@@ -285,26 +337,39 @@ export default function CharacterOverview(props: any) {
 		if (objectInfo.stars === "Four") {
 			//console.log("CreateRarityStars Four")
 			for (let i = 0; i < 4; i++) {
-				stars.push(<CardMedia
-					image= {Star}
-					className= {classes.star}
-					key= {i}
-				/>)
-
+				if (i === 0) {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						style={{marginLeft: 0}}
+						key= {i}
+					/>)					
+				} else {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						key= {i}
+					/>)
+				}
 			}
-
 		} else{
-			//console.log("CreateRarityStars Five")
 			for (let i = 0; i < 5; i++) {
-				stars.push(<CardMedia
-					image= {Star}
-					className= {classes.star}
-					key= {i}
-				/>)
+				if (i === 0) {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						style={{marginLeft: 0}}
+						key= {i}
+					/>)					
+				} else {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						key= {i}
+					/>)
+				}
 			}
-
 		}
-		//console.log("CreateRarityStars stars", stars)
 		return <div className={classes.stars}>{stars}</div>
 	}
 
@@ -335,6 +400,25 @@ export default function CharacterOverview(props: any) {
 		setAscensionStars(starsTemp)
 	}
 
+	function showTalentLevels() {
+		if (objectInfo.type === "character") {
+			return 	<div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', flex: 1, backgroundColor: "#353749", alignItems: 'center' }}>
+			<Typography variant="body1" align='center' className={classes.talentLevel}>
+				<span style={{float: 'left'}}>Atk Lv. </span> <span style={{float: 'right'}}>{getCurrentTalentLevel(1)} - {getDesiredTalentLevel(1)}</span>
+			</Typography>
+			<Typography variant="body1" align='center' className={classes.talentLevel}>
+				<span style={{float: 'left'}}>Skill Lv.</span><span style={{float: 'right'}}>{getCurrentTalentLevel(2)} - {getDesiredTalentLevel(2)}</span>
+			</Typography>
+			<Typography variant="body1" align='center' className={classes.talentLevel}>
+				<span style={{float: 'left'}}>Burst Lv.</span> <span style={{float: 'right'}}>{getCurrentTalentLevel(3)} - {getDesiredTalentLevel(3)}</span>
+			</Typography>
+		</div>
+		}
+		else {
+		}
+
+	}
+
 	useEffect(() => {
 		setAscensionStarsOther();
 	}, []);
@@ -343,35 +427,40 @@ export default function CharacterOverview(props: any) {
 		<div className={classes.plannerContainer}>
 			<div className={classes.character}>
 				<Card className={classes.characterCard}>		
-					<div className={classes.characterButtons}>
-						<Tooltip title="Edit" arrow>
-							<EditIcon className={classes.editButton}></EditIcon>
-						</Tooltip>
-						<Tooltip title="Delete" arrow>
-							<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index, items, setItems, summary, setSummary)}></CancelIcon>
-						</Tooltip>
-					</div>
-					<div className={classes.characterImageContainer}>
-						<CardMedia
-							image= {objectInfo.image}
-							className={classes.characterImage}>	
-							{elementImage()}
-							
-						</CardMedia>
-							{weaponRarity()}
-					</div>
+					<div className={ objectInfo.type === "character" ? classes.characterCardContainer : classes.characterCardContainerWeapon}>
+						<div className={classes.characterButtons}>
+							<Tooltip title="Edit" arrow>
+								<EditIcon className={classes.editButton}></EditIcon>
+							</Tooltip>
+							<Tooltip title="Delete" arrow>
+								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index, items, setItems, summary, setSummary)}></CancelIcon>
+							</Tooltip>
+						</div>
+						<div className={classes.characterImageContainer}>
+							<CardMedia
+								image= {objectInfo.image}
+								className={classes.characterImage}>	
+								{elementImage()}
+								{weaponRarity()}							
+							</CardMedia>
+
+						</div>
 
 
-					<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
-						{objectInfo.name}
-					</Typography>
-					<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
-						{createAscensionStars}
-
+						<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
+							{objectInfo.name}
+						</Typography>
+						<Typography variant="body1" align='center' className={classes.characterLevel}>
+							Lv. {getCurrentLevel()} - {getDesiredLevel()}
+						</Typography>
+						<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
+							{createAscensionStars}
+						</div>
 					</div>
-					<Typography variant="body1" align='center' className={classes.characterLevel}>
-						Lv. {getCurrentLevel()} - {getDesiredLevel()}
-					</Typography>
+					
+
+					{showTalentLevels()}
+
 					<Collapse in={expanded} timeout="auto" unmountOnExit>
 						<CardContent>
 							<Typography paragraph>

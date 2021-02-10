@@ -1,4 +1,4 @@
-import React, {useState, } from 'react';
+import React, {useState, useEffect} from 'react';
 import { Card, makeStyles, CardMedia, Typography, } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
@@ -63,7 +63,8 @@ const useStyles = makeStyles(() => ({
         position: 'absolute', bottom: '0.25rem', justifyContent: 'center'
     },
     star: {
-        minHeight: '1.15rem', minWidth: '1.15rem', 
+        minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
+        // backgroundColor: "#36384a",
     },
     weaponTitle: {
         maxWidth: '60%', 
@@ -161,6 +162,7 @@ export default function DialogWeaponPlanner(props: any) {
     const materials = props.materials;
     const summary = props.summary;
     const setSummary = props.setSummary;
+    const theRef = React.createRef<HTMLDivElement>();
 
     const initialCurrentStars = [
         {opacity: "0.3"},
@@ -269,26 +271,41 @@ export default function DialogWeaponPlanner(props: any) {
 		if (weapon.stars === "Four") {
 			//console.log("CreateRarityStars Four")
 			for (let i = 0; i < 4; i++) {
-				stars.push(<CardMedia
-					image= {Star}
-					className= {classes.star}
-					key= {i}
-				/>)
-
+				if (i === 0) {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						style={{marginLeft: 0}}
+						key= {i}
+					/>)					
+				} else {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						key= {i}
+					/>)
+				}
 			}
 		} else{
-			//console.log("CreateRarityStars Five")
 			for (let i = 0; i < 5; i++) {
-				stars.push(<CardMedia
-					image= {Star}
-					className= {classes.star}
-					key= {i}
-				/>)
+				if (i === 0) {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						style={{marginLeft: 0}}
+						key= {i}
+					/>)					
+				} else {
+					stars.push(<CardMedia
+						image= {Star}
+						className= {classes.star}
+						key= {i}
+					/>)
+				}
 			}
 		}
-		//console.log("CreateRarityStars stars", stars)
 		return <div className={classes.stars}>{stars}</div>
-    }
+	}
     
     function dialogAddMaterial(material: any, newSummary: any) {
         let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
@@ -356,10 +373,21 @@ export default function DialogWeaponPlanner(props: any) {
 
         dialogClose()
     }
+
+    const scrollToTop = () => {
+        if (null !== theRef.current) {
+            theRef.current.scrollIntoView();
+        }
+    }
+
+    useEffect(() => {
+        scrollToTop();
+
+    }, []);
     
 
     return (
-        <div className={classes.weapon}>
+        <div className={classes.weapon} ref={theRef}>
             <div className={classes.weaponHeader}>
                 <div className={classes.backgroundImage}>
                 </div>
