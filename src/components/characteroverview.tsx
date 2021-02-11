@@ -44,7 +44,14 @@ const useStyles = makeStyles((theme) => ({
 		borderBottomRightRadius: '3.5rem', 
 		//borderBottomLeftRadius: '1rem', 
 		backgroundColor: '#272937', 
-		paddingBottom: '1.25rem'
+		paddingBottom: '1.25rem',
+		boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+	},
+	talentLevelContainer: {
+		display: 'flex', justifyContent: 'center', flexDirection: 'column', flex: 1, backgroundColor: "#353749", alignItems: 'center',
+		'@media (max-width: 60em)': {
+			marginTop: '1.5rem'
+		},
 	},
 	characterCardContainerWeapon: {
 		backgroundColor: '#272937', 
@@ -154,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: '1.5rem',
 	},
 	materialCard: {
-		backgroundColor: '#222431 !important', 
+		backgroundColor: 'rgb(53, 55, 73) !important', 
 		minHeight: '21.625rem', 
 		minWidth: '100%',
 		boxSizing: 'border-box',
@@ -402,7 +409,7 @@ export default function CharacterOverview(props: any) {
 
 	function showTalentLevels() {
 		if (objectInfo.type === "character") {
-			return 	<div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', flex: 1, backgroundColor: "#353749", alignItems: 'center' }}>
+			return 	<div className={classes.talentLevelContainer}>
 			<Typography variant="body1" align='center' className={classes.talentLevel}>
 				<span style={{float: 'left'}}>Atk Lv. </span> <span style={{float: 'right'}}>{getCurrentTalentLevel(1)} - {getDesiredTalentLevel(1)}</span>
 			</Typography>

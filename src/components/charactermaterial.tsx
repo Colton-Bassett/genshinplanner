@@ -15,7 +15,7 @@ import OnestarBackground from '../images/onestar_background.png'
 
 const useStyles = makeStyles((theme) => ({
     material: {
-        paddingBottom: "1rem",
+        paddingBottom: "1.5rem",
         display: "flex",
         boxSizing: "border-box",
         justifyContent: 'center',
@@ -33,13 +33,15 @@ const useStyles = makeStyles((theme) => ({
     materialContainer: {
         transition: 'transform .2s;', /* Animation */
         overflow: 'visible',
+        borderRadius: '0.25rem',
+        boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
             borderRadius: "0.188rem",
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         backgroundColor: '#1d1f29'
+         backgroundColor: '#272937'
     },
     materialImage: {
         maxHeight: "2.7rem", 
@@ -50,11 +52,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#36384A',
         backgroundOrigin: 'content-box, border-box', 
         padding: '0.25rem', 
-        borderTopLeftRadius: '0.188rem', 
-        borderTopRightRadius: '0.188rem',
+        borderTopLeftRadius: '0.25rem',
+        borderTopRightRadius: '0.25rem',
         borderBottomRightRadius: '.9rem',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center, 100% 50%',
         opacity: '1, 0.5'
     },
     text: {

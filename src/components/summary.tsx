@@ -19,22 +19,35 @@ const useStyles = makeStyles((theme) => ({
     },
     summaryHeader: {
         minWidth: "calc(100% - 4.5rem)", 
-        padding: '0rem 2.25rem', 
-        display: 'flex', 
-        alignItems: 'center', 
-        minHeight: '5.625rem',
+        padding: '2.25rem 2.25rem', 
+        //display: 'flex', 
+        //flexDirection: 'column',
+        //alignItems: 'center', 
+
     },
     summaryTitle: {
-        minWidth: '90%'
+        flex: 1,
+        minWidth: '90%',
+        margin: 0,
     },
     summaryInnerTitle: {
         minWidth: '90%',
-        padding: '0rem 2.25rem',
+        margin: 0,
+        padding: '0rem 1.5rem 1.5rem 1.5rem',
     },
     summaryExpand: {
         minWidth: '10%', 
         display: 'flex', 
         alignItems: 'center'
+    },
+    materialCard: {
+        backgroundColor: 'rgb(53, 55, 73) !important', 
+        display: 'flex',
+        //minHeight: '21.625rem', 
+		minWidth: '100%',
+		boxSizing: 'border-box',
+        padding: '1.5rem',
+        flexWrap: 'wrap',
     },
     expandButton: {
 		color: 'white', fontSize: '1.625rem'
@@ -62,10 +75,6 @@ const useStyles = makeStyles((theme) => ({
 export default function NewCharacter(props: any) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-
-    // const [generalMaterials, setGeneralMaterials] = React.useState(false);
-    // const [weaponMaterials, setWeaponMaterials] = React.useState(false);
-    // const [talentMaterials, setTalentMaterials] = React.useState(false);
 
     const summary = props.summary;
     const handleExpandClick = () => {
@@ -95,33 +104,41 @@ export default function NewCharacter(props: any) {
     return (
         <div className={classes.summary}> 
             <div className={classes.summaryHeader}>
-                <h2 className={classes.summaryTitle}>Material Summary</h2>
-                <div className={classes.summaryExpand}>
-                    <IconButton
-                        disableFocusRipple
-                        disableRipple
-                        className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                        })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                        style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0"}}
-                    >
-                        <ExpandMore className={classes.expandButton}/>
-                    </IconButton>
+                <div style={{display: 'flex'}}>
+                    <h2 className={classes.summaryTitle}>Material Summary</h2>
+                    <div style={{padding: '1.5rem, display: flex, flex: 1'}}>
+                        <div className={classes.summaryExpand}>
+                            <IconButton
+                                disableFocusRipple
+                                disableRipple
+                                className={clsx(classes.expand, {
+                                [classes.expandOpen]: expanded,
+                                })}
+                                onClick={handleExpandClick}
+                                aria-expanded={expanded}
+                                aria-label="show more"
+                                style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0"}}
+                            >
+                                <ExpandMore className={classes.expandButton}/>
+                            </IconButton>
+                        </div>
+                    </div>    
                 </div>
-            </div>    
+
             <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: '100%'}}>
-            <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
-                <h3 className={classes.summaryInnerTitle}>General</h3>
-                    {generalMaterials}
-                <h3 className={classes.summaryInnerTitle}>Talent</h3>
-                    {talentMaterials}
-                <h3 className={classes.summaryInnerTitle}>Weapon</h3>
-                    {weaponMaterials}
+            <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%", paddingTop: '1.5rem'}}>
+                <Card className={classes.materialCard}>
+                    <h3 className={classes.summaryInnerTitle}>General</h3>
+                        {generalMaterials}
+                    <h3 className={classes.summaryInnerTitle}>Talent</h3>
+                        {talentMaterials}
+                    <h3 className={classes.summaryInnerTitle}>Weapon</h3>
+                        {weaponMaterials}
+                </Card>
             </div>
             </Collapse>
+            </div>
+
         </div>
         
     );

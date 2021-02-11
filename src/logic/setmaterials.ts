@@ -477,22 +477,27 @@ function getTalentMoraAmount(talentLevel: number) {
 function addMaterial(mat: any, materials: any, allMaterials: any) {
     //console.log(mat.quantity)
     //console.log("allMaterials:", allMaterials);
-    let duplicateMaterial = materials.find((material: { name: any; }) => material.name === mat.name)
-    if (duplicateMaterial) {
-        duplicateMaterial.quantity += mat.quantity
+    // Traveler (Anemo, Geo) has no matTwo
+    if (mat.name === "") {
+        return;
     } else {
-        const tempName = mat.name.replace(/_/g, ' ');
-        let masterMaterial = allMaterials.find((element: { name: any; }) => element.name === tempName)
-        mat.description = masterMaterial.description;
-        mat.stars = masterMaterial.stars;
-        mat.type = masterMaterial.type;
-        mat.position = masterMaterial.position;
-        mat.sources.sourceOne = masterMaterial.sources.sourceOne;
-        mat.sources.sourceTwo = masterMaterial.sources.sourceTwo;
-        mat.sources.sourceThree = masterMaterial.sources.sourceThree;
-        mat.sources.sourceFour = masterMaterial.sources.sourceFour;
-        mat.sources.sourceFive = masterMaterial.sources.sourceFive;
-        materials.push(mat)
+        let duplicateMaterial = materials.find((material: { name: any; }) => material.name === mat.name)
+        if (duplicateMaterial) {
+            duplicateMaterial.quantity += mat.quantity
+        } else {
+            const tempName = mat.name.replace(/_/g, ' ');
+            let masterMaterial = allMaterials.find((element: { name: any; }) => element.name === tempName)
+            mat.description = masterMaterial.description;
+            mat.stars = masterMaterial.stars;
+            mat.type = masterMaterial.type;
+            mat.position = masterMaterial.position;
+            mat.sources.sourceOne = masterMaterial.sources.sourceOne;
+            mat.sources.sourceTwo = masterMaterial.sources.sourceTwo;
+            mat.sources.sourceThree = masterMaterial.sources.sourceThree;
+            mat.sources.sourceFour = masterMaterial.sources.sourceFour;
+            mat.sources.sourceFive = masterMaterial.sources.sourceFive;
+            materials.push(mat)
+        }
     }
 }
 
@@ -653,20 +658,141 @@ function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: 
             return
     }
 
-// const c = {
-//     ascensionMats: {matOne: 'Vajrada_Amethyst', matTwo: 'Lightning_Prism', specialty: 'Wolfhook', commonMat: 'Damaged_Mask'},
-//     talentMats: {bossMat: "Dvalin's_Claw", talentMat: "Resistance"}
-// }
-// const a = {
-//     currentLevel: 1,
-//     desiredLevel: 2,
-//     abilityOneCurrent: 2,
-//     abilityOneDesired:  8,
-//     abilityTwoCurrent: 2,
-//     abilityTwoDesired: 8,
-//     abilityThreeCurrent: 2,
-//     abilityThreeDesired: 8,
-// }
+function addTravelerTalentMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+    switch(ability) {
+        case "abilityOne":
+            for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
+                let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+                if ((talentLevel + 1) % 3 === 0) {
+                    character.talentMats.talentMat = "Freedom";
+                }
+                if ((talentLevel + 1) % 3 === 1) {
+                    character.talentMats.talentMat = "Resistance";
+                }
+                if ((talentLevel + 1) % 3 === 2) {
+                    character.talentMats.talentMat = "Ballad";
+                }
+                abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
+                abilityMat.quantity = getTalentMatAmount(talentLevel)!;
+                addMaterial(abilityMat, materials, allMaterials);
+            }
+            return
+        case "abilityTwo":
+            for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
+                let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+                if (character.name === "Traveler (Anemo)") {
+                    if ((talentLevel + 1) % 3 === 0) {
+                        character.talentMats.talentMat = "Freedom";
+                    }
+                    if ((talentLevel + 1) % 3 === 1) {
+                        character.talentMats.talentMat = "Resistance";
+                    }
+                    if ((talentLevel + 1) % 3 === 2) {
+                        console.log("abilityTwo adding Ballad")
+                        character.talentMats.talentMat = "Ballad";
+                    }
+                } else {
+                    if ((talentLevel + 1) % 3 === 0) {
+                        character.talentMats.talentMat = "Prosperity";
+                    }
+                    if ((talentLevel + 1) % 3 === 1) {
+                        character.talentMats.talentMat = "Diligence";
+                    }
+                    if ((talentLevel + 1) % 3 === 2) {
+                        character.talentMats.talentMat = "Gold";
+                    }
+                }
+                abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
+                abilityMat.quantity = getTalentMatAmount(talentLevel)!;
+                addMaterial(abilityMat, materials, allMaterials);
+            }
+            return
+        case "abilityThree":
+            for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
+                let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+                if (character.name === "Traveler (Anemo)") {
+                    if ((talentLevel + 1) % 3 === 0) {
+                        character.talentMats.talentMat = "Freedom";
+                    }
+                    if ((talentLevel + 1) % 3 === 1) {
+                        character.talentMats.talentMat = "Resistance";
+                    }
+                    if ((talentLevel + 1) % 3 === 2) {
+                        character.talentMats.talentMat = "Ballad";
+                    }
+                } else {
+                    if ((talentLevel + 1) % 3 === 0) {
+                        character.talentMats.talentMat = "Prosperity";
+                    }
+                    if ((talentLevel + 1) % 3 === 1) {
+                        character.talentMats.talentMat = "Diligence";
+                    }
+                    if ((talentLevel + 1) % 3 === 2) {
+                        character.talentMats.talentMat = "Gold";
+                    }
+                }
+                abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
+                abilityMat.quantity = getTalentMatAmount(talentLevel)!;
+                addMaterial(abilityMat, materials, allMaterials);
+            }
+            return
+    }
+}
+
+function setTravelerTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
+    if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
+        // do nothing
+        console.log("setTalentMaterials is doing nothing, abilityOne")
+    } else {
+        ascensionDetails.abilityOneCurrent += 1;
+        character.ascensionMats.commonMat = "Divining_Scroll";
+        character.talentMats.bossMat = "Dvalin's_Sigh";
+        addTravelerTalentMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+    }
+
+    if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
+        // do nothing
+        console.log("setTalentMaterials is doing nothing, abilityTwo")
+    } else {
+        ascensionDetails.abilityTwoCurrent += 1;
+        if (character.name === "Traveler (Anemo)") {
+            character.ascensionMats.commonMat = "Divining_Scroll"
+        } else {
+            character.ascensionMats.commonMat = "Firm_Arrowhead"
+            character.talentMats.bossMat = "Tail_of_Boreas"
+        }
+        addTravelerTalentMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+    }
+
+    if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
+        // do nothing
+        console.log("setTalentMaterials is doing nothing, abilityThree")
+    } else {
+        ascensionDetails.abilityThreeCurrent += 1;
+        if (character.name === "Traveler (Anemo)") {
+            character.ascensionMats.commonMat = "Divining_Scroll"
+        } else {
+            character.ascensionMats.commonMat = "Firm_Arrowhead"
+            character.talentMats.bossMat = "Tail_of_Boreas"
+        }
+        addTravelerTalentMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+    }
+    // reset mats
+    character.ascensionMats.commonMat = "Damaged_Mask";
+    character.talentMats.bossMat = "Dvalin's Sigh";
+}
 
 function setTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
     if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
@@ -707,7 +833,7 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
 }
 
 export default function SetMaterials(character: any, ascensionDetails: any, allMaterials: any) {
-    //console.log("SetMaterials character:", character);
+    console.log("SetMaterials character:", character);
     console.log("SetMaterials() AscensionDetails:", ascensionDetails);
     let materials: any[] = [];
 
@@ -752,7 +878,14 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
         addMaterial(heroswit, materials, allMaterials);
     }
 
-    setTalentMaterials(character, ascensionDetails, materials, allMaterials);
+    // checking for Traveler (Anemo, Geo)
+    if (character.name === "Traveler (Anemo)" || character.name === "Traveler (Geo)") {
+        setTravelerTalentMaterials(character, ascensionDetails, materials, allMaterials);
+    } else {
+        setTalentMaterials(character, ascensionDetails, materials, allMaterials);
+    }
+
+
     console.log("SetMaterials() Return Materials:", materials);
 
     // sorting by position
