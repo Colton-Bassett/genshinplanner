@@ -231,6 +231,7 @@ export default function CharacterOverview(props: any) {
 		abilityThreeDesired: props.objectInfo.abilityThreeDesired,
 		materials: props.objectInfo.materials,
 		image: props.objectInfo.image,
+		id: props.objectInfo.id,
 	}
 	const setItems = props.setItems;
 	const items = props.items;
@@ -243,8 +244,9 @@ export default function CharacterOverview(props: any) {
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
-	const deleteObject = (index: any, items: any, setItems: any, summary: any, setSummary: any) => {
-		props.deleteMethod(index, items, setItems, summary, setSummary);
+	const deleteObject = (id: any, items: any, setItems: any, summary: any, setSummary: any) => {
+		console.log("deleteObject() characterOverview id:", objectInfo.id);
+		props.deleteMethod(id, items, setItems, summary, setSummary);
 	}
 
 	function getCurrentLevel() {
@@ -440,7 +442,7 @@ export default function CharacterOverview(props: any) {
 								<EditIcon className={classes.editButton}></EditIcon>
 							</Tooltip>
 							<Tooltip title="Delete" arrow>
-								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.index, items, setItems, summary, setSummary)}></CancelIcon>
+								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.id, items, setItems, summary, setSummary)}></CancelIcon>
 							</Tooltip>
 						</div>
 						<div className={classes.characterImageContainer}>

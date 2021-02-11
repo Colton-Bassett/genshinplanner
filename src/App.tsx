@@ -190,8 +190,6 @@ export default function App() {
 	const [weapon, setWeapon] = useState<Weapon>(weaponTemplate);
 	const [material, setMaterial] = useState<Material>(materialTemplate);
 
-	const [showSummary, setShowSummary] = useState(false);
-
 	useEffect(() => {
 		//createNewCharacter(character, setCharacter, characterTemplate);
 		//createNewWeapon(weapon, setWeapon, weaponTemplate);
@@ -218,8 +216,7 @@ export default function App() {
 								</Route>
 								<Route path="/">
 									<Planner characters={characters} weapons={weapons} materials={materials} summary={summary} setSummary={setSummary}></Planner>
-									<Summary summary={summary}></Summary>
-									{/* {showSummary ? <Summary summary={summary} setShowSummary={setShowSummary}></Summary> : null} */}
+									{summary.length > 0 ? <Summary summary={summary}></Summary> : null}
 								</Route>	
 							</Switch>
 						</div>

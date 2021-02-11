@@ -152,6 +152,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         '&:hover': {
             cursor: "pointer",
+            opacity: "1",
          },
     },
     talent: {
@@ -272,27 +273,6 @@ export default function DialogCharacterPlanner(props: any) {
     const [abilityTwo, setAbilityTwo] = React.useState<number[]>([1, 10]);
     const [abilityThree, setAbilityThree] = React.useState<number[]>([1, 10]);
 
-    // function dialogAddMaterial(material: any, newSummary: any) {
-    //     let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
-    //     if (duplicateMaterial) {
-    //         duplicateMaterial.quantity += material.quantity
-    //     } else {
-    //         newSummary.push(material);
-    //     }
-    // }
-
-    // function createNewSummary(materials: any) {
-    //     let n = summary;
-    //     if (n.length < 1) {
-    //         return n = materials;
-    //     } else {
-    //         for (let i = 0; i < materials.length; i++) {
-    //             dialogAddMaterial(materials[i], n);
-    //         }
-    //     }
-    //     return n;
-    // }
-
     function setCurrentStarsClick(index: any) {
         if (index === 5) {
             setDesiredStarsClick(index)
@@ -317,7 +297,6 @@ export default function DialogCharacterPlanner(props: any) {
     }
 
     function setDesiredStarsClick(index: any) {
-
             const starsTemp = [...desiredStars]
             // reset stars
             for (let i = 0; i <= 5; i++) {
@@ -329,17 +308,6 @@ export default function DialogCharacterPlanner(props: any) {
             }
             setDesiredStars(starsTemp)
             //console.log("desiredStars:", desiredStars);
-    }
-
-    function dialogAddMaterial(material: any, newSummary: any) {
-        console.log("dialogAddMaterial was called")
-        let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
-        console.log("duplicateMaterial:", duplicateMaterial);
-        if (duplicateMaterial) {
-            duplicateMaterial.quantity += material.quantity
-        } else {
-            newSummary.push(material);
-        }
     }
 
     async function submitDialog() {
@@ -390,23 +358,23 @@ export default function DialogCharacterPlanner(props: any) {
 
     const createCurrentStars = currentStars.map((star: any, index: any) => 
         <div key={index}>
-        <CardMedia
-            image= {AscensionStar}
-            className={classes.ascensionStar}
-            style={{opacity: star.opacity}}
-            onClick={(e) => {setCurrentStarsClick(index)}}
-        />
+            <CardMedia
+                image= {AscensionStar}
+                className={classes.ascensionStar}
+                style={{opacity: star.opacity}}
+                onClick={(e) => {setCurrentStarsClick(index)}}
+            />
         </div>
     );
 
     const createDesiredStars = desiredStars.map((star: any, index: any) => 
     <div key={index}>
-    <CardMedia
-        image= {AscensionStar}
-        className={classes.ascensionStar}
-        style={{opacity: star.opacity}}
-        onClick={(e) => {setDesiredStarsClick(index)}}
-    />
+        <CardMedia
+            image= {AscensionStar}
+            className={classes.ascensionStar}
+            style={{opacity: star.opacity}}
+            onClick={(e) => {setDesiredStarsClick(index)}}
+        />
     </div>
     );
 
@@ -440,7 +408,6 @@ export default function DialogCharacterPlanner(props: any) {
 
     useEffect(() => {
         scrollToTop();
-
     }, []);
       
     return (

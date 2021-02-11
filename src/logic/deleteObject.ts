@@ -1,10 +1,11 @@
-const deleteObject = (index: any, items: any, setItems: any, summary: any, setSummary: any) => {
-    console.log("deleteObjects: items:", items)
+const deleteObject = (id: any, items: any, setItems: any, summary: any, setSummary: any) => {
+    console.log("deleteObjects: items preDelete:", items)
     let tempObjects = [...items]
-    const filteredObjects = tempObjects.filter(item => item.index !== index);
+    const filteredObjects = tempObjects.filter(item => item.id !== id);
+    const item = items.find((item: { id: any; }) => item.id === id);
 
     let tempSummary = [...summary]
-    const materials = items[index].materials;
+    const materials = item.materials;
 
     for (let i = 0; i < materials.length; i++) {
         // subtracting quantity from summary;
@@ -16,7 +17,7 @@ const deleteObject = (index: any, items: any, setItems: any, summary: any, setSu
 
     setItems(filteredObjects);
     setSummary(filteredSummary);
-    console.log("deleteObjects objects:", filteredObjects);
+    console.log("deleteObjects objects postDelete:", filteredObjects);
     console.log("deleteObjects summary:", filteredSummary);
 }
 export default deleteObject;

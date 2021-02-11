@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
+import {v4 as uuidv4} from 'uuid';
 
 import NewCharacter from "./newcharacter"
 import CharacterOverview from "./characteroverview"
@@ -38,6 +39,7 @@ interface ItemTemplate {
 	abilityThreeCurrent: number,
 	abilityThreeDesired: number,
 	image: string,
+	id: string,
 	materials: Array<materialTemplate>
 }
 
@@ -82,9 +84,12 @@ export default function Planner(props: any) {
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
 	const [items, setItems] = React.useState(initialItems)
 
-	const characterOverviews = items && items.map((item) => 
-		<CharacterOverview key={item.index} objectInfo={item} deleteMethod={DeleteObject} items={items} setItems={setItems} characters={characters} summary={summary} setSummary={setSummary}></CharacterOverview>
-	);
+	const characterOverviews = items && items.map((item: any, index: any) => {
+		const id = uuidv4();
+		item.id = id;
+		// console.log("item id:", item.id)
+		return <CharacterOverview key={index} objectInfo={item} deleteMethod={DeleteObject} items={items} setItems={setItems} characters={characters} summary={summary} setSummary={setSummary} id={id}></CharacterOverview>
+	});
 
 	return (
 		<div className={classes.planner}> 
