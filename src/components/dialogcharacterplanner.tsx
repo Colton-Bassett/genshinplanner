@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import { Card, makeStyles, CardMedia, Typography, Button, } from '@material-ui/core';
+import { Card, makeStyles, CardMedia, Typography, Switch, Checkbox, Tooltip } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -134,15 +134,38 @@ const useStyles = makeStyles((theme) => ({
     },
     ascension: {
         backgroundColor: "#272937",
-        minHeight: "13.75rem",
-        maxHeight: "13.75rem",
+        minHeight: "15rem",
+        maxHeight: "15rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
         boxSizing: 'border-box',
-        padding: '1rem',
+        padding: '1.5rem',
         borderRadius: '0.188rem',
+    },
+    maxCurrent: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        minWidth: '50%',
+        '@media (max-width: 45em)': {
+            minWidth: '100%',
+            justifyContent: 'center'
+		},
+    },
+    maxDesired: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        minWidth: '50%',
+        '@media (max-width: 45em)': {
+            minWidth: '100%',
+            justifyContent: 'center'
+		},
+    },
+    ascensionStarContainer: {
+        display: 'flex',
+        minWidth: '100%',
+        justifyContent: 'center',
     },
     ascensionStar: {
         minWidth:"1.563rem", 
@@ -155,16 +178,222 @@ const useStyles = makeStyles((theme) => ({
             opacity: "1",
          },
     },
+    currentStarSix: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -1,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+        },
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+         
+    },
+    currentStarFive: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -2,
+        '&:hover':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    currentStarFour: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -3,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         }, 
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },   
+    },
+    currentStarThree: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -4,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    currentStarTwo: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -5,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    currentStarOne: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -6,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    desiredStarSix: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -1,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+        },
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+         
+    },
+    desiredStarFive: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -2,
+        '&:hover':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    desiredStarFour: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -3,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         }, 
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },   
+    },
+    desiredStarThree: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -4,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    desiredStarTwo: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: ".3",
+        display: 'flex',
+        order: -5,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
+    desiredStarOne: {
+        minWidth:"1.563rem", 
+        minHeight: "1.563rem", 
+        backgroundSize: "contain",
+        margin: "0rem 0.125rem",
+        opacity: "1",
+        display: 'flex',
+        order: -6,
+        '&:hover': {
+            cursor: "pointer",
+            opacity: "1",
+         },  
+        '&:hover ~ *':  {
+            cursor: "pointer",
+            opacity: "1",
+        },  
+    },
     talent: {
         backgroundColor: "#272937",
-        minHeight: "13.75rem",
-        maxHeight: "13.75rem",
+        minHeight: "15rem",
+        maxHeight: "15rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
         boxSizing: 'border-box',
-        padding: '1rem',
+        padding: '1.5rem',
         borderRadius: '0.188rem',
         marginBottom: '2rem'
     },
@@ -190,6 +419,7 @@ const useStyles = makeStyles((theme) => ({
 //     return `${value}°C`;
 // }
 
+// rangeSlider steps
 const marks = [
     {
         value: 1,
@@ -238,7 +468,6 @@ export default function DialogCharacterPlanner(props: any) {
     const character = props.character;
     const dialogClose = props.dialogClose;
     const ascensionDetails = props.ascensionDetails;
-    //const setAscensionDetails = props.setAscensionDetails;
     const items = props.items;
     const setItems = props.setItems;
     const materials = props.materials;
@@ -249,16 +478,16 @@ export default function DialogCharacterPlanner(props: any) {
     const theRef = React.createRef<HTMLDivElement>();
 
     const initialCurrentStars = [
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
-        {opacity: "0.3"},
+        {starOne: {opacity: "0.3"}},
+        {starTwo: {opacity: "0.3"}},
+        {starThree: {opacity: "0.3"}},
+        {starFour: {opacity: "0.3"}},
+        {starFive: {opacity: "0.3"}},
+        {starSix: {opacity: "0.3"}},
 
     ]
     const initialDesiredStars = [
-        {starOne: {opacity: "0.3"}},
+        {starOne: {opacity: "1"}},
         {starTwo: {opacity: "0.3"}},
         {starThree: {opacity: "0.3"}},
         {starFour: {opacity: "0.3"}},
@@ -273,42 +502,11 @@ export default function DialogCharacterPlanner(props: any) {
     const [abilityTwo, setAbilityTwo] = React.useState<number[]>([1, 10]);
     const [abilityThree, setAbilityThree] = React.useState<number[]>([1, 10]);
 
-    function setCurrentStarsClick(index: any) {
-        if (index === 5) {
-            setDesiredStarsClick(index)
-            
-        } else if (desiredStars[index + 1].opacity === "1") {
+    const [levelOpacity, setLevelOpacity] = React.useState<number>(1);
+    const [levelPointer, setLevelPointer] = React.useState<any>("auto");
 
-        } else {
-            setDesiredStarsClick(index)
-        }
-
-        const starsTemp = [...currentStars]
-        // reset stars
-        for (let i = 0; i <= 5; i++) {
-            starsTemp[i].opacity = "0.3";
-        }
-        // set stars based on index
-        for (let i =0; i <= index; i++) {
-            starsTemp[i].opacity = "1";
-        }
-        setCurrentStars(starsTemp)
-        //console.log("currentStars:", currentStars);
-    }
-
-    function setDesiredStarsClick(index: any) {
-            const starsTemp = [...desiredStars]
-            // reset stars
-            for (let i = 0; i <= 5; i++) {
-                starsTemp[i].opacity = "0.3";
-            }
-            // set stars based on index
-            for (let i =0; i <= index; i++) {
-                starsTemp[i].opacity = "1";
-            }
-            setDesiredStars(starsTemp)
-            //console.log("desiredStars:", desiredStars);
-    }
+    const [talentOpacity, setTalentOpacity] = React.useState<number>(1);
+    const [talentPointer, setTalentPointer] = React.useState<any>("auto");
 
     async function submitDialog() {
         let i = [...items]
@@ -356,28 +554,6 @@ export default function DialogCharacterPlanner(props: any) {
         dialogClose()
     }
 
-    const createCurrentStars = currentStars.map((star: any, index: any) => 
-        <div key={index}>
-            <CardMedia
-                image= {AscensionStar}
-                className={classes.ascensionStar}
-                style={{opacity: star.opacity}}
-                onClick={(e) => {setCurrentStarsClick(index)}}
-            />
-        </div>
-    );
-
-    const createDesiredStars = desiredStars.map((star: any, index: any) => 
-    <div key={index}>
-        <CardMedia
-            image= {AscensionStar}
-            className={classes.ascensionStar}
-            style={{opacity: star.opacity}}
-            onClick={(e) => {setDesiredStarsClick(index)}}
-        />
-    </div>
-    );
-
     function countCurrentStars() {
         let count = 0;
         for (let i = 0; i < currentStars.length; i++) {
@@ -406,8 +582,236 @@ export default function DialogCharacterPlanner(props: any) {
           }
     }
 
+    function setCurrentStarsDOM(index: number) {
+        const starsTemp = [...currentStars]
+        for (let i = 0; i <= 5; i++) {
+            starsTemp[i].opacity = "0.3";
+        }
+        setCurrentStars(starsTemp);
+        switch(index) {
+            case 0:
+                for (let i = 0; i <= 5; i++) {
+                    starsTemp[i].opacity = "0.3";
+                }
+                setCurrentStars(starsTemp);
+                return
+            case 1:
+                starsTemp[0].opacity = "1";
+                setCurrentStars(starsTemp)
+                if (desiredStars[index].opacity === "1") {
+                    // do nothing
+                } else {
+                    setDesiredStarsDOM(index)
+                }
+                return
+            case 2:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                setCurrentStars(starsTemp);
+                if (desiredStars[index].opacity === "1") {
+                    // do nothing
+                } else {
+                    setDesiredStarsDOM(index)
+                }
+                return
+            case 3:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                setCurrentStars(starsTemp);
+                if (desiredStars[index].opacity === "1") {
+                    // do nothing
+                } else {
+                    setDesiredStarsDOM(index)
+                }
+                return
+            case 4:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                starsTemp[3].opacity = "1";
+                setCurrentStars(starsTemp);
+                if (desiredStars[index].opacity === "1") {
+                    // do nothing
+                } else {
+                    setDesiredStarsDOM(index)
+                }
+                return
+            case 5:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                starsTemp[3].opacity = "1";
+                starsTemp[4].opacity = "1";
+                setCurrentStars(starsTemp);
+                if (desiredStars[index].opacity === "1") {
+                    // do nothing
+                } else {
+                    setDesiredStarsDOM(index)
+                }
+                return
+            case 6:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                starsTemp[3].opacity = "1";
+                starsTemp[4].opacity = "1";
+                starsTemp[5].opacity = "1";
+                setCurrentStars(starsTemp);
+                if (desiredStars[index-1].opacity === "1") {
+                    // do nothing
+                } else {
+                    setDesiredStarsDOM(index)
+                }
+                return
+        }
+    }
+
+    // If currentStar[index +1].opacity === 1
+    // setCurrentStarDOM(index);
+
+    function setDesiredStarsDOM(index: number) {
+        const starsTemp = [...desiredStars]
+        for (let i = 0; i <= 5; i++) {
+            starsTemp[i].opacity = "0.3";
+        }
+        setDesiredStars(starsTemp);
+        switch(index) {
+            case 0:
+                for (let i = 0; i <= 5; i++) {
+                    starsTemp[i].opacity = "0.3";
+                }
+                setDesiredStars(starsTemp);
+                return
+            case 1:
+                starsTemp[0].opacity = "1";
+                if (currentStars[index].opacity === "1") {
+                    setCurrentStarsDOM(index)
+                }
+                setDesiredStars(starsTemp);
+                return
+            case 2:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                if (currentStars[index].opacity === "1") {
+                    setCurrentStarsDOM(index)
+                }
+                setDesiredStars(starsTemp);
+                return
+            case 3:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                if (currentStars[index].opacity === "1") {
+                    setCurrentStarsDOM(index)
+                }
+                setDesiredStars(starsTemp);
+                return
+            case 4:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                starsTemp[3].opacity = "1";
+                if (currentStars[index].opacity === "1") {
+                    setCurrentStarsDOM(index)
+                }
+                setDesiredStars(starsTemp);
+                return
+            case 5:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                starsTemp[3].opacity = "1";
+                starsTemp[4].opacity = "1";
+                if (currentStars[index].opacity === "1") {
+                    setCurrentStarsDOM(index)
+                }
+                setDesiredStars(starsTemp);
+                return
+            case 6:
+                starsTemp[0].opacity = "1";
+                starsTemp[1].opacity = "1";
+                starsTemp[2].opacity = "1";
+                starsTemp[3].opacity = "1";
+                starsTemp[4].opacity = "1";
+                starsTemp[5].opacity = "1";
+                setDesiredStars(starsTemp);
+                return
+        }
+    }
+
+    function handleLevelSwitch() {
+        if (levelOpacity === 1) {
+            setLevelOpacity(0.3);
+            setLevelPointer('none');
+            // set currentStars to 0.3
+            setCurrentStarsDOM(0);
+            // set desiredStars to 0.3
+            setDesiredStarsDOM(0);
+        } else {
+            setLevelOpacity(1)
+            setLevelPointer('auto');
+            // set desiredStars[0] = 1;
+            setDesiredStarsDOM(1);
+        }
+    }
+
+    function handleTalentSwitch() {
+        const abilityOneTemp = [...abilityOne];
+        const abilityTwoTemp = [...abilityTwo];
+        const abilityThreeTemp = [...abilityThree];
+        if (talentOpacity === 1) {
+            setTalentOpacity(0.3);
+            setTalentPointer('none');
+            // set upperTalents to 0 or 1;
+            abilityOneTemp[0] = 1;
+            abilityOneTemp[1] = 1;
+
+            abilityTwoTemp[0] = 1;
+            abilityTwoTemp[1] = 1;
+
+            abilityThreeTemp[0] = 1;
+            abilityThreeTemp[1] = 1;
+        } else {
+            setTalentOpacity(1);
+            setTalentPointer('auto');
+            // set upperTalent to 10;
+            abilityOneTemp[0] = 1;
+            abilityOneTemp[1] = 10;
+            
+            abilityTwoTemp[0] = 1;
+            abilityTwoTemp[1] = 10;
+            
+            abilityThreeTemp[0] = 1;
+            abilityThreeTemp[1] = 10;
+        }
+        setAbilityOne(abilityOneTemp);
+        setAbilityTwo(abilityTwoTemp);
+        setAbilityThree(abilityThreeTemp);
+    }
+
+    function resetAbilities() {
+        const abilityOneTemp = [...abilityOne];
+        const abilityTwoTemp = [...abilityTwo];
+        const abilityThreeTemp = [...abilityThree];
+
+        abilityOneTemp[0] = 1;
+        abilityOneTemp[1] = 10;
+        
+        abilityTwoTemp[0] = 1;
+        abilityTwoTemp[1] = 10;
+        
+        abilityThreeTemp[0] = 1;
+        abilityThreeTemp[1] = 10;
+
+    }
+
     useEffect(() => {
         scrollToTop();
+        // reset currentStars, desiredStars
+        setDesiredStarsDOM(1);
+        // reset abilityOne, abilityTwo, abilityThree
+        resetAbilities();
     }, []);
       
     return (
@@ -442,77 +846,195 @@ export default function DialogCharacterPlanner(props: any) {
                 </div>
             </div>
             <div className={classes.characterContainer}>
-                <Typography variant="h1" style={{margin: '1.5rem 0rem'}}>
-                    Levels
-                </Typography>
-                <Card className={classes.ascension}>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <Typography variant="h1" style={{margin: '1.5rem 0rem', flex: 1, opacity: `${levelOpacity}`}}>
+                        Levels
+                    </Typography>
+                    <Switch
+                        defaultChecked
+                        onChange={handleLevelSwitch}
+                        color="default"
+                        inputProps={{ 'aria-label': 'checkbox with default color' }}
+                    />
+                </div>
+                <div style={{opacity: `${levelOpacity}`, pointerEvents: levelPointer}}>
+                    <Card className={classes.ascension}>
+                        <div className={classes.maxCurrent}>
+                            <Tooltip title={"Uses highest level for current ascension. (E.g., Current ascension 0 = Level 20)"} placement="top">
+                                <Typography variant="h5" style={{cursor: 'help',}}>
+                                    Current Max
+                                </Typography>
+                            </Tooltip>
+                            <Checkbox
+                                color="default"
+                                inputProps={{ 'aria-label': 'checkbox with default color' }}
+                                disableRipple
+                                style={{paddingTop: 0, paddingRight: 0}}
+                            /> 
+                        </div>
+                        <div className={classes.maxDesired}>
+                            <Tooltip title="Uses highest level for desired ascension (E.g., Desired ascension 6 = Level 90)" placement="top">
+                                <Typography variant="h5" style={{cursor: 'help'}}>
+                                    Desired Max
+                                </Typography>
+                            </Tooltip>
+                            <Checkbox
+                                defaultChecked
+                                color="default"
+                                inputProps={{ 'aria-label': 'checkbox with default color' }}
+                                disableRipple
+                                style={{paddingTop: 0, paddingRight: 0}}
+                            /> 
+                        </div>
                         <Typography variant="h2" align="center" style={{width: '100%'}}>
                             Current Level
                         </Typography>
-                    <div style={{ display: "flex" }} >
-                        {createCurrentStars}
-                    </div>
-                        <Typography variant="h2" align="center" style={{width: '100%'}}>
-                            Desired Level
+                        <div className={classes.ascensionStarContainer}>
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.currentStarSix}
+                            style={{opacity: currentStars[5].opacity}}
+                            onClick={(e) => {setCurrentStarsDOM(6)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.currentStarFive}
+                            style={{opacity: currentStars[4].opacity}}
+                            onClick={(e) => {setCurrentStarsDOM(5)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.currentStarFour}
+                            style={{opacity: currentStars[3].opacity}}
+                            onClick={(e) => {setCurrentStarsDOM(4)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.currentStarThree}
+                            style={{opacity: currentStars[2].opacity}}
+                            onClick={(e) => {setCurrentStarsDOM(3)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.currentStarTwo}
+                            style={{opacity: currentStars[1].opacity}}
+                            onClick={(e) => {setCurrentStarsDOM(2)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.currentStarOne}
+                            style={{opacity: currentStars[0].opacity}}
+                            onClick={(e) => {setCurrentStarsDOM(1)}}
+                            />
+                        </div>
+                            <Typography variant="h2" align="center" style={{width: '100%'}}>
+                                Desired Level
+                            </Typography>
+                            <div className={classes.ascensionStarContainer}>
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.desiredStarSix}
+                            style={{opacity: desiredStars[5].opacity}}
+                            onClick={(e) => {setDesiredStarsDOM(6)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.desiredStarFive}
+                            style={{opacity: desiredStars[4].opacity}}
+                            onClick={(e) => {setDesiredStarsDOM(5)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.desiredStarFour}
+                            style={{opacity: desiredStars[3].opacity}}
+                            onClick={(e) => {setDesiredStarsDOM(4)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.desiredStarThree}
+                            style={{opacity: desiredStars[2].opacity}}
+                            onClick={(e) => {setDesiredStarsDOM(3)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.desiredStarTwo}
+                            style={{opacity: desiredStars[1].opacity}}
+                            onClick={(e) => {setDesiredStarsDOM(2)}}
+                            />
+                            <CardMedia
+                            image= {AscensionStar}
+                            className={classes.desiredStarOne}
+                            style={{opacity: desiredStars[0].opacity}}
+                            onClick={(e) => {setDesiredStarsDOM(1)}}
+                            />
+                        </div>
+                    </Card>
+                </div>
+
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <Typography variant="h1" style={{margin: '1.5rem 0rem', flex: 1, opacity: `${talentOpacity}`,}}>
+                        Talents
+                    </Typography>
+                    <Switch
+                        defaultChecked
+                        onChange={handleTalentSwitch}
+                        color="default"
+                        inputProps={{ 'aria-label': 'checkbox with default color' }}
+                    />                           
+                </div>
+                <div style={{opacity: `${talentOpacity}`, pointerEvents: talentPointer}}>
+                    <Card className={classes.talent}>
+                        <CardMedia
+                            image= {character.abilityOne.image}
+                            className={classes.talentImage}
+                        />
+                        <Typography variant="h5" align="center" className={classes.talentName}>
+                            {character.abilityOne.name}
                         </Typography>
-                    <div style={{ display: "flex" }}>
-                        {createDesiredStars}
-                    </div>
-                </Card>
-                <Typography variant="h1" style={{margin: '1.5rem 0rem'}}>
-                    Talents
-                </Typography>
-                <Card className={classes.talent}>
-                    <CardMedia
-                        image= {character.abilityOne.image}
-                        className={classes.talentImage}
-                    />
-                    <Typography variant="h5" align="center" className={classes.talentName}>
-                        {character.abilityOne.name}
-                    </Typography>
-                    <Typography variant="h6" align="center" style={{width: '100%'}}>
-                        Normal Attack
-                    </Typography>
-                    <div className={classes.talentSlider}>
-                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                        <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
-                    </div>
-                </Card>
-                <Card className={classes.talent}>
-                    <CardMedia
-                        image= {character.abilityTwo.image}
-                        className={classes.talentImage}
-                    />
-                    <Typography variant="h5" align="center" className={classes.talentName}>
-                        {character.abilityTwo.name}
-                    </Typography>
-                    <Typography variant="h6" align="center" style={{width: '100%'}}>
-                        Elemental Skill
-                    </Typography>
-                    <div className={classes.talentSlider}>
-                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                        <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
-                    </div>
-                </Card>
-                <Card className={classes.talent}>
-                    <CardMedia
-                        image= {character.abilityThree.image}
-                        className={classes.talentImage}
-                    />
-                    <Typography variant="h5" align="center" className={classes.talentName}>
-                        {character.abilityThree.name}
-                    </Typography>
-                    <Typography variant="h6" align="center" style={{width: '100%'}}>
-                        Elemental Burst
-                    </Typography>
-                    <div className={classes.talentSlider}>
-                        <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                        <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                        <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
-                    </div>
-                </Card>
+                        <Typography variant="h6" align="center" style={{width: '100%'}}>
+                            Normal Attack
+                        </Typography>
+                        <div className={classes.talentSlider}>
+                            <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                            <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                            <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
+                        </div>
+                    </Card>
+                    <Card className={classes.talent}>
+                        <CardMedia
+                            image= {character.abilityTwo.image}
+                            className={classes.talentImage}
+                        />
+                        <Typography variant="h5" align="center" className={classes.talentName}>
+                            {character.abilityTwo.name}
+                        </Typography>
+                        <Typography variant="h6" align="center" style={{width: '100%'}}>
+                            Elemental Skill
+                        </Typography>
+                        <div className={classes.talentSlider}>
+                            <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                            <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                            <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
+                        </div>
+                    </Card>
+                    <Card className={classes.talent}>
+                        <CardMedia
+                            image= {character.abilityThree.image}
+                            className={classes.talentImage}
+                        />
+                        <Typography variant="h5" align="center" className={classes.talentName}>
+                            {character.abilityThree.name}
+                        </Typography>
+                        <Typography variant="h6" align="center" style={{width: '100%'}}>
+                            Elemental Burst
+                        </Typography>
+                        <div className={classes.talentSlider}>
+                            <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
+                            <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                            <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
+                        </div>
+                    </Card>
+                </div>
             </div>
         </div>
     );

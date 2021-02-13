@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#272937', 
 		paddingBottom: '1.25rem',
 		boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+		minHeight: '16.5rem'
 	},
 	talentLevelContainer: {
 		display: 'flex', justifyContent: 'center', flexDirection: 'column', flex: 1, backgroundColor: "#353749", alignItems: 'center',
@@ -251,7 +252,7 @@ export default function CharacterOverview(props: any) {
 
 	function getCurrentLevel() {
 		let level = objectInfo.currentLevel;
-		//console.log("getCurrentLevel", level);
+		//console.log("getCurrentLevel", objectInfo);
 
 		if (level === 0) {
 			level = 1
@@ -274,31 +275,43 @@ export default function CharacterOverview(props: any) {
 
 	function getDesiredLevel() {
 		let level = objectInfo.desiredLevel;
-		//console.log("getDesiredLevel", level);
+		//console.log("getDesiredLevel", objectInfo.desiredLevel);
 
 		if (level === 0) {
 			level = 1
 		}
-		if (level === 1) {
+		else if (level === 1) {
 			level = 20
 		}
-		if (level === 2) {
+		else if (level === 2) {
 			level = 40
 		}
-		if (level === 3) {
+		else if (level === 3) {
 			level = 50
 		}
-		if (level === 4) {
+		else if (level === 4) {
 			level = 60
 		}
-		if (level === 5) {
+		else if (level === 5) {
 			level = 70
 		}
-		if (level === 6) {
+		else if (level === 6) {
 			level = 80
 		}
 
 		return level;
+	}
+
+	function showLevel(current: number, desired: number) {
+		if (current === 1 && desired === 1) {
+			// do nothing
+			return
+		}
+		else {
+			return (<Typography variant="body1" align='center' className={classes.characterLevel}>
+						Lv. {getCurrentLevel()} - {getDesiredLevel()}
+					</Typography>)
+		}
 	}
 
 	function getCurrentTalentLevel(num: number) {
@@ -410,7 +423,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	function showTalentLevels() {
-		if (objectInfo.type === "character") {
+		if (objectInfo.type === "character" && getCurrentTalentLevel(1) !== 0) {
 			return 	<div className={classes.talentLevelContainer}>
 			<Typography variant="body1" align='center' className={classes.talentLevel}>
 				<span style={{float: 'left'}}>Atk Lv. </span> <span style={{float: 'right'}}>{getCurrentTalentLevel(1)} - {getDesiredTalentLevel(1)}</span>
@@ -459,9 +472,7 @@ export default function CharacterOverview(props: any) {
 						<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
 							{objectInfo.name}
 						</Typography>
-						<Typography variant="body1" align='center' className={classes.characterLevel}>
-							Lv. {getCurrentLevel()} - {getDesiredLevel()}
-						</Typography>
+						{showLevel(getCurrentLevel(), getDesiredLevel())}
 						<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
 							{createAscensionStars}
 						</div>

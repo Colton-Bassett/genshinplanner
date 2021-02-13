@@ -895,5 +895,64 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
 
 }
 
-// SetMaterials(c, a)
+// currentAscension = 0,1,2,3,4,5,6
+// let level = 0;
+// switch(currentAscension)
+// case 0:
+//     if (currentMax) {
+//         level = 20;
+//     } else {
+//         level = 1;
+//     return level;
+// }
+// case 1:
+//     if (currentMax) {
+//         level = 40;  
+//     } else {
+//         level = 20;
+//     return level;
+// }
+// case 2:
+//     if (currentMax) {
+//         level = 50
+//     } else {
+//         level = 40;
+//     return level;
+// }
+// case 3:
+//     if (currentMax) {
+//         level = 60
+//     } else {
+//         level = 50;
+//     return level;
+// }
+// case 4:
+//     if (currentMax) {
+//         level = 70
+//     } else {
+//         level = 60;
+//     return level;
+// }
+// case 5:
+//     if (currentMax) {
+//         level = 80
+//     } else {
+//         level = 70; 
+//     return level;
+// }
+// case 6:
+//     if (currentMax) {
+//         level = 90
+//     } else {
+//         level = 80;
+//     return level;
+// }
+// currentAscension
+// currentMax = True/False
+// currentLevel = 1,20,40,50,60,70,80,90
+
+
+// desiredAscension = 1,2,3,4,5,6
+// DesiredMax = True/False
+// currentDesired 20,40,50,60,70,80,90
 
