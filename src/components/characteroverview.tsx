@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	characterCard: {
-		backgroundColor: "#353749", 
-		// backgroundColor: '#272937',
+		backgroundColor: "#2e3944", 
+		// backgroundColor: '#202933',
 		minHeight: '100%',
 		minWidth: '10.625rem',
 		display: 'flex',
@@ -43,19 +43,24 @@ const useStyles = makeStyles((theme) => ({
 	characterCardContainer: {
 		borderBottomRightRadius: '3.5rem', 
 		//borderBottomLeftRadius: '1rem', 
-		backgroundColor: '#272937', 
+		backgroundColor: '#202933', 
 		paddingBottom: '1.25rem',
 		boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
 		minHeight: '16.5rem'
 	},
 	talentLevelContainer: {
-		display: 'flex', justifyContent: 'center', flexDirection: 'column', flex: 1, backgroundColor: "#353749", alignItems: 'center',
+		display: 'flex', 
+		justifyContent: 'center', 
+		flexDirection: 'column', 
+		flex: 1, 
+		backgroundColor: '#2e3944', 
+		alignItems: 'center',
 		'@media (max-width: 60em)': {
 			marginTop: '1.5rem'
 		},
 	},
 	characterCardContainerWeapon: {
-		backgroundColor: '#272937', 
+		backgroundColor: '#202933', 
 		flex: 1,
 	},
 	characterButtons: {
@@ -83,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
 	characterImage: {
 		minHeight: "6.563rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
 		marginBottom: '1rem',
-		backgroundColor: "rgb(54, 56, 74)",
+		backgroundColor: "#2e3944",
 		boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
 	},
 	characterImageContainer: {
@@ -120,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
     },
     star: {
 		minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
-		// backgroundColor: "#36384a",
     },
     element: {
         height: "1.75rem", 
@@ -130,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
 		// right: "50rem",
 		float: "left",
         padding: "0.188rem",
-        background: "#36384a",
+        background: "#2e3944",
         borderRadius: "6.25rem",
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
 	},
@@ -158,11 +162,11 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	materialContainer: {
-		backgroundColor: '#272937 !important', 
+		backgroundColor: '#202933 !important', 
 		padding: '1.5rem',
 	},
 	materialCard: {
-		backgroundColor: 'rgb(53, 55, 73) !important', 
+		backgroundColor: '#2e3944', 
 		minHeight: '21.625rem', 
 		minWidth: '100%',
 		boxSizing: 'border-box',
@@ -222,8 +226,8 @@ export default function CharacterOverview(props: any) {
 		name: props.objectInfo.name,
 		stars: props.objectInfo.stars,
 		talentMat: props.objectInfo.talentMat,
-		currentLevel: props.objectInfo.currentLevel,
-		desiredLevel: props.objectInfo.desiredLevel,
+		currentAscension: props.objectInfo.currentAscension,
+		desiredAscension: props.objectInfo.desiredAscension,
 		abilityOneCurrent: props.objectInfo.abilityOneCurrent,
 		abilityOneDesired: props.objectInfo.abilityOneDesired,
 		abilityTwoCurrent: props.objectInfo.abilityTwoCurrent,
@@ -250,9 +254,9 @@ export default function CharacterOverview(props: any) {
 		props.deleteMethod(id, items, setItems, summary, setSummary);
 	}
 
-	function getCurrentLevel() {
-		let level = objectInfo.currentLevel;
-		//console.log("getCurrentLevel", objectInfo);
+	function getcurrentAscension() {
+		let level = objectInfo.currentAscension;
+		//console.log("getcurrentAscension", objectInfo);
 
 		if (level === 0) {
 			level = 1
@@ -273,9 +277,9 @@ export default function CharacterOverview(props: any) {
 		return level;
 	}
 
-	function getDesiredLevel() {
-		let level = objectInfo.desiredLevel;
-		//console.log("getDesiredLevel", objectInfo.desiredLevel);
+	function getdesiredAscension() {
+		let level = objectInfo.desiredAscension;
+		//console.log("getdesiredAscension", objectInfo.desiredAscension);
 
 		if (level === 0) {
 			level = 1
@@ -309,7 +313,7 @@ export default function CharacterOverview(props: any) {
 		}
 		else {
 			return (<Typography variant="body1" align='center' className={classes.characterLevel}>
-						Lv. {getCurrentLevel()} - {getDesiredLevel()}
+						Lv. {getcurrentAscension()} - {getdesiredAscension()}
 					</Typography>)
 		}
 	}
@@ -412,7 +416,7 @@ export default function CharacterOverview(props: any) {
 	);
 
 	const setAscensionStarsOther = () => {
-		const ascensionLevel = objectInfo.desiredLevel;
+		const ascensionLevel = objectInfo.desiredAscension;
 		const starsTemp = [...ascensionStars]
 
 		for (let i = 0; i < ascensionLevel; i++) {
@@ -472,7 +476,7 @@ export default function CharacterOverview(props: any) {
 						<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
 							{objectInfo.name}
 						</Typography>
-						{showLevel(getCurrentLevel(), getDesiredLevel())}
+						{showLevel(getcurrentAscension(), getdesiredAscension())}
 						<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
 							{createAscensionStars}
 						</div>
@@ -511,7 +515,7 @@ export default function CharacterOverview(props: any) {
 								onClick={handleExpandClick}
 								aria-expanded={expanded}
 								aria-label="show more"
-								style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0", marginTop: '0.5rem', marginRight: '0.5rem'}}
+								style={{backgroundColor: "#2e3944", borderRadius: "10%", padding: "0", marginTop: '0.5rem', marginRight: '0.5rem'}}
 								disabled
 							>
 							<ExpandMore className={classes.expandButton} />

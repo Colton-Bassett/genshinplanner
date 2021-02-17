@@ -3,8 +3,8 @@ import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     sidebar: {
-        // backgroundColor: '#20212C',
-        backgroundColor: '#222431',
+        // backgroundColor: '#1b242d2C',
+		backgroundColor: "#1b242d",
         minWidth: "calc(100% - 1.5rem)",
         boxShadow: "none",
         marginLeft: '1.5rem',
@@ -32,27 +32,27 @@ export default function SideBar()  {
                 </Typography>
                 <Card style={{backgroundColor: '#222431', marginBottom: '1rem', display: 'flex', flexWrap: 'wrap'}}>
                     <div style={{padding: '.5rem'}}>
-                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
+                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#202933'}}>
                         </Card>
                     </div>
                     <div style={{padding: '.5rem'}}>
-                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
+                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#202933'}}>
                         </Card>
                     </div>
                     <div style={{padding: '.5rem'}}>
-                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
+                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#202933'}}>
                         </Card>
                     </div>
                     <div style={{padding: '.5rem'}}>
-                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
+                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#202933'}}>
                         </Card>
                     </div>
                     <div style={{padding: '.5rem'}}>
-                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
+                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#202933'}}>
                         </Card>
                     </div>
                     <div style={{padding: '.5rem'}}>
-                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#272937'}}>
+                        <Card style={{minWidth: '3.125rem', minHeight: '4.125rem', maxWidth: '3.125rem', maxHeight: '4.125rem', backgroundColor: '#202933'}}>
                         </Card>
                     </div>
                     
@@ -61,22 +61,22 @@ export default function SideBar()  {
                 <Typography variant="h2" style={{marginBottom: '0.5rem'}}>
                     Common
                 </Typography>
-                <Card style={{backgroundColor: '#272937', marginBottom: '1rem'}}>
+                <Card style={{backgroundColor: '#202933', marginBottom: '1rem'}}>
                 </Card>
                 <Typography variant="h2" style={{marginBottom: '0.5rem'}}>
                     Character Ascension
                 </Typography>
-                <Card style={{backgroundColor: '#272937', marginBottom: '1rem'}}>
+                <Card style={{backgroundColor: '#202933', marginBottom: '1rem'}}>
                 </Card>
                 <Typography variant="h2" style={{marginBottom: '0.5rem'}}>
                     Talent Level Up
                 </Typography>
-                <Card style={{backgroundColor: '#272937', marginBottom: '1rem'}}>
+                <Card style={{backgroundColor: '#202933', marginBottom: '1rem'}}>
                 </Card>
                 <Typography variant="h2" style={{marginBottom: '0.5rem'}}>
                     Weapon Ascension
                 </Typography>
-                <Card style={{backgroundColor: '#272937', marginBottom: '1rem'}}>
+                <Card style={{backgroundColor: '#202933', marginBottom: '1rem'}}>
                 </Card>
             </CardContent>
         </div> */}

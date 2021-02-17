@@ -502,7 +502,7 @@ export default function SetWeaponMaterials(weapon: any, ascensionDetails: any, a
 
     let materials: any[] = [];
 
-    for (let level = ascensionDetails.currentLevel +1; level <= ascensionDetails.desiredLevel; level++) {
+    for (let level = ascensionDetails.currentAscension +1; level <= ascensionDetails.desiredAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matOne.name = getMatOne(weapon.ascensionMats.matOne, level)!;
         matOne.quantity = getMatOneAmount(level, ascensionDetails.stars)!;

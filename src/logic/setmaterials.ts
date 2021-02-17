@@ -1,3 +1,6 @@
+import GetDesiredHerosWit from './getDesiredHerosWit'
+import GetDesiredLevelMoraCost from './getDesiredLevelMoraCost'
+
 interface Material {
     name: string,
     type: string,
@@ -835,9 +838,27 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
 export default function SetMaterials(character: any, ascensionDetails: any, allMaterials: any) {
     console.log("SetMaterials character:", character);
     console.log("SetMaterials() AscensionDetails:", ascensionDetails);
+
+    let currentLevel = getLevel(ascensionDetails.currentAscension, ascensionDetails.currentMax) || 0;
+    let desiredLevel = getLevel(ascensionDetails.desiredAscension, ascensionDetails.desiredMax) || 0;
+    console.log("SetMaterials currentLevel, desiredLevel", currentLevel, desiredLevel);
+
+    //let desiredLevelMoraCost = GetDesiredLevelMoraCost(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension);
+    //console.log("desiredLevelMoraCost", desiredLevelMoraCost);
     let materials: any[] = [];
 
-    for (let level = ascensionDetails.currentLevel +1; level <= ascensionDetails.desiredLevel; level++) {
+    let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+    mora.name = "Mora";
+    mora.quantity = GetDesiredLevelMoraCost(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension);
+    addMaterial(mora, materials, allMaterials);
+
+    let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+    heroswit.name="Hero's_Wit";
+    heroswit.quantity = GetDesiredHerosWit(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension);
+    addMaterial(heroswit, materials, allMaterials)
+    console.log("SetMaterials HerosWit:", heroswit);
+
+    for (let level = ascensionDetails.currentAscension +1; level <= ascensionDetails.desiredAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matOne.name = getMatOne(character.ascensionMats.matOne, level)!;
         matOne.quantity = getMatOneAmount(level)!;
@@ -866,16 +887,10 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
         // commonMat.image = getImage()
         addMaterial(commonMat, materials, allMaterials);
 
-        let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-        mora.name = "Mora";
-        mora.quantity = getAscenionMoraAmount(level)!;
-        // mora.image = getImage()
-        addMaterial(mora, materials, allMaterials);
-
-        let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-        heroswit.name="Hero's_Wit";
-        heroswit.quantity = getHerosWitAmount(level)!;
-        addMaterial(heroswit, materials, allMaterials);
+        // let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+        // heroswit.name="Hero's_Wit";
+        // heroswit.quantity = getHerosWitAmount(level)!;
+        // addMaterial(heroswit, materials, allMaterials);
     }
 
     // checking for Traveler (Anemo, Geo)
@@ -890,11 +905,64 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
 
     // sorting by position
     materials?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position));
-
     return materials;
 
 }
 
+function getLevel(currentAscension: number, maxLevel: boolean) {
+    let level = 0;
+    switch(currentAscension) {
+        case 0:
+            if (maxLevel) {
+                level = 20;
+            } else {
+                level = 1;
+            }
+            return level;
+        case 1:
+            if (maxLevel) {
+                level = 40;
+            } else {
+                level = 20;
+            }
+            return level;
+        case 2:
+            if (maxLevel) {
+                level = 50;
+            } else {
+                level = 40;
+            }
+            return level;
+        case 3:
+            if (maxLevel) {
+                level = 60;
+            } else {
+                level = 50;
+            }
+            return level;
+        case 4:
+            if (maxLevel) {
+                level = 70;
+            } else {
+                level = 60;
+            }
+            return level;
+        case 5:
+            if (maxLevel) {
+                level = 80;
+            } else {
+                level = 70;
+            }
+            return level;
+        case 6:
+            if (maxLevel) {
+                level = 90;
+            } else {
+                level = 80;
+            }
+            return level;
+    }
+}
 // currentAscension = 0,1,2,3,4,5,6
 // let level = 0;
 // switch(currentAscension)

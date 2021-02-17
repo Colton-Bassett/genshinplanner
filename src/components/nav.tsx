@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     appbar: {
-        borderBottom: "0.063rem solid #36384a",
+        borderBottom: "0.063rem solid #2e3944",
         display: 'block',
     },
 	navContainer: {

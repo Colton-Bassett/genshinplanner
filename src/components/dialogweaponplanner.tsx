@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
         overflow: 'hidden', 
         padding: '1.563rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        borderBottom: 'solid 0.313rem #36384a'
+        borderBottom: 'solid 0.313rem #2e3944'
     },
     backgroundImage: {
         position: 'absolute', 
@@ -50,7 +50,7 @@ const useStyles = makeStyles(() => ({
         minHeight: '6rem',
         maxWidth: "6rem",
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        backgroundColor: "#36384a",
+        backgroundColor: "#2e3944",
         borderRadius: "0.375rem",
         zIndex: 3,
         display: 'flex',
@@ -64,7 +64,6 @@ const useStyles = makeStyles(() => ({
     },
     star: {
         minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
-        // backgroundColor: "#36384a",
     },
     weaponTitle: {
         maxWidth: '60%', 
@@ -86,7 +85,7 @@ const useStyles = makeStyles(() => ({
     },
     checkIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         color: "#58CCA5",
         marginRight: "1.5rem",
         cursor: "pointer",
@@ -104,7 +103,7 @@ const useStyles = makeStyles(() => ({
     },
     closeIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         color: "#f56262",
         cursor: "pointer",
         borderRadius: '0.188rem',
@@ -127,7 +126,7 @@ const useStyles = makeStyles(() => ({
         margin: 'auto',
     },
     ascension: {
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         minHeight: "13.75rem",
         maxHeight: "13.75rem",
         display: 'flex',
@@ -340,8 +339,8 @@ export default function DialogWeaponPlanner(props: any) {
         a.name = weapon.name;
         a.image = weapon.image;
         a.stars = weapon.stars;
-        a.currentLevel = countCurrentStars();
-        a.desiredLevel = countDesiredStars();
+        a.currentAscension = countCurrentStars();
+        a.desiredAscension = countDesiredStars();
 
         //console.log("submitDialog ascensionDetails:", a);
 

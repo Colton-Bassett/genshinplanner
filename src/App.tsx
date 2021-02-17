@@ -137,7 +137,7 @@ export default function App() {
 	const theme = createMuiTheme({
 		palette: {
 			primary: {
-			main: "#222431",
+			main: "#1b242d",
 			contrastText: "#FFF"
 			},
 			secondary: {

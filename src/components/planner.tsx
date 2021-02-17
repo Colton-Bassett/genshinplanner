@@ -8,7 +8,7 @@ import DeleteObject from '../logic/deleteObject';
 
 const useStyles = makeStyles((theme) => ({
     planner: {
-		backgroundColor: "#222431",
+		backgroundColor: "#1b242d",
 		minHeight: '62.5rem',
 		minWidth: '100%',
 		padding: '1.5rem',
@@ -30,8 +30,8 @@ interface ItemTemplate {
 	index: number,
 	type: string,
 	name: string,
-	currentLevel: number,
-	desiredLevel: number,
+	currentAscension: number,
+	desiredAscension: number,
 	abilityOneCurrent: number,
 	abilityOneDesired: number,
 	abilityTwoCurrent: number,
@@ -60,8 +60,8 @@ export default function Planner(props: any) {
 		image: '',
 		stars: '',
 
-		currentLevel: '',
-		desiredLevel: '',
+		currentAscension: '',
+		desiredAscension: '',
 
 		abilityOneCurrent: '',
 		abilityOneDesired: '',
@@ -72,6 +72,9 @@ export default function Planner(props: any) {
 		abilityThreeCurrent: '',
 		abilityThreeDesired: '',
 
+		currentMax: false,
+		desiredMax: true,
+
 		materials: [
 			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
@@ -81,6 +84,7 @@ export default function Planner(props: any) {
 			{name: "Mora", quantity: "1.1M"}, {name: "Mora", quantity: "1.1M"},
 		]
 	}
+
 	const [ascensionDetails, setAscensionDetails] = useState<{}>(initialAscensionDetails);
 	const [items, setItems] = React.useState(initialItems)
 

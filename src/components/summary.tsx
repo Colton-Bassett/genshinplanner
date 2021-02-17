@@ -5,7 +5,7 @@ import { ExpandMore } from '@material-ui/icons';
 import CharacterMaterial from './charactermaterial'
 const useStyles = makeStyles((theme) => ({
     summary: {
-		backgroundColor: "#222431",
+		backgroundColor: "#1b242d",
 		minWidth: '100%',
 		boxSizing: 'border-box',
         color: 'white',
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     materialCard: {
-        backgroundColor: 'rgb(53, 55, 73) !important', 
+		backgroundColor: '#2e3944', 
         display: 'flex',
         //minHeight: '21.625rem', 
 		minWidth: '100%',
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 		transform: 'rotate(180deg)',
 	},
     summaryContent: {
-        backgroundColor: "#272937 !important",
+        backgroundColor: "#202933 !important",
         minWidth: '100%',
         display: '',
         justifyContent: 'center',
@@ -117,7 +117,7 @@ export default function NewCharacter(props: any) {
                                 onClick={handleExpandClick}
                                 aria-expanded={expanded}
                                 aria-label="show more"
-                                style={{backgroundColor: "#36384A", borderRadius: "10%", padding: "0"}}
+                                style={{backgroundColor: "#2e3944", borderRadius: "10%", padding: "0"}}
                             >
                                 <ExpandMore className={classes.expandButton}/>
                             </IconButton>

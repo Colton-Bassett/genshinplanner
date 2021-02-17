@@ -6,8 +6,8 @@ const useStyles = makeStyles((theme) => ({
     footer: {
         display: 'flex',
         width: '100%',
-        backgroundColor: '#222431',
-        borderTop: '0.063rem solid #36384a',
+        backgroundColor: "#1b242d",
+        borderTop: '0.063rem solid #2e3944',
     },
     footerContainer: {
         maxWidth: '65rem', 
@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     container: {
-        borderTop: "0.063rem solid #36384a",
-        backgroundColor: '#222431',
+        borderTop: "0.063rem solid #2e3944",
+        backgroundColor: "#1b242d",
     },
     footerMain: {
         display: 'flex',

@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         maxHeight: "4.375rem", 
         maxWidth: "4.375rem", 
         margin:"auto", 
-        backgroundColor: '#36384A', 
+        backgroundColor: '#2e3944', 
         borderRadius: '0.375rem', 
         cursor: "pointer",
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: "1.125rem",
         float: "left",
         padding: "0.188rem",
-        background: "#36384a",
+        background: "#2e3944",
         borderRadius: "6.25rem",
         boxShadow: "0 0.188rem 0.375rem  rgba(0,0,0,.23), 0 0.188rem 0.375rem  rgba(0,0,0,.16)"
     },
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     star: {
         minHeight: '0.8rem', minWidth: '0.8rem', overflow: 'auto', boxSizing: 'border-box', marginLeft: '-0.15rem', verticalAlign: 'middle', borderStyle: 'none',
-        backgroundColor: "#36384a",
+        backgroundColor: "#2e3944",
     },
 }));
 

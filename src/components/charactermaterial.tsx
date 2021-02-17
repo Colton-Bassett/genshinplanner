@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         backgroundColor: '#272937'
+         backgroundColor: '#202933'
     },
     materialImage: {
         maxHeight: "2.7rem", 
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "2.7rem", 
         minWidth: "2.7rem", 
         backgroundSize: '110%, cover', 
-        backgroundColor: '#36384A',
+
         backgroundOrigin: 'content-box, border-box', 
         padding: '0.25rem', 
         borderTopLeftRadius: '0.25rem',
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
         borderBottomRightRadius: '0.188rem'
     },
     dialog: {
-        backgroundColor: '#1d1f29', 
+        backgroundColor: '#172028', 
         padding: '0rem !important',
         color: 'white',
         top: '0%',
@@ -386,7 +386,7 @@ export default function CharacterMaterial( props: any ) {
                             </div>
                         </div>
                     </DialogContent>
-                    <DialogContent style={{backgroundColor: "#36384A", padding: '2rem 1.5rem', height: '17.5rem'}}>
+                    <DialogContent style={{backgroundColor: "#2e3944", padding: '2rem 1.5rem', height: '17.5rem'}}>
                         <DialogContentText id="alert-dialog-description" variant="h3" style={{marginBottom:  '1.5rem'}}>
                             {description}
                         </DialogContentText>

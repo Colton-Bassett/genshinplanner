@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden', 
         padding: '1.563rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        borderBottom: 'solid 0.313rem #36384a',
+        borderBottom: 'solid 0.313rem #2e3944',
         // maxHeight: '6.563rem',
     },
     backgroundImage: {
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '6rem',
         maxWidth: "6rem",
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        backgroundColor: "#36384a",
+        backgroundColor: "#2e3944",
         borderRadius: "0.375rem",
         zIndex: 3,
     },
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         width: "1.75rem",
         float:"left",
         padding: "0.188rem",
-        background: "#36384a",
+        background: "#2e3944",
         borderRadius: "6.25rem",
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
     },
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     },
     checkIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         color: "#58CCA5",
         marginRight: "1.5rem",
         cursor: "pointer",
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     },
     closeIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         color: "#f56262",
         cursor: "pointer",
         borderRadius: '0.188rem',
@@ -133,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
     },
     ascension: {
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         minHeight: "15rem",
         maxHeight: "15rem",
         display: 'flex',
@@ -385,7 +385,7 @@ const useStyles = makeStyles((theme) => ({
         },  
     },
     talent: {
-        backgroundColor: "#272937",
+        backgroundColor: "#202933",
         minHeight: "15rem",
         maxHeight: "15rem",
         display: 'flex',
@@ -400,7 +400,7 @@ const useStyles = makeStyles((theme) => ({
     talentImage: {
         minHeight: "3.313rem", minWidth:"3.313rem", maxHeight: "3.313rem", maxWidth: "3.313rem", 
         borderRadius: "0.375rem", 
-        backgroundColor: "#36384A", 
+        backgroundColor: "#2e3944", 
         margin: "auto", 
         boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
     },
@@ -508,6 +508,9 @@ export default function DialogCharacterPlanner(props: any) {
     const [talentOpacity, setTalentOpacity] = React.useState<number>(1);
     const [talentPointer, setTalentPointer] = React.useState<any>("auto");
 
+    const [currentMax, setCurrentMax] = React.useState(false);
+    const [desiredMax, setDesiredMax] = React.useState(true);
+
     async function submitDialog() {
         let i = [...items]
         //console.log("here is temp i", i);
@@ -520,8 +523,11 @@ export default function DialogCharacterPlanner(props: any) {
         a.image = character.image;
         a.typeImage = character.typeImage;
         a.talentMat = character.talentMats.talentMat
-        a.currentLevel = countCurrentStars();
-        a.desiredLevel = countDesiredStars();
+        a.currentAscension = countCurrentStars();
+        a.desiredAscension = countDesiredStars();
+
+        a.currentMax = currentMax;
+        a.desiredMax = desiredMax;
         
         a.abilityOneCurrent = abilityOne[0];
         a.abilityOneDesired = abilityOne[1];
@@ -806,6 +812,14 @@ export default function DialogCharacterPlanner(props: any) {
 
     }
 
+    function handleDesiredMax() {
+        setDesiredMax(!desiredMax);
+    }
+
+    function handleCurrentMax() {
+        setCurrentMax(!currentMax);
+    }
+
     useEffect(() => {
         scrollToTop();
         // reset currentStars, desiredStars
@@ -867,6 +881,8 @@ export default function DialogCharacterPlanner(props: any) {
                             </Tooltip>
                             <Checkbox
                                 color="default"
+                                checked={currentMax}
+                                onChange={handleCurrentMax}
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                                 disableRipple
                                 style={{paddingTop: 0, paddingRight: 0}}
@@ -879,7 +895,8 @@ export default function DialogCharacterPlanner(props: any) {
                                 </Typography>
                             </Tooltip>
                             <Checkbox
-                                defaultChecked
+                                checked={desiredMax}
+                                onChange={handleDesiredMax}
                                 color="default"
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                                 disableRipple

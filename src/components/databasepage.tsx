@@ -3,7 +3,7 @@ import { Card, CardContent, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-		backgroundColor: "#222431",
+		backgroundColor: "#1b242d",
 		minHeight: '62.5rem',
 		minWidth: '100%',
 		padding: '1.5rem',

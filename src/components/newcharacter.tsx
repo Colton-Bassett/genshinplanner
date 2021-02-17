@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
     },
     addCharacterButton: {
-        flexGrow: 0, 
-        maxWidth: '25%', 
-        flexBasis: '25%', 
+        flexGrow: 1, 
+        // maxWidth: '25%', 
+        // flexBasis: '25%', 
         boxSizing: 'border-box', 
         padding: '0.75rem',
         '@media (max-width: 60em)': {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     card: {
-        backgroundColor: "#272937 !important",
+        backgroundColor: "#202933 !important",
         margin: 'auto',
         minHeight: '17.188rem',
         display: 'flex',
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '0rem',
     },
     blankCard: {
-        backgroundColor: "#272937 !important",
+        backgroundColor: "#202933 !important",
         minWidth: '10.625rem',
         margin: 'auto',
         minHeight: '17.188rem',
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     },
     dialogTitleContainer: {
         display: 'flex', 
-        backgroundColor: '#222431',
+        backgroundColor: "#1b242d",
     },
     tabLabel: {
         textTransform: "none", fontSize: "1.25rem",
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     dialogContent: {
-        backgroundColor: '#1d1f29', 
+        backgroundColor: '#172028', 
         padding: '0rem !important',
     },
     dialogContentText: {
@@ -127,8 +127,8 @@ const useStyles = makeStyles((theme) => ({
          },
     },
     dialogActions: {
-        backgroundColor: '#222431',
-        borderTop: "0.2rem solid #36384a",   
+        backgroundColor: "#1b242d",
+        borderTop: "0.2rem solid #2e3944",   
     },
     indicator: {
         backgroundColor: 'green'
@@ -202,10 +202,10 @@ export default function NewCharacter(props: any) {
                     </Tooltip>
                 </Card>
             </div>
-            <div className={classes.addCharacterContent}>
+            {/* <div className={classes.addCharacterContent}>
                 <Card className={classes.blankCard}>     
                 </Card>
-            </div>
+            </div> */}
 
             <Dialog
                 open={openDialog}
@@ -216,7 +216,7 @@ export default function NewCharacter(props: any) {
                 aria-describedby="scroll-dialog-description"
                 classes={{paper: classes.dialog}}
             >
-                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#222431', justifyContent: 'center', borderBottom: "0.313rem solid #36384a",}}>
+                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.313rem solid #2e3944",}}>
                     <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
                         <Tab label="Genshin Impact Characters" {...tabID(0)} className={classes.tabLabel}  disableRipple/>
                         <Tab label="Genshin Impact Weapons" {...tabID(1)} className={classes.tabLabel} disableRipple />
