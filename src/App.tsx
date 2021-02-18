@@ -154,7 +154,13 @@ export default function App() {
 		lineHeight: '1.3em',
 		fontSize: '1.5rem',
 		fontWeight: 700,
-		margin: 0
+		margin: 0,
+		'@media (max-width: 45em)': {
+			fontSize: '1.25rem',
+		},
+		'@media (max-width: 25em)': {
+			fontSize: '1.15rem',
+		},
 	};
 	theme.typography.h2 = {
 		lineHeight: '1.3em',
@@ -166,7 +172,7 @@ export default function App() {
 		lineHeight: '1.3em',
 		fontSize: '1.125rem',
 		fontWeight: 500,
-		margin: 0
+		margin: 0,
 	};
 	theme.typography.h5 = {
 		lineHeight: '1.3em',

@@ -107,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
 		'@media (max-width: 35em)': {
 			minWidth: '100%',
             maxWidth: '100%',
-            padding: '0rem 1rem',
+
 		},
     },
     dialogContent: {

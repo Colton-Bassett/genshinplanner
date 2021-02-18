@@ -54,7 +54,7 @@ export default function AdBar() {
         <div className={classes.adbar}>
             <div className={classes.adbarContainer}>
                 <p className={classes.text}> 
-                    This website is supported by ads.
+                    This website is in closed beta.
                 </p>
             </div>
         </div>

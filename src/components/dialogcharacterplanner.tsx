@@ -3,7 +3,7 @@ import { Card, makeStyles, CardMedia, Typography, Switch, Checkbox, Tooltip } fr
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
-import Characterbg from '../images/characterbg.png'
+import Characterbg from '../images/background2.jpg'
 import AscensionStar from '../images/Ascension_Star.png'
 
 import SetMaterials from '../logic/setmaterials';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative', 
         display: 'flex', 
         overflow: 'hidden', 
-        padding: '1.563rem 0rem',
+        padding: '1.5rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         borderBottom: 'solid 0.313rem #2e3944',
         // maxHeight: '6.563rem',
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%', 
         height: '100%', 
         zIndex: 1, 
-        backgroundPosition: '50% 40%', 
+        backgroundPosition: '40% 65%', 
         boxSizing: 'border-box', 
         backgroundImage: `url(${Characterbg})`,
         opacity: 0.6,
@@ -43,13 +43,14 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 3, 
         justifyContent: 'center', 
         alignItems: 'center', 
-        display: 'flex'
+        display: 'flex',
+        '@media (max-width: 45em)': {
+            marginRight: '1rem',
+            marginLeft: '1rem',
+		},
     },
     characterImage: {
-        maxHeight: "6rem",
-        minWidth: '6rem',
-        minHeight: '6rem',
-        maxWidth: "6rem",
+        width: '100%',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         backgroundColor: "#2e3944",
         borderRadius: "0.375rem",
@@ -62,14 +63,34 @@ const useStyles = makeStyles((theme) => ({
         padding: "0.188rem",
         background: "#2e3944",
         borderRadius: "6.25rem",
-        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)"
+        top: '0rem',
+        left: '0rem',
+        position: 'absolute',
+        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        '@media (max-width: 25em)': {
+            width: '1.25rem',
+            height: '1.25rem',
+		},
     },
     characterTitle: {
         maxWidth: '60%', 
         minWidth: '60%', 
         zIndex: 3, 
         display: 'flex', 
-        flexDirection: 'column'
+        flexDirection: 'column',
+        '@media (max-width: 25em)': {
+            maxWidth: '55%',
+            minWidth: '55%'
+		},
+    },
+    headerText: {
+        width: '50%',
+        '@media (max-width: 45em)': {
+            width: '70%'
+        },
+        '@media (max-width: 25em)': {
+            width: '100%'
+		},
     },
     buttons: {
         maxWidth: '20%', 
@@ -81,8 +102,8 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonContainer: {
         display: 'flex',
-        justifyContent: 'center',
         marginRight: '2rem',
+        justifyContent: 'center',
         '@media (max-width: 60em)': {
             marginRight: '2rem',
         },
@@ -108,6 +129,9 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
+         '@media (max-width: 25em)': {
+            fontSize: '2.35rem',
+		},
     },
     closeIcon: {
         fontSize: "2.75rem;",
@@ -124,6 +148,9 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
+         '@media (max-width: 25em)': {
+            fontSize: '2.35rem',
+		},
     },
     characterContainer: {
         justifyContent: 'center',
@@ -132,6 +159,14 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '60%',
         flexBasis: '60%',
         margin: 'auto',
+        '@media (max-width: 45em)': {
+            maxWidth: '80%',
+            flexBasis: '80%',
+        },
+        '@media (max-width: 25em)': {
+            maxWidth: '90%',
+            flexBasis: '90%',
+		},
     },
     ascension: {
         backgroundColor: "#202933",
@@ -412,7 +447,10 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 700, color: "#FFCC62"
     },
     talentSlider: {
-        flexBasis: '50%'
+        flexBasis: '50%',
+        '@media (max-width: 25em)': {
+            flexBasis: '80%',
+		},
     },
 }));
 
@@ -876,21 +914,24 @@ export default function DialogCharacterPlanner(props: any) {
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.characterImageContainer}>
-                    <CardMedia
-                        image={character.image}
-                        className={classes.characterImage}>
-                        <img src={character.typeImage} alt="element" className={classes.element}></img>	
-                    </CardMedia>
-
+                    <div style={{maxWidth: '6rem', maxHeight: '6rem', position: 'relative'}}>
+                        {/* <CardMedia
+                            image={character.image}
+                            className={classes.characterImage}>
+                            <img src={character.typeImage} alt="element" className={classes.element}></img>	
+                        </CardMedia> */}
+                        <img src={character.image} className={classes.characterImage}></img>
+                        <img src={character.typeImage} alt="element" className={classes.element}></img>	             
+                    </div>
                 </div>
                 <div className={classes.characterTitle}>
-                    <Typography variant="h3" style={{width: '50%'}}>
+                    <Typography variant="h3" className={classes.headerText}>
                         Genshin Impact
                     </Typography>
-                    <Typography variant="h1" style={{width: '50%'}}>
+                    <Typography variant="h1" className={classes.headerText}>
                         {character.name} Ascension Planner
                     </Typography>
-                    <Typography variant="h5" style={{width: '50%'}}>
+                    <Typography variant="h5" className={classes.headerText}>
                         <span className={elementColor}>{character.type}</span> &#8226; {character.weapon}
                     </Typography>
                 </div>

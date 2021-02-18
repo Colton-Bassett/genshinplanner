@@ -3,7 +3,7 @@ import { Card, makeStyles, CardMedia, Typography, Tooltip, Checkbox } from '@mat
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import AscensionStar from '../images/Ascension_Star.png'
-import Characterbg from '../images/characterbg.png'
+import Characterbg from '../images/background2.jpg'
 
 import SetWeaponMaterials from '../logic/setweaponmaterials';
 import CreateNewSummary from '../logic/createNewSummary'
@@ -44,12 +44,13 @@ const useStyles = makeStyles(() => ({
         justifyContent: 'center', 
         alignItems: 'center', 
         display: 'flex',
+        '@media (max-width: 45em)': {
+            marginRight: '1rem',
+            marginLeft: '1rem',
+		},
     },
     weaponImage: {
-        maxHeight: "6rem",
-        minWidth: '6rem',
-        minHeight: '6rem',
-        maxWidth: "6rem",
+        width: '100%',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         backgroundColor: "#2e3944",
         borderRadius: "0.375rem",
@@ -61,17 +62,39 @@ const useStyles = makeStyles(() => ({
         display: 'flex', 
         flexDirection: 'row', 
         maxWidth: '12.5rem',
-        position: 'absolute', bottom: '0.25rem', justifyContent: 'center'
+        position: 'absolute', bottom: '0.25rem', justifyContent: 'center',
+        minWidth: '100%',
     },
     star: {
         minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
+        '@media (max-width: 30em)': {
+            minHeight: '1rem',
+            minWidth: '1rem',
+		},
+        '@media (max-width: 25em)': {
+            minHeight: '.9rem',
+            minWidth: '.9rem',
+		},
     },
     weaponTitle: {
         maxWidth: '60%', 
         minWidth: '60%', 
         zIndex: 3, 
         display: 'flex', 
-        flexDirection: 'column'
+        flexDirection: 'column',
+        '@media (max-width: 25em)': {
+            maxWidth: '55%',
+            minWidth: '55%'
+		},
+    },
+    headerText: {
+        width: '50%',
+        '@media (max-width: 45em)': {
+            width: '70%'
+        },
+        '@media (max-width: 25em)': {
+            width: '100%'
+		},
     },
     buttons: {
         maxWidth: '20%', 
@@ -82,7 +105,16 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
     },
     buttonContainer: {
-        marginRight: '2rem'
+        marginRight: '2rem',
+        justifyContent: 'center',
+        '@media (max-width: 60em)': {
+            marginRight: '2rem',
+        },
+        '@media (max-width: 45em)': {
+            //marginRight: '5rem',
+            display: 'block',
+            marginRight: '0rem'
+		},
     },
     checkIcon: {
         fontSize: "2.75rem;",
@@ -101,6 +133,9 @@ const useStyles = makeStyles(() => ({
             cursor: 'pointer',
             //color: 'white',
          },
+         '@media (max-width: 25em)': {
+            fontSize: '2.35rem',
+		},
     },
     closeIcon: {
         fontSize: "2.75rem;",
@@ -117,6 +152,9 @@ const useStyles = makeStyles(() => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
+         '@media (max-width: 25em)': {
+            fontSize: '2.35rem',
+		},
     },
     weaponContainer: {
         justifyContent: 'center',
@@ -125,6 +163,14 @@ const useStyles = makeStyles(() => ({
         maxWidth: '60%',
         flexBasis: '60%',
         margin: 'auto',
+        '@media (max-width: 45em)': {
+            maxWidth: '80%',
+            flexBasis: '80%',
+        },
+        '@media (max-width: 25em)': {
+            maxWidth: '90%',
+            flexBasis: '90%',
+		},
     },
     ascension: {
         backgroundColor: "#202933",
@@ -806,22 +852,31 @@ export default function DialogWeaponPlanner(props: any) {
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.weaponImageContainer}>
-                <div style={{position: 'relative', justifyContent: 'center'}}>
-                    <CardMedia
-                        image={weapon.image}
-                        className={classes.weaponImage}>
-                        {createRarityStars()}
-                    </CardMedia>
-                </div>  
+                    {/* <div style={{position: 'relative', justifyContent: 'center'}}>
+                        <CardMedia
+                            image={weapon.image}
+                            className={classes.weaponImage}>
+                            {createRarityStars()}
+                        </CardMedia>
+                    </div>   */}
+                    <div style={{maxWidth: '6rem', maxHeight: '6rem', position: 'relative'}}>
+                        {/* <CardMedia
+                            image={character.image}
+                            className={classes.characterImage}>
+                            <img src={character.typeImage} alt="element" className={classes.element}></img>	
+                        </CardMedia> */}
+                        <img src={weapon.image} className={classes.weaponImage}></img>
+                        {createRarityStars()}            
+                    </div>
                 </div>
                 <div className={classes.weaponTitle}>
-                    <Typography variant="h3" style={{width: '50%'}}>
+                    <Typography variant="h3" className={classes.headerText}>
                         Genshin Impact
                     </Typography>
-                    <Typography variant="h1" style={{width: '50%'}}>
+                    <Typography variant="h1" className={classes.headerText}>
                         {weapon.name} Ascension Planner
                     </Typography>
-                    <Typography variant="h5" style={{width: '50%'}}>
+                    <Typography variant="h5" className={classes.headerText}>
                         <span>{weapon.type}</span>{weapon.weapon}
                     </Typography>
                 </div>
