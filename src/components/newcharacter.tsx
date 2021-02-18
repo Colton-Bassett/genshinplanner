@@ -45,9 +45,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         transition: 'transform .2s;', /* Animation */
+        // boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         overflow: 'visible',
         '&:hover': {
-            boxShadow: '0rem 0rem 0rem 0.25rem #e9e5dc;',
+            boxShadow: '0rem 0rem 0rem 0.15rem #e9e5dc;',
             borderRadius: "0.188rem",
             transform: 'scale(1.01);',
             cursor: 'pointer',

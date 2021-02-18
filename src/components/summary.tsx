@@ -38,7 +38,16 @@ const useStyles = makeStyles((theme) => ({
     summaryExpand: {
         minWidth: '10%', 
         display: 'flex', 
-        alignItems: 'center'
+        alignItems: 'center',
+        boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+        transition: 'transform .2s;', /* Animation */
+        '&:hover': {
+            boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
+            borderRadius: "0.188rem",
+            transform: 'scale(1.01);',
+            cursor: 'pointer',
+            color: 'white',
+         },
     },
     materialCard: {
 		backgroundColor: '#2e3944', 
@@ -50,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
     },
     expandButton: {
-		color: 'white', fontSize: '1.625rem'
+        color: 'white', fontSize: '2rem',
     },
 	expand: {
 		transform: 'rotate(0deg)',

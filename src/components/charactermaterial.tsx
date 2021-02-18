@@ -151,22 +151,29 @@ export default function CharacterMaterial( props: any ) {
 	var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
 
 	function abbreviateNumber(number: any){
-
 		// what tier? (determines SI symbol)
-		var tier = Math.log10(Math.abs(number)) / 3 | 0;
+		let tier = Math.log10(Math.abs(number)) / 3 | 0;
 
 		// if zero, we don't need a suffix
 		if(tier === 0) return number;
 
 		// get suffix and determine scale
-		var suffix = SI_SYMBOL[tier];
-		var scale = Math.pow(10, tier * 3);
+		let suffix = SI_SYMBOL[tier];
+		let scale = Math.pow(10, tier * 3);
 
 		// scale the number
-		var scaled = number / scale;
+        let scaled = number / scale;
 
-		// format number and add suffix
-		return scaled.toFixed(1) + suffix;
+        // truncate float, add suffix
+        let scaledFixed = scaled.toFixed(1) + suffix;
+
+        // check if float number === 0. If so, truncate to whole number;
+        let decimals = (scaledFixed + "").split(".")[1]; 
+        if (decimals[0] === "0") {
+            scaledFixed = scaled.toFixed(0) + suffix;
+        }
+
+		return scaledFixed
     }
     
     const [open, setOpen] = React.useState(false);

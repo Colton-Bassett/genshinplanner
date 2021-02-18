@@ -10,6 +10,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AscensionStar from '../images/Ascension_Star.png'
 
+import HandleLevel from '../logic/handleLevel'
+
 const useStyles = makeStyles((theme) => ({
 	plannerContainer: {
 		maxWidth: "100%", 
@@ -228,6 +230,8 @@ export default function CharacterOverview(props: any) {
 		talentMat: props.objectInfo.talentMat,
 		currentAscension: props.objectInfo.currentAscension,
 		desiredAscension: props.objectInfo.desiredAscension,
+		currentMax: props.objectInfo.currentMax,
+		desiredMax: props.objectInfo.desiredMax,
 		abilityOneCurrent: props.objectInfo.abilityOneCurrent,
 		abilityOneDesired: props.objectInfo.abilityOneDesired,
 		abilityTwoCurrent: props.objectInfo.abilityTwoCurrent,
@@ -312,8 +316,10 @@ export default function CharacterOverview(props: any) {
 			return
 		}
 		else {
+			let currentLevel = HandleLevel(objectInfo.currentAscension, objectInfo.currentMax);
+			let desiredLevel = HandleLevel(objectInfo.desiredAscension, objectInfo.desiredMax);
 			return (<Typography variant="body1" align='center' className={classes.characterLevel}>
-						Lv. {getcurrentAscension()} - {getdesiredAscension()}
+						Lv. {currentLevel} - {desiredLevel}
 					</Typography>)
 		}
 	}
@@ -505,22 +511,22 @@ export default function CharacterOverview(props: any) {
 					<Card className={classes.materialCard}>
 						<CardHeader
 						className={classes.materialHeader}
-						action={
-							<IconButton
-								disableFocusRipple
-								disableRipple
-								className={clsx(classes.expand, {
-								[classes.expandOpen]: expanded,
-								})}
-								onClick={handleExpandClick}
-								aria-expanded={expanded}
-								aria-label="show more"
-								style={{backgroundColor: "#2e3944", borderRadius: "10%", padding: "0", marginTop: '0.5rem', marginRight: '0.5rem'}}
-								disabled
-							>
-							<ExpandMore className={classes.expandButton} />
-							</IconButton>
-						}
+						// action={
+						// 	<IconButton
+						// 		disableFocusRipple
+						// 		disableRipple
+						// 		className={clsx(classes.expand, {
+						// 		[classes.expandOpen]: expanded,
+						// 		})}
+						// 		onClick={handleExpandClick}
+						// 		aria-expanded={expanded}
+						// 		aria-label="show more"
+						// 		style={{backgroundColor: "#2e3944", borderRadius: "10%", padding: "0", marginTop: '0.5rem', marginRight: '0.5rem'}}
+						// 		disabled
+						// 	>
+						// 	<ExpandMore className={classes.expandButton} />
+						// 	</IconButton>
+						// }
 						title={
 							<Typography className={classes.materialTitle} variant="h2">
 								Material Overview

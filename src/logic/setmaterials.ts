@@ -1,5 +1,6 @@
 import GetDesiredHerosWit from './getDesiredHerosWit'
 import GetDesiredLevelMoraCost from './getDesiredLevelMoraCost'
+import HandleLevel from './handleLevel'
 
 interface Material {
     name: string,
@@ -31,15 +32,6 @@ const ascensionCosts = {
     five : { matOne: 6, matTwo: 12, specialty: 45, commonMat: 12, mora: 339000, heroswit: 60 },
     six : { matOne: 6, matTwo: 20, specialty: 60, commonMat: 24, mora: 442200, heroeswit: 81 },
 }
-
-// Ascension : Level : Ascension Mora : EXP Mora : Wit
-
-// 1                 : 20     : 20,000                : 24,000      : 7
-// 2                 : 40     : 40,000               : 115,600.    : 29
-// 3                 : 50     : 60,000               : 115,800.    : 29
-// 4                 : 60     : 80,000               : 170,800.    : 43
-// 5                 : 70      : 100,000             : 239,000.   : 60
-// 6                 : 80.     : 120,000             : 322,200.   : 81
 
 const talentCosts = {
     two : { talentMaterial: 3, commonMat: 6, bossMat: 0, crown: 0, mora: 12500 },
@@ -839,12 +831,9 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
     console.log("SetMaterials character:", character);
     console.log("SetMaterials() AscensionDetails:", ascensionDetails);
 
-    let currentLevel = getLevel(ascensionDetails.currentAscension, ascensionDetails.currentMax) || 0;
-    let desiredLevel = getLevel(ascensionDetails.desiredAscension, ascensionDetails.desiredMax) || 0;
-    console.log("SetMaterials currentLevel, desiredLevel", currentLevel, desiredLevel);
+    let currentLevel = HandleLevel(ascensionDetails.currentAscension, ascensionDetails.currentMax) || 0;
+    let desiredLevel = HandleLevel(ascensionDetails.desiredAscension, ascensionDetails.desiredMax) || 0;
 
-    //let desiredLevelMoraCost = GetDesiredLevelMoraCost(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension);
-    //console.log("desiredLevelMoraCost", desiredLevelMoraCost);
     let materials: any[] = [];
 
     let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
@@ -900,7 +889,6 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
         setTalentMaterials(character, ascensionDetails, materials, allMaterials);
     }
 
-
     console.log("SetMaterials() Return Materials:", materials);
 
     // sorting by position
@@ -909,118 +897,4 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
 
 }
 
-function getLevel(currentAscension: number, maxLevel: boolean) {
-    let level = 0;
-    switch(currentAscension) {
-        case 0:
-            if (maxLevel) {
-                level = 20;
-            } else {
-                level = 1;
-            }
-            return level;
-        case 1:
-            if (maxLevel) {
-                level = 40;
-            } else {
-                level = 20;
-            }
-            return level;
-        case 2:
-            if (maxLevel) {
-                level = 50;
-            } else {
-                level = 40;
-            }
-            return level;
-        case 3:
-            if (maxLevel) {
-                level = 60;
-            } else {
-                level = 50;
-            }
-            return level;
-        case 4:
-            if (maxLevel) {
-                level = 70;
-            } else {
-                level = 60;
-            }
-            return level;
-        case 5:
-            if (maxLevel) {
-                level = 80;
-            } else {
-                level = 70;
-            }
-            return level;
-        case 6:
-            if (maxLevel) {
-                level = 90;
-            } else {
-                level = 80;
-            }
-            return level;
-    }
-}
-// currentAscension = 0,1,2,3,4,5,6
-// let level = 0;
-// switch(currentAscension)
-// case 0:
-//     if (currentMax) {
-//         level = 20;
-//     } else {
-//         level = 1;
-//     return level;
-// }
-// case 1:
-//     if (currentMax) {
-//         level = 40;  
-//     } else {
-//         level = 20;
-//     return level;
-// }
-// case 2:
-//     if (currentMax) {
-//         level = 50
-//     } else {
-//         level = 40;
-//     return level;
-// }
-// case 3:
-//     if (currentMax) {
-//         level = 60
-//     } else {
-//         level = 50;
-//     return level;
-// }
-// case 4:
-//     if (currentMax) {
-//         level = 70
-//     } else {
-//         level = 60;
-//     return level;
-// }
-// case 5:
-//     if (currentMax) {
-//         level = 80
-//     } else {
-//         level = 70; 
-//     return level;
-// }
-// case 6:
-//     if (currentMax) {
-//         level = 90
-//     } else {
-//         level = 80;
-//     return level;
-// }
-// currentAscension
-// currentMax = True/False
-// currentLevel = 1,20,40,50,60,70,80,90
-
-
-// desiredAscension = 1,2,3,4,5,6
-// DesiredMax = True/False
-// currentDesired 20,40,50,60,70,80,90
 

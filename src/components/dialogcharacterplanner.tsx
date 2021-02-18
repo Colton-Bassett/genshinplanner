@@ -9,6 +9,7 @@ import AscensionStar from '../images/Ascension_Star.png'
 import SetMaterials from '../logic/setmaterials';
 import SetImages from '../logic/setimages'
 import CreateNewSummary from '../logic/createNewSummary'
+import HandleLevel from '../logic/handleLevel'
 import RangeSlider from './slider';
 
 
@@ -511,6 +512,9 @@ export default function DialogCharacterPlanner(props: any) {
     const [currentMax, setCurrentMax] = React.useState(false);
     const [desiredMax, setDesiredMax] = React.useState(true);
 
+    const [currentLevel, setCurrentLevel] = useState<number>(1);
+    const [desiredLevel, setDesiredLevel] = useState<number>(40);
+
     async function submitDialog() {
         let i = [...items]
         //console.log("here is temp i", i);
@@ -590,6 +594,7 @@ export default function DialogCharacterPlanner(props: any) {
 
     function setCurrentStarsDOM(index: number) {
         const starsTemp = [...currentStars]
+        let currentLevel = 1;
         for (let i = 0; i <= 5; i++) {
             starsTemp[i].opacity = "0.3";
         }
@@ -600,10 +605,14 @@ export default function DialogCharacterPlanner(props: any) {
                     starsTemp[i].opacity = "0.3";
                 }
                 setCurrentStars(starsTemp);
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 return
             case 1:
                 starsTemp[0].opacity = "1";
                 setCurrentStars(starsTemp)
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -614,6 +623,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[0].opacity = "1";
                 starsTemp[1].opacity = "1";
                 setCurrentStars(starsTemp);
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -625,6 +636,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[1].opacity = "1";
                 starsTemp[2].opacity = "1";
                 setCurrentStars(starsTemp);
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -637,6 +650,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[2].opacity = "1";
                 starsTemp[3].opacity = "1";
                 setCurrentStars(starsTemp);
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -650,6 +665,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[3].opacity = "1";
                 starsTemp[4].opacity = "1";
                 setCurrentStars(starsTemp);
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -664,6 +681,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[4].opacity = "1";
                 starsTemp[5].opacity = "1";
                 setCurrentStars(starsTemp);
+                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currentLevel)
                 if (desiredStars[index-1].opacity === "1") {
                     // do nothing
                 } else {
@@ -673,11 +692,9 @@ export default function DialogCharacterPlanner(props: any) {
         }
     }
 
-    // If currentStar[index +1].opacity === 1
-    // setCurrentStarDOM(index);
-
     function setDesiredStarsDOM(index: number) {
         const starsTemp = [...desiredStars]
+        let desiredLevel = 40;
         for (let i = 0; i <= 5; i++) {
             starsTemp[i].opacity = "0.3";
         }
@@ -688,6 +705,8 @@ export default function DialogCharacterPlanner(props: any) {
                     starsTemp[i].opacity = "0.3";
                 }
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
             case 1:
                 starsTemp[0].opacity = "1";
@@ -695,6 +714,8 @@ export default function DialogCharacterPlanner(props: any) {
                     setCurrentStarsDOM(index)
                 }
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
             case 2:
                 starsTemp[0].opacity = "1";
@@ -703,6 +724,8 @@ export default function DialogCharacterPlanner(props: any) {
                     setCurrentStarsDOM(index)
                 }
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
             case 3:
                 starsTemp[0].opacity = "1";
@@ -712,6 +735,8 @@ export default function DialogCharacterPlanner(props: any) {
                     setCurrentStarsDOM(index)
                 }
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
             case 4:
                 starsTemp[0].opacity = "1";
@@ -722,6 +747,8 @@ export default function DialogCharacterPlanner(props: any) {
                     setCurrentStarsDOM(index)
                 }
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
             case 5:
                 starsTemp[0].opacity = "1";
@@ -733,6 +760,8 @@ export default function DialogCharacterPlanner(props: any) {
                     setCurrentStarsDOM(index)
                 }
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
             case 6:
                 starsTemp[0].opacity = "1";
@@ -742,6 +771,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[4].opacity = "1";
                 starsTemp[5].opacity = "1";
                 setDesiredStars(starsTemp);
+                desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+                setDesiredLevel(desiredLevel)
                 return
         }
     }
@@ -820,6 +851,7 @@ export default function DialogCharacterPlanner(props: any) {
         setCurrentMax(!currentMax);
     }
 
+    // initial mount
     useEffect(() => {
         scrollToTop();
         // reset currentStars, desiredStars
@@ -827,6 +859,16 @@ export default function DialogCharacterPlanner(props: any) {
         // reset abilityOne, abilityTwo, abilityThree
         resetAbilities();
     }, []);
+
+    // clicking currentMax or desiredMax
+    useEffect(() => {
+        let currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+        setCurrentLevel(currentLevel)
+
+        let desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+        setDesiredLevel(desiredLevel)
+
+    }, [currentMax, desiredMax]);
       
     return (
         <div className={classes.character} ref={theRef}> 
@@ -904,7 +946,7 @@ export default function DialogCharacterPlanner(props: any) {
                             /> 
                         </div>
                         <Typography variant="h2" align="center" style={{width: '100%'}}>
-                            Current Level
+                            Current Level: &nbsp; &nbsp;{currentLevel}
                         </Typography>
                         <div className={classes.ascensionStarContainer}>
                             <CardMedia
@@ -944,10 +986,10 @@ export default function DialogCharacterPlanner(props: any) {
                             onClick={(e) => {setCurrentStarsDOM(1)}}
                             />
                         </div>
-                            <Typography variant="h2" align="center" style={{width: '100%'}}>
-                                Desired Level
-                            </Typography>
-                            <div className={classes.ascensionStarContainer}>
+                        <Typography variant="h2" align="center" style={{width: '100%'}}>
+                            Desired Level: &nbsp; &nbsp;{desiredLevel}
+                        </Typography>
+                        <div className={classes.ascensionStarContainer}>
                             <CardMedia
                             image= {AscensionStar}
                             className={classes.desiredStarSix}

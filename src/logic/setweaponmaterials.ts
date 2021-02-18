@@ -1,3 +1,7 @@
+import GetDesiredOre from './getDesiredOre'
+import GetDesiredWeaponLevelMoraCost from './getDesiredWeaponLevelMoraCost'
+import HandleLevel from './handleLevel'
+
 const fourStarCost = {
     one : { matOne: 3, matTwo: 3, commonMat: 2, levelMora: 9000, ascensionMora: 5000, mysticEnhancementOre: 9 },
     two : { matOne: 3, matTwo: 12, commonMat: 8, levelMora: 42000, ascensionMora: 15000, mysticEnhancementOre: 42},
@@ -499,8 +503,21 @@ export default function SetWeaponMaterials(weapon: any, ascensionDetails: any, a
     //console.log("SetWeaponMaterials() AscensionDetails:", ascensionDetails);
     //console.log("SetWeaponMaterials() weapon:", weapon)
     //console.log("stars:", ascensionDetails.stars);
+    let currentLevel = HandleLevel(ascensionDetails.currentAscension, ascensionDetails.currentMax) || 0;
+    let desiredLevel = HandleLevel(ascensionDetails.desiredAscension, ascensionDetails.desiredMax) || 0;
 
     let materials: any[] = [];
+
+    let ascensionMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+    ascensionMora.name = "Mora";
+    ascensionMora.quantity = GetDesiredWeaponLevelMoraCost(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension, ascensionDetails.stars);
+    // mora.image = getImage()
+    addMaterial(ascensionMora, materials, allMaterials);
+
+    let ore = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+    ore.name = "Mystic_Enhancement_Ore";
+    ore.quantity = GetDesiredOre(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension, ascensionDetails.stars);
+    addMaterial(ore, materials, allMaterials);
 
     for (let level = ascensionDetails.currentAscension +1; level <= ascensionDetails.desiredAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
@@ -523,23 +540,6 @@ export default function SetWeaponMaterials(weapon: any, ascensionDetails: any, a
         // commonMat.image = getImage()
         //console.log("commonMat", commonMat)
         addMaterial(commonMat, materials, allMaterials);
-
-        let levelMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-        levelMora.name = "Mora";
-        levelMora.quantity = getLevelMoraAmount(level, ascensionDetails.stars)!;
-        // mora.image = getImage()
-        addMaterial(levelMora, materials, allMaterials);
-
-        let ascensionMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-        ascensionMora.name = "Mora";
-        ascensionMora.quantity = getAscensionMoraAmount(level, ascensionDetails.stars)!;
-        // mora.image = getImage()
-        addMaterial(ascensionMora, materials, allMaterials);
-
-        let ore = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-        ore.name = "Mystic_Enhancement_Ore";
-        ore.quantity = getOreAmount(level, ascensionDetails.stars)!;
-        addMaterial(ore, materials, allMaterials);
     }
 
     console.log("SetWeaponMaterials() Return Materials:", materials);

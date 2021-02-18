@@ -22,7 +22,16 @@ const useStyles = makeStyles(() => ({
 		display: 'flex', 
 		padding: '0.625rem', 
 		justifyContent: 'center', 
-		width: '16.666667%'
+		width: '16.666667%',
+		'@media (max-width: 45em)': {
+			width: '25%'
+		},
+		'@media (max-width: 35em)': {
+			width: '25%'
+		},
+		'@media (max-width: 25em)': {
+			width: '33.3333%'
+		},
 	},
 	weaponsContainer: {
 		display: 'flex', 
