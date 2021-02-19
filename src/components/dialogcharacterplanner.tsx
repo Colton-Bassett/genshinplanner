@@ -439,10 +439,11 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "0.375rem", 
         backgroundColor: "#4d5760", 
         margin: "auto", 
+        marginBottom: '0.5rem',
         boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
     },
     talentName: {
-        fontWeight: 700, color: "#FFCC62", width: '100%'
+        fontWeight: 700, color: "#FFCC62", width: '100%',
     },
     talentNameText: {
         fontWeight: 700, color: "#FFCC62"
@@ -1092,7 +1093,7 @@ export default function DialogCharacterPlanner(props: any) {
                         <Typography variant="h5" align="center" className={classes.talentName}>
                             {character.abilityOne.name}
                         </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.75rem'}}>
+                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
                             Normal Attack
                         </Typography>
                         <div className={classes.talentSlider}>
@@ -1109,7 +1110,7 @@ export default function DialogCharacterPlanner(props: any) {
                         <Typography variant="h5" align="center" className={classes.talentName}>
                             {character.abilityTwo.name}
                         </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.75rem'}}>
+                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
                             Elemental Skill
                         </Typography>
                         <div className={classes.talentSlider}>
@@ -1126,7 +1127,7 @@ export default function DialogCharacterPlanner(props: any) {
                         <Typography variant="h5" align="center" className={classes.talentName}>
                             {character.abilityThree.name}
                         </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.75rem'}}>
+                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
                             Elemental Burst
                         </Typography>
                         <div className={classes.talentSlider}>
