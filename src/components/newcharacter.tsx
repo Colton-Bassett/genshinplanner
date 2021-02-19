@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     card: {
-        backgroundColor: "#202933 !important",
+        // backgroundColor: "#232D38",
+        backgroundColor: '#2e3944', 
         margin: 'auto',
         minHeight: '17.188rem',
         display: 'flex',
@@ -59,12 +60,19 @@ const useStyles = makeStyles((theme) => ({
          },
     },
     add: {
-        fontSize: '6.25rem',
+        // fontSize: '6.25rem',
+        fontSize: '1.33rem',
         color: '#A6A7AC',
         margin: '0rem',
+        fontWeight: 700,
+        letterSpacing: '0.15rem',
+        textTransform: 'uppercase',
+        padding: '0 0 .75rem',
+        borderBottom: '.3125rem solid #03a577'
     },
     blankCard: {
-        backgroundColor: "#202933 !important",
+        // backgroundColor: "#232D38",
+        backgroundColor: '#2e3944', 
         minWidth: '10.625rem',
         margin: 'auto',
         minHeight: '17.188rem',
@@ -198,8 +206,9 @@ export default function NewCharacter(props: any) {
             <div className={classes.addCharacterButton}>
                 <Card className={classes.card} onClick={dialogOpen}> 
                     <Tooltip title="Add Character" arrow>
-                        <Add className={classes.add}>
-                        </Add>
+                        <span className={classes.add}>
+                            + Add Plan
+                        </span>
                     </Tooltip>
                 </Card>
             </div>

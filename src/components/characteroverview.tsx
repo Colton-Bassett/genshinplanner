@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	characterCard: {
 		backgroundColor: "#2e3944", 
-		// backgroundColor: '#202933',
+		// backgroundColor: '#232D38',
 		minHeight: '100%',
 		minWidth: '10.625rem',
 		display: 'flex',
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 	characterCardContainer: {
 		borderBottomRightRadius: '3.5rem', 
 		//borderBottomLeftRadius: '1rem', 
-		backgroundColor: '#202933', 
+		backgroundColor: '#232D38', 
 		paddingBottom: '1.25rem',
 		boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
 		minHeight: '16.5rem'
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	characterCardContainerWeapon: {
-		backgroundColor: '#202933', 
+		backgroundColor: '#232D38', 
 		flex: 1,
 	},
 	characterButtons: {
@@ -164,8 +164,9 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	materialContainer: {
-		backgroundColor: '#202933 !important', 
-		padding: '1.5rem',
+		backgroundColor: '#2e3944',
+		//padding: '1.5rem',
+		minHeight: '24.625rem', 
 	},
 	materialCard: {
 		backgroundColor: '#2e3944', 
@@ -175,19 +176,21 @@ const useStyles = makeStyles((theme) => ({
 		padding: '1.5rem'
 	},
 	materialHeader: {
-		marginLeft: '.75rem',
-		marginRight: '.75rem',
-		marginBottom: '1.5rem',
-		padding: 0,
+		// marginLeft: '.75rem',
+		// marginRight: '.75rem',
+		// marginBottom: '1.5rem',
+		margin: 0,
+		padding: '1.5rem 2rem',
+		borderBottom: '3px solid #1b242d',
 		'@media (max-width: 80em)': {
-			marginLeft: '.5rem',
-			marginRight: '.5rem',
+			// marginLeft: '.5rem',
+			// marginRight: '.5rem',
 		},
 	},
 	materialTitle: {
 	},
 	materialContent: {
-		padding: '0rem',
+		padding: '1.5rem',
 		// width: 'calc(100% + 2rem)',
 		// margin: '-1rem',
 		"&:last-child": {
@@ -508,7 +511,7 @@ export default function CharacterOverview(props: any) {
 			</div>
 			<div className={classes.materials}>
 				<Card className={classes.materialContainer}>
-					<Card className={classes.materialCard}>
+					{/* <Card className={classes.materialCard}> */}
 						<CardHeader
 						className={classes.materialHeader}
 						// action={
@@ -557,7 +560,7 @@ export default function CharacterOverview(props: any) {
 								</Typography>
 							</CardContent>
 						</Collapse>
-					</Card>
+					{/* </Card> */}
 				</Card>
 			</div>
 		</div>

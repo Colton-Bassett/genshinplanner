@@ -5,7 +5,8 @@ import { ExpandMore } from '@material-ui/icons';
 import CharacterMaterial from './charactermaterial'
 const useStyles = makeStyles((theme) => ({
     summary: {
-		backgroundColor: "#1b242d",
+        // backgroundColor: "#1b242d",
+        backgroundColor: '#2e3944', 
 		minWidth: '100%',
 		boxSizing: 'border-box',
         color: 'white',
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     summaryInnerTitle: {
         minWidth: '90%',
         margin: 0,
-        padding: '0rem 1.5rem 1.5rem 1.5rem',
+        padding: '1.5rem 0rem',
     },
     summaryExpand: {
         minWidth: '10%', 
@@ -72,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 		transform: 'rotate(180deg)',
 	},
     summaryContent: {
-        backgroundColor: "#202933 !important",
+        backgroundColor: "#232D38 !important",
         minWidth: '100%',
         display: '',
         justifyContent: 'center',
@@ -126,7 +127,7 @@ export default function NewCharacter(props: any) {
                                 onClick={handleExpandClick}
                                 aria-expanded={expanded}
                                 aria-label="show more"
-                                style={{backgroundColor: "#2e3944", borderRadius: "10%", padding: "0"}}
+                                style={{backgroundColor: "#03a577", borderRadius: "10%", padding: "0"}}
                             >
                                 <ExpandMore className={classes.expandButton}/>
                             </IconButton>
@@ -135,15 +136,15 @@ export default function NewCharacter(props: any) {
                 </div>
 
             <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: '100%'}}>
-            <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%", paddingTop: '1.5rem'}}>
-                <Card className={classes.materialCard}>
+            <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
+                {/* <Card className={classes.materialCard}> */}
                     <h3 className={classes.summaryInnerTitle}>General</h3>
                         {generalMaterials}
                     <h3 className={classes.summaryInnerTitle}>Talent</h3>
                         {talentMaterials}
                     <h3 className={classes.summaryInnerTitle}>Weapon</h3>
                         {weaponMaterials}
-                </Card>
+                {/* </Card> */}
             </div>
             </Collapse>
             </div>

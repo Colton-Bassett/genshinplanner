@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         backgroundColor: '#202933'
+        backgroundColor: '#232D38'
     },
     materialImage: {
         maxHeight: "2.7rem", 

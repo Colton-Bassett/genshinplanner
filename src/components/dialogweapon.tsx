@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     star: {
         minHeight: '0.8rem', minWidth: '0.8rem', overflow: 'auto', boxSizing: 'border-box', marginLeft: '-0.15rem', verticalAlign: 'middle', borderStyle: 'none',
-        backgroundColor: "#2e3944",
+        //backgroundColor: "#2e3944",
     },
 }));
 

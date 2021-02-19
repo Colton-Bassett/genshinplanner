@@ -79,8 +79,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', 
         flexDirection: 'column',
         '@media (max-width: 25em)': {
-            maxWidth: '55%',
-            minWidth: '55%'
+            maxWidth: '50%',
+            minWidth: '50%',
+            marginRight: '1rem',
 		},
     },
     headerText: {
@@ -115,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     },
     checkIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#202933",
+        backgroundColor: "#232D38",
         color: "#58CCA5",
         marginRight: "1.5rem",
         cursor: "pointer",
@@ -135,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
     },
     closeIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#202933",
+        backgroundColor: "#232D38",
         color: "#f56262",
         cursor: "pointer",
         borderRadius: '0.188rem',
@@ -169,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     ascension: {
-        backgroundColor: "#202933",
+        backgroundColor: "#2e3944",
         minHeight: "15rem",
         maxHeight: "15rem",
         display: 'flex',
@@ -421,7 +422,7 @@ const useStyles = makeStyles((theme) => ({
         },  
     },
     talent: {
-        backgroundColor: "#202933",
+        backgroundColor: "#2e3944",
         minHeight: "15rem",
         maxHeight: "15rem",
         display: 'flex',
@@ -436,7 +437,7 @@ const useStyles = makeStyles((theme) => ({
     talentImage: {
         minHeight: "3.313rem", minWidth:"3.313rem", maxHeight: "3.313rem", maxWidth: "3.313rem", 
         borderRadius: "0.375rem", 
-        backgroundColor: "#2e3944", 
+        backgroundColor: "#4d5760", 
         margin: "auto", 
         boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
     },
@@ -450,7 +451,7 @@ const useStyles = makeStyles((theme) => ({
         flexBasis: '50%',
         '@media (max-width: 25em)': {
             flexBasis: '80%',
-		},
+        },
     },
 }));
 
@@ -950,7 +951,7 @@ export default function DialogCharacterPlanner(props: any) {
                     <Switch
                         defaultChecked
                         onChange={handleLevelSwitch}
-                        color="default"
+                        color="secondary"
                         inputProps={{ 'aria-label': 'checkbox with default color' }}
                     />
                 </div>
@@ -986,7 +987,7 @@ export default function DialogCharacterPlanner(props: any) {
                                 style={{paddingTop: 0, paddingRight: 0}}
                             /> 
                         </div>
-                        <Typography variant="h2" align="center" style={{width: '100%'}}>
+                        <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
                             Current Level: &nbsp; &nbsp;{currentLevel}
                         </Typography>
                         <div className={classes.ascensionStarContainer}>
@@ -1027,7 +1028,7 @@ export default function DialogCharacterPlanner(props: any) {
                             onClick={(e) => {setCurrentStarsDOM(1)}}
                             />
                         </div>
-                        <Typography variant="h2" align="center" style={{width: '100%'}}>
+                        <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
                             Desired Level: &nbsp; &nbsp;{desiredLevel}
                         </Typography>
                         <div className={classes.ascensionStarContainer}>
@@ -1078,7 +1079,7 @@ export default function DialogCharacterPlanner(props: any) {
                     <Switch
                         defaultChecked
                         onChange={handleTalentSwitch}
-                        color="default"
+                        color="secondary"
                         inputProps={{ 'aria-label': 'checkbox with default color' }}
                     />                           
                 </div>

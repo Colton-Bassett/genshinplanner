@@ -23,7 +23,7 @@ const RangeSlider = (props: any) => {
             getAriaValueText={valuetext}
             //color="secondary"
             marks={marks}
-            style={{backgroundColor: "#2e3944",}}
+            style={{backgroundColor: "#4D5760",}}
             min={1}
             max={10}
         />

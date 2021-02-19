@@ -83,8 +83,9 @@ const useStyles = makeStyles(() => ({
         display: 'flex', 
         flexDirection: 'column',
         '@media (max-width: 25em)': {
-            maxWidth: '55%',
-            minWidth: '55%'
+            maxWidth: '50%',
+            minWidth: '50%',
+            marginRight: '1rem',
 		},
     },
     headerText: {
@@ -118,7 +119,7 @@ const useStyles = makeStyles(() => ({
     },
     checkIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#202933",
+        backgroundColor: "#232D38",
         color: "#58CCA5",
         marginRight: "1.5rem",
         cursor: "pointer",
@@ -139,7 +140,7 @@ const useStyles = makeStyles(() => ({
     },
     closeIcon: {
         fontSize: "2.75rem;",
-        backgroundColor: "#202933",
+        backgroundColor: "#232D38",
         color: "#f56262",
         cursor: "pointer",
         borderRadius: '0.188rem',
@@ -173,7 +174,7 @@ const useStyles = makeStyles(() => ({
 		},
     },
     ascension: {
-        backgroundColor: "#202933",
+        backgroundColor: "#2e3944",
         minHeight: "15rem",
         maxHeight: "15rem",
         display: 'flex',
@@ -922,7 +923,7 @@ export default function DialogWeaponPlanner(props: any) {
                             style={{paddingTop: 0, paddingRight: 0}}
                         /> 
                     </div>
-                    <Typography variant="h2" align="center" style={{width: '100%'}}>
+                    <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
                         Current Level: &nbsp; &nbsp;{currentLevel}
                     </Typography>
                     <div className={classes.ascensionStarContainer}>
@@ -963,7 +964,7 @@ export default function DialogWeaponPlanner(props: any) {
                         onClick={(e) => {setCurrentStarsDOM(1)}}
                         />
                     </div>
-                    <Typography variant="h2" align="center" style={{width: '100%'}}>
+                    <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
                         Desired Level: &nbsp; &nbsp;{desiredLevel}
                     </Typography>
                     <div className={classes.ascensionStarContainer}>
