@@ -175,14 +175,14 @@ const useStyles = makeStyles(() => ({
     },
     ascension: {
         backgroundColor: "#2e3944",
-        minHeight: "15rem",
-        maxHeight: "15rem",
+        minHeight: "14rem",
+        maxHeight: "14rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
         boxSizing: 'border-box',
-        padding: '1.5rem',
+        padding: '1rem 1.5rem 1.5rem 1.5rem',
         borderRadius: '0.188rem',
     },
     maxCurrent: {
@@ -905,7 +905,7 @@ export default function DialogWeaponPlanner(props: any) {
                             onChange={handleCurrentMax}
                             inputProps={{ 'aria-label': 'checkbox with default color' }}
                             disableRipple
-                            style={{paddingTop: 0, paddingRight: 0}}
+                            style={{padding: '0rem 0rem 1rem 0rem'}}
                         /> 
                     </div>
                     <div className={classes.maxDesired}>

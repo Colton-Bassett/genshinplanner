@@ -44,10 +44,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#232D38'
     },
     materialImage: {
-        maxHeight: "2.7rem", 
-        maxWidth: "2.7rem", 
-        minHeight: "2.7rem", 
-        minWidth: "2.7rem", 
+        maxHeight: "2.688rem", 
+        maxWidth: "2.688rem", 
+        minHeight: "2.688rem", 
+        minWidth: "2.688rem", 
         backgroundSize: '110%, cover', 
 
         backgroundOrigin: 'content-box, border-box', 
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: '1, 0.5'
     },
     text: {
-        fontWeight: 700,
+        fontWeight: 500,
         //backgroundColor: '#1d1f29', 
         borderBottomLeftRadius: '0.188rem', 
         borderBottomRightRadius: '0.188rem'

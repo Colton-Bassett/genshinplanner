@@ -66,7 +66,9 @@ const useStyles = makeStyles((theme) => ({
 		flex: 1,
 	},
 	characterButtons: {
-		padding: "1rem"
+		padding: "1rem",
+		display: 'flex',
+		justifyContent: 'flex-end'
 	},
 	editButton: {
 		color: '#A6A7AC !important',
@@ -464,9 +466,9 @@ export default function CharacterOverview(props: any) {
 				<Card className={classes.characterCard}>		
 					<div className={ objectInfo.type === "character" ? classes.characterCardContainer : classes.characterCardContainerWeapon}>
 						<div className={classes.characterButtons}>
-							<Tooltip title="Edit" arrow>
+							{/* <Tooltip title="Edit" arrow>
 								<EditIcon className={classes.editButton}></EditIcon>
-							</Tooltip>
+							</Tooltip> */}
 							<Tooltip title="Delete" arrow>
 								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.id, items, setItems, summary, setSummary)}></CancelIcon>
 							</Tooltip>

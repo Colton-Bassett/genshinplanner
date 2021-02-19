@@ -100,18 +100,26 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     dialog: {
-        minWidth: '50em',
-        maxWidth: '50em',
-        minHeight: '40rem;',
-        maxHeight: '40rem;',
+        minWidth: '55em',
+        maxWidth: '55em',
+        minHeight: '48rem',
+        maxHeight: '48rem',
         '@media (max-width: 60em)': {
 			minWidth: '43.75em',
 			maxWidth: '43.75em',
         },
+        '@media (max-height: 48em)': {
+            minHeight: '40rem',
+            maxHeight: '40rem',
+        },
 		'@media (max-width: 45em)': {
 			minWidth: '31.25em',
 			maxWidth: '31.25em',
-		},
+        },
+        '@media (max-height: 40em)': {
+            minHeight: '35rem',
+            maxHeight: '35rem',
+        },
 		'@media (max-width: 35em)': {
 			minWidth: '100%',
             maxWidth: '100%',
@@ -205,11 +213,9 @@ export default function NewCharacter(props: any) {
         <div className={classes.addCharacter}>
             <div className={classes.addCharacterButton}>
                 <Card className={classes.card} onClick={dialogOpen}> 
-                    <Tooltip title="Add Character" arrow>
-                        <span className={classes.add}>
-                            + Add Plan
-                        </span>
-                    </Tooltip>
+                    <span className={classes.add}>
+                        + Add Plan
+                    </span>
                 </Card>
             </div>
             {/* <div className={classes.addCharacterContent}>

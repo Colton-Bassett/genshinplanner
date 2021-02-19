@@ -171,14 +171,14 @@ const useStyles = makeStyles((theme) => ({
     },
     ascension: {
         backgroundColor: "#2e3944",
-        minHeight: "15rem",
-        maxHeight: "15rem",
+        minHeight: "14rem",
+        maxHeight: "14rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
         boxSizing: 'border-box',
-        padding: '1.5rem',
+        padding: '1rem 1.5rem 1.5rem 1.5rem',
         borderRadius: '0.188rem',
     },
     maxCurrent: {
@@ -423,8 +423,8 @@ const useStyles = makeStyles((theme) => ({
     },
     talent: {
         backgroundColor: "#2e3944",
-        minHeight: "15rem",
-        maxHeight: "15rem",
+        minHeight: "14rem",
+        maxHeight: "14rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -969,7 +969,7 @@ export default function DialogCharacterPlanner(props: any) {
                                 onChange={handleCurrentMax}
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                                 disableRipple
-                                style={{paddingTop: 0, paddingRight: 0}}
+                                style={{padding: '0rem 0rem 0rem 0.5rem'}}
                             /> 
                         </div>
                         <div className={classes.maxDesired}>
@@ -984,7 +984,7 @@ export default function DialogCharacterPlanner(props: any) {
                                 color="default"
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                                 disableRipple
-                                style={{paddingTop: 0, paddingRight: 0}}
+                                style={{padding: '0rem 0rem 0rem 0.5rem'}}
                             /> 
                         </div>
                         <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
@@ -1092,7 +1092,7 @@ export default function DialogCharacterPlanner(props: any) {
                         <Typography variant="h5" align="center" className={classes.talentName}>
                             {character.abilityOne.name}
                         </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%'}}>
+                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.75rem'}}>
                             Normal Attack
                         </Typography>
                         <div className={classes.talentSlider}>
@@ -1109,7 +1109,7 @@ export default function DialogCharacterPlanner(props: any) {
                         <Typography variant="h5" align="center" className={classes.talentName}>
                             {character.abilityTwo.name}
                         </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%'}}>
+                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.75rem'}}>
                             Elemental Skill
                         </Typography>
                         <div className={classes.talentSlider}>
@@ -1126,7 +1126,7 @@ export default function DialogCharacterPlanner(props: any) {
                         <Typography variant="h5" align="center" className={classes.talentName}>
                             {character.abilityThree.name}
                         </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%'}}>
+                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.75rem'}}>
                             Elemental Burst
                         </Typography>
                         <div className={classes.talentSlider}>
