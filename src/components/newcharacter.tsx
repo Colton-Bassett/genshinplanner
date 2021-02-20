@@ -130,7 +130,11 @@ const useStyles = makeStyles((theme) => ({
 			minWidth: '100%',
             maxWidth: '100%',
 
-		},
+        },
+        '@media (max-height: 35em)': {
+            minHeight: '100%',
+            maxHeight: '100%',
+        },
     },
     dialogContent: {
         backgroundColor: '#172028', 

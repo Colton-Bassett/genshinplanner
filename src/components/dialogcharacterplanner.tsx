@@ -924,7 +924,7 @@ export default function DialogCharacterPlanner(props: any) {
     useEffect(() => {
         scrollToTop();
         // reset currentStars, desiredStars
-        setDesiredStarsDOM(1);
+        //setDesiredStarsDOM(1);
         // reset abilityOne, abilityTwo, abilityThree
         resetAbilities();
     }, []);
