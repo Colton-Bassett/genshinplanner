@@ -100,10 +100,16 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     dialog: {
-        minWidth: '55em',
-        maxWidth: '55em',
-        minHeight: '48rem',
-        maxHeight: '48rem',
+        minWidth: '64em',
+        maxWidth: '64em',
+        minHeight: '54em',
+        maxHeight: '54em',
+        // borderRadius: '0.625rem',
+        backgroundColor: '#172028',
+        '@media (max-height: 54em)': {
+            minHeight: '50rem',
+            maxHeight: '50rem',
+        },
         '@media (max-width: 60em)': {
 			minWidth: '43.75em',
 			maxWidth: '43.75em',
@@ -117,8 +123,8 @@ const useStyles = makeStyles((theme) => ({
 			maxWidth: '31.25em',
         },
         '@media (max-height: 40em)': {
-            minHeight: '35rem',
-            maxHeight: '35rem',
+            minHeight: '35em',
+            maxHeight: '35em',
         },
 		'@media (max-width: 35em)': {
 			minWidth: '100%',
@@ -232,7 +238,7 @@ export default function NewCharacter(props: any) {
                 aria-describedby="scroll-dialog-description"
                 classes={{paper: classes.dialog}}
             >
-                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.313rem solid #2e3944",}}>
+                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.25rem solid #2e3944",}}>
                     <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
                         <Tab label="Genshin Impact Characters" {...tabID(0)} className={classes.tabLabel}  disableRipple/>
                         <Tab label="Genshin Impact Weapons" {...tabID(1)} className={classes.tabLabel} disableRipple />

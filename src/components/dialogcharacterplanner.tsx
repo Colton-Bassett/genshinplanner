@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden', 
         padding: '1.5rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        borderBottom: 'solid 0.313rem #2e3944',
+        borderBottom: 'solid 0.25rem #2e3944',
         // maxHeight: '6.563rem',
     },
     backgroundImage: {
@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
         opacity: 0.6,
     },
     characterImageContainer: {
-        maxWidth: '20%', 
-        minWidth: '20%', 
+        maxWidth: '15%', 
+        minWidth: '15%', 
         zIndex: 3, 
         justifyContent: 'center', 
         alignItems: 'center', 
@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     characterTitle: {
-        maxWidth: '60%', 
-        minWidth: '60%', 
+        maxWidth: '70%', 
+        minWidth: '70%', 
         zIndex: 3, 
         display: 'flex', 
         flexDirection: 'column',
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     headerText: {
-        width: '50%',
+        width: '38%',
         '@media (max-width: 45em)': {
             width: '70%'
         },
@@ -94,8 +94,8 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     buttons: {
-        maxWidth: '20%', 
-        minWidth: '20%', 
+        maxWidth: '15%', 
+        minWidth: '15%', 
         zIndex: 3, 
         justifyContent: 'center', 
         alignItems: 'center', 
@@ -157,8 +157,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 0,
-        maxWidth: '60%',
-        flexBasis: '60%',
+        maxWidth: '70%',
+        flexBasis: '70%',
         margin: 'auto',
         '@media (max-width: 45em)': {
             maxWidth: '80%',
@@ -426,16 +426,17 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "14rem",
         maxHeight: "14rem",
         display: 'flex',
+        maxWidth: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
         boxSizing: 'border-box',
-        padding: '1.5rem',
+        padding: '1.5rem 1.5rem 1rem 1.5rem',
         borderRadius: '0.188rem',
         marginBottom: '2rem'
     },
     talentImage: {
-        minHeight: "3.313rem", minWidth:"3.313rem", maxHeight: "3.313rem", maxWidth: "3.313rem", 
+        minHeight: "3rem", minWidth:"3rem", maxHeight: "3rem", maxWidth: "3rem", 
         borderRadius: "0.375rem", 
         backgroundColor: "#4d5760", 
         margin: "auto", 
@@ -449,9 +450,9 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 700, color: "#FFCC62"
     },
     talentSlider: {
-        flexBasis: '50%',
+        flexBasis: '95%',
         '@media (max-width: 25em)': {
-            flexBasis: '80%',
+            flexBasis: '95%',
         },
     },
 }));
@@ -917,11 +918,6 @@ export default function DialogCharacterPlanner(props: any) {
                 </div>
                 <div className={classes.characterImageContainer}>
                     <div style={{maxWidth: '6rem', maxHeight: '6rem', position: 'relative'}}>
-                        {/* <CardMedia
-                            image={character.image}
-                            className={classes.characterImage}>
-                            <img src={character.typeImage} alt="element" className={classes.element}></img>	
-                        </CardMedia> */}
                         <img src={character.image} className={classes.characterImage}></img>
                         <img src={character.typeImage} alt="element" className={classes.element}></img>	             
                     </div>
@@ -1029,6 +1025,8 @@ export default function DialogCharacterPlanner(props: any) {
                             onClick={(e) => {setCurrentStarsDOM(1)}}
                             />
                         </div>
+                        
+                        <div>
                         <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
                             Desired Level: &nbsp; &nbsp;{desiredLevel}
                         </Typography>
@@ -1070,6 +1068,7 @@ export default function DialogCharacterPlanner(props: any) {
                             onClick={(e) => {setDesiredStarsDOM(1)}}
                             />
                         </div>
+                        </div>
                     </Card>
                 </div>
 
@@ -1084,24 +1083,27 @@ export default function DialogCharacterPlanner(props: any) {
                         inputProps={{ 'aria-label': 'checkbox with default color' }}
                     />                           
                 </div>
-                <div style={{opacity: `${talentOpacity}`, pointerEvents: talentPointer}}>
-                    <Card className={classes.talent}>
-                        <CardMedia
-                            image= {character.abilityOne.image}
-                            className={classes.talentImage}
-                        />
-                        <Typography variant="h5" align="center" className={classes.talentName}>
-                            {character.abilityOne.name}
-                        </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
-                            Normal Attack
-                        </Typography>
-                        <div className={classes.talentSlider}>
-                            <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                            <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
-                            <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
-                        </div>
-                    </Card>
+                <div style={{opacity: `${talentOpacity}`, pointerEvents: talentPointer, display: 'flex', maxWidth: 'calc(100% - 2.5rem)'}}>
+                    <div style={{paddingRight: '0.75rem', minWidth: '33%'}}>
+                        <Card className={classes.talent}>
+                            <CardMedia
+                                image= {character.abilityOne.image}
+                                className={classes.talentImage}
+                            />
+                            <Typography variant="h5" align="center" className={classes.talentName}>
+                                {character.abilityOne.name}
+                            </Typography>
+                            <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
+                                Normal Attack
+                            </Typography>
+                            <div className={classes.talentSlider}>
+                                <Typography variant="body2" style={{float: "left"}}>Current Lv.</Typography>
+                                <Typography variant="body2" style={{float: "right"}}>Desired Lv.</Typography>
+                                <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
+                            </div>
+                        </Card>
+                    </div>
+                    <div style={{paddingLeft: '0.75rem', paddingRight: '0.75rem', minWidth: '33%'}}>
                     <Card className={classes.talent}>
                         <CardMedia
                             image= {character.abilityTwo.image}
@@ -1114,11 +1116,13 @@ export default function DialogCharacterPlanner(props: any) {
                             Elemental Skill
                         </Typography>
                         <div className={classes.talentSlider}>
-                            <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                            <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                            <Typography variant="body2" style={{float: "left"}}>Current Lv.</Typography>
+                            <Typography variant="body2" style={{float: "right"}}>Desired Lv.</Typography>
                             <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
                         </div>
                     </Card>
+                    </div>
+                    <div style={{paddingLeft: '0.75rem', minWidth: '33%'}}>
                     <Card className={classes.talent}>
                         <CardMedia
                             image= {character.abilityThree.image}
@@ -1131,11 +1135,12 @@ export default function DialogCharacterPlanner(props: any) {
                             Elemental Burst
                         </Typography>
                         <div className={classes.talentSlider}>
-                            <Typography variant="body2" style={{float: "left"}}>Current Level</Typography>
-                            <Typography variant="body2" style={{float: "right"}}>Desired Level</Typography>
+                            <Typography variant="body2" style={{float: "left"}}>Current Lv.</Typography>
+                            <Typography variant="body2" style={{float: "right"}}>Desired Lv.</Typography>
                             <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
                         </div>
                     </Card>
+                    </div>
                 </div>
             </div>
         </div>
