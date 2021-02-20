@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
         width: '100%', 
         height: '100%', 
         zIndex: 1, 
-        backgroundPosition: '50% 40%', 
+        backgroundPosition: '40% 65%', 
         boxSizing: 'border-box', 
         backgroundImage: `url(${Characterbg})`,
         opacity: 0.6,

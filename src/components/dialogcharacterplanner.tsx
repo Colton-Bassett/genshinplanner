@@ -78,11 +78,17 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 3, 
         display: 'flex', 
         flexDirection: 'column',
+        '@media (max-width: 45em)': {
+            maxWidth: '60%',
+            minWidth: '60%',
+            marginRight: '1rem',
+		},
         '@media (max-width: 25em)': {
             maxWidth: '50%',
             minWidth: '50%',
             marginRight: '1rem',
-		},
+        },
+
     },
     headerText: {
         width: '38%',
@@ -942,6 +948,8 @@ export default function DialogCharacterPlanner(props: any) {
     return (
         <div className={classes.character} ref={theRef}> 
             <div className={classes.characterHeader} >
+
+
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.characterImageContainer}>
