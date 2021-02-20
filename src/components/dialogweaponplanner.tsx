@@ -38,8 +38,8 @@ const useStyles = makeStyles(() => ({
         opacity: 0.6,
     },
     weaponImageContainer: {
-        maxWidth: '20%', 
-        minWidth: '20%', 
+        maxWidth: '15%', 
+        minWidth: '15%', 
         zIndex: 3, 
         justifyContent: 'center', 
         alignItems: 'center', 
@@ -77,8 +77,8 @@ const useStyles = makeStyles(() => ({
 		},
     },
     weaponTitle: {
-        maxWidth: '60%', 
-        minWidth: '60%', 
+        maxWidth: '70%', 
+        minWidth: '70%', 
         zIndex: 3, 
         display: 'flex', 
         flexDirection: 'column',
@@ -89,7 +89,7 @@ const useStyles = makeStyles(() => ({
 		},
     },
     headerText: {
-        width: '50%',
+        width: '38%',
         '@media (max-width: 45em)': {
             width: '70%'
         },
@@ -98,8 +98,8 @@ const useStyles = makeStyles(() => ({
 		},
     },
     buttons: {
-        maxWidth: '20%', 
-        minWidth: '20%', 
+        maxWidth: '15%', 
+        minWidth: '15%', 
         zIndex: 3, 
         justifyContent: 'center', 
         alignItems: 'center', 
@@ -161,8 +161,8 @@ const useStyles = makeStyles(() => ({
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 0,
-        maxWidth: '60%',
-        flexBasis: '60%',
+        maxWidth: '70%',
+        flexBasis: '70%',
         margin: 'auto',
         '@media (max-width: 45em)': {
             maxWidth: '80%',

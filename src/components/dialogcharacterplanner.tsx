@@ -421,6 +421,34 @@ const useStyles = makeStyles((theme) => ({
             opacity: "1",
         },  
     },
+    talentsContainer: {
+        display: 'flex', maxWidth: 'calc(100% - 2.5rem)',
+        '@media (max-width: 60em)': {
+            display: 'block',
+            maxWidth: '100%'
+		},
+    },
+    talentContainer1: {
+        paddingRight: '0.75rem', minWidth: '33%',
+        '@media (max-width: 60em)': {
+            minWidth: '100%',
+            padding: 0,
+		},
+    },
+    talentContainer2: {
+        paddingLeft: '0.75rem', paddingRight: '0.75rem', minWidth: '33%',
+        '@media (max-width: 60em)': {
+            minWidth: '100%',
+            padding: 0,
+		},
+    },
+    talentContainer3: {
+        paddingLeft: '0.75rem', minWidth: '33%',
+        '@media (max-width: 60em)': {
+            minWidth: '100%',
+            padding: 0,
+		},
+    },
     talent: {
         backgroundColor: "#2e3944",
         minHeight: "14rem",
@@ -451,8 +479,8 @@ const useStyles = makeStyles((theme) => ({
     },
     talentSlider: {
         flexBasis: '95%',
-        '@media (max-width: 25em)': {
-            flexBasis: '95%',
+        '@media (max-width: 60em)': {
+            flexBasis: '80%',
         },
     },
 }));
@@ -1083,8 +1111,8 @@ export default function DialogCharacterPlanner(props: any) {
                         inputProps={{ 'aria-label': 'checkbox with default color' }}
                     />                           
                 </div>
-                <div style={{opacity: `${talentOpacity}`, pointerEvents: talentPointer, display: 'flex', maxWidth: 'calc(100% - 2.5rem)'}}>
-                    <div style={{paddingRight: '0.75rem', minWidth: '33%'}}>
+                <div className={classes.talentsContainer} style={{opacity: `${talentOpacity}`, pointerEvents: talentPointer}}>
+                    <div className={classes.talentContainer1}>
                         <Card className={classes.talent}>
                             <CardMedia
                                 image= {character.abilityOne.image}
@@ -1103,7 +1131,7 @@ export default function DialogCharacterPlanner(props: any) {
                             </div>
                         </Card>
                     </div>
-                    <div style={{paddingLeft: '0.75rem', paddingRight: '0.75rem', minWidth: '33%'}}>
+                    <div className={classes.talentContainer2}>
                     <Card className={classes.talent}>
                         <CardMedia
                             image= {character.abilityTwo.image}
@@ -1122,7 +1150,7 @@ export default function DialogCharacterPlanner(props: any) {
                         </div>
                     </Card>
                     </div>
-                    <div style={{paddingLeft: '0.75rem', minWidth: '33%'}}>
+                    <div className={classes.talentContainer3}>
                     <Card className={classes.talent}>
                         <CardMedia
                             image= {character.abilityThree.image}

@@ -107,16 +107,16 @@ const useStyles = makeStyles((theme) => ({
         // borderRadius: '0.625rem',
         backgroundColor: '#172028',
         '@media (max-height: 54em)': {
-            minHeight: '50rem',
-            maxHeight: '50rem',
+            minHeight: '50em',
+            maxHeight: '50em',
         },
-        '@media (max-width: 60em)': {
-			minWidth: '43.75em',
-			maxWidth: '43.75em',
+        '@media (max-width: 64em)': {
+			minWidth: '48em',
+			maxWidth: '48em',
         },
         '@media (max-height: 48em)': {
-            minHeight: '40rem',
-            maxHeight: '40rem',
+            minHeight: '44em',
+            maxHeight: '44em',
         },
 		'@media (max-width: 45em)': {
 			minWidth: '31.25em',
