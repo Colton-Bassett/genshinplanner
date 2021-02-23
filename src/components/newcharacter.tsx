@@ -18,14 +18,13 @@ const useStyles = makeStyles((theme) => ({
         // flexBasis: '25%', 
         boxSizing: 'border-box', 
         padding: '0.75rem',
-        // '@media (max-width: 60em)': {
-        //     maxWidth: '100%',
-        //     flexBasis: '100%',
-        // },
-        // '@media (max-width: 25em)': {
-        //     minWidth: '20em', 
-        //     //maxWidth: '20em', 
-		// },    
+        '@media (max-width: 60em)': {
+            maxWidth: '100%',
+            flexBasis: '100%',
+        },
+        '@media (max-width: 25em)': {
+            minWidth: '19em', 
+		},    
     },
     addCharacterContent: {
         flexGrow: 1, 
@@ -37,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
     },
     card: {
         // backgroundColor: "#232D38",
-        backgroundColor: '#2e3944', 
+        backgroundColor: '#232D38', 
         margin: 'auto',
-        minHeight: '17.188rem',
+        minHeight: '17rem',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -56,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
                 color: 'white',
             }
          },
+         '@media (max-width: 45em)': {
+            minHeight: '14em',
+		},   
     },
     add: {
         // fontSize: '6.25rem',
@@ -117,37 +119,9 @@ const useStyles = makeStyles((theme) => ({
 			maxWidth: '100%',
         },
         '@media (max-height: 50em)': {
-            minHeight: '95%',
-            maxHeight: '95%',
+            minHeight: '100%',
+            maxHeight: '100%',
         },
-        // '@media (max-height: 54em)': {
-        //     minHeight: '50em',
-        //     maxHeight: '50em',
-        // },
-        // '@media (max-width: 64em)': {
-		// 	minWidth: '48em',
-		// 	maxWidth: '48em',
-        // },
-        // '@media (max-height: 48em)': {
-        //     minHeight: '44em',
-        //     maxHeight: '44em',
-        // },
-		// '@media (max-width: 45em)': {
-		// 	minWidth: '31.25em',
-		// 	maxWidth: '31.25em',
-        // },
-        // '@media (max-height: 40em)': {
-        //     minHeight: '35em',
-        //     maxHeight: '35em',
-        // },
-		// '@media (max-width: 35em)': {
-		// 	minWidth: '100%',
-        //     maxWidth: '100%',
-        // },
-        // '@media (max-height: 35em)': {
-        //     minHeight: '100%',
-        //     maxHeight: '100%',
-        // },
     },
     dialogContent: {
         backgroundColor: '#172028', 

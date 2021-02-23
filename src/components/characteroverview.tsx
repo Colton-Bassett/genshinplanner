@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		'@media (max-width: 60em)': {
 			maxWidth: '100%',
 			flexBasis: '100%',
-			minWidth: '20rem'
+			minWidth: '19rem'
 		},
 	},
 	characterCard: {
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 	characterCardContainerWeapon: {
 		backgroundColor: '#232D38', 
 		flex: 1,
+		paddingBottom: '1.25rem',
 	},
 	characterButtons: {
 		padding: "1rem",
@@ -153,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '0.25rem',
 	},
 	materials: {
-		minWidth: '20rem', 
+		minWidth: '19rem', 
 		flexGrow: 0, 
 		maxWidth: '75%', 
 		flexBasis: '75%', 

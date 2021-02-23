@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
         padding: '1.5rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         borderBottom: 'solid 0.25rem #2e3944',
-        // maxHeight: '6.563rem',
     },
     backgroundImage: {
         position: 'absolute', 
@@ -57,10 +56,6 @@ const useStyles = makeStyles((theme) => ({
             maxWidth: '5rem', 
             maxHeight: '5rem', 
         },
-        // '@media (max-width: 45em)': {
-        //     maxWidth: '4rem', 
-        //     maxHeight: '4rem', 
-        // },
     },
     characterImage: {
         width: '100%',
@@ -103,11 +98,6 @@ const useStyles = makeStyles((theme) => ({
             maxWidth: '65%',
             minWidth: '65%',
 		},
-        // '@media (max-width: 25em)': {
-        //     maxWidth: '50%',
-        //     minWidth: '50%',
-        //     marginRight: '1rem',
-        // },
     },
     headerText: {
         width: '38%',
@@ -200,10 +190,6 @@ const useStyles = makeStyles((theme) => ({
             maxWidth: '90%',
             flexBasis: '90%',
         },
-        // '@media (max-width: 25em)': {
-        //     maxWidth: '90%',
-        //     flexBasis: '90%',
-		// },
     },
     titleContainer: {
         display: 'flex', alignItems: 'center'
@@ -228,19 +214,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'flex-start',
         minWidth: '50%',
-        // '@media (max-width: 45em)': {
-        //     minWidth: '100%',
-        //     justifyContent: 'center'
-		// },
     },
     maxDesired: {
         display: 'flex',
         justifyContent: 'flex-end',
         minWidth: '50%',
-        // '@media (max-width: 45em)': {
-        //     minWidth: '100%',
-        //     justifyContent: 'center'
-		// },
     },
     checkbox: {
         padding: '0rem 0rem 0rem 0.5rem'

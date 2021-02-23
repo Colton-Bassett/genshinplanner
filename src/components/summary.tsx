@@ -6,7 +6,7 @@ import CharacterMaterial from './charactermaterial'
 const useStyles = makeStyles((theme) => ({
     summary: {
         // backgroundColor: "#1b242d",
-        backgroundColor: '#2e3944', 
+        backgroundColor: '#232D38', 
 		minWidth: '100%',
 		boxSizing: 'border-box',
         color: 'white',

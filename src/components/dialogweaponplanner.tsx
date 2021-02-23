@@ -21,9 +21,9 @@ const useStyles = makeStyles(() => ({
         position: 'relative', 
         display: 'flex', 
         overflow: 'hidden', 
-        padding: '1.563rem 0rem',
+        padding: '1.5rem 0rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        borderBottom: 'solid 0.313rem #2e3944'
+        borderBottom: 'solid 0.25rem #2e3944',
     },
     backgroundImage: {
         position: 'absolute', 
@@ -45,9 +45,18 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center', 
         display: 'flex',
         '@media (max-width: 45em)': {
-            marginRight: '1rem',
-            marginLeft: '1rem',
+            marginRight: '2.5%',
+            marginLeft: '2.5%',
 		},
+    },
+    weaponImageInnerContainer: {
+        maxWidth: '6rem', 
+        maxHeight: '6rem', 
+        position: 'relative',
+        '@media (max-width: 60em)': {
+            maxWidth: '5rem', 
+            maxHeight: '5rem', 
+        },
     },
     weaponImage: {
         width: '100%',
@@ -55,8 +64,6 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#2e3944",
         borderRadius: "0.375rem",
         zIndex: 3,
-        display: 'flex',
-        justifyContent: 'center',
     },
     stars: {
         display: 'flex', 
@@ -67,14 +74,18 @@ const useStyles = makeStyles(() => ({
     },
     star: {
         minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
-        '@media (max-width: 30em)': {
-            minHeight: '1rem',
-            minWidth: '1rem',
-		},
-        '@media (max-width: 25em)': {
-            minHeight: '.9rem',
-            minWidth: '.9rem',
-		},
+        // '@media (max-width: 60em)': {
+        //     width: '1.55rem',
+        //     height: '1.55rem',
+        // },
+        // '@media (max-width: 45em)': {
+        //     width: '1.35rem',
+        //     height: '1.35rem',
+        // },
+        // '@media (max-width: 25em)': {
+        //     width: '1rem',
+        //     height: '1rem',
+		// },
     },
     weaponTitle: {
         maxWidth: '70%', 
@@ -82,20 +93,22 @@ const useStyles = makeStyles(() => ({
         zIndex: 3, 
         display: 'flex', 
         flexDirection: 'column',
-        '@media (max-width: 25em)': {
-            maxWidth: '50%',
-            minWidth: '50%',
-            marginRight: '1rem',
+        '@media (max-width: 45em)': {
+            maxWidth: '65%',
+            minWidth: '65%',
 		},
     },
     headerText: {
-        width: '38%',
-        '@media (max-width: 45em)': {
-            width: '70%'
+        width: '45%',
+        '@media (max-width: 60em)': {
+            width: '50%'
+        },
+        '@media (max-width: 35em)': {
+            width: '60%'
         },
         '@media (max-width: 25em)': {
-            width: '100%'
-		},
+            width: '80%'
+        },
     },
     buttons: {
         maxWidth: '15%', 
@@ -106,16 +119,13 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
     },
     buttonContainer: {
+        display: 'flex',
         marginRight: '2rem',
         justifyContent: 'center',
         '@media (max-width: 60em)': {
             marginRight: '2rem',
+            flexDirection: 'column',
         },
-        '@media (max-width: 45em)': {
-            //marginRight: '5rem',
-            display: 'block',
-            marginRight: '0rem'
-		},
     },
     checkIcon: {
         fontSize: "2.75rem;",
@@ -132,10 +142,18 @@ const useStyles = makeStyles(() => ({
             borderRadius: "0.188rem",
             transform: 'scale(1.05);',
             cursor: 'pointer',
-            //color: 'white',
          },
-         '@media (max-width: 25em)': {
-            fontSize: '2.35rem',
+         '@media (max-width: 60em)': {
+            marginBottom: '1rem',
+            fontSize: '2.65rem',
+        },
+        '@media (max-width: 45em)': {
+            marginBottom: '0.75rem',
+            // fontSize: '2.5rem',
+        },
+        '@media (max-width: 25em)': {
+            marginBottom: '0.35rem',
+            fontSize: '2.5rem',
 		},
     },
     closeIcon: {
@@ -153,8 +171,11 @@ const useStyles = makeStyles(() => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         '@media (max-width: 25em)': {
-            fontSize: '2.35rem',
+         '@media (max-width: 60em)': {
+            fontSize: '2.65rem',
+        },
+        '@media (max-width: 25em)': {
+            fontSize: '2.5rem',
 		},
     },
     weaponContainer: {
@@ -165,18 +186,17 @@ const useStyles = makeStyles(() => ({
         flexBasis: '70%',
         margin: 'auto',
         '@media (max-width: 45em)': {
-            maxWidth: '80%',
-            flexBasis: '80%',
-        },
-        '@media (max-width: 25em)': {
             maxWidth: '90%',
             flexBasis: '90%',
-		},
+        },
+    },
+    titleContainer: {
+        display: 'flex', alignItems: 'center'
     },
     ascension: {
         backgroundColor: "#2e3944",
-        minHeight: "14rem",
-        maxHeight: "14rem",
+        minHeight: "10.5rem",
+        maxHeight: "10.5rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -184,28 +204,28 @@ const useStyles = makeStyles(() => ({
         boxSizing: 'border-box',
         padding: '1rem 1.5rem 1.5rem 1.5rem',
         borderRadius: '0.188rem',
+        '@media (max-width: 60em)': {
+            minHeight: '15rem',
+            maxHeight: '15rem',
+		},
     },
     maxCurrent: {
         display: 'flex',
         justifyContent: 'flex-start',
         minWidth: '50%',
-        '@media (max-width: 45em)': {
-            minWidth: '100%',
-            justifyContent: 'center'
-		},
     },
     maxDesired: {
         display: 'flex',
         justifyContent: 'flex-end',
         minWidth: '50%',
-        '@media (max-width: 45em)': {
-            minWidth: '100%',
-            justifyContent: 'center'
-		},
+    },
+    checkbox: {
+        padding: '0rem 0rem 0rem 0.5rem'
     },
     ascensionStarContainer: {
         display: 'flex',
         minWidth: '100%',
+        marginBottom: '0.5rem',
         justifyContent: 'center',
     },
     ascensionStar: {
@@ -216,6 +236,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         '&:hover': {
             cursor: "pointer",
+            opacity: "1",
          },
     },
     currentStarSix: {
@@ -853,19 +874,7 @@ export default function DialogWeaponPlanner(props: any) {
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.weaponImageContainer}>
-                    {/* <div style={{position: 'relative', justifyContent: 'center'}}>
-                        <CardMedia
-                            image={weapon.image}
-                            className={classes.weaponImage}>
-                            {createRarityStars()}
-                        </CardMedia>
-                    </div>   */}
-                    <div style={{maxWidth: '6rem', maxHeight: '6rem', position: 'relative'}}>
-                        {/* <CardMedia
-                            image={character.image}
-                            className={classes.characterImage}>
-                            <img src={character.typeImage} alt="element" className={classes.element}></img>	
-                        </CardMedia> */}
+                    <div className={classes.weaponImageInnerContainer}>
                         <img src={weapon.image} className={classes.weaponImage}></img>
                         {createRarityStars()}            
                     </div>
@@ -889,9 +898,11 @@ export default function DialogWeaponPlanner(props: any) {
                 </div>
             </div>
             <div className={classes.weaponContainer}>
-                <Typography variant="h1" style={{margin: '1.5rem 0rem'}}>
-                    Levels
-                </Typography>
+                <div className={classes.titleContainer}>
+                    <Typography variant="h1" style={{margin: '1rem 0rem'}}>
+                        Levels
+                    </Typography>
+                </div>
                 <Card className={classes.ascension}>
                     <div className={classes.maxCurrent}>
                         <Tooltip title={"Uses highest level for current ascension. (E.g., Current ascension 0 = Level 20)"} placement="top">
@@ -905,7 +916,7 @@ export default function DialogWeaponPlanner(props: any) {
                             onChange={handleCurrentMax}
                             inputProps={{ 'aria-label': 'checkbox with default color' }}
                             disableRipple
-                            style={{padding: '0rem 0rem 1rem 0rem'}}
+                            className={classes.checkbox}
                         /> 
                     </div>
                     <div className={classes.maxDesired}>
@@ -920,7 +931,7 @@ export default function DialogWeaponPlanner(props: any) {
                             color="default"
                             inputProps={{ 'aria-label': 'checkbox with default color' }}
                             disableRipple
-                            style={{paddingTop: 0, paddingRight: 0}}
+                            className={classes.checkbox}
                         /> 
                     </div>
                     <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
