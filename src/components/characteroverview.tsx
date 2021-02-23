@@ -112,7 +112,6 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: 700,
 		marginBottom: '.15rem',
 		color: '#a7b1c1',
-
 		'@media (max-width: 60em)': {
 			paddingBottom: '1.5rem', 
 		},

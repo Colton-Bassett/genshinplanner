@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, makeStyles, Dialog, DialogActions, DialogContent, Button, Tooltip, DialogTitle, Tabs, Tab } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import { Card, makeStyles, Dialog, DialogActions, DialogContent, Button, DialogTitle, Tabs, Tab } from '@material-ui/core';
 
 import DialogTab from './dialogtab'
 
@@ -19,23 +18,22 @@ const useStyles = makeStyles((theme) => ({
         // flexBasis: '25%', 
         boxSizing: 'border-box', 
         padding: '0.75rem',
-        '@media (max-width: 60em)': {
-            maxWidth: '100%',
-            flexBasis: '100%',
-        },
-        '@media (max-width: 25em)': {
-            minWidth: '20em', 
-            //maxWidth: '20em', 
-		},
-        
+        // '@media (max-width: 60em)': {
+        //     maxWidth: '100%',
+        //     flexBasis: '100%',
+        // },
+        // '@media (max-width: 25em)': {
+        //     minWidth: '20em', 
+        //     //maxWidth: '20em', 
+		// },    
     },
     addCharacterContent: {
         flexGrow: 1, 
         boxSizing: 'border-box', 
         padding: '0.75rem',
-        '@media (max-width: 60em)': {
-            display: 'none',
-		},
+        // '@media (max-width: 60em)': {
+        //     display: 'none',
+		// },
     },
     card: {
         // backgroundColor: "#232D38",
@@ -89,52 +87,67 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             color: 'white',
         },
-        '@media (max-width:45em)': {
-            fontSize: "1rem",
-        },
-        '@media (max-width:35em)': {
-            fontSize: ".8rem",
-        },
-        '@media (max-width: 25em)': {
-			fontSize: ".6rem"
-		},
+        // '@media (max-width:45em)': {
+        //     fontSize: "1rem",
+        // },
+        // '@media (max-width:35em)': {
+        //     fontSize: ".8rem",
+        // },
+        // '@media (max-width: 25em)': {
+		// 	fontSize: ".6rem"
+		// },
     },
     dialog: {
-        minWidth: '64em',
-        maxWidth: '64em',
-        minHeight: '54em',
-        maxHeight: '54em',
+        minWidth: '60em',
+        maxWidth: '60em',
+        minHeight: '50em',
+        maxHeight: '50em',
         // borderRadius: '0.625rem',
         backgroundColor: '#172028',
-        '@media (max-height: 54em)': {
-            minHeight: '50em',
-            maxHeight: '50em',
+        '@media (max-width: 60em)': {
+			minWidth: '45em',
+			maxWidth: '45em',
         },
-        '@media (max-width: 64em)': {
-			minWidth: '48em',
-			maxWidth: '48em',
+        '@media (max-width: 45em)': {
+			minWidth: '35em',
+			maxWidth: '35em',
         },
-        '@media (max-height: 48em)': {
-            minHeight: '44em',
-            maxHeight: '44em',
-        },
-		'@media (max-width: 45em)': {
-			minWidth: '31.25em',
-			maxWidth: '31.25em',
-        },
-        '@media (max-height: 40em)': {
-            minHeight: '35em',
-            maxHeight: '35em',
-        },
-		'@media (max-width: 35em)': {
+        '@media (max-width: 35em)': {
 			minWidth: '100%',
-            maxWidth: '100%',
-
+			maxWidth: '100%',
         },
-        '@media (max-height: 35em)': {
-            minHeight: '100%',
-            maxHeight: '100%',
+        '@media (max-height: 50em)': {
+            minHeight: '95%',
+            maxHeight: '95%',
         },
+        // '@media (max-height: 54em)': {
+        //     minHeight: '50em',
+        //     maxHeight: '50em',
+        // },
+        // '@media (max-width: 64em)': {
+		// 	minWidth: '48em',
+		// 	maxWidth: '48em',
+        // },
+        // '@media (max-height: 48em)': {
+        //     minHeight: '44em',
+        //     maxHeight: '44em',
+        // },
+		// '@media (max-width: 45em)': {
+		// 	minWidth: '31.25em',
+		// 	maxWidth: '31.25em',
+        // },
+        // '@media (max-height: 40em)': {
+        //     minHeight: '35em',
+        //     maxHeight: '35em',
+        // },
+		// '@media (max-width: 35em)': {
+		// 	minWidth: '100%',
+        //     maxWidth: '100%',
+        // },
+        // '@media (max-height: 35em)': {
+        //     minHeight: '100%',
+        //     maxHeight: '100%',
+        // },
     },
     dialogContent: {
         backgroundColor: '#172028', 

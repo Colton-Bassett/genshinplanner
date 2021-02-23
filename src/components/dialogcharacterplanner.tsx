@@ -45,9 +45,22 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center', 
         display: 'flex',
         '@media (max-width: 45em)': {
-            marginRight: '1rem',
-            marginLeft: '1rem',
+            marginRight: '2.5%',
+            marginLeft: '2.5%',
 		},
+    },
+    characterImageInnerContainer: {
+        maxWidth: '6rem', 
+        maxHeight: '6rem', 
+        position: 'relative',
+        '@media (max-width: 60em)': {
+            maxWidth: '5rem', 
+            maxHeight: '5rem', 
+        },
+        // '@media (max-width: 45em)': {
+        //     maxWidth: '4rem', 
+        //     maxHeight: '4rem', 
+        // },
     },
     characterImage: {
         width: '100%',
@@ -67,9 +80,17 @@ const useStyles = makeStyles((theme) => ({
         left: '0rem',
         position: 'absolute',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        '@media (max-width: 60em)': {
+            width: '1.55rem',
+            height: '1.55rem',
+        },
+        '@media (max-width: 45em)': {
+            width: '1.35rem',
+            height: '1.35rem',
+        },
         '@media (max-width: 25em)': {
-            width: '1.25rem',
-            height: '1.25rem',
+            width: '1rem',
+            height: '1rem',
 		},
     },
     characterTitle: {
@@ -79,25 +100,26 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', 
         flexDirection: 'column',
         '@media (max-width: 45em)': {
-            maxWidth: '60%',
-            minWidth: '60%',
-            marginRight: '1rem',
+            maxWidth: '65%',
+            minWidth: '65%',
 		},
-        '@media (max-width: 25em)': {
-            maxWidth: '50%',
-            minWidth: '50%',
-            marginRight: '1rem',
-        },
-
+        // '@media (max-width: 25em)': {
+        //     maxWidth: '50%',
+        //     minWidth: '50%',
+        //     marginRight: '1rem',
+        // },
     },
     headerText: {
         width: '38%',
-        '@media (max-width: 45em)': {
-            width: '70%'
+        '@media (max-width: 60em)': {
+            width: '50%'
+        },
+        '@media (max-width: 35em)': {
+            width: '60%'
         },
         '@media (max-width: 25em)': {
-            width: '100%'
-		},
+            width: '80%'
+        },
     },
     buttons: {
         maxWidth: '15%', 
@@ -113,12 +135,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         '@media (max-width: 60em)': {
             marginRight: '2rem',
+            flexDirection: 'column',
         },
-        '@media (max-width: 45em)': {
-            //marginRight: '5rem',
-            display: 'block',
-            marginRight: '0rem'
-		},
     },
     checkIcon: {
         fontSize: "2.75rem;",
@@ -136,8 +154,17 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         '@media (max-width: 25em)': {
-            fontSize: '2.35rem',
+         '@media (max-width: 60em)': {
+            marginBottom: '1rem',
+            fontSize: '2.65rem',
+        },
+        '@media (max-width: 45em)': {
+            marginBottom: '0.75rem',
+            // fontSize: '2.5rem',
+        },
+        '@media (max-width: 25em)': {
+            marginBottom: '0.35rem',
+            fontSize: '2.5rem',
 		},
     },
     closeIcon: {
@@ -155,8 +182,11 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         '@media (max-width: 25em)': {
-            fontSize: '2.35rem',
+         '@media (max-width: 60em)': {
+            fontSize: '2.65rem',
+        },
+        '@media (max-width: 25em)': {
+            fontSize: '2.5rem',
 		},
     },
     characterContainer: {
@@ -167,18 +197,21 @@ const useStyles = makeStyles((theme) => ({
         flexBasis: '70%',
         margin: 'auto',
         '@media (max-width: 45em)': {
-            maxWidth: '80%',
-            flexBasis: '80%',
-        },
-        '@media (max-width: 25em)': {
             maxWidth: '90%',
             flexBasis: '90%',
-		},
+        },
+        // '@media (max-width: 25em)': {
+        //     maxWidth: '90%',
+        //     flexBasis: '90%',
+		// },
+    },
+    titleContainer: {
+        display: 'flex', alignItems: 'center'
     },
     ascension: {
         backgroundColor: "#2e3944",
-        minHeight: "14rem",
-        maxHeight: "14rem",
+        minHeight: "10.5rem",
+        maxHeight: "10.5rem",
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -186,28 +219,50 @@ const useStyles = makeStyles((theme) => ({
         boxSizing: 'border-box',
         padding: '1rem 1.5rem 1.5rem 1.5rem',
         borderRadius: '0.188rem',
+        '@media (max-width: 60em)': {
+            minHeight: '15rem',
+            maxHeight: '15rem',
+		},
     },
     maxCurrent: {
         display: 'flex',
         justifyContent: 'flex-start',
         minWidth: '50%',
-        '@media (max-width: 45em)': {
-            minWidth: '100%',
-            justifyContent: 'center'
-		},
+        // '@media (max-width: 45em)': {
+        //     minWidth: '100%',
+        //     justifyContent: 'center'
+		// },
     },
     maxDesired: {
         display: 'flex',
         justifyContent: 'flex-end',
         minWidth: '50%',
-        '@media (max-width: 45em)': {
-            minWidth: '100%',
-            justifyContent: 'center'
-		},
+        // '@media (max-width: 45em)': {
+        //     minWidth: '100%',
+        //     justifyContent: 'center'
+		// },
+    },
+    checkbox: {
+        padding: '0rem 0rem 0rem 0.5rem'
+    },
+    currentLevel: {
+        width: '100%', 
+        fontWeight: 700, 
+        marginBottom: '0.25rem', 
+        marginTop: '-0.25rem', 
+        color: "#fff",
+    },
+    desiredLevel: {
+       width: '100%', 
+       fontWeight: 700, 
+       marginBottom: '0.25rem', 
+       marginTop: '-0.25rem', 
+       color: "#fff",
     },
     ascensionStarContainer: {
         display: 'flex',
         minWidth: '100%',
+        marginBottom: '0.5rem',
         justifyContent: 'center',
     },
     ascensionStar: {
@@ -236,8 +291,7 @@ const useStyles = makeStyles((theme) => ({
         '&:hover ~ *':  {
             cursor: "pointer",
             opacity: "1",
-        },  
-         
+        },      
     },
     currentStarFive: {
         minWidth:"1.563rem", 
@@ -429,6 +483,7 @@ const useStyles = makeStyles((theme) => ({
     },
     talentsContainer: {
         display: 'flex', maxWidth: 'calc(100% - 2.5rem)',
+        marginBottom: '1.5rem',
         '@media (max-width: 60em)': {
             display: 'block',
             maxWidth: '100%'
@@ -457,43 +512,53 @@ const useStyles = makeStyles((theme) => ({
     },
     talent: {
         backgroundColor: "#2e3944",
-        minHeight: "14rem",
-        maxHeight: "14rem",
-        display: 'flex',
+        minHeight: "16.5rem",
+        maxHeight: "16.5rem",
         maxWidth: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
         boxSizing: 'border-box',
         padding: '1.5rem 1.5rem 1rem 1.5rem',
-        borderRadius: '0.188rem',
-        marginBottom: '2rem'
+        display: 'flex',
+        flexDirection: 'column',
+        //borderRadius: '0.188rem',
+
+        // alignItems: 'center',
+        // flexWrap: 'wrap',
+        '@media (max-width: 60em)': {
+            marginBottom: '1.5rem',
+            minHeight: '15rem',
+            maxHeight: '15rem',
+		},
     },
     talentImage: {
         minHeight: "3rem", minWidth:"3rem", maxHeight: "3rem", maxWidth: "3rem", 
         borderRadius: "0.375rem", 
         backgroundColor: "#4d5760", 
-        margin: "auto", 
-        marginBottom: '0.5rem',
+        marginBottom: "0.75rem",
+        margin: "0 auto", 
         boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
     },
     talentName: {
-        fontWeight: 700, color: "#FFCC62", width: '100%',
+        fontWeight: 700, color: '#ffd780', width: '100%', marginBottom: '0.15rem'
     },
-    talentNameText: {
-        fontWeight: 700, color: "#FFCC62"
+    talentType: {
+        width: '100%', 
+        marginBottom: '0.5rem', 
+        flexGrow: 1
     },
     talentSlider: {
-        flexBasis: '95%',
         '@media (max-width: 60em)': {
-            flexBasis: '80%',
+            margin: 'auto',
+            minWidth: '75%',
+            maxWidth: '75%',
         },
     },
+    talentSliderTextLeft: {
+        float: "left", marginBottom: '0.25rem'
+    },
+    talentSliderTextRight: {
+        float: "right", marginBottom: '0.25rem'
+    }
 }));
-
-// function valuetext(value: number) {
-//     return `${value}°C`;
-// }
 
 // rangeSlider steps
 const marks = [
@@ -929,8 +994,6 @@ export default function DialogCharacterPlanner(props: any) {
     // initial mount
     useEffect(() => {
         scrollToTop();
-        // reset currentStars, desiredStars
-        //setDesiredStarsDOM(1);
         // reset abilityOne, abilityTwo, abilityThree
         resetAbilities();
     }, []);
@@ -948,12 +1011,10 @@ export default function DialogCharacterPlanner(props: any) {
     return (
         <div className={classes.character} ref={theRef}> 
             <div className={classes.characterHeader} >
-
-
                 <div className={classes.backgroundImage}>
                 </div>
                 <div className={classes.characterImageContainer}>
-                    <div style={{maxWidth: '6rem', maxHeight: '6rem', position: 'relative'}}>
+                    <div className={classes.characterImageInnerContainer}>
                         <img src={character.image} className={classes.characterImage}></img>
                         <img src={character.typeImage} alt="element" className={classes.element}></img>	             
                     </div>
@@ -977,8 +1038,8 @@ export default function DialogCharacterPlanner(props: any) {
                 </div>
             </div>
             <div className={classes.characterContainer}>
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <Typography variant="h1" style={{margin: '1.5rem 0rem', flex: 1, opacity: `${levelOpacity}`}}>
+                <div className={classes.titleContainer}>
+                    <Typography variant="h1" style={{margin: '1rem 0rem', flex: 1, opacity: `${levelOpacity}`}}>
                         Levels
                     </Typography>
                     <Switch
@@ -992,7 +1053,7 @@ export default function DialogCharacterPlanner(props: any) {
                     <Card className={classes.ascension}>
                         <div className={classes.maxCurrent}>
                             <Tooltip title={"Uses highest level for current ascension. (E.g., Current ascension 0 = Level 20)"} placement="top">
-                                <Typography variant="h5" style={{cursor: 'help',}}>
+                                <Typography variant="h5" style={{cursor: 'help'}}>
                                     Current Max
                                 </Typography>
                             </Tooltip>
@@ -1002,7 +1063,7 @@ export default function DialogCharacterPlanner(props: any) {
                                 onChange={handleCurrentMax}
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                                 disableRipple
-                                style={{padding: '0rem 0rem 0rem 0.5rem'}}
+                                className={classes.checkbox}
                             /> 
                         </div>
                         <div className={classes.maxDesired}>
@@ -1017,11 +1078,11 @@ export default function DialogCharacterPlanner(props: any) {
                                 color="default"
                                 inputProps={{ 'aria-label': 'checkbox with default color' }}
                                 disableRipple
-                                style={{padding: '0rem 0rem 0rem 0.5rem'}}
+                                className={classes.checkbox}
                             /> 
                         </div>
-                        <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
-                            Current Level: &nbsp; &nbsp;{currentLevel}
+                        <Typography variant="h3" align="center" className={classes.currentLevel}>
+                            Current Level:  &nbsp; &nbsp;{currentLevel}
                         </Typography>
                         <div className={classes.ascensionStarContainer}>
                             <CardMedia
@@ -1063,7 +1124,7 @@ export default function DialogCharacterPlanner(props: any) {
                         </div>
                         
                         <div>
-                        <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
+                        <Typography variant="h3" align="center" className={classes.desiredLevel}>
                             Desired Level: &nbsp; &nbsp;{desiredLevel}
                         </Typography>
                         <div className={classes.ascensionStarContainer}>
@@ -1108,8 +1169,8 @@ export default function DialogCharacterPlanner(props: any) {
                     </Card>
                 </div>
 
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <Typography variant="h1" style={{margin: '1.5rem 0rem', flex: 1, opacity: `${talentOpacity}`,}}>
+                <div className={classes.titleContainer}>
+                    <Typography variant="h1" style={{margin: '1rem 0rem', flex: 1, opacity: `${talentOpacity}`,}}>
                         Talents
                     </Typography>
                     <Switch
@@ -1129,53 +1190,53 @@ export default function DialogCharacterPlanner(props: any) {
                             <Typography variant="h5" align="center" className={classes.talentName}>
                                 {character.abilityOne.name}
                             </Typography>
-                            <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
+                            <Typography variant="h6" align="center" className={classes.talentType}>
                                 Normal Attack
                             </Typography>
                             <div className={classes.talentSlider}>
-                                <Typography variant="body2" style={{float: "left"}}>Current Lv.</Typography>
-                                <Typography variant="body2" style={{float: "right"}}>Desired Lv.</Typography>
+                                <Typography variant="body2" className={classes.talentSliderTextLeft}>Current Lv.</Typography>
+                                <Typography variant="body2" className={classes.talentSliderTextRight}>Desired Lv.</Typography>
                                 <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
                             </div>
                         </Card>
                     </div>
                     <div className={classes.talentContainer2}>
-                    <Card className={classes.talent}>
-                        <CardMedia
-                            image= {character.abilityTwo.image}
-                            className={classes.talentImage}
-                        />
-                        <Typography variant="h5" align="center" className={classes.talentName}>
-                            {character.abilityTwo.name}
-                        </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
-                            Elemental Skill
-                        </Typography>
-                        <div className={classes.talentSlider}>
-                            <Typography variant="body2" style={{float: "left"}}>Current Lv.</Typography>
-                            <Typography variant="body2" style={{float: "right"}}>Desired Lv.</Typography>
-                            <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
-                        </div>
-                    </Card>
+                        <Card className={classes.talent}>
+                            <CardMedia
+                                image= {character.abilityTwo.image}
+                                className={classes.talentImage}
+                            />
+                            <Typography variant="h5" align="center" className={classes.talentName}>
+                                {character.abilityTwo.name}
+                            </Typography>
+                            <Typography variant="h6" align="center" className={classes.talentType}>
+                                Elemental Skill
+                            </Typography>
+                            <div className={classes.talentSlider}>
+                                <Typography variant="body2" className={classes.talentSliderTextLeft}>Current Lv.</Typography>
+                                <Typography variant="body2" className={classes.talentSliderTextRight}>Desired Lv.</Typography>
+                                <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
+                            </div>
+                        </Card>
                     </div>
                     <div className={classes.talentContainer3}>
-                    <Card className={classes.talent}>
-                        <CardMedia
-                            image= {character.abilityThree.image}
-                            className={classes.talentImage}
-                        />
-                        <Typography variant="h5" align="center" className={classes.talentName}>
-                            {character.abilityThree.name}
-                        </Typography>
-                        <Typography variant="h6" align="center" style={{width: '100%', marginBottom: '0.5rem'}}>
-                            Elemental Burst
-                        </Typography>
-                        <div className={classes.talentSlider}>
-                            <Typography variant="body2" style={{float: "left"}}>Current Lv.</Typography>
-                            <Typography variant="body2" style={{float: "right"}}>Desired Lv.</Typography>
-                            <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
-                        </div>
-                    </Card>
+                        <Card className={classes.talent}>
+                            <CardMedia
+                                image= {character.abilityThree.image}
+                                className={classes.talentImage}
+                            />
+                            <Typography variant="h5" align="center" className={classes.talentName}>
+                                {character.abilityThree.name}
+                            </Typography>
+                            <Typography variant="h6" align="center" className={classes.talentType}>
+                                Elemental Burst
+                            </Typography>
+                            <div className={classes.talentSlider}>
+                                <Typography variant="body2" className={classes.talentSliderTextLeft}>Current Lv.</Typography>
+                                <Typography variant="body2" className={classes.talentSliderTextRight}>Desired Lv.</Typography>
+                                <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
+                            </div>
+                        </Card>
                     </div>
                 </div>
             </div>
