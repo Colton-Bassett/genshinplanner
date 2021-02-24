@@ -84,26 +84,35 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', 
         backgroundColor: "#1b242d",
     },
+    dialogTitle: {
+        '@media (max-width: 25em)': {
+            padding: '.5rem .5rem'
+		},
+
+    },
     tabLabel: {
-        textTransform: "none", fontSize: "1.25rem",
+        textTransform: "none", 
+        fontSize: "1.25rem",
+        minWidth: '17rem',
         '&:hover': {
             color: 'white',
         },
-        // '@media (max-width:45em)': {
-        //     fontSize: "1rem",
-        // },
-        // '@media (max-width:35em)': {
-        //     fontSize: ".8rem",
-        // },
-        // '@media (max-width: 25em)': {
-		// 	fontSize: ".6rem"
-		// },
+        '@media (max-width:45em)': {
+            fontSize: "1rem",
+            minWidth: '15rem',
+        },
+        '@media (max-width: 35em)': {
+            minWidth: '12rem',
+        },
+        '@media (max-width: 25em)': {
+            minWidth: '10rem',
+		},
     },
     dialog: {
         minWidth: '60em',
         maxWidth: '60em',
-        minHeight: '50em',
-        maxHeight: '50em',
+        minHeight: '52.5em',
+        maxHeight: '52.5em',
         // borderRadius: '0.625rem',
         backgroundColor: '#172028',
         '@media (max-width: 60em)': {
@@ -118,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
 			minWidth: '100%',
 			maxWidth: '100%',
         },
-        '@media (max-height: 50em)': {
+        '@media (max-height: 52.5em)': {
             minHeight: '100%',
             maxHeight: '100%',
         },
@@ -215,11 +224,6 @@ export default function NewCharacter(props: any) {
                     </span>
                 </Card>
             </div>
-            {/* <div className={classes.addCharacterContent}>
-                <Card className={classes.blankCard}>     
-                </Card>
-            </div> */}
-
             <Dialog
                 open={openDialog}
                 onClose={dialogClose}
@@ -228,11 +232,11 @@ export default function NewCharacter(props: any) {
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
                 classes={{paper: classes.dialog}}
-            >
-                <DialogTitle id="scroll-dialog-title" style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.25rem solid #2e3944",}}>
+                >
+                <DialogTitle id="scroll-dialog-title" className={classes.dialogTitle} style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.25rem solid #2e3944",}}>
                     <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
-                        <Tab label="Genshin Impact Characters" {...tabID(0)} className={classes.tabLabel}  disableRipple/>
-                        <Tab label="Genshin Impact Weapons" {...tabID(1)} className={classes.tabLabel} disableRipple />
+                        <Tab label={<span>Genshin Impact <br></br> Characters</span>} {...tabID(0)} className={classes.tabLabel}  disableRipple/>
+                        <Tab label={<span>Genshin Impact <br></br> Weapons</span>} {...tabID(1)} className={classes.tabLabel} disableRipple />
                     </Tabs>
                 </DialogTitle>
                 <DialogContent className={classes.dialogContent}>

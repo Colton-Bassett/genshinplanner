@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
          },
     },
     materialCard: {
-		backgroundColor: '#2e3944', 
+        backgroundColor: '#2e3944',
         display: 'flex',
         //minHeight: '21.625rem', 
 		minWidth: '100%',

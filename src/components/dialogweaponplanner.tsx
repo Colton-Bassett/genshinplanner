@@ -74,18 +74,18 @@ const useStyles = makeStyles(() => ({
     },
     star: {
         minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
-        // '@media (max-width: 60em)': {
-        //     width: '1.55rem',
-        //     height: '1.55rem',
-        // },
-        // '@media (max-width: 45em)': {
-        //     width: '1.35rem',
-        //     height: '1.35rem',
-        // },
-        // '@media (max-width: 25em)': {
-        //     width: '1rem',
-        //     height: '1rem',
-		// },
+        '@media (max-width: 60em)': {
+            minWidth: '1rem',
+            minHeight: '1rem',
+        },
+        '@media (max-width: 30em)': {
+            minWidth: '.75rem',
+            minHeight: '.75rem',
+        },
+        '@media (max-width: 25em)': {
+            minWidth: '.65rem',
+            minHeight: '.65rem',
+        },
     },
     weaponTitle: {
         maxWidth: '70%', 
@@ -205,8 +205,8 @@ const useStyles = makeStyles(() => ({
         padding: '1rem 1.5rem 1.5rem 1.5rem',
         borderRadius: '0.188rem',
         '@media (max-width: 60em)': {
-            minHeight: '15rem',
-            maxHeight: '15rem',
+            minHeight: '17rem',
+            maxHeight: '17rem',
 		},
     },
     maxCurrent: {
@@ -238,6 +238,20 @@ const useStyles = makeStyles(() => ({
             cursor: "pointer",
             opacity: "1",
          },
+    },
+    currentLevel: {
+        width: '100%', 
+        fontWeight: 700, 
+        marginBottom: '0.25rem', 
+        marginTop: '-0.25rem', 
+        color: "#fff",
+    },
+    desiredLevel: {
+       width: '100%', 
+       fontWeight: 700, 
+       marginBottom: '0.25rem', 
+       marginTop: '-0.25rem', 
+       color: "#fff",
     },
     currentStarSix: {
         minWidth:"1.563rem", 
@@ -934,7 +948,8 @@ export default function DialogWeaponPlanner(props: any) {
                             className={classes.checkbox}
                         /> 
                     </div>
-                    <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
+                    <div style={{minWidth: '100%'}}>
+                    <Typography variant="h3" align="center" className={classes.currentLevel}>
                         Current Level: &nbsp; &nbsp;{currentLevel}
                     </Typography>
                     <div className={classes.ascensionStarContainer}>
@@ -975,7 +990,9 @@ export default function DialogWeaponPlanner(props: any) {
                         onClick={(e) => {setCurrentStarsDOM(1)}}
                         />
                     </div>
-                    <Typography variant="h3" align="center" style={{width: '100%', color: '#fff', fontWeight: 700,}}>
+                    </div>
+                    <div style={{minWidth: '1005'}}>
+                    <Typography variant="h3" align="center" className={classes.desiredLevel}>
                         Desired Level: &nbsp; &nbsp;{desiredLevel}
                     </Typography>
                     <div className={classes.ascensionStarContainer}>
@@ -1015,6 +1032,7 @@ export default function DialogWeaponPlanner(props: any) {
                         style={{opacity: desiredStars[0].opacity}}
                         onClick={(e) => {setDesiredStarsDOM(1)}}
                         />
+                    </div>                 
                     </div>
                 </Card>
             </div>

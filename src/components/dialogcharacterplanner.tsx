@@ -10,7 +10,8 @@ import SetMaterials from '../logic/setmaterials';
 import SetImages from '../logic/setimages'
 import CreateNewSummary from '../logic/createNewSummary'
 import HandleLevel from '../logic/handleLevel'
-import RangeSlider from './slider';
+import NumberPicker from './numberpicker';
+import HandleNumberPicker from '../logic/handleNumberPicker'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -206,8 +207,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '1rem 1.5rem 1.5rem 1.5rem',
         borderRadius: '0.188rem',
         '@media (max-width: 60em)': {
-            minHeight: '15rem',
-            maxHeight: '15rem',
+            minHeight: '17rem',
+            maxHeight: '17rem',
 		},
     },
     maxCurrent: {
@@ -490,8 +491,8 @@ const useStyles = makeStyles((theme) => ({
     },
     talent: {
         backgroundColor: "#2e3944",
-        minHeight: "16.5rem",
-        maxHeight: "16.5rem",
+        minHeight: "19rem",
+        maxHeight: "19rem",
         maxWidth: '100%',
         boxSizing: 'border-box',
         padding: '1.5rem 1.5rem 1rem 1.5rem',
@@ -503,8 +504,8 @@ const useStyles = makeStyles((theme) => ({
         // flexWrap: 'wrap',
         '@media (max-width: 60em)': {
             marginBottom: '1.5rem',
-            minHeight: '15rem',
-            maxHeight: '15rem',
+            minHeight: '17rem',
+            maxHeight: '17rem',
 		},
     },
     talentImage: {
@@ -523,64 +524,24 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '0.5rem', 
         flexGrow: 1
     },
-    talentSlider: {
-        '@media (max-width: 60em)': {
-            margin: 'auto',
-            minWidth: '75%',
-            maxWidth: '75%',
-        },
+    numberPickerContainerA: {
+        minWidth: '100%', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        display: 'flex', 
+        marginBottom: '0.5rem'
     },
-    talentSliderTextLeft: {
-        float: "left", marginBottom: '0.25rem'
+    numberPickerContainerB: {
+        minWidth: '100%', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        display: 'flex', 
+        marginBottom: '0.5rem'
     },
-    talentSliderTextRight: {
-        float: "right", marginBottom: '0.25rem'
-    }
+    talentLevelText: {
+        textAlign: 'center', marginBottom: '0.25rem'
+    },
 }));
-
-// rangeSlider steps
-const marks = [
-    {
-        value: 1,
-        label: '1',
-    },
-    {
-        value: 2,
-        label: '2',
-    },
-    {
-        value: 3,
-        label: '3',
-    },
-    {
-        value: 4,
-        label: '4',
-    },
-    {
-        value: 5,
-        label: '5',
-    },
-    {
-        value: 6,
-        label: '6',
-    },
-    {
-        value: 7,
-        label: '7',
-    },
-    {
-        value: 8,
-        label: '8',
-    },
-    {
-        value: 9,
-        label: '9',
-    },
-    {
-        value: 10,
-        label: '10',
-    },
-  ];
 
 export default function DialogCharacterPlanner(props: any) {
     const classes = useStyles();
@@ -621,6 +582,13 @@ export default function DialogCharacterPlanner(props: any) {
     const [abilityTwo, setAbilityTwo] = React.useState<number[]>([1, 10]);
     const [abilityThree, setAbilityThree] = React.useState<number[]>([1, 10]);
 
+    const [numberPickerOne, setNumberPickerOne] = React.useState<number>(1);
+    const [numberPickerTwo, setNumberPickerTwo] = React.useState<number>(5);
+    const [numberPickerThree, setNumberPickerThree] = React.useState<number>(1);
+    const [numberPickerFour, setNumberPickerFour] = React.useState<number>(5);
+    const [numberPickerFive, setNumberPickerFive] = React.useState<number>(1);
+    const [numberPickerSix, setNumberPickerSix] = React.useState<number>(5);
+
     const [levelOpacity, setLevelOpacity] = React.useState<number>(1);
     const [levelPointer, setLevelPointer] = React.useState<any>("auto");
 
@@ -635,12 +603,10 @@ export default function DialogCharacterPlanner(props: any) {
 
     async function submitDialog() {
         let i = [...items]
-        //console.log("here is temp i", i);
-        //console.log("here is value:", abilityOne);
         let a = {...ascensionDetails}
         a.index = items.length;
         a.type = 'character';
-        //console.log("character name:", character);
+
         a.name = character.name;
         a.image = character.image;
         a.typeImage = character.typeImage;
@@ -651,14 +617,14 @@ export default function DialogCharacterPlanner(props: any) {
         a.currentMax = currentMax;
         a.desiredMax = desiredMax;
         
-        a.abilityOneCurrent = abilityOne[0];
-        a.abilityOneDesired = abilityOne[1];
+        a.abilityOneCurrent = numberPickerOne;
+        a.abilityOneDesired = numberPickerTwo;
 
-        a.abilityTwoCurrent = abilityTwo[0];
-        a.abilityTwoDesired = abilityTwo[1];
+        a.abilityTwoCurrent = numberPickerThree;
+        a.abilityTwoDesired = numberPickerFour;
 
-        a.abilityThreeCurrent = abilityThree[0];
-        a.abilityThreeDesired = abilityThree[1];
+        a.abilityThreeCurrent = numberPickerFive;
+        a.abilityThreeDesired = numberPickerSix;
 
         a.materials = SetMaterials(character, a, materials);
 
@@ -666,8 +632,6 @@ export default function DialogCharacterPlanner(props: any) {
         const tempMatties = JSON.parse(JSON.stringify(matties));
         a.materials = matties;
 
-        //setAscensionDetails(a);
-        //console.log("ascensionDetails", a);
         i.push(a)
         setItems(i);
 
@@ -676,7 +640,7 @@ export default function DialogCharacterPlanner(props: any) {
         //// sorting newSummary
         newSummary?.sort((a: { position: string; }, b: { position: string; }) => parseFloat(a.position) - parseFloat(b.position));
 
-        console.log("newSummary:", newSummary);
+        //console.log("newSummary:", newSummary);
         setSummary(newSummary)
 
         dialogClose()
@@ -1059,6 +1023,7 @@ export default function DialogCharacterPlanner(props: any) {
                                 className={classes.checkbox}
                             /> 
                         </div>
+                        <div style={{minWidth: '100%'}}>
                         <Typography variant="h3" align="center" className={classes.currentLevel}>
                             Current Level:  &nbsp; &nbsp;{currentLevel}
                         </Typography>
@@ -1100,8 +1065,9 @@ export default function DialogCharacterPlanner(props: any) {
                             onClick={(e) => {setCurrentStarsDOM(1)}}
                             />
                         </div>
+                        </div>
                         
-                        <div>
+                        <div style={{minWidth: '100%'}}>
                         <Typography variant="h3" align="center" className={classes.desiredLevel}>
                             Desired Level: &nbsp; &nbsp;{desiredLevel}
                         </Typography>
@@ -1171,10 +1137,13 @@ export default function DialogCharacterPlanner(props: any) {
                             <Typography variant="h6" align="center" className={classes.talentType}>
                                 Normal Attack
                             </Typography>
-                            <div className={classes.talentSlider}>
-                                <Typography variant="body2" className={classes.talentSliderTextLeft}>Current Lv.</Typography>
-                                <Typography variant="body2" className={classes.talentSliderTextRight}>Desired Lv.</Typography>
-                                <RangeSlider marks={marks} ability={abilityOne} setAbility={setAbilityOne} />
+                            <Typography variant="body2" className={classes.talentLevelText}>Current Lv.</Typography>
+                            <div className={classes.numberPickerContainerA}>
+                                <NumberPicker numberPicker={numberPickerOne} handleNumberPicker={HandleNumberPicker} setNumberPicker={setNumberPickerOne} otherNumberPicker={numberPickerTwo} setOtherNumberPicker={setNumberPickerTwo} current={true}></NumberPicker>
+                            </div>
+                            <Typography variant="body2" className={classes.talentLevelText}>Desired Lv.</Typography>
+                            <div className={classes.numberPickerContainerB}>
+                                <NumberPicker numberPicker={numberPickerTwo} handleNumberPicker={HandleNumberPicker} setNumberPicker={setNumberPickerTwo} otherNumberPicker={numberPickerOne} setOtherNumberPicker={setNumberPickerOne} current={false}></NumberPicker>
                             </div>
                         </Card>
                     </div>
@@ -1190,10 +1159,13 @@ export default function DialogCharacterPlanner(props: any) {
                             <Typography variant="h6" align="center" className={classes.talentType}>
                                 Elemental Skill
                             </Typography>
-                            <div className={classes.talentSlider}>
-                                <Typography variant="body2" className={classes.talentSliderTextLeft}>Current Lv.</Typography>
-                                <Typography variant="body2" className={classes.talentSliderTextRight}>Desired Lv.</Typography>
-                                <RangeSlider marks={marks} ability={abilityTwo} setAbility={setAbilityTwo} />
+                            <Typography variant="body2" className={classes.talentLevelText}>Current Lv.</Typography>
+                            <div className={classes.numberPickerContainerA}>
+                                <NumberPicker numberPicker={numberPickerThree} handleNumberPicker={HandleNumberPicker} setNumberPicker={setNumberPickerThree} otherNumberPicker={numberPickerFour} setOtherNumberPicker={setNumberPickerFour} current={true}></NumberPicker>
+                            </div>
+                            <Typography variant="body2" className={classes.talentLevelText}>Desired Lv.</Typography>
+                            <div className={classes.numberPickerContainerB}>
+                                <NumberPicker numberPicker={numberPickerFour} handleNumberPicker={HandleNumberPicker} setNumberPicker={setNumberPickerFour} otherNumberPicker={numberPickerThree} setOtherNumberPicker={setNumberPickerThree} current={false}></NumberPicker>
                             </div>
                         </Card>
                     </div>
@@ -1209,10 +1181,14 @@ export default function DialogCharacterPlanner(props: any) {
                             <Typography variant="h6" align="center" className={classes.talentType}>
                                 Elemental Burst
                             </Typography>
-                            <div className={classes.talentSlider}>
-                                <Typography variant="body2" className={classes.talentSliderTextLeft}>Current Lv.</Typography>
-                                <Typography variant="body2" className={classes.talentSliderTextRight}>Desired Lv.</Typography>
-                                <RangeSlider marks={marks} ability={abilityThree} setAbility={setAbilityThree} />
+
+                            <Typography variant="body2" className={classes.talentLevelText}>Current Lv.</Typography>
+                            <div className={classes.numberPickerContainerA}>
+                                <NumberPicker numberPicker={numberPickerFive} handleNumberPicker={HandleNumberPicker} setNumberPicker={setNumberPickerFive} otherNumberPicker={numberPickerSix} setOtherNumberPicker={setNumberPickerSix} current={true}></NumberPicker>
+                            </div>
+                            <Typography variant="body2" className={classes.talentLevelText}>Desired Lv.</Typography>
+                            <div className={classes.numberPickerContainerB}>
+                                <NumberPicker numberPicker={numberPickerSix} handleNumberPicker={HandleNumberPicker} setNumberPicker={setNumberPickerSix} otherNumberPicker={numberPickerFive} setOtherNumberPicker={setNumberPickerFive} current={false}></NumberPicker>
                             </div>
                         </Card>
                     </div>

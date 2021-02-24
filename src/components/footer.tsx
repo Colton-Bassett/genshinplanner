@@ -116,11 +116,11 @@ export default function BottomNav() {
                     <div className={classes.footerOne}>
                         <h3 className={classes.title}>ANEMO.GG</h3>
                         <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                            <span style={{fontWeight:800}}>Anemo.gg</span> is not affiliated with or endorsed by miHoYo.
+                            <span style={{fontWeight:800}}>Anemo.gg</span> is not endorsed by miHoYo or any parties officially affiliated with Genshin Impact.
                         </Typography>
                         <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                            <span style={{fontWeight:800}}>Anemo.gg</span> is a Database and Planner for the Genshin Impact 
-                            game for PC, Switch, Playstation 4, and mobile
+                            <span style={{fontWeight:800}}>Anemo.gg</span> is a Planner for the Genshin Impact 
+                            game for PC, Switch, Playstation, and mobile
                             game app on iOS and Android.
                         </Typography>
                     </div>
