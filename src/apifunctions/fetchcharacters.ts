@@ -6,25 +6,35 @@ export default async function fetchCharacters(setCharacters: any) {
     const charactersFromAPI = apiData.data.listCharacters.items;
     
     await Promise.all(charactersFromAPI.map(async (character: any) => {
+        // 24 hours
+        //let imageURLExpiration = 86400; 
         if (character.image) {
-            const image = await Storage.get(character.image);
+            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.image;
+            console.log(imageLocation);
+
+            // const image = await Storage.get(character.image, {expires: imageURLExpiration});
+            const image = imageLocation;
             character.image = image;
         }
         if (character.typeImage) {
             const imageName = "Element_" + character.typeImage;
-            const image = await Storage.get(imageName);
+            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + imageName;
+            const image = imageLocation;
             character.typeImage = image;
         }
         if (character.abilityOne.image) {
-            const image = await Storage.get(character.abilityOne.image);
+            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.abilityOne.image;
+            const image = imageLocation;
             character.abilityOne.image = image;
         }
         if (character.abilityTwo.image) {
-            const image = await Storage.get(character.abilityTwo.image);
+            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.abilityTwo.image;
+            const image = imageLocation
             character.abilityTwo.image = image;
         }
         if (character.abilityThree.image) {
-            const image = await Storage.get(character.abilityThree.image);
+            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.abilityThree.image;
+            const image = imageLocation;
             character.abilityThree.image = image;
         }
         return character;

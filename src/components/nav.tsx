@@ -3,7 +3,7 @@ import {Button, AppBar, Toolbar, IconButton, Icon, makeStyles, Typography} from 
 // import { KeyboardArrowDown } from '@material-ui/icons';
 import { Link } from "react-router-dom";
 
-import WebsiteLogo from '../images/websitelogo.svg'
+import logo from '../images/logo.png'
 
 const useStyles = makeStyles((theme) => ({
     nav: {
@@ -75,7 +75,7 @@ export default function TopNav() {
                             <IconButton edge="start" aria-label="menu" disableRipple>
                                 <Link to="/" >
                                     <Icon >
-                                        <img src={WebsiteLogo} alt="logo" height={32} width={32}/>
+                                        <img src={logo} alt="logo" height={32} width={32}/>
                                     </Icon>
                                 </Link>
                                 <Link to="/" className={classes.title}>
