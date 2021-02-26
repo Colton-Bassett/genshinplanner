@@ -349,20 +349,13 @@ export default function CharacterMaterial( props: any ) {
     return (
         <div className={classes.material}>
             <div className={classes.materialContainer} >
-            {/* <Tooltip title={formatText(name)} placement="bottom"> */}
                 <div onClick={handleClickOpen}>
-                    {/* <CardMedia
-                    image= {`${image}, linear-gradient(red, yellow)`}
-                    className={classes.materialImage}
-
-                    /> */}
                     <div className={classes.materialImage} style={{backgroundImage: `url(${image}), url(${backgroundImage})`}}>
                     </div>
                     <Typography variant="body1" align="center" className={classes.text}>
                         {abbreviateNumber(quantity)}
                     </Typography>
                 </div>
-                {/* </Tooltip> */}
                 <Dialog
                     open={open}
                     onClose={handleClose}

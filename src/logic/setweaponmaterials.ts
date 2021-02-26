@@ -483,7 +483,7 @@ function addMaterial(mat: any, materials: any, allMaterials: any) {
         duplicateMaterial.quantity += mat.quantity
     } else {
         const tempName = mat.name.replace(/_/g, ' ');
-        console.log("tempName", tempName);
+        //console.log("tempName", tempName);
         let masterMaterial = allMaterials.find((element: { name: any; }) => element.name === tempName)
         console.log("addMaterial masterMaterial", masterMaterial);
         mat.description = masterMaterial.description;

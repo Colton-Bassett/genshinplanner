@@ -22,7 +22,10 @@ const useStyles = makeStyles(() => ({
 		display: 'flex', 
 		padding: '0.625rem', 
 		justifyContent: 'center', 
-		width: '16.666667%',
+		width: '14.28%',
+		'@media (max-width: 60em)': {
+			width: '20%'
+		},
 		'@media (max-width: 45em)': {
 			width: '25%'
 		},

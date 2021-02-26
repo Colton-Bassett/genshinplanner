@@ -5,20 +5,20 @@ export default async function createNewWeapon(weapon: any, setWeapon: any, weapo
     console.log("createNewWeapon() called")
 
     const w = { ...weapon};
-    w.name = "Primordial Jade Cutter"
-    w.type = 'Sword'
-    w.stars = 'Five'
-    w.description = "A ceremonial sword masterfully carved from pure jade. There almost seems to be an audible sigh in the wind as it is swung."
-    w.image = "Primordial_Jade_Cutter.png"
+    w.name = "Lithic Blade"
+    w.type = 'Claymore'
+    w.stars = 'Four'
+    w.description = 'A greatsword carved and chiseled from the very bedrock of Liyue.'
+    w.image = "Lithic_Blade.png"
 
-    w.ascensionMats.matOne = "Mist_Veiled_Lead_Elixir"
-    w.ascensionMats.matTwo = "Mist_Grass_Pollen"
+    w.ascensionMats.matOne = "Luminous_Sands_from_Guyun"
+    w.ascensionMats.matTwo = "Hunter's_Sacrificial_Knife"
     w.ascensionMats.specialty = 'N/A'
-    w.ascensionMats.commonMat = "Treasure_Hoarder_Insignia"
+    w.ascensionMats.commonMat = "Firm_Arrowhead"
     setWeapon(w);
 
     if (!weapon.name || !weapon.description) {
-        console.log("createNewWeapon() weapon.name || weapon.description issue ")
+        console.log("createNewWeapon() weapon.name || weapon.description issue")
         return; 
     }
 

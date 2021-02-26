@@ -1,8 +1,8 @@
 const handleNumberPicker = (numberPicker: number, type: string, setNumberPicker: any, otherNumberPicker: number, setOtherNumberPicker: any, current: boolean) => {
         let num = numberPicker;
         let otherNum = otherNumberPicker;
-        console.log("handleNumberPicker() numberPicker:", numberPicker);
-        console.log("handleNumberPicker() otherNumberPicker:", otherNumberPicker);
+        // console.log("handleNumberPicker() numberPicker:", numberPicker);
+        // console.log("handleNumberPicker() otherNumberPicker:", otherNumberPicker);
         switch(type) {
             case "subtract":
                 if (num <= 1) {

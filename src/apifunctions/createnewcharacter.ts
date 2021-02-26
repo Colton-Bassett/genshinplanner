@@ -5,36 +5,36 @@ export default async function createNewCharacter(character: any, setCharacter: a
     console.log("createNewCharacter() called")
 
     const c = { ...character};
-    c.name = 'Xiao'
-    c.type = 'Anemo'
-    c.typeImage = 'Anemo.png'
+    c.name = 'Hu Tao'
+    c.type = 'Pyro'
+    c.typeImage = 'Pyro.png'
     c.weapon = 'Polearm'
     c.stars = 'Five'
-    c.description = 'A yaksha adeptus that defends Liyue. Also heralded as the "Conqueror of Demons" or "Vigilant Yaksha."'
-    c.image = 'Xiao.png'
+    c.description = 'The 77th Director of the Wangsheng Funeral Parlor. She took over the business at a rather young age.'
+    c.image = 'Hu_Tao.png'
 
-    c.abilityOne.name = 'Whirlwind Thrust'
+    c.abilityOne.name = 'Secret Spear of Wangsheng'
     c.abilityOne.description = 'Normal Attack'
-    c.abilityOne.image = 'Whirlwind_Thrust.png'
+    c.abilityOne.image = 'Secret_Spear_of_Wangsheng.png'
 
-    c.abilityTwo.name = "Lemniscatic Wind Cycling"
-    c.abilityTwo.description = "Xiao lunges forward, dealing Anemo DMG to opponents in his path. Can be used mid-air. Starts with 2 charges."
-    c.abilityTwo.image = "Lemniscatic_Wind_Cycling.png"
+    c.abilityTwo.name = "Guide to Afterlife"
+    c.abilityTwo.description = "Only an unwavering flame can cleanse the impurities of this world."
+    c.abilityTwo.image = "Guide_to_Afterlife.png"
 
-    c.abilityThree.name = "Bane of All Evil"
-    c.abilityThree.description = "Xiao dons the Yaksha Mask that set gods and demons trembling millennia ago."	
-    c.abilityThree.image = "Bane_of_All_Evil.png"
+    c.abilityThree.name = "Spirit Soother"
+    c.abilityThree.description = "Commands a blazing spirit to attack, dealing Pyro DMG in a large AoE."	
+    c.abilityThree.image = "Spirit_Soother.png"
 
-    c.ascensionMats.matOne = 'Vayuda_Turquoise'
+    c.ascensionMats.matOne = 'Agnidus_Agate'
     c.ascensionMats.matTwo = 'Juvenile_Jade'
-    c.ascensionMats.specialty = 'Qingxin'
-    c.ascensionMats.commonMat = "Slime_Condensate"
-    c.talentMats.talentMat = 'Prosperity'
-    c.talentMats.bossMat = "Shadow_of_the_Warrior"
+    c.ascensionMats.specialty = 'Silk_Flower'
+    c.ascensionMats.commonMat = "Whopperflower_Nectar"
+    c.talentMats.talentMat = 'Diligence'
+    c.talentMats.bossMat = "Shard_of_a_Foul_Legacy"
     setCharacter(c);
 
     if (!character.name || !character.description) {
-        console.log("createNewCharacter() character.name || character.description issue")
+        console.log("createNewCharacter() character.name || character.description issue ")
         return; 
     }
 

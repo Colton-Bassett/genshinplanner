@@ -16,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         minHeight: '5.625rem',
         alignItems: 'center',
-        borderRadius: '0.25rem'
+        borderRadius: '0.25rem',
+        boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)'
     },
     summaryHeader: {
         minWidth: "calc(100% - 4.5rem)", 
-        padding: '2.25rem 2.25rem', 
+        padding: '0rem 2.25rem 2.25rem 2.25rem', 
         //display: 'flex', 
         //flexDirection: 'column',
         //alignItems: 'center', 
@@ -113,8 +114,7 @@ export default function NewCharacter(props: any) {
 
     return (
         <div className={classes.summary}> 
-            <div className={classes.summaryHeader}>
-                <div style={{display: 'flex'}}>
+                <div style={{display: 'flex', minWidth: 'calc(100% - 4.5rem)', borderBottom: '3px solid #172028', padding: '2.25rem 2.25rem'}}>
                     <h2 className={classes.summaryTitle}>Material Summary</h2>
                     <div style={{padding: '1.5rem, display: flex, flex: 1'}}>
                         <div className={classes.summaryExpand}>
@@ -134,21 +134,18 @@ export default function NewCharacter(props: any) {
                         </div>
                     </div>    
                 </div>
-
-            <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: '100%'}}>
-            <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
-                {/* <Card className={classes.materialCard}> */}
-                    <h3 className={classes.summaryInnerTitle}>General</h3>
-                        {generalMaterials}
-                    <h3 className={classes.summaryInnerTitle}>Talent</h3>
-                        {talentMaterials}
-                    <h3 className={classes.summaryInnerTitle}>Weapon</h3>
-                        {weaponMaterials}
-                {/* </Card> */}
+            <div className={classes.summaryHeader}>
+                <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: '100%'}}>
+                    <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
+                        <h3 className={classes.summaryInnerTitle}>General</h3>
+                            {generalMaterials}
+                        <h3 className={classes.summaryInnerTitle}>Talent</h3>
+                            {talentMaterials}
+                        <h3 className={classes.summaryInnerTitle}>Weapon</h3>
+                            {weaponMaterials}
+                    </div>
+                </Collapse>
             </div>
-            </Collapse>
-            </div>
-
         </div>
         
     );

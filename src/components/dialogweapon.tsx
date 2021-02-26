@@ -4,6 +4,19 @@ import { CardMedia, makeStyles, Theme } from '@material-ui/core';
 import Star from '../images/star.png'
 
 const useStyles = makeStyles((theme: Theme) => ({
+    weaponContainer: {
+        '&:hover': {
+            '& $weaponImage': {
+                boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
+                borderRadius: "0.188rem",
+                transform: 'scale(1.05);',
+                cursor: 'pointer',
+            },
+            '& $name': {
+                color: 'white',
+            }
+        }
+    },
     weaponImage: {
         minHeight: "4.375rem", 
         minWidth: "4.375rem", 
@@ -31,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         marginTop: "0.625rem",
         color: '#A7B1C1',
         fontSize: '0.875rem',
-        fontWeight: 500,
+        fontWeight: 600,
         overflow: 'hidden',
     },
     element: {
@@ -103,12 +116,12 @@ export default function DialogWeapon(props: any) {
 	}
 
     return (
-        <div>
+        <div className={classes.weaponContainer}>
             <div style={{position: 'relative', justifyContent: 'center'}}>
                 <CardMedia
                 image= {weapon.image}
                 className={classes.weaponImage}>
-                {createRarityStars()}
+                {/* {createRarityStars()} */}
                 </CardMedia>  
             </div>    
             <div className={classes.name}>

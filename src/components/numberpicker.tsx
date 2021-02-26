@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         marginLeft: '.2rem',
         '&:hover': {
-            backgroundColor: '#A6A7AC',
+            backgroundColor: '#A7B1C1',
         },
     },
     add: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         marginRight: '.2rem', 
         '&:hover': {
-            backgroundColor: '#A6A7AC',
+            backgroundColor: '#A7B1C1',
         },
 
     },
@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
         '@media (max-width: 60em)': {
             maxWidth: '40%', 
             minWidth: '40%', 
+        },
+        '@media (max-width: 25em)': {
+            maxWidth: '60%', 
+            minWidth: '60%', 
 		},
     },
 }));

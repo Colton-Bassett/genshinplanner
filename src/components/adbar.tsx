@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     text: {
-        color: '#6A6C6C',
+        color: '#636972',
         fontWeight: 500,
         fontSize: '1rem',
     },

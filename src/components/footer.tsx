@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Icon } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import logo from '../images/logo.png'
 
 const useStyles = makeStyles((theme) => ({
     footer: {
@@ -99,10 +100,10 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: "0rem !important"
     },
     message: {
-        color: '#6A6C6C',
+        color: '#636972',
     },
     link: {
-        color: '#6A6C6C',
+        color: '#636972',
         lineHeight: '2.5'
     }
 }));
@@ -114,30 +115,32 @@ export default function BottomNav() {
             <div className={classes.footerContainer}>
                 <div className={classes.footerMain}> 
                     <div className={classes.footerOne}>
-                        <h3 className={classes.title}>ANEMO.GG</h3>
+
+                        <h3 className={classes.title} style={{display: 'flex', alignItems: 'center'}}><Icon style={{marginRight: '0.5rem', width: '32px', height: '32px'}}>
+                            <img src={logo} alt="logo" height={32} width={32}/>
+                        </Icon>ANEMO.GG</h3>
                         <Typography variant="subtitle1" component="h1" className={classes.message}> 
                             <span style={{fontWeight:800}}>Anemo.gg</span> is not endorsed by miHoYo or any parties officially affiliated with Genshin Impact.
                         </Typography>
                         <Typography variant="subtitle1" component="h1" className={classes.message}> 
-                            <span style={{fontWeight:800}}>Anemo.gg</span> is a Planner for the Genshin Impact 
-                            game for PC, Switch, Playstation, and mobile
-                            game app on iOS and Android.
+                            <span style={{fontWeight:800}}>Anemo.gg</span> is a Planner and Resource for players to use for the Genshin Impact 
+                            game for PC, Consoles, iOS and Android.
                         </Typography>
                     </div>
                     <div className={classes.footerTwo}>
-                        <h3 className={classes.title}>More Links</h3>
+                        <h3 className={classes.title}>Links</h3>
                         <Typography variant="subtitle1" component="h2" className={classes.link}> 
                             Contact
                         </Typography>
                         <Typography variant="subtitle1" component="h2" className={classes.link}> 
-                            Privacy Policy
+                            About
                         </Typography>
                         <Typography variant="subtitle1" component="h2" className={classes.link}> 
-                            Do Not Sell My Info
+                            Privacy Policy
                         </Typography>
                     </div>
                     <div className={classes.footerThree}>
-                        <h3 className={classes.title}>Community Links</h3>
+                        <h3 className={classes.title}>Social</h3>
                         <Typography variant="subtitle1" component="h2" className={classes.link}> 
                             Discord
                         </Typography>
@@ -145,7 +148,7 @@ export default function BottomNav() {
                             Reddit
                         </Typography>
                         <Typography variant="subtitle1" component="h2" className={classes.link}> 
-                            Facebook
+                            Twitter
                         </Typography>
                     </div>
                 </div>

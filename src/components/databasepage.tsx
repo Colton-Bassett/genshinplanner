@@ -20,7 +20,7 @@ export default function DatabasePage() {
 	return (
 		<Card className={classes.root}> 
 			<div className={classes.container}>
-				<h2 style={{paddingLeft: '0.75rem'}}>Database <span style={{color: "#A6A7AC"}}>(Coming Soon)</span></h2>
+				<h2 style={{paddingLeft: '0.75rem'}}>Database <span style={{color: "#A7B1C1"}}>(Coming Soon)</span></h2>
 			</div>
 		</Card>
 	);

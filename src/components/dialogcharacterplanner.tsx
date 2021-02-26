@@ -211,18 +211,35 @@ const useStyles = makeStyles((theme) => ({
             maxHeight: '17rem',
 		},
     },
+    maxText: {
+        cursor: 'help',
+        '&:hover': {
+            color: '#ffd780',
+        }
+    },
     maxCurrent: {
         display: 'flex',
         justifyContent: 'flex-start',
         minWidth: '50%',
+        alignItems: 'center',
     },
     maxDesired: {
         display: 'flex',
         justifyContent: 'flex-end',
         minWidth: '50%',
+        alignItems: 'center',
     },
     checkbox: {
         padding: '0rem 0rem 0rem 0.5rem'
+    },
+    tooltip: {
+        backgroundColor: '#4d5760',
+        maxWidth: '10rem',
+        padding: '.75rem',
+        fontSize: '.75rem',
+        fontWeight: 400,
+        lineHeight: '1.3em',
+        borderRadius: 0,
     },
     currentLevel: {
         width: '100%', 
@@ -994,8 +1011,8 @@ export default function DialogCharacterPlanner(props: any) {
                 <div style={{opacity: `${levelOpacity}`, pointerEvents: levelPointer}}>
                     <Card className={classes.ascension}>
                         <div className={classes.maxCurrent}>
-                            <Tooltip title={"Uses highest level for current ascension. (E.g., Current ascension 0 = Level 20)"} placement="top">
-                                <Typography variant="h5" style={{cursor: 'help'}}>
+                            <Tooltip classes={{tooltip: classes.tooltip}} title="Uses highest level for current ascension. (E.g. Ascension 0 = Level 20" arrow>
+                                <Typography variant="h5" className={classes.maxText}>
                                     Current Max
                                 </Typography>
                             </Tooltip>
@@ -1009,8 +1026,8 @@ export default function DialogCharacterPlanner(props: any) {
                             /> 
                         </div>
                         <div className={classes.maxDesired}>
-                            <Tooltip title="Uses highest level for desired ascension (E.g., Desired ascension 6 = Level 90)" placement="top">
-                                <Typography variant="h5" style={{cursor: 'help'}}>
+                            <Tooltip classes={{tooltip: classes.tooltip}} title="Uses highest level for desired ascension (E.g. Ascension 6 = Level 90)" arrow>
+                                <Typography variant="h5" className={classes.maxText}>
                                     Desired Max
                                 </Typography>
                             </Tooltip>

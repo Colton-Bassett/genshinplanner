@@ -54,12 +54,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'transparent !important'
     },
     link: {
-        color: '#A6A7AC !important',
         textTransform: 'none',
         fontSize: '1rem',
     },
     dropdownArrow: {
-        color: '#A6A7AC', 
+        color: '#A7B1C1', 
         float: 'right', 
         marginTop: '0.25rem'
     }
@@ -67,13 +66,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TopNav() {
     const classes = useStyles();
+    const [plannerColor, setPlannercolor] = React.useState('#fff');
+    const [databaseColor, setDatabaseColor] = React.useState('#A7B1C1',);
+
+    function handleSelected(type: string) {
+        switch(type) {
+            case "planner":
+                if (plannerColor === '#A7B1C1') {
+                    setPlannercolor('#fff');
+                    setDatabaseColor('#A7B1C1');
+                    return
+                } else {
+                    // do nothing
+                    return
+                }
+            case "database":
+                if (databaseColor === '#A7B1C1') {
+                    setDatabaseColor('#fff');
+                    setPlannercolor('#A7B1C1');
+                    return
+                } else {
+                    // do nothing
+                    return
+                }
+        }
+        
+    }
     return (
             <div className={classes.nav}>
                 <AppBar position="static" className={classes.appbar}>
                     <div className={classes.navContainer}>
                         <Toolbar className={classes.toolbar}>
                             <IconButton edge="start" aria-label="menu" disableRipple>
-                                <Link to="/" >
+                                <Link style={{height: '2rem', width: '2rem'}} to="/" >
                                     <Icon >
                                         <img src={logo} alt="logo" height={32} width={32}/>
                                     </Icon>
@@ -85,12 +110,12 @@ export default function TopNav() {
                             <Typography className={classes.spacer}>
                             </Typography>
                             <Button disableRipple className={classes.button} >
-                                <Link to="/" className={classes.link}>
+                                <Link to="/" className={classes.link} style={{color: plannerColor}} onClick={(e) => {handleSelected("planner")}}>
                                     Planner
                                 </Link> 
                             </Button>
                             <Button disableRipple className={classes.button} >
-                                <Link to="/database" className={classes.link}>
+                                <Link to="/database" className={classes.link} style={{color: databaseColor}} onClick={(e) => {handleSelected("database")}}>
                                     Database
                                     {/* <KeyboardArrowDown className={classes.dropdownArrow}></KeyboardArrowDown> */}
                                 </Link> 

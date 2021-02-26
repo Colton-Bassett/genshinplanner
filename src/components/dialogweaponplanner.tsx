@@ -69,8 +69,13 @@ const useStyles = makeStyles(() => ({
         display: 'flex', 
         flexDirection: 'row', 
         maxWidth: '12.5rem',
-        position: 'absolute', bottom: '0.25rem', justifyContent: 'center',
+        position: 'absolute', 
+        bottom: '0.25rem', 
+        justifyContent: 'center',
         minWidth: '100%',
+        '@media (max-width: 45em)': {
+            bottom: '0.40rem', 
+        },
     },
     star: {
         minHeight: '1.15rem', minWidth: '1.15rem', marginLeft: '-0.20rem', verticalAlign: 'middle', borderStyle: 'none',
@@ -83,8 +88,8 @@ const useStyles = makeStyles(() => ({
             minHeight: '.75rem',
         },
         '@media (max-width: 25em)': {
-            minWidth: '.65rem',
-            minHeight: '.65rem',
+            minWidth: '.70rem',
+            minHeight: '.70rem',
         },
     },
     weaponTitle: {
@@ -209,18 +214,35 @@ const useStyles = makeStyles(() => ({
             maxHeight: '17rem',
 		},
     },
+    maxText: {
+        cursor: 'help',
+        '&:hover': {
+            color: '#ffd780',
+        }
+    },
     maxCurrent: {
         display: 'flex',
         justifyContent: 'flex-start',
         minWidth: '50%',
+        alignItems: 'center',
     },
     maxDesired: {
         display: 'flex',
         justifyContent: 'flex-end',
         minWidth: '50%',
+        alignItems: 'center',
     },
     checkbox: {
         padding: '0rem 0rem 0rem 0.5rem'
+    },
+    tooltip: {
+        backgroundColor: '#4d5760',
+        maxWidth: '10rem',
+        padding: '.75rem',
+        fontSize: '.75rem',
+        fontWeight: 400,
+        lineHeight: '1.3em',
+        borderRadius: 0,
     },
     ascensionStarContainer: {
         display: 'flex',
@@ -919,8 +941,8 @@ export default function DialogWeaponPlanner(props: any) {
                 </div>
                 <Card className={classes.ascension}>
                     <div className={classes.maxCurrent}>
-                        <Tooltip title={"Uses highest level for current ascension. (E.g., Current ascension 0 = Level 20)"} placement="top">
-                            <Typography variant="h5" style={{cursor: 'help',}}>
+                        <Tooltip classes={{tooltip: classes.tooltip}} title={"Uses highest level for current ascension. (E.g. Ascension 0 = Level 20)"} arrow>
+                            <Typography variant="h5" className={classes.maxText}>
                                 Current Max
                             </Typography>
                         </Tooltip>
@@ -934,8 +956,8 @@ export default function DialogWeaponPlanner(props: any) {
                         /> 
                     </div>
                     <div className={classes.maxDesired}>
-                        <Tooltip title="Uses highest level for desired ascension (E.g., Desired ascension 6 = Level 90)" placement="top">
-                            <Typography variant="h5" style={{cursor: 'help'}}>
+                        <Tooltip classes={{tooltip: classes.tooltip}} title="Uses highest level for desired ascension. (E.g. Ascension 6 = Level 90)" arrow>
+                            <Typography variant="h5" className={classes.maxText}>
                                 Desired Max
                             </Typography>
                         </Tooltip>

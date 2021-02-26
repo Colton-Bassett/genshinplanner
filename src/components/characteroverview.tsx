@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'flex-end'
 	},
 	editButton: {
-		color: '#A6A7AC !important',
+		color: '#A7B1C1',
 		cursor: 'pointer',
 		'&:hover': {
 			transform: 'scale(1.15);',
@@ -81,15 +81,24 @@ const useStyles = makeStyles((theme) => ({
         },
 	},
 	cancelButton: {
-		color: '#A6A7AC !important',
+		color: '#A7B1C1',
 		float: 'right',
 		cursor: 'pointer',
 		'&:hover': {
 			transform: 'scale(1.15);',
 			cursor: 'pointer',
-			color: "#fff !important",
+			color: "#fff",
         },
 	},
+    tooltip: {
+        backgroundColor: '#4d5760',
+        maxWidth: '10rem',
+        padding: '.5rem',
+        fontSize: '.75rem',
+        fontWeight: 400,
+		lineHeight: '1.3em',
+		borderRadius: 0,
+    },
 	characterImage: {
 		minHeight: "6.563rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
 		marginBottom: '1rem',
@@ -212,7 +221,12 @@ const useStyles = makeStyles((theme) => ({
 	expandOpen: {
 		transform: 'rotate(180deg)',
 	},
+	testClass: {
+		backgroundColor: 'pink',
+	}
 }));
+
+
 
 export default function CharacterOverview(props: any) {
 	const classes = useStyles();
@@ -469,7 +483,7 @@ export default function CharacterOverview(props: any) {
 							{/* <Tooltip title="Edit" arrow>
 								<EditIcon className={classes.editButton}></EditIcon>
 							</Tooltip> */}
-							<Tooltip title="Delete" arrow>
+							<Tooltip classes={{tooltip: classes.tooltip}}title="Delete this plan" arrow>
 								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.id, items, setItems, summary, setSummary)}></CancelIcon>
 							</Tooltip>
 						</div>
