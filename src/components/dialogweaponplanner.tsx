@@ -2,18 +2,15 @@ import React, {useState, useEffect} from 'react';
 import { Card, makeStyles, CardMedia, Typography, Tooltip, Checkbox } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import AscensionStar from '../images/Ascension_Star.png'
-import Characterbg from '../images/background2.jpg'
 
 import SetWeaponMaterials from '../logic/setweaponmaterials';
 import CreateNewSummary from '../logic/createNewSummary'
 import HandleLevel from '../logic/handleLevel'
 import SetImages from '../logic/setimages'
-
-import Star from '../images/star.png'
+const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
+const AscensionStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Ascension_Star.png`;
 
 const useStyles = makeStyles(() => ({
-
     weapon: {
 
     },
@@ -34,7 +31,7 @@ const useStyles = makeStyles(() => ({
         zIndex: 1, 
         backgroundPosition: '40% 65%', 
         boxSizing: 'border-box', 
-        backgroundImage: `url(${Characterbg})`,
+        backgroundImage: `url(https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Liyue_background.jpg)`,
         opacity: 0.6,
     },
     weaponImageContainer: {

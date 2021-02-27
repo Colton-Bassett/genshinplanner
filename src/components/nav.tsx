@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button, AppBar, Toolbar, IconButton, Icon, makeStyles, Typography} from '@material-ui/core';
+import {Button, AppBar, Toolbar, IconButton, Icon, makeStyles, Typography, Menu, MenuItem} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 // import { KeyboardArrowDown } from '@material-ui/icons';
 import { Link } from "react-router-dom";
 
-import logo from '../images/logo.png'
+const logo = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Logo.png`;
 
 const useStyles = makeStyles((theme) => ({
     nav: {
@@ -61,6 +62,14 @@ const useStyles = makeStyles((theme) => ({
         color: '#A7B1C1', 
         float: 'right', 
         marginTop: '0.25rem'
+    },
+    paper: {
+        backgroundColor: '#2e3944',
+        width: '100%',
+    },
+    buttonbaseRoot: {
+        color: 'white',
+        fontSize: '2.5rem !important',
     }
 }));
 
@@ -68,6 +77,16 @@ export default function TopNav() {
     const classes = useStyles();
     const [plannerColor, setPlannercolor] = React.useState('#fff');
     const [databaseColor, setDatabaseColor] = React.useState('#A7B1C1',);
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleCloseMenu = () => {
+      setAnchorEl(null);
+    };
 
     function handleSelected(type: string) {
         switch(type) {
@@ -117,9 +136,31 @@ export default function TopNav() {
                             <Button disableRipple className={classes.button} >
                                 <Link to="/database" className={classes.link} style={{color: databaseColor}} onClick={(e) => {handleSelected("database")}}>
                                     Database
-                                    {/* <KeyboardArrowDown className={classes.dropdownArrow}></KeyboardArrowDown> */}
                                 </Link> 
                             </Button>
+                            {/* <div>
+                                <IconButton
+                                    aria-label="more"
+                                    aria-controls="long-menu"
+                                    aria-haspopup="true"
+                                    disableRipple
+                                    onClick={handleOpenMenu}
+                                >
+                                    <MenuIcon classes={{root: classes.buttonbaseRoot}}/>
+                                </IconButton>
+                                <Menu
+                                id="simple-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                
+                                open={Boolean(anchorEl)}
+                                onClose={handleCloseMenu}
+                                classes={{paper: classes.paper}}
+                            >
+                                <MenuItem onClick={handleCloseMenu}>Planner</MenuItem>
+                                <MenuItem onClick={handleCloseMenu}>Database</MenuItem>
+                                </Menu>
+                            </div> */}
                         </Toolbar>
                     </div>
                 </AppBar>

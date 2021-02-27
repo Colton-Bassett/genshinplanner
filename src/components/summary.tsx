@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
     summaryHeader: {
         minWidth: "calc(100% - 4.5rem)", 
-        padding: '0rem 2.25rem 2.25rem 2.25rem', 
+        // padding: '0rem 2.25rem 2.25rem 2.25rem', 
         //display: 'flex', 
         //flexDirection: 'column',
         //alignItems: 'center', 
@@ -86,9 +86,15 @@ const useStyles = makeStyles((theme) => ({
 export default function NewCharacter(props: any) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [summaryBorder, setSummaryBorder] = React.useState('');
 
     const summary = props.summary;
     const handleExpandClick = () => {
+        if (summaryBorder === '3px solid #172028') {
+            setSummaryBorder('');
+        } else {
+            setSummaryBorder('3px solid #172028');
+        }
 		setExpanded(!expanded);
     };
     
@@ -114,7 +120,7 @@ export default function NewCharacter(props: any) {
 
     return (
         <div className={classes.summary}> 
-                <div style={{display: 'flex', minWidth: 'calc(100% - 4.5rem)', borderBottom: '3px solid #172028', padding: '2.25rem 2.25rem'}}>
+                <div style={{display: 'flex', minWidth: 'calc(100% - 4.5rem)', borderBottom: `${summaryBorder}`, padding: '2.25rem 2.25rem'}}>
                     <h2 className={classes.summaryTitle}>Material Summary</h2>
                     <div style={{padding: '1.5rem, display: flex, flex: 1'}}>
                         <div className={classes.summaryExpand}>
@@ -135,7 +141,7 @@ export default function NewCharacter(props: any) {
                     </div>    
                 </div>
             <div className={classes.summaryHeader}>
-                <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: '100%'}}>
+                <Collapse in={expanded} timeout="auto" unmountOnExit style={{minWidth: 'calc(100% - 4.5rem)', padding: '0rem 2.25rem 2.25rem 2.25rem',}}>
                     <div style={{display: "flex", boxSizing: "border-box", flexWrap: "wrap", width: "100%"}}>
                         <h3 className={classes.summaryInnerTitle}>General</h3>
                             {generalMaterials}

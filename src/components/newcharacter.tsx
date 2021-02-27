@@ -92,8 +92,9 @@ const useStyles = makeStyles((theme) => ({
     },
     tabLabel: {
         textTransform: "none", 
-        fontSize: "1.25rem",
+        fontSize: "1.6rem",
         minWidth: '17rem',
+        
         '&:hover': {
             color: 'white',
         },
@@ -155,7 +156,28 @@ const useStyles = makeStyles((theme) => ({
     },
     indicator: {
         backgroundColor: 'green'
-    }
+    },
+    buttonbaseRoot: {
+        minWidth: '50%',
+        padding: '1.20rem',
+        lineHeight: '1.5em',
+		fontSize: '1.6em',
+		fontWeight: "bold",
+		margin: 0
+    },
+    dialogTitleRoot: {
+        padding: 0,
+        '& h2': {
+            minWidth: '100%',
+        }
+    },
+    tabIndicator: {
+        backgroundColor: '#03a577',
+        height: '.313rem',
+    },
+    titleRoot: {
+        padding: 0,
+    },
 }));
 
 export default function NewCharacter(props: any) {
@@ -233,10 +255,10 @@ export default function NewCharacter(props: any) {
                 aria-describedby="scroll-dialog-description"
                 classes={{paper: classes.dialog}}
                 >
-                <DialogTitle id="scroll-dialog-title" className={classes.dialogTitle} style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.188rem solid #2e3944",}}>
-                    <Tabs value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
-                        <Tab label={<span>Genshin Impact <br></br> Characters</span>} {...tabID(0)} className={classes.tabLabel}  disableRipple/>
-                        <Tab label={<span>Genshin Impact <br></br> Weapons</span>} {...tabID(1)} className={classes.tabLabel} disableRipple />
+                <DialogTitle id="scroll-dialog-title" classes={{root: classes.dialogTitleRoot}} className={classes.dialogTitle} style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.188rem solid #2e3944" }}>
+                    <Tabs classes={{indicator: classes.tabIndicator}} value={tabPanel} onChange={tabChange} aria-label="tabs" indicatorColor="secondary">
+                        <Tab classes={{root: classes.buttonbaseRoot}}label={<span>Genshin Impact <br></br> Characters</span>} {...tabID(0)} className={classes.tabLabel}  disableRipple/>
+                        <Tab classes={{root: classes.buttonbaseRoot}} label={<span>Genshin Impact <br></br> Weapons</span>} {...tabID(1)} className={classes.tabLabel} disableRipple />
                     </Tabs>
                 </DialogTitle>
                 <DialogContent className={classes.dialogContent}>
@@ -244,6 +266,9 @@ export default function NewCharacter(props: any) {
                     </DialogTab>
                 </DialogContent>
                 <DialogActions className={classes.dialogActions}>
+                    {/* <Button onClick={dialogClose} color="primary" className={classes.dialogCancel} disableRipple>
+                        Submit
+                    </Button> */}
                     <Button onClick={dialogClose} color="primary" className={classes.dialogCancel} disableRipple>
                         Cancel
                     </Button>

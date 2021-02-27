@@ -3,14 +3,14 @@ import clsx from 'clsx';
 import { Card, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 
-import Star from '../images/star.png'
 
 import CharacterMaterial from './charactermaterial'
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
-import AscensionStar from '../images/Ascension_Star.png'
 
 import HandleLevel from '../logic/handleLevel'
+const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
+const AscensionStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Ascension_Star.png`;
 
 const useStyles = makeStyles((theme) => ({
 	plannerContainer: {

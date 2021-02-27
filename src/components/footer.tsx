@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles, Icon } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import logo from '../images/logo.png'
+
+const logo = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Logo.png`;
 
 const useStyles = makeStyles((theme) => ({
     footer: {
@@ -49,10 +50,6 @@ const useStyles = makeStyles((theme) => ({
 			maxWidth: '43.75em',
 		},
 		'@media (max-width: 45em)': {
-			minWidth: '31.25em',
-			maxWidth: '31.25em',
-		},
-		'@media (max-width: 35em)': {
 			minWidth: '100%',
             maxWidth: '100%',
             flexWrap: 'wrap',
@@ -62,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '50%',
         boxSizing: 'border-box',
 
-        '@media (max-width: 35em)': {
+        '@media (max-width: 45em)': {
 			minWidth: '100%',
             maxWidth: '100%',
             padding: '0rem 1rem',
@@ -72,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '20%',
         marginLeft: '1.5rem',
         boxSizing: 'border-box',
-        '@media (max-width: 35em)': {
+        '@media (max-width: 45em)': {
             marginLeft: 0,
 			minWidth: '50%',
             maxWidth: '50%',
@@ -83,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '20%',
         marginLeft: '1.5rem',
         boxSizing: 'border-box',
-        '@media (max-width: 35em)': {
+        '@media (max-width: 45em)': {
             marginLeft: 0,
 			minWidth: '50%',
             maxWidth: '50%',

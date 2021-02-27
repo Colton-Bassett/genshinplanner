@@ -1,25 +1,19 @@
-import FivestarBackground from '../images/fivestar_background.png'
-import FourstarBackground from '../images/fourstar_background.png'
-import ThreestarBackground from '../images/threestar_background.png'
-import TwoStarBackground from '../images/twostar_background.png'
-import OnestarBackground from '../images/onestar_background.png'
-
 export default function handleBackgroundImage(stars: any, setBackgroundImage: any) {
     switch(stars) {
         case "One":
-            setBackgroundImage(OnestarBackground);
+            setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png`);
             return
         case "Two":
-            setBackgroundImage(TwoStarBackground);
+            setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png`);
             return
         case "Three":
-            setBackgroundImage(ThreestarBackground);
+            setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png`);
             return
         case "Four":
-            setBackgroundImage(FourstarBackground);
+            setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png`);
             return
         case "Five":
-            setBackgroundImage(FivestarBackground);
+            setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png`);
             return
     }
-}
+}   

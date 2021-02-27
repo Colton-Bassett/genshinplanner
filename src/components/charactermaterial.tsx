@@ -6,12 +6,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Place } from '@material-ui/icons';
 
-import Star from '../images/star.png'
-import FivestarBackground from '../images/fivestar_background.png'
-import FourstarBackground from '../images/fourstar_background.png'
-import ThreestarBackground from '../images/threestar_background.png'
-import TwoStarBackground from '../images/twostar_background.png'
-import OnestarBackground from '../images/onestar_background.png'
+const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
 
 const useStyles = makeStyles((theme) => ({
     material: {
@@ -26,8 +21,12 @@ const useStyles = makeStyles((theme) => ({
             flexBasis: '20%'
         },
         '@media (max-width: 35em)': {
-            maxWidth: '33%', 
-            flexBasis: '33%'
+            maxWidth: '25%', 
+            flexBasis: '25%'
+        },
+        '@media (max-width: 30em)': {
+            maxWidth: '33.3333%', 
+            flexBasis: '33.3333%'
 		},
 	},
     materialContainer: {
@@ -44,11 +43,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#232D38'
     },
     materialImage: {
-        maxHeight: "2.688rem", 
-        maxWidth: "2.688rem", 
-        minHeight: "2.688rem", 
-        minWidth: "2.688rem", 
-        backgroundSize: '110%, cover', 
+        maxHeight: "3rem", 
+        maxWidth: "3rem", 
+        minHeight: "3rem", 
+        minWidth: "3rem", 
+        backgroundSize: '100%, cover', 
 
         backgroundOrigin: 'content-box, border-box', 
         padding: '0.25rem', 
@@ -63,18 +62,23 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 500,
         //backgroundColor: '#1d1f29', 
         borderBottomLeftRadius: '0.188rem', 
-        borderBottomRightRadius: '0.188rem'
+        borderBottomRightRadius: '0.188rem',
+        maxHeight: '1.33rem'
+
     },
     dialog: {
         backgroundColor: '#172028', 
         padding: '0rem !important',
         color: 'white',
         top: '0%',
-        width: '25.5rem',
+        width: '25.65rem',
+        minHeight: '33.375rem',
+        maxHeight: '43.875rem',
+        borderRadius: '0.1rem'
 
     },
     dialogTitle: {
-        outline: "0.188rem solid rgb(145, 82, 41, 1)", padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem'
+        outline: "0.188rem solid rgb(145, 82, 41, 1)", padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem',
     },
     // materialHeader: {
     //     backgroundColor:"#272b30", 
@@ -120,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '1.5rem', minWidth: '1.5rem', borderStyle: 'none', verticalAlign: 'middle'
     },
     sourceContainer: {
-        border: '0.063rem solid rgb(255, 255, 255, .25)', 
+        border: '0.15rem solid rgb(255, 255, 255, .25)', 
         marginBottom: '.5rem', 
         minHeight: '3.5rem', 
         display: 'flex'
@@ -194,19 +198,19 @@ export default function CharacterMaterial( props: any ) {
     function handleBackgroundImage() {
         switch(stars) {
             case "One":
-                setBackgroundImage(OnestarBackground);
+                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png`);
                 return
             case "Two":
-                setBackgroundImage(TwoStarBackground);
+                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png`);
                 return
             case "Three":
-                setBackgroundImage(ThreestarBackground);
+                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png`);
                 return
             case "Four":
-                setBackgroundImage(FourstarBackground);
+                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png`);
                 return
             case "Five":
-                setBackgroundImage(FivestarBackground);
+                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png`);
                 return
         }
     }
@@ -217,32 +221,32 @@ export default function CharacterMaterial( props: any ) {
                 // silver
                 setTitleColor("#72778b");
                 setTitleOutline("0.188rem solid rgb(89, 92, 107)");
-                setHeaderBorder("0.4rem solid #696f78");
+                setHeaderBorder("0.4rem solid #5a5d66");
 
                 return
             case "Two":
                 // green
                 setTitleColor("#2a9072");
                 setTitleOutline("0.188rem solid rgb(35, 111, 89)");
-                setHeaderBorder("0.4rem solid #577f63");
+                setHeaderBorder("0.4rem solid #44635e");
                 return
             case "Three":
                 // blue
                 setTitleColor("#5180cc");
                 setTitleOutline("0.188rem solid rgb(64, 99, 156)");
-                setHeaderBorder("0.4rem solid #447d8d");
+                setHeaderBorder("0.4rem solid #47687d");
                 return
             case "Four":
                 // purple
                 setTitleColor("#a156e0");
                 setTitleOutline("0.188rem solid rgb(124, 68, 171)");
-                setHeaderBorder("0.4rem solid #9674a3");
+                setHeaderBorder("0.4rem solid #745b87");
                 return
             case "Five":
                 // orange
                 setTitleColor("#bd6932");
                 setTitleOutline("0.188rem solid rgb(145, 82, 41, 1)");
-                setHeaderBorder("0.4rem solid #b99050");
+                setHeaderBorder("0.4rem solid #846750");
                 return
         }
     }
@@ -370,7 +374,7 @@ export default function CharacterMaterial( props: any ) {
                         </Typography>
                         </div>
                     </DialogTitle>
-                    <DialogContent style={{ backgroundColor:"#272b30", padding: '.75rem 1.5rem', borderBottom: `${headerBorder}`, backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: '50%',}}>
+                    <DialogContent style={{ backgroundColor:"#272b30", padding: '.75rem 1.5rem', borderBottom: `${headerBorder}`, backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: '50%', maxHeight: '9.5rem', minHeight: '9.5rem'}}>
                         <div className={classes.materialHeaderContainer}>
                             <div className={classes.materialHeaderData}>                      
                                 <Typography variant="h3" className={classes.materialType}>
@@ -386,8 +390,8 @@ export default function CharacterMaterial( props: any ) {
                             </div>
                         </div>
                     </DialogContent>
-                    <DialogContent style={{backgroundColor: "#2e3944", padding: '2rem 1.5rem', height: '17.5rem'}}>
-                        <DialogContentText id="alert-dialog-description" variant="h3" style={{marginBottom:  '1.5rem'}}>
+                    <DialogContent style={{backgroundColor: "#2e3944", padding: '2rem 1.5rem',}}>
+                        <DialogContentText id="alert-dialog-description" variant="h3" style={{marginBottom:  '1.5rem', color: '#c4c4c4'}}>
                             {description}
                         </DialogContentText>
                         <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1rem'}} >

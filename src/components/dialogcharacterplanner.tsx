@@ -3,15 +3,14 @@ import { Card, makeStyles, CardMedia, Typography, Switch, Checkbox, Tooltip } fr
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
-import Characterbg from '../images/background2.jpg'
-import AscensionStar from '../images/Ascension_Star.png'
-
 import SetMaterials from '../logic/setmaterials';
 import SetImages from '../logic/setimages'
 import CreateNewSummary from '../logic/createNewSummary'
 import HandleLevel from '../logic/handleLevel'
 import NumberPicker from './numberpicker';
 import HandleNumberPicker from '../logic/handleNumberPicker'
+
+const AscensionStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Ascension_Star.png`;
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', 
         overflow: 'hidden', 
         padding: '1.5rem 0rem',
-        boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+		boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         borderBottom: 'solid 0.25rem #2e3944',
     },
     backgroundImage: {
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1, 
         backgroundPosition: '40% 65%', 
         boxSizing: 'border-box', 
-        backgroundImage: `url(${Characterbg})`,
+        backgroundImage: `url(https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Liyue_background.jpg)`,
         opacity: 0.6,
     },
     characterImageContainer: {

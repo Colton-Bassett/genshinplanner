@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardMedia, makeStyles, Theme } from '@material-ui/core';
 
-import Star from '../images/star.png'
+const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
 
 const useStyles = makeStyles((theme: Theme) => ({
     weaponContainer: {
