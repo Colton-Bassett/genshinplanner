@@ -574,36 +574,32 @@ export default function DialogCharacterPlanner(props: any) {
     const theRef = React.createRef<HTMLDivElement>();
 
     const initialCurrentStars = [
-        {starOne: {opacity: "0.3"}},
-        {starTwo: {opacity: "0.3"}},
-        {starThree: {opacity: "0.3"}},
-        {starFour: {opacity: "0.3"}},
-        {starFive: {opacity: "0.3"}},
-        {starSix: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
 
     ]
     const initialDesiredStars = [
-        {starOne: {opacity: "1"}},
-        {starTwo: {opacity: "0.3"}},
-        {starThree: {opacity: "0.3"}},
-        {starFour: {opacity: "0.3"}},
-        {starFive: {opacity: "0.3"}},
-        {starSix: {opacity: "0.3"}},
+        {star: {opacity: "1"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
+        {star: {opacity: "0.3"}},
     ]
 
     const [currentStars, setCurrentStars] = useState<any[]>(initialCurrentStars);
     const [desiredStars, setDesiredStars] = useState<any[]>(initialDesiredStars);
 
-    const [abilityOne, setAbilityOne] = React.useState<number[]>([1, 10]);
-    const [abilityTwo, setAbilityTwo] = React.useState<number[]>([1, 10]);
-    const [abilityThree, setAbilityThree] = React.useState<number[]>([1, 10]);
-
     const [numberPickerOne, setNumberPickerOne] = React.useState<number>(1);
-    const [numberPickerTwo, setNumberPickerTwo] = React.useState<number>(5);
+    const [numberPickerTwo, setNumberPickerTwo] = React.useState<number>(6);
     const [numberPickerThree, setNumberPickerThree] = React.useState<number>(1);
-    const [numberPickerFour, setNumberPickerFour] = React.useState<number>(5);
+    const [numberPickerFour, setNumberPickerFour] = React.useState<number>(6);
     const [numberPickerFive, setNumberPickerFive] = React.useState<number>(1);
-    const [numberPickerSix, setNumberPickerSix] = React.useState<number>(5);
+    const [numberPickerSix, setNumberPickerSix] = React.useState<number>(6);
 
     const [levelOpacity, setLevelOpacity] = React.useState<number>(1);
     const [levelPointer, setLevelPointer] = React.useState<any>("auto");
@@ -669,7 +665,7 @@ export default function DialogCharacterPlanner(props: any) {
                 count++
             }
          }
-        //console.log("countCurrentStars:", count);
+        console.log("countCurrentStars:", count);
         return count;
     }
 
@@ -680,7 +676,7 @@ export default function DialogCharacterPlanner(props: any) {
                 count++
             }
          }
-        //console.log("countDesiredStars:", count);
+        console.log("countDesiredStars:", count);
         return count; 
     }
 
@@ -892,52 +888,37 @@ export default function DialogCharacterPlanner(props: any) {
     }
 
     function handleTalentSwitch() {
-        const abilityOneTemp = [...abilityOne];
-        const abilityTwoTemp = [...abilityTwo];
-        const abilityThreeTemp = [...abilityThree];
         if (talentOpacity === 1) {
             setTalentOpacity(0.3);
             setTalentPointer('none');
-            // set upperTalents to 0 or 1;
-            abilityOneTemp[0] = 1;
-            abilityOneTemp[1] = 1;
 
-            abilityTwoTemp[0] = 1;
-            abilityTwoTemp[1] = 1;
+            // set all talents to 1;
+            setNumberPickerOne(1);
+            setNumberPickerTwo(1);
 
-            abilityThreeTemp[0] = 1;
-            abilityThreeTemp[1] = 1;
+            setNumberPickerThree(1);
+            setNumberPickerFour(1);
+
+            setNumberPickerFive(1);
+            setNumberPickerSix(1);
         } else {
             setTalentOpacity(1);
             setTalentPointer('auto');
-            // set upperTalent to 10;
-            abilityOneTemp[0] = 1;
-            abilityOneTemp[1] = 10;
-            
-            abilityTwoTemp[0] = 1;
-            abilityTwoTemp[1] = 10;
-            
-            abilityThreeTemp[0] = 1;
-            abilityThreeTemp[1] = 10;
+
+            // reset talents to default;
+            resetTalents();
         }
-        setAbilityOne(abilityOneTemp);
-        setAbilityTwo(abilityTwoTemp);
-        setAbilityThree(abilityThreeTemp);
     }
 
-    function resetAbilities() {
-        const abilityOneTemp = [...abilityOne];
-        const abilityTwoTemp = [...abilityTwo];
-        const abilityThreeTemp = [...abilityThree];
+    function resetTalents() {
+        setNumberPickerOne(1);
+        setNumberPickerTwo(6);
 
-        abilityOneTemp[0] = 1;
-        abilityOneTemp[1] = 10;
-        
-        abilityTwoTemp[0] = 1;
-        abilityTwoTemp[1] = 10;
-        
-        abilityThreeTemp[0] = 1;
-        abilityThreeTemp[1] = 10;
+        setNumberPickerThree(1);
+        setNumberPickerFour(6);
+
+        setNumberPickerFive(1);
+        setNumberPickerSix(6);
 
     }
 
@@ -952,16 +933,20 @@ export default function DialogCharacterPlanner(props: any) {
     // initial mount
     useEffect(() => {
         scrollToTop();
-        // reset abilityOne, abilityTwo, abilityThree
-        resetAbilities();
+
+        // reset talentOne, talentTwo, talentThree
+        resetTalents();
     }, []);
 
-    // clicking currentMax or desiredMax
+    // clicking currentMax or desiredMax (also called on initial mount);
     useEffect(() => {
+        console.log("useEffect currentMax, desiredMax called");
         let currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+        console.log("useEffect currentLevel", currentLevel);
         setCurrentLevel(currentLevel)
 
-        let desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+        let desiredLevel = HandleLevel(1, desiredMax) || 0;
+        console.log("useEffect desiredLevel", desiredLevel);
         setDesiredLevel(desiredLevel)
 
     }, [currentMax, desiredMax]);

@@ -737,7 +737,7 @@ function addTravelerTalentMaterial(character: any, ascensionDetails: any, abilit
 function setTravelerTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
     if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
         // do nothing
-        console.log("setTalentMaterials is doing nothing, abilityOne")
+        //console.log("setTalentMaterials is doing nothing, abilityOne")
     } else {
         ascensionDetails.abilityOneCurrent += 1;
         character.ascensionMats.commonMat = "Divining_Scroll";
@@ -751,7 +751,7 @@ function setTravelerTalentMaterials(character: any, ascensionDetails: any, mater
 
     if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
         // do nothing
-        console.log("setTalentMaterials is doing nothing, abilityTwo")
+        //console.log("setTalentMaterials is doing nothing, abilityTwo")
     } else {
         ascensionDetails.abilityTwoCurrent += 1;
         if (character.name === "Traveler (Anemo)") {
@@ -769,7 +769,7 @@ function setTravelerTalentMaterials(character: any, ascensionDetails: any, mater
 
     if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
         // do nothing
-        console.log("setTalentMaterials is doing nothing, abilityThree")
+        //console.log("setTalentMaterials is doing nothing, abilityThree")
     } else {
         ascensionDetails.abilityThreeCurrent += 1;
         if (character.name === "Traveler (Anemo)") {
@@ -792,7 +792,7 @@ function setTravelerTalentMaterials(character: any, ascensionDetails: any, mater
 function setTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
     if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
         // do nothing
-        console.log("setTalentMaterials is doing nothing, abilityOne")
+        //console.log("setTalentMaterials is doing nothing, abilityOne")
     } else {
         ascensionDetails.abilityOneCurrent += 1;
         addTalentMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
@@ -804,7 +804,7 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
 
     if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
         // do nothing
-        console.log("setTalentMaterials is doing nothing, abilityTwo")
+        //console.log("setTalentMaterials is doing nothing, abilityTwo")
     } else {
         ascensionDetails.abilityTwoCurrent += 1;
         addTalentMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
@@ -816,7 +816,7 @@ function setTalentMaterials(character: any, ascensionDetails: any, materials: an
 
     if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
         // do nothing
-        console.log("setTalentMaterials is doing nothing, abilityThree")
+        //console.log("setTalentMaterials is doing nothing, abilityThree")
     } else {
         ascensionDetails.abilityThreeCurrent += 1;
         addTalentMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);

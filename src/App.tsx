@@ -9,9 +9,9 @@ import fetchCharacters from './apifunctions/fetchcharacters'
 import fetchWeapons from './apifunctions/fetchweapons'
 import fetchMaterials from './apifunctions/fetchmaterials'
 
-import createNewMaterial from './apifunctions/createnewmaterial'
-import createNewWeapon from './apifunctions/createnewweapon'
-import createNewCharacter from './apifunctions/createnewcharacter'
+// import createNewMaterial from './apifunctions/createnewmaterial'
+// import createNewWeapon from './apifunctions/createnewweapon'
+// import createNewCharacter from './apifunctions/createnewcharacter'
 
 import TopNav from "./components/nav"
 import AdBar from "./components/adbar"
@@ -204,8 +204,6 @@ export default function App() {
 		fetchCharacters(setCharacters);
 		fetchWeapons(setWeapons);
 		fetchMaterials(setMaterials);
-
-
 	}, []);
 
 	return (
@@ -226,9 +224,6 @@ export default function App() {
 								</Route>	
 							</Switch>
 						</div>
-						{/* <div className={classes.sidebarContainer}>
-							<SideBar></SideBar>
-						</div> */}
 					</div>	
 					<BottomNav></BottomNav>
 				</StylesProvider>
