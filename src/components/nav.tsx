@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1
     },
     button: {
-        padding: '0rem 1.5rem',
+        padding: '0rem 0rem',
         backgroundColor: 'transparent !important',
         minHeight: '3.5rem',
     },
@@ -61,7 +61,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         minHeight: '3.5rem',
         alignItems: 'center',
-        transition: 'all .2s'
+        transition: 'all .2s',
+        padding: '0rem 1rem',
     },
     dropdownArrow: {
         color: '#A7B1C1', 
@@ -194,13 +195,13 @@ export default function TopNav() {
                             <Typography className={classes.spacer}>
                             </Typography>
                             <div className={classes.defaultMenu}>
-                                <Button disableRipple className={classes.button} >
-                                    <Link to="/" className={classes.link} style={{color: plannerColor}} onClick={(e) => {handleSelected("planner")}}>
+                                <Button disableRipple className={classes.button} onClick={(e) => {handleSelected("planner")}}>
+                                    <Link to="/" className={classes.link} style={{color: plannerColor}} >
                                         Planner
                                     </Link> 
                                 </Button>
-                                <Button disableRipple className={classes.button} >
-                                    <Link to="/database" className={classes.link} style={{color: databaseColor}} onClick={(e) => {handleSelected("database")}}>
+                                <Button disableRipple className={classes.button} onClick={(e) => {handleSelected("database")}}>
+                                    <Link to="/database" className={classes.link} style={{color: databaseColor}} >
                                         Database
                                     </Link> 
                                 </Button>

@@ -147,10 +147,10 @@ const useStyles = makeStyles((theme) => ({
         '@media (max-width: 60em)': {
             marginBottom: '1rem',
             fontSize: '2.65rem',
+            marginRight: '0rem',
         },
         '@media (max-width: 45em)': {
             marginBottom: '0.75rem',
-            // fontSize: '2.5rem',
         },
         '@media (max-width: 25em)': {
             marginBottom: '0.35rem',
