@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Card, makeStyles, CardMedia, Typography, Tooltip, Checkbox } from '@material-ui/core';
+import React, {useState, useEffect, useRef} from 'react';
+import { Card, makeStyles, CardMedia, Typography, Tooltip, Checkbox, IconButton } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -137,7 +137,7 @@ const useStyles = makeStyles(() => ({
         cursor: "pointer",
         borderRadius: '0.188rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        transition: 'transform .2s;', /* Animation */
+        transition: 'all .2s;', /* Animation */
         overflow: 'visible',
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
@@ -165,7 +165,7 @@ const useStyles = makeStyles(() => ({
         cursor: "pointer",
         borderRadius: '0.188rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        transition: 'transform .2s;', /* Animation */
+        transition: 'all .2s;', /* Animation */
         overflow: 'visible',
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
@@ -179,6 +179,9 @@ const useStyles = makeStyles(() => ({
         '@media (max-width: 25em)': {
             fontSize: '2.5rem',
 		},
+    },
+    iconButtonRoot: {
+        padding: 0,
     },
     weaponContainer: {
         justifyContent: 'center',
@@ -196,7 +199,7 @@ const useStyles = makeStyles(() => ({
         display: 'flex', alignItems: 'center'
     },
     ascension: {
-        backgroundColor: "#2e3944",
+        backgroundColor: "#232D38",
         minHeight: "10.5rem",
         maxHeight: "10.5rem",
         display: 'flex',
@@ -213,6 +216,7 @@ const useStyles = makeStyles(() => ({
     },
     maxText: {
         cursor: 'help',
+        transition: 'all .2s',
         '&:hover': {
             color: '#ffd780',
         }
@@ -230,10 +234,11 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center',
     },
     checkbox: {
-        padding: '0rem 0rem 0rem 0.5rem'
+        padding: '0rem',
+        marginLeft: '0.5rem',
     },
     tooltip: {
-        backgroundColor: '#4d5760',
+        backgroundColor: "#40484f", 
         maxWidth: '10rem',
         padding: '.75rem',
         fontSize: '.75rem',
@@ -253,6 +258,7 @@ const useStyles = makeStyles(() => ({
         backgroundSize: "contain",
         margin: "0rem 0.125rem",
         opacity: ".3",
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -280,6 +286,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -1,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -298,6 +305,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -2,
+        transition: 'all .2s',
         '&:hover':  {
             cursor: "pointer",
             opacity: "1",
@@ -315,6 +323,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -3,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -332,6 +341,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -4,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -349,6 +359,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -5,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -366,6 +377,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -6,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -383,6 +395,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -1,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -401,6 +414,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -2,
+        transition: 'all .2s',
         '&:hover':  {
             cursor: "pointer",
             opacity: "1",
@@ -418,6 +432,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -3,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -435,6 +450,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -4,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -452,6 +468,7 @@ const useStyles = makeStyles(() => ({
         opacity: ".3",
         display: 'flex',
         order: -5,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -469,6 +486,7 @@ const useStyles = makeStyles(() => ({
         opacity: "1",
         display: 'flex',
         order: -6,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -495,21 +513,21 @@ export default function DialogWeaponPlanner(props: any) {
     const theRef = React.createRef<HTMLDivElement>();
 
     const initialCurrentStars = [
-        {starOne: {opacity: "0.3"}},
-        {starTwo: {opacity: "0.3"}},
-        {starThree: {opacity: "0.3"}},
-        {starFour: {opacity: "0.3"}},
-        {starFive: {opacity: "0.3"}},
-        {starSix: {opacity: "0.3"}},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
 
     ]
     const initialDesiredStars = [
-        {starOne: {opacity: "1"}},
-        {starTwo: {opacity: "0.3"}},
-        {starThree: {opacity: "0.3"}},
-        {starFour: {opacity: "0.3"}},
-        {starFive: {opacity: "0.3"}},
-        {starSix: {opacity: "0.3"}},
+        {opacity: "1"},
+        {},
+        {},
+        {},
+        {},
+        {},
     ]
 
     const [currentStars, setCurrentStars] = useState<any[]>(initialCurrentStars);
@@ -520,6 +538,9 @@ export default function DialogWeaponPlanner(props: any) {
 
     const [currentLevel, setCurrentLevel] = useState<number>(1);
     const [desiredLevel, setDesiredLevel] = useState<number>(40);
+    const [submitDisabled, setSubmitDisabled] = useState(false);
+
+    const initialRender = useRef(true);
 
     function setCurrentStarsClick(index: any) {
         if (index === 5) {
@@ -646,8 +667,8 @@ export default function DialogWeaponPlanner(props: any) {
 
     function setCurrentStarsDOM(index: number) {
         const starsTemp = [...currentStars]
-        let currentLevel = 1;
-        for (let i = 0; i <= 5; i++) {
+        let currLevel = 1;
+        for (let i = 1; i <= 5; i++) {
             starsTemp[i].opacity = "0.3";
         }
         setCurrentStars(starsTemp);
@@ -657,26 +678,40 @@ export default function DialogWeaponPlanner(props: any) {
                     starsTemp[i].opacity = "0.3";
                 }
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 return
             case 1:
-                starsTemp[0].opacity = "1";
-                setCurrentStars(starsTemp)
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
-                if (desiredStars[index].opacity === "1") {
-                    // do nothing
-                } else {
-                    setDesiredStarsDOM(index)
+                // if user re-clicks
+                if (starsTemp[0].opacity === "1" && currentLevel === 20) {
+                    starsTemp[0].opacity = "0.3";
+                    starsTemp[1].opacity = "0.3";
+                    starsTemp[2].opacity = "0.3";
+                    starsTemp[3].opacity = "0.3";
+                    starsTemp[4].opacity = "0.3";
+                    starsTemp[5].opacity = "0.3";
+                    setCurrentStars(starsTemp)
+                    currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                    setCurrentLevel(currLevel)
+                } else { // regular click
+                    starsTemp[0].opacity = "1";
+                    setCurrentStars(starsTemp)
+                    currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                    setCurrentLevel(currLevel)
+                    if (desiredStars[index].opacity === "1") {
+                        // do nothing
+                    } else {
+                        setDesiredStarsDOM(index)
+                    }
                 }
+
                 return
             case 2:
                 starsTemp[0].opacity = "1";
                 starsTemp[1].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -688,8 +723,8 @@ export default function DialogWeaponPlanner(props: any) {
                 starsTemp[1].opacity = "1";
                 starsTemp[2].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -702,8 +737,8 @@ export default function DialogWeaponPlanner(props: any) {
                 starsTemp[2].opacity = "1";
                 starsTemp[3].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -717,8 +752,8 @@ export default function DialogWeaponPlanner(props: any) {
                 starsTemp[3].opacity = "1";
                 starsTemp[4].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -733,8 +768,8 @@ export default function DialogWeaponPlanner(props: any) {
                 starsTemp[4].opacity = "1";
                 starsTemp[5].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index-1].opacity === "1") {
                     // do nothing
                 } else {
@@ -828,17 +863,9 @@ export default function DialogWeaponPlanner(props: any) {
                 return
         }
     }
-    
-    function dialogAddMaterial(material: any, newSummary: any) {
-        let duplicateMaterial = newSummary.find((m: { name: any; }) => m.name === material.name);
-        if (duplicateMaterial) {
-            duplicateMaterial.quantity += material.quantity
-        } else {
-            newSummary.push(material);
-        }
-    }
 
     async function submitDialog() {
+        setSubmitDisabled(true);
         let i = [...items]
         let a = {...ascensionDetails}
 
@@ -889,16 +916,25 @@ export default function DialogWeaponPlanner(props: any) {
     useEffect(() => {
         scrollToTop();
 
-    }, []);
-    
-    // clicking currentMax or desiredMax
-    useEffect(() => {
-        let currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-        setCurrentLevel(currentLevel)
-
+        // set initial desiredLevel to 40
+        //console.log("initial Mount countDesiredStars()", countDesiredStars());
         let desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
         setDesiredLevel(desiredLevel)
 
+    }, []);
+    
+    // clicking currentMax or desiredMax (makes sure isn't called on initial mount);
+    useEffect(() => {
+        if(initialRender.current) {
+            initialRender.current = false;
+        } else {
+            //console.log("useEffect currentMax, desiredMax called");
+            let currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+            setCurrentLevel(currentLevel)
+
+            let desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+            setDesiredLevel(desiredLevel)
+        }
     }, [currentMax, desiredMax]);
 
     return (
@@ -924,9 +960,22 @@ export default function DialogWeaponPlanner(props: any) {
                     </Typography>
                 </div>
                 <div className={classes.buttons}>
-                    <div className={classes.buttonContainer}>
-                        <CheckIcon className={classes.checkIcon} onClick={submitDialog}></CheckIcon>
-                        <CloseIcon className={classes.closeIcon} onClick={dialogClose}></CloseIcon>
+                <div className={classes.buttonContainer}>
+                        <IconButton
+                            disableRipple
+                            onClick={submitDialog}
+                            disabled={submitDisabled}
+                            classes={{root: classes.iconButtonRoot}}
+                        >   
+                            <CheckIcon className={classes.checkIcon}></CheckIcon>
+                        </IconButton>
+                        <IconButton
+                            disableRipple
+                            onClick={dialogClose}
+                            classes={{root: classes.iconButtonRoot}}
+                        >
+                            <CloseIcon className={classes.closeIcon}></CloseIcon>
+                        </IconButton>
                     </div>
                 </div>
             </div>

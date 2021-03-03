@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         cursor: 'pointer',
         marginLeft: '.2rem',
+        transition: 'all .2s',
         '&:hover': {
             backgroundColor: '#A7B1C1',
         },
@@ -22,13 +23,14 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         cursor: 'pointer',
         marginRight: '.2rem', 
+        transition: 'all .2s',
         '&:hover': {
             backgroundColor: '#A7B1C1',
         },
 
     },
     container: {
-        backgroundColor: '#4D5760', 
+        backgroundColor: "#40484f", 
         justifyContent: 'space-between', 
         alignItems: 'center', 
         maxWidth: '80%', 

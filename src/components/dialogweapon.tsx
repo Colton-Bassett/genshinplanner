@@ -5,15 +5,18 @@ const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s
 
 const useStyles = makeStyles((theme: Theme) => ({
     weaponContainer: {
+        transition: 'all .2s',
+        cursor: 'pointer',
         '&:hover': {
             '& $weaponImage': {
                 boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
                 borderRadius: "0.188rem",
                 transform: 'scale(1.05);',
-                cursor: 'pointer',
+                transition: 'all .2s',
             },
             '& $name': {
                 color: 'white',
+                transition: 'all .2s',
             }
         }
     },
@@ -31,13 +34,13 @@ const useStyles = makeStyles((theme: Theme) => ({
         overflow: 'visible',
         display: 'flex',
         justifyContent: 'center',
-        '&:hover': {
-            boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
-            borderRadius: "0.188rem",
-            transform: 'scale(1.05);',
-            cursor: 'pointer',
-            color: 'white',
-         },
+        // '&:hover': {
+        //     boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
+        //     borderRadius: "0.188rem",
+        //     transform: 'scale(1.05);',
+        //     cursor: 'pointer',
+        //     color: 'white',
+        //  },
     },
     name: {
         textAlign: "center", 

@@ -3,6 +3,11 @@ a {
 	color:white;
 }
 
+body {
+	/* padding-right: 0px !important; */
+	box-sizing: border-box;
+}
+
 a:link {
 	text-decoration: none;
 	color:white;

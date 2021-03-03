@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     adbarContainer: {
-        // backgroundColor: '#1b242d2C',
-        backgroundColor: '#1b242d',
+        //backgroundColor: '#1b242d',
         height: "5.625rem",
         margin: "auto",
 		display: 'flex', 

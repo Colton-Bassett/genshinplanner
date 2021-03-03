@@ -1,5 +1,5 @@
-import React, {useState, useEffect } from 'react';
-import { Card, makeStyles, CardMedia, Typography, Switch, Checkbox, Tooltip } from '@material-ui/core';
+import React, {useState, useEffect, useRef } from 'react';
+import { Card, makeStyles, CardMedia, Typography, Switch, Checkbox, Tooltip, IconButton } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer",
         borderRadius: '0.188rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        transition: 'transform .2s;', /* Animation */
+        transition: 'all .2s;', /* Animation */
         overflow: 'visible',
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
@@ -144,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.05);',
             cursor: 'pointer',
          },
-         '@media (max-width: 60em)': {
+        '@media (max-width: 60em)': {
             marginBottom: '1rem',
             fontSize: '2.65rem',
         },
@@ -164,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer",
         borderRadius: '0.188rem',
         boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
-        transition: 'transform .2s;', /* Animation */
+        transition: 'all .2s;', /* Animation */
         overflow: 'visible',
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
@@ -178,6 +178,9 @@ const useStyles = makeStyles((theme) => ({
         '@media (max-width: 25em)': {
             fontSize: '2.5rem',
 		},
+    },
+    iconButtonRoot: {
+        padding: 0,
     },
     characterContainer: {
         justifyContent: 'center',
@@ -195,7 +198,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', alignItems: 'center'
     },
     ascension: {
-        backgroundColor: "#2e3944",
+        backgroundColor: "#232D38",
         minHeight: "10.5rem",
         maxHeight: "10.5rem",
         display: 'flex',
@@ -212,6 +215,7 @@ const useStyles = makeStyles((theme) => ({
     },
     maxText: {
         cursor: 'help',
+        transition: 'all .2s',
         '&:hover': {
             color: '#ffd780',
         }
@@ -221,6 +225,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-start',
         minWidth: '50%',
         alignItems: 'center',
+        transform: 'all 2s'
     },
     maxDesired: {
         display: 'flex',
@@ -229,10 +234,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     checkbox: {
-        padding: '0rem 0rem 0rem 0.5rem'
+        padding: '0rem',
+        marginLeft: '0.5rem',
     },
     tooltip: {
-        backgroundColor: '#4d5760',
+        backgroundColor: "#40484f", 
         maxWidth: '10rem',
         padding: '.75rem',
         fontSize: '.75rem',
@@ -266,6 +272,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: "contain",
         margin: "0rem 0.125rem",
         opacity: ".3",
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -279,6 +286,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -1,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -296,6 +304,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -2,
+        transition: 'all .2s',
         '&:hover':  {
             cursor: "pointer",
             opacity: "1",
@@ -313,6 +322,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -3,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -330,6 +340,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -4,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -347,6 +358,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -5,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -364,6 +376,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -6,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -381,6 +394,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -1,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -399,6 +413,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -2,
+        transition: 'all .2s',
         '&:hover':  {
             cursor: "pointer",
             opacity: "1",
@@ -416,6 +431,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -3,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -433,6 +449,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -4,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -450,6 +467,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: ".3",
         display: 'flex',
         order: -5,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -467,6 +485,7 @@ const useStyles = makeStyles((theme) => ({
         opacity: "1",
         display: 'flex',
         order: -6,
+        transition: 'all .2s',
         '&:hover': {
             cursor: "pointer",
             opacity: "1",
@@ -506,7 +525,7 @@ const useStyles = makeStyles((theme) => ({
 		},
     },
     talent: {
-        backgroundColor: "#2e3944",
+        backgroundColor: "#232D38",
         minHeight: "19rem",
         maxHeight: "19rem",
         maxWidth: '100%',
@@ -527,7 +546,7 @@ const useStyles = makeStyles((theme) => ({
     talentImage: {
         minHeight: "3rem", minWidth:"3rem", maxHeight: "3rem", maxWidth: "3rem", 
         borderRadius: "0.375rem", 
-        backgroundColor: "#4d5760", 
+        backgroundColor: "#40484f", 
         marginBottom: "0.75rem",
         margin: "0 auto", 
         boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
@@ -574,21 +593,21 @@ export default function DialogCharacterPlanner(props: any) {
     const theRef = React.createRef<HTMLDivElement>();
 
     const initialCurrentStars = [
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
 
     ]
     const initialDesiredStars = [
-        {star: {opacity: "1"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
-        {star: {opacity: "0.3"}},
+        {opacity: "1"},
+        {},
+        {},
+        {},
+        {},
+        {},
     ]
 
     const [currentStars, setCurrentStars] = useState<any[]>(initialCurrentStars);
@@ -612,8 +631,12 @@ export default function DialogCharacterPlanner(props: any) {
 
     const [currentLevel, setCurrentLevel] = useState<number>(1);
     const [desiredLevel, setDesiredLevel] = useState<number>(40);
+    const [submitDisabled, setSubmitDisabled] = useState(false);
+
+    const initialRender = useRef(true);
 
     async function submitDialog() {
+        setSubmitDisabled(true);
         let i = [...items]
         let a = {...ascensionDetails}
         a.index = items.length;
@@ -665,7 +688,7 @@ export default function DialogCharacterPlanner(props: any) {
                 count++
             }
          }
-        console.log("countCurrentStars:", count);
+        //console.log("countCurrentStars:", count);
         return count;
     }
 
@@ -688,8 +711,8 @@ export default function DialogCharacterPlanner(props: any) {
 
     function setCurrentStarsDOM(index: number) {
         const starsTemp = [...currentStars]
-        let currentLevel = 1;
-        for (let i = 0; i <= 5; i++) {
+        let currLevel = 1;
+        for (let i = 1; i <= 5; i++) {
             starsTemp[i].opacity = "0.3";
         }
         setCurrentStars(starsTemp);
@@ -699,26 +722,40 @@ export default function DialogCharacterPlanner(props: any) {
                     starsTemp[i].opacity = "0.3";
                 }
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 return
             case 1:
-                starsTemp[0].opacity = "1";
-                setCurrentStars(starsTemp)
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
-                if (desiredStars[index].opacity === "1") {
-                    // do nothing
-                } else {
-                    setDesiredStarsDOM(index)
+                // if user re-clicks
+                if (starsTemp[0].opacity === "1" && currentLevel === 20) {
+                    starsTemp[0].opacity = "0.3";
+                    starsTemp[1].opacity = "0.3";
+                    starsTemp[2].opacity = "0.3";
+                    starsTemp[3].opacity = "0.3";
+                    starsTemp[4].opacity = "0.3";
+                    starsTemp[5].opacity = "0.3";
+                    setCurrentStars(starsTemp)
+                    currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                    setCurrentLevel(currLevel)
+                } else { // regular click
+                    starsTemp[0].opacity = "1";
+                    setCurrentStars(starsTemp)
+                    currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                    setCurrentLevel(currLevel)
+                    if (desiredStars[index].opacity === "1") {
+                        // do nothing
+                    } else {
+                        setDesiredStarsDOM(index)
+                    }
                 }
+
                 return
             case 2:
                 starsTemp[0].opacity = "1";
                 starsTemp[1].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -730,8 +767,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[1].opacity = "1";
                 starsTemp[2].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -744,8 +781,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[2].opacity = "1";
                 starsTemp[3].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -759,8 +796,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[3].opacity = "1";
                 starsTemp[4].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index].opacity === "1") {
                     // do nothing
                 } else {
@@ -775,8 +812,8 @@ export default function DialogCharacterPlanner(props: any) {
                 starsTemp[4].opacity = "1";
                 starsTemp[5].opacity = "1";
                 setCurrentStars(starsTemp);
-                currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-                setCurrentLevel(currentLevel)
+                currLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+                setCurrentLevel(currLevel)
                 if (desiredStars[index-1].opacity === "1") {
                     // do nothing
                 } else {
@@ -933,22 +970,25 @@ export default function DialogCharacterPlanner(props: any) {
     // initial mount
     useEffect(() => {
         scrollToTop();
-
         // reset talentOne, talentTwo, talentThree
         resetTalents();
+
+        // set initial desiredLevel to 40
+        let desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+        setDesiredLevel(desiredLevel)
     }, []);
 
-    // clicking currentMax or desiredMax (also called on initial mount);
+    // clicking currentMax or desiredMax (makes sure isn't called on initial mount);
     useEffect(() => {
-        console.log("useEffect currentMax, desiredMax called");
-        let currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
-        console.log("useEffect currentLevel", currentLevel);
-        setCurrentLevel(currentLevel)
+        if(initialRender.current) {
+            initialRender.current = false;
+        } else {
+            let currentLevel = HandleLevel(countCurrentStars(), currentMax) || 0;
+            setCurrentLevel(currentLevel)
 
-        let desiredLevel = HandleLevel(1, desiredMax) || 0;
-        console.log("useEffect desiredLevel", desiredLevel);
-        setDesiredLevel(desiredLevel)
-
+            let desiredLevel = HandleLevel(countDesiredStars(), desiredMax) || 0;
+            setDesiredLevel(desiredLevel)
+        }
     }, [currentMax, desiredMax]);
       
     return (
@@ -975,8 +1015,21 @@ export default function DialogCharacterPlanner(props: any) {
                 </div>
                 <div className={classes.buttons}>
                     <div className={classes.buttonContainer}>
-                        <CheckIcon className={classes.checkIcon} onClick={submitDialog}></CheckIcon>
-                        <CloseIcon className={classes.closeIcon} onClick={dialogClose}></CloseIcon>
+                        <IconButton
+                            disableRipple
+                            onClick={submitDialog}
+                            disabled={submitDisabled}
+                            classes={{root: classes.iconButtonRoot}}
+                        >   
+                            <CheckIcon className={classes.checkIcon}></CheckIcon>
+                        </IconButton>
+                        <IconButton
+                            disableRipple
+                            onClick={dialogClose}
+                            classes={{root: classes.iconButtonRoot}}
+                        >
+                            <CloseIcon className={classes.closeIcon}></CloseIcon>
+                        </IconButton>
                     </div>
                 </div>
             </div>
@@ -996,9 +1049,10 @@ export default function DialogCharacterPlanner(props: any) {
                     <Card className={classes.ascension}>
                         <div className={classes.maxCurrent}>
                             <Tooltip classes={{tooltip: classes.tooltip}} title="Uses highest level for current ascension. (E.g. Ascension 0 = Level 20" arrow>
-                                <Typography variant="h5" className={classes.maxText}>
-                                    Current Max
-                                </Typography>
+                            <Typography variant="h5" className={classes.maxText}>
+                                Current Max
+                            </Typography>
+
                             </Tooltip>
                             <Checkbox
                                 color="default"

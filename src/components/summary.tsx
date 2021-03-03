@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)'
     },
     summaryHeader: {
-        minWidth: "calc(100% - 4.5rem)", 
+        minWidth: "100%", 
         // padding: '0rem 2.25rem 2.25rem 2.25rem', 
         //display: 'flex', 
         //flexDirection: 'column',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 0,
     },
     summaryInnerTitle: {
-        minWidth: '90%',
+        minWidth: '100%',
         margin: 0,
         padding: '1.5rem 0rem',
     },
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex', 
         alignItems: 'center',
         boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
-        transition: 'transform .2s;', /* Animation */
+        transition: 'all .2s;', /* Animation */
         '&:hover': {
             boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
             borderRadius: "0.188rem",
@@ -100,21 +100,21 @@ export default function NewCharacter(props: any) {
     
     const talentMaterials = summary && summary.map((material: any, index: any) => {
         if (material.position >= 97 && material.position <= 124) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'}></CharacterMaterial>
         }
     });
 
     const generalMaterials = summary && summary.map((material: any, index: any) => {
         // materials /w position 1-4, 8-44, 63-96
         if (material.position >= 1 && material.position <= 4 || material.position >= 8 && material.position <= 44 || material.position >= 63 && material.position <= 96) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'}></CharacterMaterial>
         }
     });
 
     const weaponMaterials = summary && summary.map((material: any, index: any) => {
         // materials /w position 5-7, 45-62, 125-148
         if (material.position >= 5 && material.position <= 7 || material.position >= 45 && material.position <= 62 || material.position >= 125 && material.position <= 148) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'}></CharacterMaterial>
         }
     });
 

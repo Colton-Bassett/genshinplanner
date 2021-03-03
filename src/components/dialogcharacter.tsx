@@ -3,15 +3,18 @@ import { CardMedia, makeStyles, Theme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
     characterContainer: {
+        transition: 'all .2s',
+        cursor: 'pointer',
         '&:hover': {
             '& $characterImage': {
                 boxShadow: '0rem 0rem 0rem 0.125rem #e9e5dc;',
                 borderRadius: "0.188rem",
                 transform: 'scale(1.05);',
-                cursor: 'pointer',
+                transition: 'all .2s'
             },
             '& $name': {
                 color: 'white',
+                transition: 'all .2s',
             }
         }
     },

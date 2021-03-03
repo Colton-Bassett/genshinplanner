@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        transition: 'transform .2s;', /* Animation */
+        transition: 'all .2s;',
         // boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
         overflow: 'visible',
         '&:hover': {
@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
             transform: 'scale(1.01);',
             cursor: 'pointer',
             color: 'white',
+            transition: 'all .2s',
             '& $add': {
                 color: 'white',
             }
@@ -68,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: '0.15rem',
         textTransform: 'uppercase',
         padding: '0 0 .75rem',
-        borderBottom: '.3125rem solid #03a577'
+        borderBottom: '.3125rem solid #03a577',
+        transition: 'all .2s',
     },
     blankCard: {
         // backgroundColor: "#232D38",
@@ -94,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
         textTransform: "none", 
         fontSize: "1.6rem",
         minWidth: '17rem',
-        
+        transition: 'all .2s',
         '&:hover': {
             color: 'white',
         },
@@ -146,6 +148,7 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: "1.875rem", 
         fontSize: "1.1rem", 
         backgroundColor: 'transparent',
+        transition: 'all .2s',
         '&:hover': {
             color: 'white'
          },

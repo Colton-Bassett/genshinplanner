@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
 	editButton: {
 		color: '#A7B1C1',
 		cursor: 'pointer',
+		transition: 'all .2s',
 		'&:hover': {
 			transform: 'scale(1.15);',
 			cursor: 'pointer',
@@ -84,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 		color: '#A7B1C1',
 		float: 'right',
 		cursor: 'pointer',
+		transition: 'all .2s',
 		'&:hover': {
 			transform: 'scale(1.15);',
 			cursor: 'pointer',
@@ -91,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
         },
 	},
     tooltip: {
-        backgroundColor: '#4d5760',
+        backgroundColor: "#40484f", 
         maxWidth: '10rem',
         padding: '.5rem',
         fontSize: '.75rem',
@@ -175,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	materialContainer: {
-		backgroundColor: '#2e3944',
+		backgroundColor: '#232D38',
 		//padding: '1.5rem',
 		minHeight: '24.625rem', 
 	},
