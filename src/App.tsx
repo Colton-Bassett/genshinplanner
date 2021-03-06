@@ -5,10 +5,6 @@ import { ThemeProvider, StylesProvider, makeStyles } from '@material-ui/core';
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import fetchCharacters from './apifunctions/fetchcharacters'
-import fetchWeapons from './apifunctions/fetchweapons'
-import fetchMaterials from './apifunctions/fetchmaterials'
-
 // import createNewMaterial from './apifunctions/createnewmaterial'
 // import createNewWeapon from './apifunctions/createnewweapon'
 // import createNewCharacter from './apifunctions/createnewcharacter'
@@ -19,6 +15,8 @@ import Planner from "./components/planner"
 import BottomNav from "./components/footer"
 import DatabasePage from "./components/databasepage"
 import Summary from "./components/summary"
+import Material from "./logic/material"
+import AscensionPlan from "./logic/ascensionPlan"
 
 interface Character { 
 	name: string, 
@@ -68,15 +66,15 @@ const weaponTemplate = {
 	ascensionMats: { matOne: '', matTwo: '', specialty: '', commonMat: '' },		
 }
 
-interface Material {
-	name: string,
-	type: string,
-	stars: string,
-	position: string,
-	description: string,
-	image: string,
-	sources: { sourceOne: string, sourceTwo: string, sourceThree: string, sourceFour: string, sourceFive: string }
-}
+// interface Material {
+// 	name: string,
+// 	type: string,
+// 	stars: string,
+// 	position: string,
+// 	description: string,
+// 	image: string,
+// 	sources: { sourceOne: string, sourceTwo: string, sourceThree: string, sourceFour: string, sourceFive: string }
+// }
 
 const materialTemplate = {
 	name: '', 
@@ -87,6 +85,32 @@ const materialTemplate = {
 	image: '', 
 	sources: { sourceOne: '', sourceTwo: '', sourceThree: '', sourceFour: '', sourceFive: '' },		
 }
+
+
+// interface AscensionPlan {
+// 	id: string,
+// 	index: number,
+// 	name: string,
+// 	type: string,
+// 	typeImage: string,
+// 	stars: string,
+// 	image: string,
+
+// 	currentMax: boolean,
+// 	desiredMax: boolean,
+// 	startAscension: number,
+// 	endAscension: number,
+
+// 	talentOneStart: number,
+// 	talentOneEnd: number,
+// 	talentTwoStart: number,
+// 	talentTwoEnd: number,
+// 	talentThreeStart: number,
+// 	talentThreeEnd: number,
+
+// 	talentMat: string,
+// 	materials: Array<Material>
+// }
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -133,7 +157,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
 	const classes = useStyles();
-
 	const theme = createMuiTheme({
 		palette: {
 			primary: {
@@ -191,19 +214,17 @@ export default function App() {
 	const [weapons, setWeapons] = useState<[Weapon]>();
 	const [materials, setMaterials] = useState<[Material]>();
 	const [summary, setSummary] = useState<[]>([]);
+	const [ascensionPlans, setAscensionPlans] = useState<AscensionPlan[]>([]);
+	//const [plannerSummary, setPlannerSummary] = useState<[Character]>();
 
-	const [character, setCharacter] = useState<Character>(characterTemplate);
-	const [weapon, setWeapon] = useState<Weapon>(weaponTemplate);
-	const [material, setMaterial] = useState<Material>(materialTemplate);
+	// const [character, setCharacter] = useState<Character>(characterTemplate);
+	// const [weapon, setWeapon] = useState<Weapon>(weaponTemplate);
+	// const [material, setMaterial] = useState<Material>(materialTemplate);
 
 	useEffect(() => {
 		//createNewCharacter(character, setCharacter, characterTemplate);
 		//createNewWeapon(weapon, setWeapon, weaponTemplate);
 		//createNewMaterial(material, setMaterial, materialTemplate);
-
-		fetchCharacters(setCharacters);
-		fetchWeapons(setWeapons);
-		fetchMaterials(setMaterials);
 	}, []);
 
 	return (
@@ -219,8 +240,14 @@ export default function App() {
 									<DatabasePage />
 								</Route>
 								<Route path="/">
-									<Planner characters={characters} weapons={weapons} materials={materials} summary={summary} setSummary={setSummary}></Planner>
-									{summary.length > 0 ? <Summary summary={summary}></Summary> : null}
+									<Planner 
+										characters={characters} weapons={weapons} materials={materials} ascensionPlans={ascensionPlans} summary={summary} 
+										setCharacters={setCharacters} setWeapons={setWeapons} setMaterials={setMaterials} setAscensionPlans={setAscensionPlans} 
+										setSummary={setSummary}>										
+									</Planner>
+								
+									{summary.length > 0 ? <Summary summary={summary}>
+									</Summary> : null}
 								</Route>	
 							</Switch>
 						</div>

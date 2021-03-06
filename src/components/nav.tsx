@@ -95,7 +95,6 @@ const useStyles = makeStyles((theme) => ({
     buttonbaseRoot: {
         color: 'white',
         fontSize: '2rem !important',
-        
     },
     mobileLinkContainer: {
         minWidth: '65em',
@@ -175,8 +174,8 @@ export default function TopNav() {
                     return
                 }
         }
-        
     }
+    
     return (
             <div className={classes.nav}>
                 <AppBar position="static" className={classes.appbar}>

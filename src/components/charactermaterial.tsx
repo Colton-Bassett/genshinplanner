@@ -71,7 +71,7 @@ export default function CharacterMaterial( props: any ) {
             //backgroundColor: '#1d1f29', 
             borderBottomLeftRadius: '0.188rem', 
             borderBottomRightRadius: '0.188rem',
-            maxHeight: '1.33rem'
+            maxHeight: '1.38rem'
     
         },
         dialog: {

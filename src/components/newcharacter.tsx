@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
 import { Card, makeStyles, Dialog, DialogActions, DialogContent, Button, DialogTitle, Tabs, Tab } from '@material-ui/core';
 
+import fetchCharacters from '../apifunctions/fetchcharacters';
+import fetchWeapons from '../apifunctions/fetchweapons';
+
 import DialogTab from './dialogtab'
+import fetchMaterials from '../apifunctions/fetchmaterials';
 
 const useStyles = makeStyles((theme) => ({
     addCharacter: {
@@ -166,7 +171,11 @@ const useStyles = makeStyles((theme) => ({
         lineHeight: '1.5em',
 		fontSize: '1.6em',
 		fontWeight: "bold",
-		margin: 0
+		margin: 0,
+        '@media (max-width: 25em)': {
+            minHeight: '6.5rem',
+            fontSize: '1rem',
+		},
     },
     dialogTitleRoot: {
         padding: 0,
@@ -188,18 +197,20 @@ export default function NewCharacter(props: any) {
 
     const characters = props.characters;
     const weapons = props.weapons;
-    const ascensionDetails = props.ascensionDetails;
-    const setAscensionDetails = props.setAscensionDetails;
     const materials = props.materials;
+    const ascensionPlans = props.ascensionPlans;
     const summary = props.summary;
+
+    const setCharacters = props.setCharacters;
+    const setWeapons = props.setWeapons;
+    const setMaterials = props.setMaterials;
+    const setAscensionPlans = props.setAscensionPlans;
     const setSummary = props.setSummary;
 
-    const items = props.items;
-    const setItems = props.setItems;
-
-    const [openDialog, setOpenDialog] = React.useState(false);
-    const [tabPanel, setTabPanel] = React.useState(0);
-    const [tabsTitle, setTabsTitle] = React.useState(true);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [tabPanel, setTabPanel] = useState(0);
+    const [tabsTitle, setTabsTitle] = useState(true);
+    const initialDialogRender = useRef(true);
   
     const dialogOpen = () => {
         setOpenDialog(true);
@@ -230,10 +241,20 @@ export default function NewCharacter(props: any) {
         setTabPanel(value);
     };
 
-    const descriptionElementRef = React.useRef<HTMLElement>(null); // dialogue
-    React.useEffect(() => {
+    const descriptionElementRef = React.useRef<HTMLElement>(null); // dialog
+    // runs on dialog startup
+    useEffect(() => {
         if (openDialog) {
             const { current: descriptionElement } = descriptionElementRef;
+            // first fetch, checks if first render
+            if (initialDialogRender.current) {
+                initialDialogRender.current = false;
+                fetchCharacters(setCharacters);
+                fetchWeapons(setWeapons);
+                fetchMaterials(setMaterials);
+            } else {
+                // do nothing, characters/weapons/materials are already fetched
+            }    
         if (descriptionElement !== null) {
             descriptionElement.focus();
             }
@@ -256,6 +277,7 @@ export default function NewCharacter(props: any) {
                 scroll={'paper'}
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
+                // transitionDuration={1}
                 classes={{paper: classes.dialog}}
                 >
                 <DialogTitle id="scroll-dialog-title" classes={{root: classes.dialogTitleRoot}} className={classes.dialogTitle} style={{display: tabsTitle ? 'flex' : 'none', backgroundColor: '#1b242d', justifyContent: 'center', borderBottom: "0.188rem solid #2e3944" }}>
@@ -265,13 +287,12 @@ export default function NewCharacter(props: any) {
                     </Tabs>
                 </DialogTitle>
                 <DialogContent className={classes.dialogContent}>
-                    <DialogTab characters={characters} weapons={weapons} materials={materials} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} tabPanel={tabPanel} displayTabsTitle={displayTabsTitle} summary={summary} setSummary={setSummary}>
+                    <DialogTab 
+                        characters={characters} weapons={weapons} materials={materials} ascensionPlans={ascensionPlans} summary={summary} tabPanel={tabPanel} 
+                        setAscensionPlans={setAscensionPlans} setSummary={setSummary} dialogClose={dialogClose} displayTabsTitle={displayTabsTitle}>
                     </DialogTab>
                 </DialogContent>
                 <DialogActions className={classes.dialogActions}>
-                    {/* <Button onClick={dialogClose} color="primary" className={classes.dialogCancel} disableRipple>
-                        Submit
-                    </Button> */}
                     <Button onClick={dialogClose} color="primary" className={classes.dialogCancel} disableRipple>
                         Cancel
                     </Button>

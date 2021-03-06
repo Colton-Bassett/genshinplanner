@@ -5,7 +5,6 @@ import { ExpandMore } from '@material-ui/icons';
 
 
 import CharacterMaterial from './charactermaterial'
-import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 import HandleLevel from '../logic/handleLevel'
@@ -36,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	characterCard: {
 		backgroundColor: "#2e3944", 
-		// backgroundColor: '#232D38',
 		minHeight: '100%',
 		minWidth: '10.625rem',
 		display: 'flex',
@@ -44,11 +42,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	characterCardContainer: {
 		borderBottomRightRadius: '3.5rem', 
-		//borderBottomLeftRadius: '1rem', 
 		backgroundColor: '#232D38', 
-		paddingBottom: '1.25rem',
 		boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
 		minHeight: '16.5rem'
+	},
+	characterCardInnerContainer: {
+		padding: '0rem 0rem 1.5rem 0rem',
 	},
 	talentLevelContainer: {
 		display: 'flex', 
@@ -58,13 +57,14 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#2e3944', 
 		alignItems: 'center',
 		'@media (max-width: 60em)': {
-			marginTop: '1.5rem'
+			margin: '1.5rem 0rem',
 		},
 	},
 	characterCardContainerWeapon: {
 		backgroundColor: '#232D38', 
+		boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+		minHeight: '16.5rem',
 		flex: 1,
-		paddingBottom: '1.25rem',
 	},
 	characterButtons: {
 		padding: "1rem",
@@ -114,9 +114,7 @@ const useStyles = makeStyles((theme) => ({
 		minWidth: '60%',
 		fontWeight: 700,
 		marginBottom: '.15rem',
-
 		'@media (max-width: 60em)': {
-			paddingBottom: '1.5rem', 
 		},
 	},
 	talentLevel: {
@@ -125,7 +123,15 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '.15rem',
 		color: '#a7b1c1',
 		'@media (max-width: 60em)': {
-			paddingBottom: '1.5rem', 
+			paddingBottom: '1rem', 
+		},
+	},
+	talentLevelBurst: {
+		minWidth: '60%',
+		fontWeight: 700,
+		marginBottom: '.15rem',
+		color: '#a7b1c1',
+		'@media (max-width: 60em)': {
 		},
 	},
     stars: {
@@ -144,9 +150,6 @@ const useStyles = makeStyles((theme) => ({
     element: {
         height: "1.75rem", 
         width: "1.75rem",
-        // position: "absolute",
-        // // top: "0rem",
-		// right: "50rem",
 		float: "left",
         padding: "0.188rem",
         background: "#2e3944",
@@ -178,7 +181,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	materialContainer: {
 		backgroundColor: '#232D38',
-		//padding: '1.5rem',
 		minHeight: '24.625rem', 
 	},
 	materialCard: {
@@ -189,25 +191,18 @@ const useStyles = makeStyles((theme) => ({
 		padding: '1.5rem'
 	},
 	materialHeader: {
-		// marginLeft: '.75rem',
-		// marginRight: '.75rem',
-		// marginBottom: '1.5rem',
 		margin: 0,
 		padding: '1.5rem 2rem',
 		borderBottom: '3px solid #1b242d',
 		'@media (max-width: 80em)': {
-			// marginLeft: '.5rem',
-			// marginRight: '.5rem',
 		},
 	},
 	materialTitle: {
 	},
 	materialContent: {
-		padding: '1.5rem',
-		// width: 'calc(100% + 2rem)',
-		// margin: '-1rem',
+		padding: '1.75rem 1.5rem 1.5rem 1.5rem',
 		"&:last-child": {
-            paddingBottom: '0rem'
+            paddingBottom: '.5rem'
           }
 	},
 	expandButton: {
@@ -242,29 +237,32 @@ export default function CharacterOverview(props: any) {
         {opacity: "0.3"},
 	]
 	
-	const objectInfo = {
-		index: props.objectInfo.index,
-		type: props.objectInfo.type,
-		typeImage: props.objectInfo.typeImage,
-		name: props.objectInfo.name,
-		stars: props.objectInfo.stars,
-		talentMat: props.objectInfo.talentMat,
-		currentAscension: props.objectInfo.currentAscension,
-		desiredAscension: props.objectInfo.desiredAscension,
-		currentMax: props.objectInfo.currentMax,
-		desiredMax: props.objectInfo.desiredMax,
-		abilityOneCurrent: props.objectInfo.abilityOneCurrent,
-		abilityOneDesired: props.objectInfo.abilityOneDesired,
-		abilityTwoCurrent: props.objectInfo.abilityTwoCurrent,
-		abilityTwoDesired: props.objectInfo.abilityTwoDesired,
-		abilityThreeCurrent: props.objectInfo.abilityThreeCurrent,
-		abilityThreeDesired: props.objectInfo.abilityThreeDesired,
-		materials: props.objectInfo.materials,
-		image: props.objectInfo.image,
-		id: props.objectInfo.id,
+	const ascensionPlan = {
+		id: props.ascensionPlan.id,
+		index: props.ascensionPlan.index,
+		name: props.ascensionPlan.name,
+		type: props.ascensionPlan.type,
+		typeImage: props.ascensionPlan.typeImage,
+		stars: props.ascensionPlan.stars,
+		image: props.ascensionPlan.image,
+
+		currentMax: props.ascensionPlan.currentMax,
+		desiredMax: props.ascensionPlan.desiredMax,
+		startAscension: props.ascensionPlan.startAscension,
+		endAscension: props.ascensionPlan.endAscension,
+
+		talentOneStart: props.ascensionPlan.talentOneStart,
+		talentOneEnd: props.ascensionPlan.talentOneEnd,
+		talentTwoStart: props.ascensionPlan.talentTwoStart,
+		talentTwoEnd: props.ascensionPlan.talentTwoEnd,
+		talentThreeStart: props.ascensionPlan.talentThreeStart,
+		talentThreeEnd: props.ascensionPlan.talentThreeEnd,
+
+		talentMat: props.ascensionPlan.talentMat,
+		materials: props.ascensionPlan.materials,
 	}
-	const setItems = props.setItems;
-	const items = props.items;
+	const setAscensionPlans = props.setAscensionPlans;
+	const ascensionPlans = props.ascensionPlans;
 	const summary = props.summary;
 	const setSummary = props.setSummary;
 
@@ -275,13 +273,13 @@ export default function CharacterOverview(props: any) {
 		setExpanded(!expanded);
 	};
 	const deleteObject = (id: any, items: any, setItems: any, summary: any, setSummary: any) => {
-		console.log("deleteObject() characterOverview id:", objectInfo.id);
+		console.log("deleteObject() characterOverview id:", ascensionPlan.id);
 		props.deleteMethod(id, items, setItems, summary, setSummary);
 	}
 
-	function getcurrentAscension() {
-		let level = objectInfo.currentAscension;
-		//console.log("getcurrentAscension", objectInfo);
+	function getStartAscension() {
+		let level = ascensionPlans.startAscension;
+		//console.log("getstartAscension", ascensionPlan);
 
 		if (level === 0) {
 			level = 1
@@ -302,9 +300,9 @@ export default function CharacterOverview(props: any) {
 		return level;
 	}
 
-	function getdesiredAscension() {
-		let level = objectInfo.desiredAscension;
-		//console.log("getdesiredAscension", objectInfo.desiredAscension);
+	function getEndAscension() {
+		let level = ascensionPlan.endAscension;
+		//console.log("getendAscension", ascensionPlan.endAscension);
 
 		if (level === 0) {
 			level = 1
@@ -337,8 +335,8 @@ export default function CharacterOverview(props: any) {
 			return
 		}
 		else {
-			let currentLevel = HandleLevel(objectInfo.currentAscension, objectInfo.currentMax);
-			let desiredLevel = HandleLevel(objectInfo.desiredAscension, objectInfo.desiredMax);
+			let currentLevel = HandleLevel(ascensionPlan.startAscension, ascensionPlan.currentMax);
+			let desiredLevel = HandleLevel(ascensionPlan.endAscension, ascensionPlan.desiredMax);
 			return (<Typography variant="body1" align='center' className={classes.characterLevel}>
 						Lv. {currentLevel} - {desiredLevel}
 					</Typography>)
@@ -347,47 +345,47 @@ export default function CharacterOverview(props: any) {
 
 	function getCurrentTalentLevel(num: number) {
 		// accounting for -1 is because all talents are +1 in setMaterials.ts
-		if (objectInfo.type === "character") {
+		if (ascensionPlan.type === "character") {
 			switch(num) {
 				case 1:
-					return objectInfo.abilityOneCurrent - 1;
+					return ascensionPlan.talentOneStart - 1;
 				case 2:
-					return objectInfo.abilityTwoCurrent - 1;
+					return ascensionPlan.talentTwoStart - 1;
 				case 3:
-					return objectInfo.abilityThreeCurrent - 1;
+					return ascensionPlan.talentThreeStart - 1;
 			}
 		}
 	}
 
 	function getDesiredTalentLevel(num: number) {
-		if (objectInfo.type === "character") {
+		if (ascensionPlan.type === "character") {
 			switch(num) {
 				case 1:
-					return objectInfo.abilityOneDesired;
+					return ascensionPlan.talentOneEnd;
 				case 2:
-					return objectInfo.abilityTwoDesired;
+					return ascensionPlan.talentTwoEnd;
 				case 3:
-					return objectInfo.abilityThreeDesired;
+					return ascensionPlan.talentThreeEnd;
 			}
 		}
 	}
 
 	function elementImage() {
-		if (objectInfo.type === "character") {
-			return <img src={objectInfo.typeImage} alt="element" className={classes.element}></img>
+		if (ascensionPlan.type === "character") {
+			return <img src={ascensionPlan.typeImage} alt="element" className={classes.element}></img>
 		}
 	}
 
 	function weaponRarity() {
-		//console.log(objectInfo)
-		if (objectInfo.type === "weapon") {
+		//console.log(ascensionPlan)
+		if (ascensionPlan.type === "weapon") {
 			return createRarityStars()
 		}
 	}
 
 	function createRarityStars() {
 		var stars = []
-		if (objectInfo.stars === "Four") {
+		if (ascensionPlan.stars === "Four") {
 			//console.log("CreateRarityStars Four")
 			for (let i = 0; i < 4; i++) {
 				if (i === 0) {
@@ -426,11 +424,11 @@ export default function CharacterOverview(props: any) {
 		return <div className={classes.stars}>{stars}</div>
 	}
 
-	const characterMaterials = objectInfo.materials.map((material: any, index: any) => 
+	const characterMaterials = ascensionPlan.materials && ascensionPlan.materials.map((material: any, index: any) => 
 		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
 	);
 
-	const createAscensionStars = ascensionStars.map((star: any, index: any) => 
+	const createAscensionStars = ascensionStars && ascensionStars.map((star: any, index: any) => 
 		<div key={index}>
 
 		<CardMedia
@@ -443,7 +441,7 @@ export default function CharacterOverview(props: any) {
 	);
 
 	const setAscensionStarsOther = () => {
-		const ascensionLevel = objectInfo.desiredAscension;
+		const ascensionLevel = ascensionPlan.endAscension;
 		const starsTemp = [...ascensionStars]
 
 		for (let i = 0; i < ascensionLevel; i++) {
@@ -454,7 +452,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	function showTalentLevels() {
-		if (objectInfo.type === "character" && getCurrentTalentLevel(1) !== 0) {
+		if (ascensionPlan.type === "character" && getCurrentTalentLevel(1) !== 0) {
 			return 	<div className={classes.talentLevelContainer}>
 			<Typography variant="body1" align='center' className={classes.talentLevel}>
 				<span style={{float: 'left'}}>Atk Lv. </span> <span style={{float: 'right'}}>{getCurrentTalentLevel(1)} - {getDesiredTalentLevel(1)}</span>
@@ -462,7 +460,7 @@ export default function CharacterOverview(props: any) {
 			<Typography variant="body1" align='center' className={classes.talentLevel}>
 				<span style={{float: 'left'}}>Skill Lv.</span><span style={{float: 'right'}}>{getCurrentTalentLevel(2)} - {getDesiredTalentLevel(2)}</span>
 			</Typography>
-			<Typography variant="body1" align='center' className={classes.talentLevel}>
+			<Typography variant="body1" align='center' className={classes.talentLevelBurst}>
 				<span style={{float: 'left'}}>Burst Lv.</span> <span style={{float: 'right'}}>{getCurrentTalentLevel(3)} - {getDesiredTalentLevel(3)}</span>
 			</Typography>
 		</div>
@@ -473,6 +471,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	useEffect(() => {
+		// fetchMaterials;
 		setAscensionStarsOther();
 	}, []);
 
@@ -480,35 +479,32 @@ export default function CharacterOverview(props: any) {
 		<div className={classes.plannerContainer}>
 			<div className={classes.character}>
 				<Card className={classes.characterCard}>		
-					<div className={ objectInfo.type === "character" ? classes.characterCardContainer : classes.characterCardContainerWeapon}>
+					<div className={ ascensionPlan.type === "character" ? classes.characterCardContainer : classes.characterCardContainerWeapon}>
+
 						<div className={classes.characterButtons}>
-							{/* <Tooltip title="Edit" arrow>
-								<EditIcon className={classes.editButton}></EditIcon>
-							</Tooltip> */}
 							<Tooltip classes={{tooltip: classes.tooltip}}title="Delete this plan" arrow>
-								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(objectInfo.id, items, setItems, summary, setSummary)}></CancelIcon>
+								<CancelIcon className={classes.cancelButton} onClick={() => deleteObject(ascensionPlan.id, ascensionPlans, setAscensionPlans, summary, setSummary)}></CancelIcon>
 							</Tooltip>
 						</div>
-						<div className={classes.characterImageContainer}>
-							<CardMedia
-								image= {objectInfo.image}
-								className={classes.characterImage}>	
-								{elementImage()}
-								{weaponRarity()}							
-							</CardMedia>
+						<div className={ classes.characterCardInnerContainer}>
+							<div className={classes.characterImageContainer}>
+								<CardMedia
+									image= {ascensionPlan.image}
+									className={classes.characterImage}>	
+									{elementImage()}
+									{weaponRarity()}							
+								</CardMedia>
+							</div>
 
-						</div>
-
-
-						<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
-							{objectInfo.name}
-						</Typography>
-						{showLevel(getcurrentAscension(), getdesiredAscension())}
-						<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
-							{createAscensionStars}
+							<Typography variant="h2" align='center' style={{maxWidth: '10rem', margin: '0rem auto 0.4rem auto'}}>
+								{ascensionPlan.name}
+							</Typography>
+							{showLevel(getStartAscension(), getEndAscension())}
+							<div style={{display: 'flex', justifyContent: 'center', marginBottom: '0.25rem'}}>
+								{createAscensionStars}
+							</div>
 						</div>
 					</div>
-					
 
 					{showTalentLevels()}
 

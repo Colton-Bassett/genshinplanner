@@ -10,7 +10,6 @@ function getHerosWitAmount(startingLevel: number, endingLevel: number) {
 export default function getDesiredHerosWit(startingLevel: number, startingAscension: number, endingLevel: number, endingAscension: number): number {
     let result: number = 0;
     result += getHerosWitAmount(startingLevel, endingLevel);
-    //result += getAscensionMoraCost(startingAscension, endingAscension);
 
     return result;
 }

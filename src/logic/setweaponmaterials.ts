@@ -499,44 +499,44 @@ function addMaterial(mat: any, materials: any, allMaterials: any) {
     }
 }
 
-export default function SetWeaponMaterials(weapon: any, ascensionDetails: any, allMaterials: any) {
-    //console.log("SetWeaponMaterials() AscensionDetails:", ascensionDetails);
+export default function SetWeaponMaterials(weapon: any, ascensionPlan: any, allMaterials: any) {
+    //console.log("SetWeaponMaterials() ascensionPlan:", ascensionPlan);
     //console.log("SetWeaponMaterials() weapon:", weapon)
-    //console.log("stars:", ascensionDetails.stars);
-    let currentLevel = HandleLevel(ascensionDetails.currentAscension, ascensionDetails.currentMax) || 0;
-    let desiredLevel = HandleLevel(ascensionDetails.desiredAscension, ascensionDetails.desiredMax) || 0;
+    //console.log("stars:", ascensionPlan.stars);
+    let currentLevel = HandleLevel(ascensionPlan.startAscension, ascensionPlan.currentMax) || 0;
+    let desiredLevel = HandleLevel(ascensionPlan.endAscension, ascensionPlan.desiredMax) || 0;
 
     let materials: any[] = [];
 
     let ascensionMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
     ascensionMora.name = "Mora";
-    ascensionMora.quantity = GetDesiredWeaponLevelMoraCost(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension, ascensionDetails.stars);
+    ascensionMora.quantity = GetDesiredWeaponLevelMoraCost(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension, ascensionPlan.stars);
     // mora.image = getImage()
     addMaterial(ascensionMora, materials, allMaterials);
 
     let ore = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
     ore.name = "Mystic_Enhancement_Ore";
-    ore.quantity = GetDesiredOre(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension, ascensionDetails.stars);
+    ore.quantity = GetDesiredOre(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension, ascensionPlan.stars);
     addMaterial(ore, materials, allMaterials);
 
-    for (let level = ascensionDetails.currentAscension +1; level <= ascensionDetails.desiredAscension; level++) {
+    for (let level = ascensionPlan.startAscension +1; level <= ascensionPlan.endAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matOne.name = getMatOne(weapon.ascensionMats.matOne, level)!;
-        matOne.quantity = getMatOneAmount(level, ascensionDetails.stars)!;
+        matOne.quantity = getMatOneAmount(level, ascensionPlan.stars)!;
         // matOne.image = getImage()
         //console.log("matOne", matOne)
         addMaterial(matOne, materials, allMaterials);
 
         let matTwo = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matTwo.name = getMatTwo(weapon.ascensionMats.matTwo, level)!;
-        matTwo.quantity = getMatTwoAmount(level, ascensionDetails.stars)!;
+        matTwo.quantity = getMatTwoAmount(level, ascensionPlan.stars)!;
         // matTwo.image = getImage()
         //console.log("matTwo", matTwo)
         addMaterial(matTwo, materials, allMaterials);
 
         let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         commonMat.name = getCommonMat(weapon.ascensionMats.commonMat, level)!;
-        commonMat.quantity = getCommonMatAmount(level, ascensionDetails.stars)!;
+        commonMat.quantity = getCommonMatAmount(level, ascensionPlan.stars)!;
         // commonMat.image = getImage()
         //console.log("commonMat", commonMat)
         addMaterial(commonMat, materials, allMaterials);

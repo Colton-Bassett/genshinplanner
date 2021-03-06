@@ -1,68 +1,55 @@
-import React from 'react';
+import React, {  } from 'react';
 
 import { makeStyles } from '@material-ui/core';
 
-import DialogCharacter from './dialogcharacter'
-import DialogWeapon from './dialogweapon';
-import DialogCharacterPlanner from './dialogcharacterplanner'
-import DialogWeaponPlanner from './dialogweaponplanner'
+import DialogItem from './dialogitem';
+import DialogPlanner from './dialogplanner'
 import TabPanel from './tabpanel'
 
-const useStyles = makeStyles(() => ({
-	charactersContainer: {
-		display: 'flex', 
-		flexWrap: 'wrap', 
-		boxSizing: 'border-box', 
-		alignItems: 'flex-start', 
-		width: '95%', 
-		margin: '1.5rem auto', 
-	},
-	character: {
-		boxSizing: 'border-box', 
-		display: 'flex', 
-		padding: '0.625rem', 
-		justifyContent: 'center', 
-		width: '14.28%',
-		'@media (max-width: 60em)': {
-			width: '20%'
-		},
-		'@media (max-width: 45em)': {
-			width: '25%'
-		},
-		'@media (max-width: 35em)': {
-			width: '25%'
-		},
-		'@media (max-width: 25em)': {
-			width: '33.3333%'
-		},
-	},
-	weaponsContainer: {
-		display: 'flex', 
-		flexWrap: 'wrap', 
-		boxSizing: 'border-box', 
-		alignItems: 'flex-start', 
-		width: '95%', 
-		margin: 'auto', 
-		marginTop: '0.5rem'
-	},
-}));
-
-
 export default function DialogTab(props: any) {
-	const classes = useStyles();
+	const useStyles = makeStyles(() => ({
+		itemsContainer: {
+			display: 'flex', 
+			flexWrap: 'wrap', 
+			boxSizing: 'border-box', 
+			alignItems: 'flex-start', 
+			width: '95%', 
+			margin: '1.5rem auto', 
+		},
+		character: {
+			boxSizing: 'border-box', 
+			display: 'flex', 
+			padding: '0.625rem', 
+			justifyContent: 'center', 
+			width: '14.28%',
+			'@media (max-width: 60em)': {
+				width: '20%'
+			},
+			'@media (max-width: 45em)': {
+				width: '25%'
+			},
+			'@media (max-width: 35em)': {
+				width: '25%'
+			},
+			'@media (max-width: 25em)': {
+				width: '33.3333%'
+			},
+		},
+	}));
 
+	const classes = useStyles();
 	const characters = props.characters;
 	const weapons = props.weapons;
-    const dialogClose = props.dialogClose;
-    const ascensionDetails = props.ascensionDetails;
-    const setAscensionDetails = props.setAscensionDetails;
-    const items = props.items;
-    const setItems = props.setItems;
+	const materials = props.materials;
+	const ascensionPlans = props.ascensionPlans;
+	const summary = props.summary;
+
+	const setAscensionPlans = props.setAscensionPlans;
+	const setSummary= props.setSummary;
+
+	const dialogClose = props.dialogClose;
     const displayTabsTitle = props.displayTabsTitle;
 	const tabPanel = props.tabPanel;
-	const materials = props.materials;
-	const summary = props.summary;
-	const setSummary= props.setSummary;
 		
 	const [showPlanner, setShowPlanner] = React.useState(false)
 	const [showWeaponPlanner, setShowWeaponPlanner] = React.useState(false)
@@ -88,7 +75,7 @@ export default function DialogTab(props: any) {
         <div key={index} className={classes.character} onClick={() => {
             openCharacterPlanner(character);
         }}>
-        	<DialogCharacter character={character} ></DialogCharacter>
+        	<DialogItem item={character} itemType={"character"}></DialogItem>
         </div>
 	);
 
@@ -96,30 +83,38 @@ export default function DialogTab(props: any) {
         <div key={index} className={classes.character} onClick={() => {
             openWeaponPlanner(weapon);
         }}>
-        	<DialogWeapon weapon={weapon} ></DialogWeapon>
+        	<DialogItem item={weapon} itemType={"weapon"}></DialogItem>
         </div>
 	);
 
-	const DialogTabMain = () => (
-		<div>
-			<TabPanel value={tabPanel} index={0}>
-				<div className={classes.charactersContainer}>
-					{ populateDialogCharacters } 
-				</div>
-			</TabPanel>
-			<TabPanel value={tabPanel} index={1}>
-				<div className={classes.weaponsContainer}>
-					{ populateDialogWeapons }
-				</div>
-			</TabPanel>	
-		</div>
-	)
-
 	return (
 		<div>
-			{ !showPlanner ? <DialogTabMain></DialogTabMain> : null }
-			{ showCharacterPlanner ? <DialogCharacterPlanner materials={materials} character={currentCharacter} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} summary={summary} setSummary={setSummary}></DialogCharacterPlanner> : null }
-			{ showWeaponPlanner ? <DialogWeaponPlanner materials={materials} weapon={currentWeapon} dialogClose={dialogClose} ascensionDetails={ascensionDetails} setAscensionDetails={setAscensionDetails} items={items} setItems={setItems} summary={summary} setSummary={setSummary}></DialogWeaponPlanner> : null }
+			{ !showPlanner ? 
+				<div>
+					<TabPanel value={tabPanel} index={0}>
+						<div className={classes.itemsContainer}>
+							{ populateDialogCharacters } 
+						</div>
+					</TabPanel>
+					<TabPanel value={tabPanel} index={1}>
+						<div className={classes.itemsContainer}>
+							{ populateDialogWeapons }
+						</div>
+					</TabPanel>	
+				</div>	
+			: null }
+			{ showCharacterPlanner ? 
+				<DialogPlanner
+					plannerType={"character"} item={currentCharacter} materials={materials} ascensionPlans={ascensionPlans} summary={summary} 
+					setAscensionPlans={setAscensionPlans} setSummary={setSummary} dialogClose={dialogClose}>
+				</DialogPlanner>
+			: null }
+			{ showWeaponPlanner ? 
+				<DialogPlanner
+					plannerType={"weapon"} item={currentWeapon} materials={materials} ascensionPlans={ascensionPlans} summary={summary} 
+					setAscensionPlans={setAscensionPlans} setSummary={setSummary} dialogClose={dialogClose}>
+				</DialogPlanner>
+			: null }
 		</div>	
 	);
 }

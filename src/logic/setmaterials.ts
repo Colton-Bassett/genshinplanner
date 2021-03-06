@@ -496,10 +496,10 @@ function addMaterial(mat: any, materials: any, allMaterials: any) {
     }
 }
 
-function addTalentMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+function addTalentMaterial(character: any, ascensionPlan: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
-            for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentOneStart; talentLevel <= ascensionPlan.talentOneEnd; talentLevel++) {
                 let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
                 abilityMat.quantity = getTalentMatAmount(talentLevel)!;
@@ -507,7 +507,7 @@ function addTalentMaterial(character: any, ascensionDetails: any, ability: strin
             }
             return
         case "abilityTwo":
-            for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentTwoStart; talentLevel <= ascensionPlan.talentTwoEnd; talentLevel++) {
                 let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
                 abilityMat.quantity = getTalentMatAmount(talentLevel)!;
@@ -515,7 +515,7 @@ function addTalentMaterial(character: any, ascensionDetails: any, ability: strin
             }
             return
         case "abilityThree":
-            for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentThreeStart; talentLevel <= ascensionPlan.talentThreeEnd; talentLevel++) {
                 let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 abilityMat.name = getTalentMat(character.talentMats.talentMat, talentLevel)!;
                 abilityMat.quantity = getTalentMatAmount(talentLevel)!;
@@ -525,10 +525,10 @@ function addTalentMaterial(character: any, ascensionDetails: any, ability: strin
     }
 }
 
-function addTalentCommonMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+function addTalentCommonMaterial(character: any, ascensionPlan: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
-            for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentOneStart; talentLevel <= ascensionPlan.talentOneEnd; talentLevel++) {
                 let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 commonMat.name = getTalentCommonMat(character.ascensionMats.commonMat, talentLevel)!;
                 commonMat.quantity = getTalentCommonMatAmount(talentLevel)!;
@@ -536,7 +536,7 @@ function addTalentCommonMaterial(character: any, ascensionDetails: any, ability:
             }
             return
         case "abilityTwo":
-            for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentTwoStart; talentLevel <= ascensionPlan.talentTwoEnd; talentLevel++) {
                 let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 commonMat.name = getTalentCommonMat(character.ascensionMats.commonMat, talentLevel)!;
                 commonMat.quantity = getTalentCommonMatAmount(talentLevel)!;
@@ -544,7 +544,7 @@ function addTalentCommonMaterial(character: any, ascensionDetails: any, ability:
             }
             return
         case "abilityThree":
-            for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentThreeStart; talentLevel <= ascensionPlan.talentThreeEnd; talentLevel++) {
                 let commonMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 commonMat.name = getTalentCommonMat(character.ascensionMats.commonMat, talentLevel)!;
                 commonMat.quantity = getTalentCommonMatAmount(talentLevel)!;
@@ -554,10 +554,10 @@ function addTalentCommonMaterial(character: any, ascensionDetails: any, ability:
     }
 }
 
-function addTalentBossMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+function addTalentBossMaterial(character: any, ascensionPlan: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
-            for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentOneStart; talentLevel <= ascensionPlan.talentOneEnd; talentLevel++) {
                 if (talentLevel >= 7) {
                     let bossMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     bossMat.name = character.talentMats.bossMat;
@@ -567,7 +567,7 @@ function addTalentBossMaterial(character: any, ascensionDetails: any, ability: s
             } 
             return
         case "abilityTwo":
-            for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentTwoStart; talentLevel <= ascensionPlan.talentTwoEnd; talentLevel++) {
                 if (talentLevel >= 7) {
                     let bossMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     bossMat.name = character.talentMats.bossMat;
@@ -577,7 +577,7 @@ function addTalentBossMaterial(character: any, ascensionDetails: any, ability: s
             } 
             return
         case "abilityThree":
-            for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentThreeStart; talentLevel <= ascensionPlan.talentThreeEnd; talentLevel++) {
                 if (talentLevel >= 7) {
                     let bossMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     bossMat.name = character.talentMats.bossMat;
@@ -589,10 +589,10 @@ function addTalentBossMaterial(character: any, ascensionDetails: any, ability: s
     }
 }
 
-function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+function addTalentMoraMaterial(character: any, ascensionPlan: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
-            for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentOneStart; talentLevel <= ascensionPlan.talentOneEnd; talentLevel++) {
                 let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 mora.name = "Mora";
                 mora.quantity = getTalentMoraAmount(talentLevel)!;
@@ -601,7 +601,7 @@ function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: s
             }
             return
         case "abilityTwo":
-            for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentTwoStart; talentLevel <= ascensionPlan.talentTwoEnd; talentLevel++) {
                 let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 mora.name = "Mora";
                 mora.quantity = getTalentMoraAmount(talentLevel)!;
@@ -609,7 +609,7 @@ function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: s
             }
             return
         case "abilityThree":
-            for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentThreeStart; talentLevel <= ascensionPlan.talentThreeEnd; talentLevel++) {
                 let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 mora.name = "Mora";
                 mora.quantity = getTalentMoraAmount(talentLevel)!;
@@ -619,10 +619,10 @@ function addTalentMoraMaterial(character: any, ascensionDetails: any, ability: s
     }
 }
 
-function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+function addTalentCrownMaterial(character: any, ascensionPlan: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
-            let talentLevel = ascensionDetails.abilityOneDesired;
+            let talentLevel = ascensionPlan.talentOneEnd;
                 if (talentLevel === 10) {
                     let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                     abilityMat.name = "Crown_of_Insight"
@@ -631,7 +631,7 @@ function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: 
                 }
             return
         case "abilityTwo":
-            let talentLevel2 = ascensionDetails.abilityTwoDesired;
+            let talentLevel2 = ascensionPlan.talentTwoEnd;
                 if (talentLevel2 === 10) {
 
                     let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
@@ -641,7 +641,7 @@ function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: 
                 }
             return
         case "abilityThree":
-            let talentLevel3 = ascensionDetails.abilityThreeDesired;
+            let talentLevel3 = ascensionPlan.talentThreeEnd;
                 if (talentLevel3 === 10) {
 
                     let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
@@ -653,10 +653,10 @@ function addTalentCrownMaterial(character: any, ascensionDetails: any, ability: 
             return
     }
 
-function addTravelerTalentMaterial(character: any, ascensionDetails: any, ability: string, materials: any, allMaterials: any) {
+function addTravelerTalentMaterial(character: any, ascensionPlan: any, ability: string, materials: any, allMaterials: any) {
     switch(ability) {
         case "abilityOne":
-            for (let talentLevel = ascensionDetails.abilityOneCurrent; talentLevel <= ascensionDetails.abilityOneDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentOneStart; talentLevel <= ascensionPlan.talentOneEnd; talentLevel++) {
                 let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 if ((talentLevel + 1) % 3 === 0) {
                     character.talentMats.talentMat = "Freedom";
@@ -673,7 +673,7 @@ function addTravelerTalentMaterial(character: any, ascensionDetails: any, abilit
             }
             return
         case "abilityTwo":
-            for (let talentLevel = ascensionDetails.abilityTwoCurrent; talentLevel <= ascensionDetails.abilityTwoDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentTwoStart; talentLevel <= ascensionPlan.talentTwoEnd; talentLevel++) {
                 let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 if (character.name === "Traveler (Anemo)") {
                     if ((talentLevel + 1) % 3 === 0) {
@@ -703,7 +703,7 @@ function addTravelerTalentMaterial(character: any, ascensionDetails: any, abilit
             }
             return
         case "abilityThree":
-            for (let talentLevel = ascensionDetails.abilityThreeCurrent; talentLevel <= ascensionDetails.abilityThreeDesired; talentLevel++) {
+            for (let talentLevel = ascensionPlan.talentThreeStart; talentLevel <= ascensionPlan.talentThreeEnd; talentLevel++) {
                 let abilityMat = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
                 if (character.name === "Traveler (Anemo)") {
                     if ((talentLevel + 1) % 3 === 0) {
@@ -734,120 +734,120 @@ function addTravelerTalentMaterial(character: any, ascensionDetails: any, abilit
     }
 }
 
-function setTravelerTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
-    if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
+function setTravelerTalentMaterials(character: any, ascensionPlan: any, materials: any, allMaterials: any) {
+    if (ascensionPlan.talentOneStart === ascensionPlan.talentOneEnd) {
         // do nothing
         //console.log("setTalentMaterials is doing nothing, abilityOne")
     } else {
-        ascensionDetails.abilityOneCurrent += 1;
+        ascensionPlan.talentOneStart += 1;
         character.ascensionMats.commonMat = "Divining_Scroll";
         character.talentMats.bossMat = "Dvalin's_Sigh";
-        addTravelerTalentMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        addTravelerTalentMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
     }
 
-    if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
+    if (ascensionPlan.talentTwoStart === ascensionPlan.talentTwoEnd) {
         // do nothing
         //console.log("setTalentMaterials is doing nothing, abilityTwo")
     } else {
-        ascensionDetails.abilityTwoCurrent += 1;
+        ascensionPlan.talentTwoStart += 1;
         if (character.name === "Traveler (Anemo)") {
             character.ascensionMats.commonMat = "Divining_Scroll"
         } else {
             character.ascensionMats.commonMat = "Firm_Arrowhead"
             character.talentMats.bossMat = "Tail_of_Boreas"
         }
-        addTravelerTalentMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        addTravelerTalentMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
     }
 
-    if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
+    if (ascensionPlan.talentThreeStart === ascensionPlan.talentThreeEnd) {
         // do nothing
         //console.log("setTalentMaterials is doing nothing, abilityThree")
     } else {
-        ascensionDetails.abilityThreeCurrent += 1;
+        ascensionPlan.talentThreeStart += 1;
         if (character.name === "Traveler (Anemo)") {
             character.ascensionMats.commonMat = "Divining_Scroll"
         } else {
             character.ascensionMats.commonMat = "Firm_Arrowhead"
             character.talentMats.bossMat = "Tail_of_Boreas"
         }
-        addTravelerTalentMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        addTravelerTalentMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
     }
     // reset mats
     character.ascensionMats.commonMat = "Damaged_Mask";
     character.talentMats.bossMat = "Dvalin's Sigh";
 }
 
-function setTalentMaterials(character: any, ascensionDetails: any, materials: any, allMaterials: any) {
-    if (ascensionDetails.abilityOneCurrent === ascensionDetails.abilityOneDesired) {
+function setTalentMaterials(character: any, ascensionPlan: any, materials: any, allMaterials: any) {
+    if (ascensionPlan.talentOneStart === ascensionPlan.talentOneEnd) {
         // do nothing
         //console.log("setTalentMaterials is doing nothing, abilityOne")
     } else {
-        ascensionDetails.abilityOneCurrent += 1;
-        addTalentMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityOne", materials, allMaterials);
+        ascensionPlan.talentOneStart += 1;
+        addTalentMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionPlan, "abilityOne", materials, allMaterials);
     }
 
-    if (ascensionDetails.abilityTwoCurrent === ascensionDetails.abilityTwoDesired) {
+    if (ascensionPlan.talentTwoStart === ascensionPlan.talentTwoEnd) {
         // do nothing
         //console.log("setTalentMaterials is doing nothing, abilityTwo")
     } else {
-        ascensionDetails.abilityTwoCurrent += 1;
-        addTalentMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityTwo", materials, allMaterials);
+        ascensionPlan.talentTwoStart += 1;
+        addTalentMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionPlan, "abilityTwo", materials, allMaterials);
     }
 
-    if (ascensionDetails.abilityThreeCurrent === ascensionDetails.abilityThreeDesired) {
+    if (ascensionPlan.talentThreeStart === ascensionPlan.talentThreeEnd) {
         // do nothing
         //console.log("setTalentMaterials is doing nothing, abilityThree")
     } else {
-        ascensionDetails.abilityThreeCurrent += 1;
-        addTalentMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentCommonMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentBossMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentMoraMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
-        addTalentCrownMaterial(character, ascensionDetails, "abilityThree", materials, allMaterials);
+        ascensionPlan.talentThreeStart += 1;
+        addTalentMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentCommonMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentBossMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentMoraMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
+        addTalentCrownMaterial(character, ascensionPlan, "abilityThree", materials, allMaterials);
     }
 }
 
-export default function SetMaterials(character: any, ascensionDetails: any, allMaterials: any) {
+export default function SetMaterials(character: any, ascensionPlan: any, allMaterials: any) {
     console.log("SetMaterials character:", character);
-    console.log("SetMaterials() AscensionDetails:", ascensionDetails);
+    console.log("SetMaterials() AscensionPlan:", ascensionPlan);
 
-    let currentLevel = HandleLevel(ascensionDetails.currentAscension, ascensionDetails.currentMax) || 0;
-    let desiredLevel = HandleLevel(ascensionDetails.desiredAscension, ascensionDetails.desiredMax) || 0;
+    let currentLevel = HandleLevel(ascensionPlan.startAscension, ascensionPlan.currentMax) || 0;
+    let desiredLevel = HandleLevel(ascensionPlan.endAscension, ascensionPlan.desiredMax) || 0;
 
     let materials: any[] = [];
 
     let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
     mora.name = "Mora";
-    mora.quantity = GetDesiredLevelMoraCost(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension);
+    mora.quantity = GetDesiredLevelMoraCost(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
     addMaterial(mora, materials, allMaterials);
 
     let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
     heroswit.name="Hero's_Wit";
-    heroswit.quantity = GetDesiredHerosWit(currentLevel, ascensionDetails.currentAscension, desiredLevel, ascensionDetails.desiredAscension);
+    heroswit.quantity = GetDesiredHerosWit(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
     addMaterial(heroswit, materials, allMaterials)
     console.log("SetMaterials HerosWit:", heroswit);
 
-    for (let level = ascensionDetails.currentAscension +1; level <= ascensionDetails.desiredAscension; level++) {
+    for (let level = ascensionPlan.startAscension +1; level <= ascensionPlan.endAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
         matOne.name = getMatOne(character.ascensionMats.matOne, level)!;
         matOne.quantity = getMatOneAmount(level)!;
@@ -884,9 +884,9 @@ export default function SetMaterials(character: any, ascensionDetails: any, allM
 
     // checking for Traveler (Anemo, Geo)
     if (character.name === "Traveler (Anemo)" || character.name === "Traveler (Geo)") {
-        setTravelerTalentMaterials(character, ascensionDetails, materials, allMaterials);
+        setTravelerTalentMaterials(character, ascensionPlan, materials, allMaterials);
     } else {
-        setTalentMaterials(character, ascensionDetails, materials, allMaterials);
+        setTalentMaterials(character, ascensionPlan, materials, allMaterials);
     }
 
     console.log("SetMaterials() Return Materials:", materials);
