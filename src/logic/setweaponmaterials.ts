@@ -485,7 +485,7 @@ function addMaterial(mat: any, materials: any, allMaterials: any) {
         const tempName = mat.name.replace(/_/g, ' ');
         //console.log("tempName", tempName);
         let masterMaterial = allMaterials.find((element: { name: any; }) => element.name === tempName)
-        console.log("addMaterial masterMaterial", masterMaterial);
+        //console.log("addMaterial masterMaterial", masterMaterial);
         mat.description = masterMaterial.description;
         mat.stars = masterMaterial.stars;
         mat.type = masterMaterial.type;
@@ -546,7 +546,7 @@ export default function SetWeaponMaterials(weapon: any, ascensionPlan: any, allM
         addMaterial(commonMat, materials, allMaterials);
     }
 
-    console.log("SetWeaponMaterials() Return Materials:", materials);
+    //console.log("SetWeaponMaterials() Return Materials:", materials);
     // sorting by position
     materials?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position));
 

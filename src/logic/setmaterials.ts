@@ -828,8 +828,8 @@ function setTalentMaterials(character: any, ascensionPlan: any, materials: any, 
 }
 
 export default function SetMaterials(character: any, ascensionPlan: any, allMaterials: any) {
-    console.log("SetMaterials character:", character);
-    console.log("SetMaterials() AscensionPlan:", ascensionPlan);
+    //console.log("SetMaterials character:", character);
+    //console.log("SetMaterials() AscensionPlan:", ascensionPlan);
 
     let currentLevel = HandleLevel(ascensionPlan.startAscension, ascensionPlan.currentMax) || 0;
     let desiredLevel = HandleLevel(ascensionPlan.endAscension, ascensionPlan.desiredMax) || 0;
@@ -847,7 +847,7 @@ export default function SetMaterials(character: any, ascensionPlan: any, allMate
         heroswit.name="Hero's_Wit";
         heroswit.quantity = GetDesiredHerosWit(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
         addMaterial(heroswit, materials, allMaterials)
-        console.log("SetMaterials HerosWit:", heroswit);
+        
     }
 
     for (let level = ascensionPlan.startAscension +1; level <= ascensionPlan.endAscension; level++) {
@@ -892,7 +892,7 @@ export default function SetMaterials(character: any, ascensionPlan: any, allMate
         setTalentMaterials(character, ascensionPlan, materials, allMaterials);
     }
 
-    console.log("SetMaterials() Return Materials:", materials);
+    //console.log("SetMaterials() Return Materials:", materials);
 
     // sorting by position
     materials?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position));

@@ -42,7 +42,7 @@ export default async function fetchCharacters(setCharacters: any) {
     // sort alphabetically
     const sortedCharacters = (apiData.data.listCharacters.items);
     sortedCharacters?.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name));
-    console.log("fetchCharacters():", sortedCharacters)
+    //console.log("fetchCharacters():", sortedCharacters)
 
     setCharacters(sortedCharacters)
 }

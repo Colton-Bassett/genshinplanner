@@ -300,7 +300,6 @@ export default function CharacterOverview(props: any) {
 
 	function getStartAscension() {
 		let level = ascensionPlan.startAscension;
-		console.log("getStartAscension level:", level)
 		//console.log("getstartAscension", ascensionPlan);
 
 		if (level === 0) {
@@ -324,7 +323,6 @@ export default function CharacterOverview(props: any) {
 
 	function getEndAscension() {
 		let level = ascensionPlan.endAscension;
-		//console.log("getendAscension", ascensionPlan.endAscension);
 
 		if (level === 0) {
 			level = 1
@@ -352,7 +350,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	function showLevel(current: number, desired: number) {
-		console.log("showing current and desired", current, desired);
+		//console.log("showing current and desired", current, desired);
 		if (current === 1 && desired === 1) {
 			// do nothing
 			return

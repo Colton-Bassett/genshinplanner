@@ -19,7 +19,7 @@ export default async function fetchMaterials(setMaterials: any) {
     // sort by position
     const sortedMaterials = (apiData.data.listMaterials.items);    
     sortedMaterials?.sort((a: { position: string; }, b: { position: any; }) => a.position.localeCompare(b.position));
-    console.log("fetchMaterials():", apiData.data.listMaterials.items)
+    //console.log("fetchMaterials():", apiData.data.listMaterials.items)
 
     setMaterials(sortedMaterials)
 }
