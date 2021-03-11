@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 		'@media (max-width: 60em)': {
 			maxWidth: '100%',
 			flexBasis: '100%',
-			minWidth: '19rem'
+			minWidth: '19rem',
 		},
 	},
 	characterCard: {
@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	talentLevelContainer: {
 		display: 'flex', 
-		justifyContent: 'center', 
+		justifyContent: 'flex-start', 
+		marginTop: '1rem',
 		flexDirection: 'column', 
 		flex: 1, 
 		backgroundColor: '#2e3944', 
@@ -123,7 +124,17 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '.15rem',
 		color: '#a7b1c1',
 		'@media (max-width: 60em)': {
-			paddingBottom: '1rem', 
+			paddingBottom: '.5rem', 
+			minWidth: '25%',
+		},
+		'@media (max-width: 45em)': {
+			minWidth: '35%',
+		},
+		'@media (max-width: 35em)': {
+			minWidth: '40%',
+		},
+		'@media (max-width: 25em)': {
+			minWidth: '50%',
 		},
 	},
 	talentLevelBurst: {
@@ -132,6 +143,16 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '.15rem',
 		color: '#a7b1c1',
 		'@media (max-width: 60em)': {
+			minWidth: '25%',
+		},
+		'@media (max-width: 45em)': {
+			minWidth: '35%',
+		},
+		'@media (max-width: 35em)': {
+			minWidth: '40%',
+		},
+		'@media (max-width: 25em)': {
+			minWidth: '50%',
 		},
 	},
     stars: {
@@ -278,7 +299,8 @@ export default function CharacterOverview(props: any) {
 	}
 
 	function getStartAscension() {
-		let level = ascensionPlans.startAscension;
+		let level = ascensionPlan.startAscension;
+		console.log("getStartAscension level:", level)
 		//console.log("getstartAscension", ascensionPlan);
 
 		if (level === 0) {
@@ -330,6 +352,7 @@ export default function CharacterOverview(props: any) {
 	}
 
 	function showLevel(current: number, desired: number) {
+		console.log("showing current and desired", current, desired);
 		if (current === 1 && desired === 1) {
 			// do nothing
 			return

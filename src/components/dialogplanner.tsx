@@ -24,6 +24,8 @@ export default function DialogPlanner(props: any) {
 
     const useStyles = makeStyles((theme) => ({
         dialogPlanner: {
+            minWidth: '100%',
+            minHeight: '100%',
         },
         header: {
             position: 'relative', 
@@ -217,6 +219,7 @@ export default function DialogPlanner(props: any) {
         },
         iconButtonRoot: {
             padding: 0,
+            borderRadius: 0,
         },
         plannerNavContainer: {
             backgroundColor: '#2e3944',
@@ -227,6 +230,10 @@ export default function DialogPlanner(props: any) {
             flexBasis: '70%',
             margin: 'auto',
             display: 'flex',
+            '@media (max-width: 45em)': {
+                maxWidth: '90%',
+                flexBasis: '90%',
+            },
         },
         linkFirst: {
             textTransform: 'none',
@@ -238,6 +245,11 @@ export default function DialogPlanner(props: any) {
             transition: 'all .2s',
             padding: '0rem 1rem 0rem 0rem',
             cursor: 'pointer',
+            '@media (max-width: 25em)': {
+                maxWidth: '4.5rem',
+                flexBasis: '4.5rem',
+                padding: 0,
+            },
         },
         link: {
             textTransform: 'none',
@@ -304,13 +316,15 @@ export default function DialogPlanner(props: any) {
             justifyContent: 'flex-start',
             minWidth: '50%',
             alignItems: 'center',
-            transform: 'all 2s'
+            transform: 'all 2s',
+            fontSize: '1.125rem',
         },
         endLevelMax: {
             display: 'flex',
             justifyContent: 'flex-end',
             minWidth: '50%',
             alignItems: 'center',
+            fontSize: '1.125rem',
         },
         levelMaxCheckbox: {
             padding: '0rem',
@@ -714,15 +728,22 @@ export default function DialogPlanner(props: any) {
             setLevelContainerOpacity(0.3);
             setLevelCursor('none');
             // set startStars to 0.3
-            setAscensionStars("start", 1);
+            setAscensionStars("start", 0);
             // set endStars to 0.3
-            setAscensionStars("end", 1);
+            setAscensionStars("end", 0);
+
+            setStartLevelMax(false);
+            setEndLevelMax(false);
+
         } else {
             setLevelContainerOpacity(1)
             setLevelCursor('auto');
 
             // reset endStars to default
             setAscensionStars("end", 1);
+
+            setStartLevelMax(false);
+            setEndLevelMax(true);
         }
     }
 
@@ -915,8 +936,14 @@ export default function DialogPlanner(props: any) {
         }
         setAscensionStars(newAscensionStars);
 
+        if (index === 0) {
+            level = HandleLevel(countAscensionStars(type) || 0, levelMax) || 0;
+            setLevel(level)
+            return
+        }
+
         // handles condition where user clicks startStar[0] after it's already on (resets startLevel to 1)
-        if (type === "start" && opacityOne === "1" && opacityTwo === "0.3") {
+        if (type === "start" && opacityOne === "1" && opacityTwo === "0.3" && index == 1) {
             console.log("condition met poggers")
             for (let i = 0; i <= 5; i++) {
                 newAscensionStars[i].opacity = "0.3";

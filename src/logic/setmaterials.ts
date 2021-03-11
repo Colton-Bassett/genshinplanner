@@ -836,16 +836,19 @@ export default function SetMaterials(character: any, ascensionPlan: any, allMate
 
     let materials: any[] = [];
 
-    let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-    mora.name = "Mora";
-    mora.quantity = GetDesiredLevelMoraCost(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
-    addMaterial(mora, materials, allMaterials);
-
-    let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-    heroswit.name="Hero's_Wit";
-    heroswit.quantity = GetDesiredHerosWit(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
-    addMaterial(heroswit, materials, allMaterials)
-    console.log("SetMaterials HerosWit:", heroswit);
+    // checking if startLevel === desiredLevel (no hero's wits or mora should be calculated)
+    if (currentLevel !== desiredLevel) {
+        let mora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+        mora.name = "Mora";
+        mora.quantity = GetDesiredLevelMoraCost(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
+        addMaterial(mora, materials, allMaterials);
+    
+        let heroswit = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+        heroswit.name="Hero's_Wit";
+        heroswit.quantity = GetDesiredHerosWit(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension);
+        addMaterial(heroswit, materials, allMaterials)
+        console.log("SetMaterials HerosWit:", heroswit);
+    }
 
     for (let level = ascensionPlan.startAscension +1; level <= ascensionPlan.endAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};

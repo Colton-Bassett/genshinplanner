@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import createNewMaterial from './apifunctions/createnewmaterial'
 // import createNewWeapon from './apifunctions/createnewweapon'
 // import createNewCharacter from './apifunctions/createnewcharacter'
+import fetchCharacters from './apifunctions/fetchcharacters';
 
 import TopNav from "./components/nav"
 import AdBar from "./components/adbar"
@@ -225,6 +226,7 @@ export default function App() {
 		//createNewCharacter(character, setCharacter, characterTemplate);
 		//createNewWeapon(weapon, setWeapon, weaponTemplate);
 		//createNewMaterial(material, setMaterial, materialTemplate);
+		// fetchCharacters(setCharacters);
 	}, []);
 
 	return (

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CardMedia, makeStyles, Theme } from '@material-ui/core';
 
-const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
-
 export default function DialogItem(props: any) {
-    const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(true);
     const useStyles = makeStyles((theme: Theme) => ({
         container: {
             transition: 'all .2s',
@@ -82,7 +80,41 @@ export default function DialogItem(props: any) {
     const item = props.item;
     const itemType = props.itemType;
 
-    function handleImageLoad() {
+    const charCount = props.charCount;
+    const weaponCount = props.weaponCount;
+    const characters = props.characters;
+    const weapons = props.weapons;
+    const setReRender = props.setReRender;
+
+    function handleImageLoadChar() {
+        if (charCount.current >= characters.length) {
+            // do nothing 
+            //console.log("doing nothing");
+        } else {
+            charCount.current += 1;
+            //console.log('charCount:', charCount.current);
+
+            if (charCount.current >= characters.length) {
+                setReRender(true);
+                //console.log("setting reRender")
+            }          
+        }
+        setImageLoaded(true);
+    }
+
+    function handleImageLoadWeapon() {
+        if (weaponCount.current >= weapons.length) {
+            // do nothing
+            //console.log("doing nothing");
+        } else {
+            weaponCount.current += 1;
+            //console.log('charCount:', weaponCount.current);
+
+            if (weaponCount.current >= weapons.length) {
+                setReRender(true);
+                //console.log("setting reRender")
+            }          
+        }
         setImageLoaded(true);
     }
 
@@ -92,7 +124,7 @@ export default function DialogItem(props: any) {
             <div className={classes.container}>
                 <CardMedia
                     className={classes.image}>
-                    <img src={item.image} className={classes.image} onLoad={handleImageLoad}></img>
+                    <img src={item.image} className={classes.image} onLoad={handleImageLoadChar}></img>
                     
                     <img src={item.typeImage} alt="element" className={classes.element}></img>	                
                 </CardMedia>      
@@ -105,14 +137,13 @@ export default function DialogItem(props: any) {
             <div className={classes.container} style={{maxWidth: '6rem'}}>
                 <CardMedia
                     className={classes.image}>
-                    <img src={item.image} className={classes.image} onLoad={handleImageLoad}></img>
+                    <img src={item.image} className={classes.image} onLoad={handleImageLoadWeapon}></img>
                 </CardMedia>      
                 <div className={classes.name}>
                     {item.name}
                 </div>
             </div>
             }
-
         </div>
 
     );

@@ -39,12 +39,16 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '1.75rem', 
         borderRadius: '1rem',
         '@media (max-width: 60em)': {
+            maxWidth: '35%', 
+            minWidth: '35%', 
+        },
+        '@media (max-width: 35em)': {
             maxWidth: '40%', 
             minWidth: '40%', 
         },
         '@media (max-width: 25em)': {
-            maxWidth: '60%', 
-            minWidth: '60%', 
+            maxWidth: '50%', 
+            minWidth: '50%', 
 		},
     },
 }));

@@ -119,8 +119,8 @@ const useStyles = makeStyles((theme) => ({
     dialog: {
         minWidth: '60em',
         maxWidth: '60em',
-        minHeight: '52.5em',
-        maxHeight: '52.5em',
+        minHeight: '56em',
+        maxHeight: '56em',
         // borderRadius: '0.625rem',
         backgroundColor: '#172028',
         '@media (max-width: 60em)': {
@@ -135,14 +135,19 @@ const useStyles = makeStyles((theme) => ({
 			minWidth: '100%',
 			maxWidth: '100%',
         },
-        '@media (max-height: 52.5em)': {
-            minHeight: '100%',
-            maxHeight: '100%',
+        '@media (max-height: 56em)': {
+            minHeight: '95%',
+            maxHeight: '95%',
         },
     },
     dialogContent: {
         backgroundColor: '#172028', 
         padding: '0rem !important',
+        display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        flexWrap: 'wrap',
+        minHeight: '100%',
     },
     dialogContentText: {
         outline: 'none'

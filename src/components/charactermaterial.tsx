@@ -11,7 +11,10 @@ const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s
 
 
 export default function CharacterMaterial( props: any ) {
+    const [imageLoaded, setImageLoaded] = useState(false);
     const [maxWidth, setMaxWidth] = useState<string>('12.5%');
+    const [headerBorder,setHeaderBorder] = useState<string>();
+    const [backgroundImage, setBackgroundImage] = useState<string>();
     const useStyles = makeStyles((theme) => ({
         material: {
             paddingBottom: "1.5rem",
@@ -66,6 +69,23 @@ export default function CharacterMaterial( props: any ) {
             backgroundPosition: 'center, 100% 50%',
             opacity: '1, 0.5'
         },
+        materialImageTest: {
+            display: imageLoaded ? 'block' : 'none',
+            maxHeight: '3rem', 
+            maxWidth: '3rem', 
+            minWidth: '3rem', 
+            minHeight: '3rem', 
+            backgroundImage: `url(${backgroundImage})`,
+
+            borderTopLeftRadius: '0.25rem',
+            borderTopRightRadius: '0.25rem',
+            borderBottomRightRadius: '.9rem',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover', 
+            backgroundPosition: '100%',
+            // backgroundOrigin: 'content-box, border-box', 
+            padding: '0.25rem', 
+        },
         text: {
             fontWeight: 500,
             //backgroundColor: '#1d1f29', 
@@ -86,16 +106,24 @@ export default function CharacterMaterial( props: any ) {
     
         },
         dialogTitle: {
-            outline: "0.188rem solid rgb(145, 82, 41, 1)", padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem',
+            outline: "0.188rem solid rgb(145, 82, 41, 1)", 
+            padding: "0.5rem 1.5rem", 
+            outlineOffset: '-0.313rem',
         },
-        // materialHeader: {
-        //     backgroundColor:"#272b30", 
-        //     padding: '.75rem 1.5rem', 
-        //     borderBottom: "0.4rem solid #b99050", 
-        //     backgroundImage: `url(${backgroundImage})`, 
-        //     backgroundSize: 'cover', 
-        //     backgroundPosition: '50%',
-        // },
+        materialHeaderBackground: {
+            backgroundColor:"#272b30", 
+            padding: '.75rem 1.5rem', 
+            borderBottom: `${headerBorder}`, 
+            backgroundImage: `url(${backgroundImage})`, 
+            backgroundSize: 'cover', 
+            backgroundPosition: '50%', 
+            maxHeight: '9.5rem', 
+            minHeight: '9.5rem',
+            '@media (max-width: 25em)': {
+                backgroundPosition: '90%',
+            },
+
+        },
         materialHeaderContainer: {
             display: 'flex'
         },
@@ -155,10 +183,10 @@ export default function CharacterMaterial( props: any ) {
     const description = props.description;
     const sources = props.sources;
     const matType = props.matType;
-    const [backgroundImage, setBackgroundImage] = useState<string>();
+
     const [titleColor, setTitleColor] = useState<string>();
     const [titleOutline, setTitleOutline] = useState<string>();
-    const [headerBorder,setHeaderBorder] = useState<string>();
+
 
 	var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
 
@@ -356,7 +384,11 @@ export default function CharacterMaterial( props: any ) {
         if (matType === "summary") {
             setMaxWidth('9%');
         }
+    }
 
+    function handleImageLoad() {
+        console.log("setting imageLoaded = true")
+        setImageLoaded(true);
 
     }
 
@@ -371,8 +403,9 @@ export default function CharacterMaterial( props: any ) {
         <div className={classes.material}>
             <div className={classes.materialContainer} >
                 <div onClick={handleClickOpen}>
-                    <div className={classes.materialImage} style={{backgroundImage: `url(${image}), url(${backgroundImage})`}}>
+                    <div className={classes.materialImage} onLoad={handleImageLoad} style={{backgroundImage: `url(${image}), url(${backgroundImage})`}}>
                     </div>
+                    {/* <img className={classes.materialImageTest} src={image} onLoad={handleImageLoad}></img> */}
                     <Typography variant="body1" align="center" className={classes.text}>
                         {abbreviateNumber(quantity)}
                     </Typography>
@@ -391,7 +424,7 @@ export default function CharacterMaterial( props: any ) {
                         </Typography>
                         </div>
                     </DialogTitle>
-                    <DialogContent style={{ backgroundColor:"#272b30", padding: '.75rem 1.5rem', borderBottom: `${headerBorder}`, backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: '50%', maxHeight: '9.5rem', minHeight: '9.5rem'}}>
+                    <DialogContent className={classes.materialHeaderBackground}>
                         <div className={classes.materialHeaderContainer}>
                             <div className={classes.materialHeaderData}>                      
                                 <Typography variant="h3" className={classes.materialType}>

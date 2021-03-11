@@ -508,16 +508,20 @@ export default function SetWeaponMaterials(weapon: any, ascensionPlan: any, allM
 
     let materials: any[] = [];
 
-    let ascensionMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-    ascensionMora.name = "Mora";
-    ascensionMora.quantity = GetDesiredWeaponLevelMoraCost(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension, ascensionPlan.stars);
-    // mora.image = getImage()
-    addMaterial(ascensionMora, materials, allMaterials);
+    // checking that startLevel !== desiredLevel, means there'd be no mora or ore
+    if (currentLevel !== desiredLevel) {
+        let ascensionMora = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+        ascensionMora.name = "Mora";
+        ascensionMora.quantity = GetDesiredWeaponLevelMoraCost(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension, ascensionPlan.stars);
+        // mora.image = getImage()
+        addMaterial(ascensionMora, materials, allMaterials);
+    
+        let ore = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
+        ore.name = "Mystic_Enhancement_Ore";
+        ore.quantity = GetDesiredOre(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension, ascensionPlan.stars);
+        addMaterial(ore, materials, allMaterials);
+    }
 
-    let ore = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};
-    ore.name = "Mystic_Enhancement_Ore";
-    ore.quantity = GetDesiredOre(currentLevel, ascensionPlan.startAscension, desiredLevel, ascensionPlan.endAscension, ascensionPlan.stars);
-    addMaterial(ore, materials, allMaterials);
 
     for (let level = ascensionPlan.startAscension +1; level <= ascensionPlan.endAscension; level++) {
         let matOne = {name: "", type: "", stars: "", quantity: 0, image: "", description: "", position: "", sources: {sourceOne: "", sourceTwo: "", sourceThree: "", sourceFour: "", sourceFive: ""}};

@@ -8,7 +8,10 @@ const useStyles = makeStyles((theme) => ({
 		minWidth: '100%',
 		padding: '1.5rem',
 		boxSizing: 'border-box',
-		color: 'white'
+		color: 'white',
+		'@media (max-width: 25em)': {
+			padding: '0.5rem',
+		},
     },
     container: {
 

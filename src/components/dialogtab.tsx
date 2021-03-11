@@ -1,20 +1,52 @@
-import React, {  } from 'react';
+import React, { useRef } from 'react';
 
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, CircularProgress } from '@material-ui/core';
 
 import DialogItem from './dialogitem';
 import DialogPlanner from './dialogplanner'
 import TabPanel from './tabpanel'
 
 export default function DialogTab(props: any) {
+	const characters = props.characters;	
+	const weapons = props.weapons;
+	const charCount = useRef(0);
+	const weaponCount = useRef(0);
 	const useStyles = makeStyles(() => ({
 		itemsContainer: {
-			display: 'flex', 
+			display: charCount.current >= characters?.length ? 'flex' : 'none',
+			// display: 'none',
 			flexWrap: 'wrap', 
 			boxSizing: 'border-box', 
 			alignItems: 'flex-start', 
 			width: '95%', 
 			margin: '1.5rem auto', 
+		},
+		weaponItemsContainer: {
+			display: weaponCount.current >= weapons?.length ? 'flex' : 'none',
+			// display: 'none',
+			flexWrap: 'wrap', 
+			boxSizing: 'border-box', 
+			alignItems: 'flex-start', 
+			width: '95%', 
+			margin: '1.5rem auto', 
+		},
+		spinnerContainer: {
+			alignItems: 'center',
+			justifyContent: 'center',
+			display: 'flex',
+		},
+		spinner: {
+			display: charCount.current < characters?.length ? 'flex' : 'none',
+			// display: 'flex',
+			color: 'white', margin: 'auto',
+			width: '4.25rem !important',
+			height: '4.25rem !important',
+		},
+		weaponSpinner: {
+			display: weaponCount.current < weapons?.length ? 'flex' : 'none',
+			color: 'white', margin: 'auto',
+			width: '4.25rem !important',
+			height: '4.25rem !important',
 		},
 		character: {
 			boxSizing: 'border-box', 
@@ -38,8 +70,6 @@ export default function DialogTab(props: any) {
 	}));
 
 	const classes = useStyles();
-	const characters = props.characters;
-	const weapons = props.weapons;
 	const materials = props.materials;
 	const ascensionPlans = props.ascensionPlans;
 	const summary = props.summary;
@@ -56,6 +86,9 @@ export default function DialogTab(props: any) {
 	const [showCharacterPlanner, setShowCharacterPlanner] = React.useState(false)
 	const [currentCharacter, setCurrentCharacter] = React.useState("Character");
 	const [currentWeapon, setCurrentWeapon] = React.useState("Weapon");
+	const [reRender, setReRender] = React.useState(false);
+	const [reRenderWeapon, setReRenderWeapon] = React.useState(false);
+
 
     const openCharacterPlanner = (char: any) => {
         displayTabsTitle();
@@ -71,11 +104,29 @@ export default function DialogTab(props: any) {
         setCurrentWeapon(weapon)
     }
 
+	// const asyncPopulateChars = async () => {
+	// 	let promises = []
+	// 	promises = ( characters && characters.map((character: { name: any; }, index: any) => 
+	// 	<div key={index} className={classes.character} onClick={() => {
+	// 		openCharacterPlanner(character)
+	// 	}}>
+	// 		<DialogItem item={character} itemType={"character"} charCount={charCount}></DialogItem>
+	// 	</div>)
+	// 	);
+
+	// 	const data = await Promise.all(promises);
+	// 	console.log("data here:", data);
+	// 	console.log("charCount", charCount.current)
+		
+	// 	setTestState(data);
+	// }
+
+
     const populateDialogCharacters = characters && characters.map((character: { name: any; }, index: any) => 
         <div key={index} className={classes.character} onClick={() => {
             openCharacterPlanner(character);
         }}>
-        	<DialogItem item={character} itemType={"character"}></DialogItem>
+        	<DialogItem item={character} itemType={"character"} charCount={charCount} setReRender={setReRender} characters={characters}></DialogItem>
         </div>
 	);
 
@@ -83,23 +134,30 @@ export default function DialogTab(props: any) {
         <div key={index} className={classes.character} onClick={() => {
             openWeaponPlanner(weapon);
         }}>
-        	<DialogItem item={weapon} itemType={"weapon"}></DialogItem>
+        	<DialogItem item={weapon} itemType={"weapon"} weaponCount={weaponCount} setReRender={setReRenderWeapon} weapons={weapons}></DialogItem>
         </div>
 	);
 
 	return (
-		<div>
+		<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '100%'}}>
 			{ !showPlanner ? 
 				<div>
 					<TabPanel value={tabPanel} index={0}>
 						<div className={classes.itemsContainer}>
-							{ populateDialogCharacters } 
+							{ populateDialogCharacters }
+						</div>
+						<div className={classes.spinnerContainer}>
+							<CircularProgress className={classes.spinner} />
 						</div>
 					</TabPanel>
 					<TabPanel value={tabPanel} index={1}>
-						<div className={classes.itemsContainer}>
+						<div className={classes.weaponItemsContainer}>
 							{ populateDialogWeapons }
 						</div>
+						<div className={classes.spinnerContainer}>
+							<CircularProgress className={classes.weaponSpinner} />
+						</div>
+
 					</TabPanel>	
 				</div>	
 			: null }
