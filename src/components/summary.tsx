@@ -118,24 +118,43 @@ export default function NewCharacter(props: any) {
         }
 		setExpanded(!expanded);
     };
+
+    function handleBackgroundImage(stars: any) {
+        //console.log("calling handleBackgroundimage. Stars:", stars);
+        switch(stars) {
+            case "One":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png';
+            case "Two":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png';
+            case "Three":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png';
+            case "Four":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png';
+            case "Five":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png'
+        }
+    }
     
     const talentMaterials = summary && summary.map((material: any, index: any) => {
+        let backgroundImage = handleBackgroundImage(material.stars);
         if (material.position >= 97 && material.position <= 124) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={backgroundImage}></CharacterMaterial>
         }
     });
 
     const generalMaterials = summary && summary.map((material: any, index: any) => {
+        let backgroundImage = handleBackgroundImage(material.stars);
         // materials /w position 1-4, 8-44, 63-96
         if (material.position >= 1 && material.position <= 4 || material.position >= 8 && material.position <= 44 || material.position >= 63 && material.position <= 96) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={backgroundImage}></CharacterMaterial>
         }
     });
 
     const weaponMaterials = summary && summary.map((material: any, index: any) => {
+        let backgroundImage = handleBackgroundImage(material.stars);
         // materials /w position 5-7, 45-62, 125-148
         if (material.position >= 5 && material.position <= 7 || material.position >= 45 && material.position <= 62 || material.position >= 125 && material.position <= 148) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={backgroundImage}></CharacterMaterial>
         }
     });
 
