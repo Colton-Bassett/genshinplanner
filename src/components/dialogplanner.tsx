@@ -22,6 +22,10 @@ export default function DialogPlanner(props: any) {
     const [talentContainerOpacity, setTalentContainerOpacity] = React.useState<number>(1);
     const [talentCursor, setTalentCursor] = React.useState<any>("auto");
 
+    const [talentAttackImageLoaded, setTalentAttackImageLoaded] = React.useState(false);
+    const [talentSkillImageLoaded, setTalentSkillImageLoaded] = React.useState(false);
+    const [talentBurstImageLoaded, setTalentBurstImageLoaded] = React.useState(false);
+
     const useStyles = makeStyles((theme) => ({
         dialogPlanner: {
             minWidth: '100%',
@@ -636,13 +640,28 @@ export default function DialogPlanner(props: any) {
                 maxHeight: '17rem',
             },
         },
-        talentImage: {
+        talentImageContainer: {
             minHeight: "3rem", minWidth:"3rem", maxHeight: "3rem", maxWidth: "3rem", 
             borderRadius: "0.375rem", 
             backgroundColor: "#40484f", 
-            marginBottom: "0.75rem",
             margin: "0 auto", 
+            marginBottom: "0.75rem",
             boxShadow: "0 0.188rem 0.188rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
+        },
+        talentAttackImage: {
+            display: talentAttackImageLoaded? 'block' : 'none',
+            width: '100%',
+            borderRadius: "0.375rem", 
+        },
+        talentSkillImage: {
+            display: talentSkillImageLoaded? 'block' : 'none',
+            width: '100%',
+            borderRadius: "0.375rem", 
+        },
+        talentBurstImage: {
+            display: talentBurstImageLoaded? 'block' : 'none',
+            width: '100%',
+            borderRadius: "0.375rem", 
         },
         talentName: {
             fontWeight: 700, color: '#ffd780', width: '100%', marginBottom: '0.15rem'
@@ -821,6 +840,18 @@ export default function DialogPlanner(props: any) {
 			}
 		}
 		return <div className={classes.rarityStars}>{rarityStars}</div>
+    }
+
+    function handleImageLoadTalent(type: number) {
+        if (type === 1) {
+            setTalentAttackImageLoaded(true);
+        }
+        if (type === 2) {
+            setTalentSkillImageLoaded(true);
+        }
+        if (type === 3) {
+            setTalentBurstImageLoaded(true);
+        }
     }
 
     // main functions
@@ -1249,10 +1280,9 @@ export default function DialogPlanner(props: any) {
                         <div className={classes.talentContainer} style={{opacity: `${talentContainerOpacity}`, pointerEvents: talentCursor}}>
                             <div className={classes.talentContainerAttack}>
                                 <Card className={classes.talent}>
-                                    <CardMedia
-                                        image= {item.abilityOne.image}
-                                        className={classes.talentImage}
-                                    />
+                                    <div className={classes.talentImageContainer}>
+                                        <img src={item.abilityOne.image} className={classes.talentAttackImage} onLoad={(event) => handleImageLoadTalent(1)}></img>
+                                    </div>
                                     <Typography variant="h5" align="center" className={classes.talentName}>
                                         {item.abilityOne.name}
                                     </Typography>
@@ -1271,10 +1301,9 @@ export default function DialogPlanner(props: any) {
                             </div>
                             <div className={classes.talentContainerSkill}>
                                 <Card className={classes.talent}>
-                                    <CardMedia
-                                        image= {item.abilityTwo.image}
-                                        className={classes.talentImage}
-                                    />
+                                    <div className={classes.talentImageContainer}>
+                                        <img src={item.abilityTwo.image} className={classes.talentSkillImage} onLoad={(event) => handleImageLoadTalent(2)}></img>
+                                    </div>
                                     <Typography variant="h5" align="center" className={classes.talentName}>
                                         {item.abilityTwo.name}
                                     </Typography>
@@ -1293,10 +1322,9 @@ export default function DialogPlanner(props: any) {
                             </div>
                             <div className={classes.talentContainerBurst}>
                                 <Card className={classes.talent}>
-                                    <CardMedia
-                                        image= {item.abilityThree.image}
-                                        className={classes.talentImage}
-                                    />
+                                    <div className={classes.talentImageContainer}>
+                                        <img src={item.abilityThree.image} className={classes.talentBurstImage} onLoad={(event) => handleImageLoadTalent(3)}></img>
+                                    </div>
                                     <Typography variant="h5" align="center" className={classes.talentName}>
                                         {item.abilityThree.name}
                                     </Typography>

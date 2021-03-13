@@ -14,7 +14,8 @@ export default function CharacterMaterial( props: any ) {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [maxWidth, setMaxWidth] = useState<string>('12.5%');
     const [headerBorder,setHeaderBorder] = useState<string>();
-    const [backgroundImage, setBackgroundImage] = useState<string>();
+    const backgroundImage = props.backgroundImage;
+    // const [backgroundImage, setBackgroundImage] = useState<string>();
     const useStyles = makeStyles((theme) => ({
         material: {
             paddingBottom: "1.5rem",
@@ -231,25 +232,26 @@ export default function CharacterMaterial( props: any ) {
         return newText
     }
 
-    function handleBackgroundImage() {
-        switch(stars) {
-            case "One":
-                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png`);
-                return
-            case "Two":
-                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png`);
-                return
-            case "Three":
-                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png`);
-                return
-            case "Four":
-                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png`);
-                return
-            case "Five":
-                setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png`);
-                return
-        }
-    }
+    // function handleBackgroundImage() {
+    //     //console.log("calling handleBackgroundimage. Stars:", stars);
+    //     switch(stars) {
+    //         case "One":
+    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png` );
+    //             return
+    //         case "Two":
+    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png`);
+    //             return
+    //         case "Three":
+    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png`);
+    //             return
+    //         case "Four":
+    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png`);
+    //             return
+    //         case "Five":
+    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png`);
+    //             return
+    //     }
+    // }
 
     function handleTitleColor() {
         switch(stars) {
@@ -387,13 +389,13 @@ export default function CharacterMaterial( props: any ) {
     }
 
     function handleImageLoad() {
-        console.log("setting imageLoaded = true")
+        //console.log("setting imageLoaded = true")
         setImageLoaded(true);
 
     }
 
     useEffect(() => {
-        handleBackgroundImage();
+        // handleBackgroundImage();
         handleTitleColor();
         handleMaxWidth();
 

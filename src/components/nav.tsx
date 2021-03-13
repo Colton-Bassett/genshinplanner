@@ -224,8 +224,8 @@ export default function TopNav() {
                                 disableScrollLock={ true }
                                 open={Boolean(anchorEl)}
                                 onClose={handleCloseMenu}
-                                // style={{position: 'initial'}}
-                                classes={{paper: classes.menuPaper, list: classes.menuList,  }}
+                                style={{position: 'absolute'}}
+                                classes={{paper: classes.menuPaper, list: classes.menuList }}
                             >
                                 <MenuItem classes={{root: classes.menuItemRoot}} disableRipple onClick={handleCloseMenu}>
                                     <div className={classes.mobileLinkContainer}>

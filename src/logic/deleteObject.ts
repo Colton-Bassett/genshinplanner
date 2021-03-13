@@ -1,11 +1,10 @@
-const deleteObject = (id: any, items: any, setItems: any, summary: any, setSummary: any) => {
-    console.log("deleteObjects: items preDelete:", items)
-    let tempObjects = [...items]
-    const filteredObjects = tempObjects.filter(item => item.id !== id);
-    const item = items.find((item: { id: any; }) => item.id === id);
+const deleteObject = (id: any, ascensionPlans: any, setAscensionPlans: any, summary: any, setSummary: any) => {
+    let tempAscensionPlans = [...ascensionPlans]
+    const filteredAscensionPlans = tempAscensionPlans.filter(item => item.id !== id);
+    const ascensionPlan = tempAscensionPlans.find((item: { id: any; }) => item.id === id);
 
     let tempSummary = [...summary]
-    const materials = item.materials;
+    const materials = ascensionPlan.materials;
 
     for (let i = 0; i < materials.length; i++) {
         // subtracting quantity from summary;
@@ -15,9 +14,7 @@ const deleteObject = (id: any, items: any, setItems: any, summary: any, setSumma
     // deleting materials with 0 quantity
     const filteredSummary = tempSummary.filter(material => material.quantity !== 0);
 
-    setItems(filteredObjects);
+    setAscensionPlans(filteredAscensionPlans);
     setSummary(filteredSummary);
-    console.log("deleteObjects objects postDelete:", filteredObjects);
-    console.log("deleteObjects summary:", filteredSummary);
 }
 export default deleteObject;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import clsx from 'clsx';
 import { Card, CardHeader, CardMedia, CardContent, Collapse, IconButton, Typography, makeStyles, Tooltip } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
@@ -248,7 +248,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CharacterOverview(props: any) {
 	const classes = useStyles();
-
 	const initialAscensionStars = [
         {opacity: "0.3"},
         {opacity: "0.3"},
@@ -260,7 +259,6 @@ export default function CharacterOverview(props: any) {
 	
 	const ascensionPlan = {
 		id: props.ascensionPlan.id,
-		index: props.ascensionPlan.index,
 		name: props.ascensionPlan.name,
 		type: props.ascensionPlan.type,
 		typeImage: props.ascensionPlan.typeImage,
@@ -286,16 +284,19 @@ export default function CharacterOverview(props: any) {
 	const ascensionPlans = props.ascensionPlans;
 	const summary = props.summary;
 	const setSummary = props.setSummary;
+	const ascensionLevel = props.ascensionLevel;
 
 	const [expanded, setExpanded] = React.useState(false);
-	const [ascensionStars, setAscensionStars] = useState<any[]>(initialAscensionStars);
+	// const [ascensionStars, setAscensionStars] = useState<any[]>(props.ascensionStars);
+	const ascensionStars = props.ascensionStars;
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};
-	const deleteObject = (id: any, items: any, setItems: any, summary: any, setSummary: any) => {
-		console.log("deleteObject() characterOverview id:", ascensionPlan.id);
-		props.deleteMethod(id, items, setItems, summary, setSummary);
+
+	const deleteObject = (id: any, ascensionPlans: any, setAscensionPlans: any, summary: any, setSummary: any) => {
+		//console.log(ascensionPlans)
+		props.deleteMethod(id, ascensionPlans, setAscensionPlans, summary, setSummary);
 	}
 
 	function getStartAscension() {
@@ -445,13 +446,30 @@ export default function CharacterOverview(props: any) {
 		return <div className={classes.stars}>{stars}</div>
 	}
 
-	const characterMaterials = ascensionPlan.materials && ascensionPlan.materials.map((material: any, index: any) => 
-		<CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars}></CharacterMaterial>
-	);
+    function handleBackgroundImage(stars: any) {
+        //console.log("calling handleBackgroundimage. Stars:", stars);
+        switch(stars) {
+            case "One":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png';
+            case "Two":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png';
+            case "Three":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png';
+            case "Four":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png';
+            case "Five":
+                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png'
+        }
+    }
+
+	const characterMaterials = ascensionPlan.materials && ascensionPlan.materials.map((material: any, index: any) => {
+
+		let backgroundImage = handleBackgroundImage(material.stars);
+		return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} backgroundImage={backgroundImage}></CharacterMaterial>
+	});	
 
 	const createAscensionStars = ascensionStars && ascensionStars.map((star: any, index: any) => 
 		<div key={index}>
-
 		<CardMedia
 			image= {AscensionStar}
 			className={classes.ascensionStar}
@@ -461,16 +479,16 @@ export default function CharacterOverview(props: any) {
 		</div>
 	);
 
-	const setAscensionStarsOther = () => {
-		const ascensionLevel = ascensionPlan.endAscension;
-		const starsTemp = [...ascensionStars]
+	// const setAscensionStarsOther = () => {
+	// 	const starsTemp = [...ascensionStars]
 
-		for (let i = 0; i < ascensionLevel; i++) {
-			//console.log(i);
-			starsTemp[i].opacity = "1";
-		}
-		setAscensionStars(starsTemp)
-	}
+	// 	for (let i = 0; i < ascensionLevel; i++) {
+	// 		//console.log(i);
+	// 		starsTemp[i].opacity = "1";
+	// 	}
+	// 	console.log(starsTemp)
+	// 	setAscensionStars(starsTemp)
+	// }
 
 	function showTalentLevels() {
 		if (ascensionPlan.type === "character" && getCurrentTalentLevel(1) !== 0) {
@@ -493,7 +511,7 @@ export default function CharacterOverview(props: any) {
 
 	useEffect(() => {
 		// fetchMaterials;
-		setAscensionStarsOther();
+		//setAscensionStarsOther()
 	}, []);
 
 	return (

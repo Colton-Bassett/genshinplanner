@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import NewCharacter from "./newcharacter"
@@ -38,11 +38,29 @@ export default function Planner(props: any) {
 	const setAscensionPlans = props.setAscensionPlans;
 	const setSummary = props.setSummary;
 
+	const handleAscensionStars = (ascensionLevel: any) => {
+		const starsTemp = [
+			{opacity: "0.3"},
+			{opacity: "0.3"},
+			{opacity: "0.3"},
+			{opacity: "0.3"},
+			{opacity: "0.3"},
+			{opacity: "0.3"},
+		]
+
+		for (let i = 0; i < ascensionLevel; i++) {
+			starsTemp[i].opacity = "1";
+		}
+		return starsTemp
+	}
+
 	const characterOverviews = ascensionPlans && ascensionPlans.map((ascensionPlan: any, index: any) => {
+		let ascensionLevel = ascensionPlan.endAscension;
+		let ascensionStars = handleAscensionStars(ascensionLevel);
 		return <CharacterOverview 
 					key={index} ascensionPlan={ascensionPlan} ascensionPlans={ascensionPlans} summary={summary} 
-					setAscensionPlans={setAscensionPlans} setSummary={setSummary} 
-					deleteMethod={DeleteObject}>
+					setAscensionPlans={setAscensionPlans} setSummary={setSummary} ascensionLevel={ascensionLevel} ascensionStars={ascensionStars}
+					deleteMethod={DeleteObject}> 
 				</CharacterOverview>
 	});
 
