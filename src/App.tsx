@@ -6,7 +6,7 @@ import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-u
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // import createNewMaterial from './apifunctions/createnewmaterial'
-// import createNewWeapon from './apifunctions/createnewweapon'
+import createNewWeapon from './apifunctions/createnewweapon'
 // import createNewCharacter from './apifunctions/createnewcharacter'
 import fetchCharacters from './apifunctions/fetchcharacters';
 
@@ -219,7 +219,7 @@ export default function App() {
 	//const [plannerSummary, setPlannerSummary] = useState<[Character]>();
 
 	// const [character, setCharacter] = useState<Character>(characterTemplate);
-	// const [weapon, setWeapon] = useState<Weapon>(weaponTemplate);
+	const [weapon, setWeapon] = useState<Weapon>(weaponTemplate);
 	// const [material, setMaterial] = useState<Material>(materialTemplate);
 
 	useEffect(() => {

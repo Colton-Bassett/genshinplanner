@@ -13,9 +13,12 @@ const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s
 export default function CharacterMaterial( props: any ) {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [maxWidth, setMaxWidth] = useState<string>('12.5%');
-    const [headerBorder,setHeaderBorder] = useState<string>();
+
     const backgroundImage = props.backgroundImage;
-    // const [backgroundImage, setBackgroundImage] = useState<string>();
+    const headerColor = props.headerColor;
+    const headerOutline = props.headerOutline;
+    const headerBorder = props.headerBorder;
+
     const useStyles = makeStyles((theme) => ({
         material: {
             paddingBottom: "1.5rem",
@@ -185,11 +188,8 @@ export default function CharacterMaterial( props: any ) {
     const sources = props.sources;
     const matType = props.matType;
 
-    const [titleColor, setTitleColor] = useState<string>();
-    const [titleOutline, setTitleOutline] = useState<string>();
-
-
 	var SI_SYMBOL = ["", "k", "M", "G", "T", "P", "E"];
+    const [open, setOpen] = React.useState(false);
 
 	function abbreviateNumber(number: any){
 		// what tier? (determines SI symbol)
@@ -217,8 +217,6 @@ export default function CharacterMaterial( props: any ) {
 		return scaledFixed
     }
     
-    const [open, setOpen] = React.useState(false);
-
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -230,63 +228,6 @@ export default function CharacterMaterial( props: any ) {
     function formatText(text: string) {
         let newText = text.replace(/_/g, " ");
         return newText
-    }
-
-    // function handleBackgroundImage() {
-    //     //console.log("calling handleBackgroundimage. Stars:", stars);
-    //     switch(stars) {
-    //         case "One":
-    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png` );
-    //             return
-    //         case "Two":
-    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png`);
-    //             return
-    //         case "Three":
-    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png`);
-    //             return
-    //         case "Four":
-    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png`);
-    //             return
-    //         case "Five":
-    //             setBackgroundImage(`https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png`);
-    //             return
-    //     }
-    // }
-
-    function handleTitleColor() {
-        switch(stars) {
-            case "One":
-                // silver
-                setTitleColor("#72778b");
-                setTitleOutline("0.188rem solid rgb(89, 92, 107)");
-                setHeaderBorder("0.4rem solid #5a5d66");
-
-                return
-            case "Two":
-                // green
-                setTitleColor("#2a9072");
-                setTitleOutline("0.188rem solid rgb(35, 111, 89)");
-                setHeaderBorder("0.4rem solid #44635e");
-                return
-            case "Three":
-                // blue
-                setTitleColor("#5180cc");
-                setTitleOutline("0.188rem solid rgb(64, 99, 156)");
-                setHeaderBorder("0.4rem solid #47687d");
-                return
-            case "Four":
-                // purple
-                setTitleColor("#a156e0");
-                setTitleOutline("0.188rem solid rgb(124, 68, 171)");
-                setHeaderBorder("0.4rem solid #745b87");
-                return
-            case "Five":
-                // orange
-                setTitleColor("#bd6932");
-                setTitleOutline("0.188rem solid rgb(145, 82, 41, 1)");
-                setHeaderBorder("0.4rem solid #846750");
-                return
-        }
     }
 
     function createSources() {
@@ -389,16 +330,11 @@ export default function CharacterMaterial( props: any ) {
     }
 
     function handleImageLoad() {
-        //console.log("setting imageLoaded = true")
         setImageLoaded(true);
-
     }
 
     useEffect(() => {
-        // handleBackgroundImage();
-        handleTitleColor();
         handleMaxWidth();
-
 	}, []);
 
     return (
@@ -419,8 +355,8 @@ export default function CharacterMaterial( props: any ) {
                     aria-describedby="alert-dialog-description"
                     classes={{paper: classes.dialog}}
                     >
-                    <DialogTitle id="alert-dialog-title" style={{backgroundColor: `${titleColor}`, padding: "0rem"}}>
-                        <div style={{outline: `${titleOutline}`, padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem'}}>
+                    <DialogTitle id="alert-dialog-title" style={{backgroundColor: `${headerColor}`, padding: "0rem"}}>
+                        <div style={{outline: `${headerOutline}`, padding: "0.5rem 1.5rem", outlineOffset: '-0.313rem'}}>
                         <Typography variant="h1">
                             {formatText(name)} 
                         </Typography>

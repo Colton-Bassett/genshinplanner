@@ -31,19 +31,31 @@ export default function DialogTab(props: any) {
 			margin: '1.5rem auto', 
 		},
 		spinnerContainer: {
+			display: charCount.current < characters?.length ? 'flex' : 'none',
 			alignItems: 'center',
 			justifyContent: 'center',
-			display: 'flex',
+			backgroundColor: '#1b242d',
+			borderRadius: '1rem',
+			height: '6.5rem',
+			width: '6.5rem',
+		},
+		weaponSpinnerContainer: {
+			display: weaponCount.current < weapons?.length ? 'flex' : 'none',
+			alignItems: 'center',
+			justifyContent: 'center',
+			backgroundColor: '#1b242d',
+			borderRadius: '1rem',
+			height: '6.5rem',
+			width: '6.5rem',
 		},
 		spinner: {
-			display: charCount.current < characters?.length ? 'flex' : 'none',
-			// display: 'flex',
+			display: 'flex',
 			color: 'white', margin: 'auto',
 			width: '4.25rem !important',
 			height: '4.25rem !important',
 		},
 		weaponSpinner: {
-			display: weaponCount.current < weapons?.length ? 'flex' : 'none',
+			display: 'flex',
 			color: 'white', margin: 'auto',
 			width: '4.25rem !important',
 			height: '4.25rem !important',
@@ -139,7 +151,7 @@ export default function DialogTab(props: any) {
 	);
 
 	return (
-		<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '100%'}}>
+		<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '100%', minHeight: '100%'}}>
 			{ !showPlanner ? 
 				<div>
 					<TabPanel value={tabPanel} index={0}>
@@ -154,7 +166,7 @@ export default function DialogTab(props: any) {
 						<div className={classes.weaponItemsContainer}>
 							{ populateDialogWeapons }
 						</div>
-						<div className={classes.spinnerContainer}>
+						<div className={classes.weaponSpinnerContainer}>
 							<CircularProgress className={classes.weaponSpinner} />
 						</div>
 

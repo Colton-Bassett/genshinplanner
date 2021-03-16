@@ -5,16 +5,16 @@ export default async function createNewWeapon(weapon: any, setWeapon: any, weapo
     console.log("createNewWeapon() called")
 
     const w = { ...weapon};
-    w.name = "Lithic Blade"
-    w.type = 'Claymore'
-    w.stars = 'Four'
-    w.description = 'A greatsword carved and chiseled from the very bedrock of Liyue.'
-    w.image = "Lithic_Blade.png"
+    w.name = "Elegy for the End"
+    w.type = 'Bow'
+    w.stars = 'Five'
+    w.description = "A bow as lovely as any bard's lyre, its arrows pierce the heart like a lamenting sigh."
+    w.image = "Elegy_for_the_End.png"
 
-    w.ascensionMats.matOne = "Luminous_Sands_from_Guyun"
-    w.ascensionMats.matTwo = "Hunter's_Sacrificial_Knife"
+    w.ascensionMats.matOne = "Boreal_Wolf's_Milk_Tooth"
+    w.ascensionMats.matTwo = "Heavy_Horn"
     w.ascensionMats.specialty = 'N/A'
-    w.ascensionMats.commonMat = "Firm_Arrowhead"
+    w.ascensionMats.commonMat = "Recruit's_Insignia"
     setWeapon(w);
 
     if (!weapon.name || !weapon.description) {
@@ -23,7 +23,7 @@ export default async function createNewWeapon(weapon: any, setWeapon: any, weapo
     }
 
     await API.graphql({ query: createWeaponMutation, variables: { input: weapon } });
-    console.log("createNewWeapon() complete ");
+    console.log("createNewWeapon() complete");
 
     // reset weapon
     setWeapon(weaponTemplate);

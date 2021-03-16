@@ -4,6 +4,8 @@ import { Card, makeStyles, Collapse, IconButton } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import CharacterMaterial from './charactermaterial'
 
+import HandleMaterialHeader from '../logic/handleMaterialHeader'
+
 
 export default function NewCharacter(props: any) {
     const [summaryBorder, setSummaryBorder] = React.useState('');
@@ -136,25 +138,42 @@ export default function NewCharacter(props: any) {
     }
     
     const talentMaterials = summary && summary.map((material: any, index: any) => {
-        let backgroundImage = handleBackgroundImage(material.stars);
+        let materialHeader = { background: "", color: "", outline: "", border: "" };
+		materialHeader = HandleMaterialHeader(material.stars)
+
         if (material.position >= 97 && material.position <= 124) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={backgroundImage}></CharacterMaterial>
+            return <CharacterMaterial 
+                        key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} 
+                        sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={materialHeader.background} 
+                        headerColor={materialHeader.color} headerOutline={materialHeader.outline} headerBorder={materialHeader.border}>
+                    </CharacterMaterial>
         }
     });
 
     const generalMaterials = summary && summary.map((material: any, index: any) => {
-        let backgroundImage = handleBackgroundImage(material.stars);
+        let materialHeader = { background: "", color: "", outline: "", border: "" };
+		materialHeader = HandleMaterialHeader(material.stars)
+
         // materials /w position 1-4, 8-44, 63-96
         if (material.position >= 1 && material.position <= 4 || material.position >= 8 && material.position <= 44 || material.position >= 63 && material.position <= 96) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={backgroundImage}></CharacterMaterial>
+            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} 
+                        sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={materialHeader.background} 
+                        headerColor={materialHeader.color} headerOutline={materialHeader.outline} headerBorder={materialHeader.border}>
+                    </CharacterMaterial>
         }
     });
 
     const weaponMaterials = summary && summary.map((material: any, index: any) => {
-        let backgroundImage = handleBackgroundImage(material.stars);
+        let materialHeader = { background: "", color: "", outline: "", border: "" };
+		materialHeader = HandleMaterialHeader(material.stars)
+
         // materials /w position 5-7, 45-62, 125-148
         if (material.position >= 5 && material.position <= 7 || material.position >= 45 && material.position <= 62 || material.position >= 125 && material.position <= 148) {
-            return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={backgroundImage}></CharacterMaterial>
+            return <CharacterMaterial 
+                        key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} 
+                        sources={material.sources} stars={material.stars} matType={'summary'} backgroundImage={materialHeader.background} 
+                        headerColor={materialHeader.color} headerOutline={materialHeader.outline} headerBorder={materialHeader.border}>
+                    </CharacterMaterial>
         }
     });
 

@@ -74,6 +74,8 @@ export default function DialogPlanner(props: any) {
         },
         headerImage: {
             width: '100%',
+            maxHeight: '6rem',
+            maxWidth: '6rem',
             boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
             backgroundColor: "#2e3944",
             borderRadius: "0.375rem",

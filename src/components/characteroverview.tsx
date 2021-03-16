@@ -8,6 +8,7 @@ import CharacterMaterial from './charactermaterial'
 import CancelIcon from '@material-ui/icons/Cancel';
 
 import HandleLevel from '../logic/handleLevel'
+import HandleMaterialHeader from '../logic/handleMaterialHeader'
 const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
 const AscensionStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Ascension_Star.png`;
 
@@ -106,6 +107,7 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: "6.563rem", maxWidth: "6.563rem", borderRadius: "0.625rem", margin: 'auto',
 		marginBottom: '1rem',
 		backgroundColor: "#2e3944",
+		backgroundSize: 'contain',
 		boxShadow: "0 0.188rem 0.375rem rgba(0,0,0,.23), 0 0.188rem 0.375rem rgba(0,0,0,.16)",
 	},
 	characterImageContainer: {
@@ -446,26 +448,13 @@ export default function CharacterOverview(props: any) {
 		return <div className={classes.stars}>{stars}</div>
 	}
 
-    function handleBackgroundImage(stars: any) {
-        //console.log("calling handleBackgroundimage. Stars:", stars);
-        switch(stars) {
-            case "One":
-                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Onestar_background.png';
-            case "Two":
-                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Twostar_background.png';
-            case "Three":
-                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Threestar_background.png';
-            case "Four":
-                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fourstar_background.png';
-            case "Five":
-                return 'https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Fivestar_background.png'
-        }
-    }
-
 	const characterMaterials = ascensionPlan.materials && ascensionPlan.materials.map((material: any, index: any) => {
-
-		let backgroundImage = handleBackgroundImage(material.stars);
-		return <CharacterMaterial key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} backgroundImage={backgroundImage}></CharacterMaterial>
+		let materialHeader = { background: "", color: "", outline: "", border: "" };
+		materialHeader = HandleMaterialHeader(material.stars)
+		return <CharacterMaterial 
+					key={index} name={material.name} quantity={material.quantity} image={material.image} type={material.type} description={material.description} sources={material.sources} stars={material.stars} 
+					backgroundImage={materialHeader.background} headerColor={materialHeader.color} headerOutline={materialHeader.outline} headerBorder={materialHeader.border}>
+			   </CharacterMaterial>
 	});	
 
 	const createAscensionStars = ascensionStars && ascensionStars.map((star: any, index: any) => 
