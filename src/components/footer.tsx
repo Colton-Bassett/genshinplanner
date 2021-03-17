@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Icon } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-const logo = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Logo.png`;
+const logo = `https://anemo.s3.us-east-2.amazonaws.com/Logo.png`;
 
 const useStyles = makeStyles((theme) => ({
     footer: {

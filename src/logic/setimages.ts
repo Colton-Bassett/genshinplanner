@@ -9,8 +9,8 @@ async function fetchImage(name: any) {
 export default async function SetImages(materials: any) {
     for (let i = 0; i < materials.length; i++) {
         //console.log('running materials loop')
-        const materialImage = await(fetchImage(materials[i].name + '.png'))
-        materials[i].image = materialImage
+        const imageLocation = 'https://anemo.s3.us-east-2.amazonaws.com/' + materials[i].name + '.png';
+        materials[i].image = imageLocation;
     }
     return materials
 }

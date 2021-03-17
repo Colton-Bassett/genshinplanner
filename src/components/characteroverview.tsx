@@ -9,8 +9,8 @@ import CancelIcon from '@material-ui/icons/Cancel';
 
 import HandleLevel from '../logic/handleLevel'
 import HandleMaterialHeader from '../logic/handleMaterialHeader'
-const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
-const AscensionStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Ascension_Star.png`;
+const Star = `https://anemo.s3.us-east-2.amazonaws.com/Rarity_Star.png`;
+const AscensionStar = `https://anemo.s3.us-east-2.amazonaws.com/Ascension_Star.png`;
 
 const useStyles = makeStyles((theme) => ({
 	plannerContainer: {

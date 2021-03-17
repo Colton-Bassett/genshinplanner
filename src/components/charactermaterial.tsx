@@ -6,7 +6,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Place } from '@material-ui/icons';
 
-const Star = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
+const Star = `https://anemo.s3.us-east-2.amazonaws.com/Rarity_Star.png`;
 
 
 
@@ -14,6 +14,7 @@ export default function CharacterMaterial( props: any ) {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [maxWidth, setMaxWidth] = useState<string>('12.5%');
 
+    const image = props.image;
     const backgroundImage = props.backgroundImage;
     const headerColor = props.headerColor;
     const headerOutline = props.headerOutline;
@@ -63,6 +64,7 @@ export default function CharacterMaterial( props: any ) {
             minHeight: "3rem", 
             minWidth: "3rem", 
             backgroundSize: '100%, cover', 
+            backgroundImage: `url("${image}"), url("${backgroundImage}")`,
     
             backgroundOrigin: 'content-box, border-box', 
             padding: '0.25rem', 
@@ -71,7 +73,6 @@ export default function CharacterMaterial( props: any ) {
             borderBottomRightRadius: '.9rem',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center, 100% 50%',
-            opacity: '1, 0.5'
         },
         materialImageTest: {
             display: imageLoaded ? 'block' : 'none',
@@ -181,7 +182,6 @@ export default function CharacterMaterial( props: any ) {
 
     const name = props.name;
     const quantity = props.quantity;
-    const image = props.image;
     const type = props.type;
     const stars = props.stars;
     const description = props.description;
@@ -341,7 +341,7 @@ export default function CharacterMaterial( props: any ) {
         <div className={classes.material}>
             <div className={classes.materialContainer} >
                 <div onClick={handleClickOpen}>
-                    <div className={classes.materialImage} onLoad={handleImageLoad} style={{backgroundImage: `url(${image}), url(${backgroundImage})`}}>
+                    <div className={classes.materialImage} onLoad={handleImageLoad}>
                     </div>
                     {/* <img className={classes.materialImageTest} src={image} onLoad={handleImageLoad}></img> */}
                     <Typography variant="body1" align="center" className={classes.text}>

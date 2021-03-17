@@ -8,7 +8,7 @@ export default async function fetchWeapons(setWeapons: any) {
     await Promise.all(weaponsFromAPI.map(async (weapon: any) => {
         // 24 hours
         //let imageURLExpiration = 86400; 
-        const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + weapon.image;
+        const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + weapon.image;
         if (weapon.image) {
             const image = imageLocation;
             weapon.image = image;

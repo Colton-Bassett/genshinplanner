@@ -9,7 +9,7 @@ export default async function fetchMaterials(setMaterials: any) {
         // 24 hours
         //let imageURLExpiration = 86400; 
         if (material.image) {
-            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + material.image;
+            const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + material.image;
             const image = imageLocation;
             material.image = image;
         }

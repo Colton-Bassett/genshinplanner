@@ -13,8 +13,8 @@ import NumberPicker from './numberpicker';
 import HandleNumberPicker from '../logic/handleNumberPicker'
 import AscensionPlan from '../logic/ascensionPlan'
 
-const RarityStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Rarity_Star.png`;
-const AscensionStar = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Ascension_Star.png`;
+const RarityStar = `https://anemo.s3.us-east-2.amazonaws.com/Rarity_Star.png`;
+const AscensionStar = `https://anemo.s3.us-east-2.amazonaws.com/Ascension_Star.png`;
 
 export default function DialogPlanner(props: any) {
     const [levelContainerOpacity, setLevelContainerOpacity] = React.useState<number>(1);
@@ -48,7 +48,7 @@ export default function DialogPlanner(props: any) {
             zIndex: 1, 
             backgroundPosition: '40% 65%', 
             boxSizing: 'border-box', 
-            backgroundImage: `url(https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Liyue_background.jpg)`,
+            backgroundImage: `url(https://anemo.s3.us-east-2.amazonaws.com/Liyue_background.jpg)`,
             opacity: 0.6,
         },
         headerImageContainer: {

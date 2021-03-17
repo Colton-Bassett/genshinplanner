@@ -9,7 +9,7 @@ export default async function fetchCharacters(setCharacters: any) {
         // 24 hours
         //let imageURLExpiration = 86400; 
         if (character.image) {
-            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.image;
+            const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + character.image;
 
             // const image = await Storage.get(character.image, {expires: imageURLExpiration});
             const image = imageLocation;
@@ -17,22 +17,22 @@ export default async function fetchCharacters(setCharacters: any) {
         }
         if (character.typeImage) {
             const imageName = "Element_" + character.typeImage;
-            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + imageName;
+            const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + imageName;
             const image = imageLocation;
             character.typeImage = image;
         }
         if (character.abilityOne.image) {
-            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.abilityOne.image;
+            const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + character.abilityOne.image;
             const image = imageLocation;
             character.abilityOne.image = image;
         }
         if (character.abilityTwo.image) {
-            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.abilityTwo.image;
+            const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + character.abilityTwo.image;
             const image = imageLocation
             character.abilityTwo.image = image;
         }
         if (character.abilityThree.image) {
-            const imageLocation = "https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/" + character.abilityThree.image;
+            const imageLocation = "https://anemo.s3.us-east-2.amazonaws.com/" + character.abilityThree.image;
             const image = imageLocation;
             character.abilityThree.image = image;
         }

@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 // import { KeyboardArrowDown } from '@material-ui/icons';
 import { Link } from "react-router-dom";
 
-const logo = `https://genshinplannera2c57fdbc5164a6b8f94392805cd599f155138-dev.s3.us-east-2.amazonaws.com/public/Logo.png`;
+const logo = `https://anemo.s3.us-east-2.amazonaws.com/Logo.png`;
 
 const useStyles = makeStyles((theme) => ({
     nav: {
