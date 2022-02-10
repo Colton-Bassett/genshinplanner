@@ -12,7 +12,7 @@ const awsmobile = {
     "aws_user_pools_id": "us-east-2_qiGYsKW0r",
     "aws_user_pools_web_client_id": "63hcc7erfe1qt4eh1bsm00mnbb",
     "oauth": {},
-    "aws_user_files_s3_bucket": "anemo",
+    "aws_user_files_s3_bucket": "anemo155138-dev",
     "aws_user_files_s3_bucket_region": "us-east-2"
 };
 

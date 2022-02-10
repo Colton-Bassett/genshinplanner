@@ -5,36 +5,36 @@ export default async function createNewCharacter(character: any, setCharacter: a
     console.log("createNewCharacter() called")
 
     const c = { ...character};
-    c.name = 'Hu Tao'
-    c.type = 'Pyro'
-    c.typeImage = 'Pyro.png'
-    c.weapon = 'Polearm'
-    c.stars = 'Five'
-    c.description = 'The 77th Director of the Wangsheng Funeral Parlor. She took over the business at a rather young age.'
-    c.image = 'Hu_Tao.png'
+    c.name = 'Eula'
+    c.type = 'Cryo'
+    c.typeImage = 'Cryo.png'
+    c.weapon = 'Claymore'
+    c.stars = 'Four'
+    c.description = "The Spindrift Knight, a scion of the old aristocracy, and the Captain ofo the Knights of Favonius Reconnaissance Company. The Reason foor which a descendant of the ancient nobles might join the Knights remains a great mystery in Mondstadt to this very day."
+    c.image = 'Eula.png'
 
-    c.abilityOne.name = 'Secret Spear of Wangsheng'
+    c.abilityOne.name = 'Favonius Bladework - Edel'
     c.abilityOne.description = 'Normal Attack'
-    c.abilityOne.image = 'Secret_Spear_of_Wangsheng.png'
+    c.abilityOne.image = 'Favonius_Bladework_Edel.png'
 
-    c.abilityTwo.name = "Guide to Afterlife"
-    c.abilityTwo.description = "Only an unwavering flame can cleanse the impurities of this world."
-    c.abilityTwo.image = "Guide_to_Afterlife.png"
+    c.abilityTwo.name = "Icetide_Vortex"
+    c.abilityTwo.description = "Slashes swiftly, dealing Cryo DMG."
+    c.abilityTwo.image = "Icetide_Vortex.png"
 
-    c.abilityThree.name = "Spirit Soother"
-    c.abilityThree.description = "Commands a blazing spirit to attack, dealing Pyro DMG in a large AoE."	
-    c.abilityThree.image = "Spirit_Soother.png"
+    c.abilityThree.name = "Glacial Illumination"
+    c.abilityThree.description = "Eula deals Cryo DMG to nearby opponents and creates a Lightfall Sword that follows her around for up to 7s."	
+    c.abilityThree.image = "Glacial_Illumination.png"
 
-    c.ascensionMats.matOne = 'Agnidus_Agate'
-    c.ascensionMats.matTwo = 'Juvenile_Jade'
-    c.ascensionMats.specialty = 'Silk_Flower'
-    c.ascensionMats.commonMat = "Whopperflower_Nectar"
-    c.talentMats.talentMat = 'Diligence'
-    c.talentMats.bossMat = "Shard_of_a_Foul_Legacy"
+    c.ascensionMats.matOne = 'Shivada_Jade'
+    c.ascensionMats.matTwo = 'Hoarfrost_Core'
+    c.ascensionMats.specialty = 'Dandelion_Seed'
+    c.ascensionMats.commonMat = "Damaged_Mask"
+    c.talentMats.talentMat = 'Resistance'
+    c.talentMats.bossMat = "Shadow_of_the_Warrior"
     setCharacter(c);
 
     if (!character.name || !character.description) {
-        console.log("createNewCharacter() character.name || character.description issue ")
+        console.log("createNewCharacter() character.name || character.description issue")
         return; 
     }
 
