@@ -1,0 +1,42 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "authSelections": "identityPoolAndUserPool",
+    "requiredAttributes": [
+      "email"
+    ],
+    "resourceName": "genshinplanner7005d953",
+    "useDefault": "default",
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "resourceNameTruncated": "genshi7005d953",
+    "userPoolGroupList": [],
+    "userPoolName": "genshinplanner7005d953_userpool_7005d953",
+    "usernameAttributes": [
+      "email"
+    ],
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientSetAttributes": false,
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientLambdaRole": "genshi7005d953_userpoolclient_lambda_role",
+    "passwordPolicyCharacters": [],
+    "passwordPolicyMinLength": 8,
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "identityPoolName": "genshinplanner7005d953_identitypool_7005d953",
+    "allowUnauthenticatedIdentities": true
+  }
+}    

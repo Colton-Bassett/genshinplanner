@@ -1,33 +1,43 @@
 {
-    "api": {
-        "genshinplanner": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "API_KEY",
-                        "apiKeyConfig": {
-                            "description": "genshin planner",
-                            "apiKeyExpirationDays": "7"
-                        }
-                    }
-                }
-            }
+  "api": {
+    "genshinplanner": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDate": "2024-04-20T18:53:47.609Z",
+              "apiKeyExpirationDays": 365,
+              "description": "genshin planner"
+            },
+            "authenticationType": "API_KEY"
+          }
         }
-    },
-    "auth": {
-        "genshinplanner7005d953": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": []
-        }
-    },
-    "storage": {
-        "imagestorage": {
-            "service": "S3",
-            "providerPlugin": "awscloudformation"
-        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
     }
+  },
+  "auth": {
+    "genshinplanner7005d953": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "S3Triggerca5abe12": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "storage": {
+    "imagestorage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
 }

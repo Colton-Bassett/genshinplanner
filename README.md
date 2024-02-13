@@ -1,12 +1,26 @@
-# Getting Started with Create React App
+# "Anemo.gg" Genshin Impact Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Anemo.gg is a Genshin Impact planner that streamlines the process of calculating currency and resource requirements for leveling up Genshin characters.
+
+Anemo.gg delivers a fully functional API database of Genshin information including character abilities, descriptions, and leveling data. Users and 3rd party developers can utilize this API themselves for their own Genshin related apps.
+
+The application is coded in TypeScript, utilizing React and Material UI for the frontend. It interacts with a homemade API built on GraphQL. In the backend, AWS DynamoDB and an S3 bucket handle data storage, while deployment is managed through AWS Amplify."
+
+This project was created with [Create React App](https://github.com/facebook/create-react-app).
+
+## Project Goals
+
+-   Build a polished, production-ready application for limited commerical use.
+
+-   Foster collaboration by providing an open source API for third-party developers.
+
+-   Strengthen skill in TypeScript and React through hands-on development and problem-solving.
+
+-   Dive into the AWS infrastructure and GraphQL, learning these technologies from the ground up to enhance project scalability and efficiency.
+
+-   Have fun on the journey of learning and discovery while enjoying the process of building something meaningful and impactful.
 
 ## Available Scripts
-
-In the project directory, you can run:
-
-If API calls are unauthorized, modify APIExpirationEpoch, amplify push, modify graphQL queries.
 
 ### `npm start`
 
@@ -41,8 +55,4 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+If API calls are unauthorized, modify APIExpirationEpoch, amplify push, modify graphQL queries.

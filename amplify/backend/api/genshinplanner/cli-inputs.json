@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2024-04-20T18:53:47.609Z",
+      "keyDescription": "genshin planner"
+    },
+    "conflictResolution": {},
+    "apiName": "genshinplanner",
+    "additionalAuthTypes": []
+  }
+}
